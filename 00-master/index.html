@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[NAME] · the build, in order · 2026-06-19 → 2026-07-18</title>
+<meta name="description" content="The chronological record of an unnamed agent OS for organizations: from a single distilled idea on June 19 to a room-ready launch kit for the July 17 meeting. Every beat links to the real artifact it produced.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --paper:     #ECEEEC;
+    --desk:      #E4E7E4;
+    --card:      #F6F7F6;
+    --ink:       #20262A;
+    --ink-soft:  #586067;
+    --ink-dim:   #6C727A;
+    --line:      rgba(32,38,42,0.14);
+    --line-soft: rgba(32,38,42,0.08);
+    --accent:    #1E5A4C;
+    --accent-lit:#2B7A66;
+    --warm:      #8A3D30;
+    --warm-lit:  #A24A38;
+    --wash:      rgba(30,90,76,0.08);
+    --wash-2:    rgba(30,90,76,0.045);
+    --warmwash:  rgba(138,61,48,0.07);
+    --serif: "Iowan Old Style","Palatino Linotype","Palatino","Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+    --mono: ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
+    --maxw: 1080px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{ background:var(--wash); color:var(--ink); }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ color:var(--accent-lit); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  .skip{ position:absolute; left:-9999px; top:0; background:var(--ink); color:var(--paper); padding:0.6rem 1rem; z-index:60; font-family:var(--mono); font-size:0.8rem; }
+  .skip:focus{ left:1rem; top:1rem; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.1rem,4vw,2.6rem); }
+
+  /* scroll progress rail (top) */
+  .prog{ position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg,var(--accent),var(--warm)); z-index:70; transition:width 0.08s linear; }
+
+  /* masthead */
+  .mast{ position:relative; padding:clamp(3rem,8vw,6rem) 0 clamp(1.8rem,4vw,2.8rem); border-bottom:1px solid var(--line); overflow:hidden; }
+  .mast .frame{ position:absolute; inset:clamp(1.6rem,4vw,2.6rem) 0 auto 0; height:1px; background:var(--accent); opacity:0.45; max-width:var(--maxw); margin:0 auto; left:0; right:0; }
+  .kicker{ font-family:var(--mono); font-size:0.74rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 1.4rem; display:flex; flex-wrap:wrap; gap:0.5rem 1.1rem; align-items:baseline; }
+  .kicker b{ color:var(--accent); font-weight:600; }
+  .wordmark{ font-family:var(--serif); font-size:clamp(3.2rem,11vw,7rem); line-height:0.94; font-weight:600; letter-spacing:-0.015em; margin:0; color:var(--ink); }
+  .wordmark .bk{ color:var(--accent); font-weight:400; }
+  .wordmark .nm{ color:var(--ink-dim); letter-spacing:0.02em; }
+  .breathe .bk{ animation:breathe 5.5s ease-in-out infinite; }
+  @keyframes breathe{ 0%,100%{opacity:0.42;} 50%{opacity:1;} }
+  .thesis{ font-family:var(--serif); font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.34; font-weight:400; color:var(--ink); margin:1.6rem 0 0; max-width:34ch; }
+  .thesis em{ font-style:italic; color:var(--accent); }
+  .mast-meta{ font-family:var(--mono); font-size:0.82rem; color:var(--ink-soft); margin:1.7rem 0 0; letter-spacing:0.01em; }
+  .mast-meta b{ color:var(--ink); font-weight:600; }
+  .mast-lede{ margin:1.2rem 0 0; max-width:64ch; font-size:0.96rem; color:var(--ink-soft); line-height:1.6; }
+  .mast-lede b{ color:var(--ink); font-weight:600; }
+
+  /* span bar: the 28-day compression motif */
+  .spanbar{ margin:2.2rem 0 0; max-width:640px; }
+  .spanbar .track{ position:relative; height:14px; border-radius:7px; background:var(--desk); border:1px solid var(--line); overflow:hidden; }
+  .spanbar .fill{ position:absolute; inset:0 auto 0 0; width:0; background:linear-gradient(90deg,rgba(30,90,76,0.18),rgba(30,90,76,0.42)); border-right:2px solid var(--accent); animation:grow 2.4s cubic-bezier(.2,.7,.2,1) 0.3s forwards; }
+  @keyframes grow{ to{ width:100%; } }
+  .spanbar .ends{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:0.72rem; color:var(--ink-dim); margin-top:0.5rem; letter-spacing:0.02em; }
+  .spanbar .ends b{ color:var(--ink-soft); font-weight:600; }
+
+  /* timeline body */
+  .timeline{ position:relative; padding:clamp(2.4rem,6vw,4rem) 0 1rem; }
+  .rail{ position:absolute; left:calc(clamp(1.1rem,4vw,2.6rem) + 8px); top:0; bottom:0; width:2px; background:var(--line-soft); }
+  @media (min-width:760px){ .rail{ left:calc(50% - 1px); } }
+  .rail .drawn{ position:absolute; top:0; left:0; width:100%; height:0; background:linear-gradient(180deg,var(--accent),var(--warm)); transition:height 0.15s linear; }
+
+  .beat{ position:relative; padding-left:calc(clamp(1.1rem,4vw,2.6rem) + 40px); margin:0 0 clamp(2.2rem,5vw,3.4rem); opacity:0; transform:translateY(26px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
+  .beat.in{ opacity:1; transform:none; }
+  @media (min-width:760px){
+    .beat{ width:calc(50% - 42px); padding-left:0; }
+    .beat.left{ margin-left:0; padding-right:42px; text-align:right; }
+    .beat.right{ margin-left:calc(50% + 42px); padding-left:0; }
+  }
+  .node{ position:absolute; top:4px; left:clamp(1.1rem,4vw,2.6rem); width:18px; height:18px; border-radius:50%; background:var(--paper); border:2px solid var(--accent); z-index:2; }
+  .node::after{ content:""; position:absolute; inset:4px; border-radius:50%; background:var(--accent); transform:scale(0); transition:transform 0.4s ease 0.2s; }
+  .beat.in .node::after{ transform:scale(1); }
+  .beat.pivot .node{ border-color:var(--warm); width:22px; height:22px; top:2px; }
+  .beat.pivot .node::after{ background:var(--warm); }
+  @media (min-width:760px){
+    .node{ left:auto; right:-51px; }
+    .beat.right .node{ left:-51px; right:auto; }
+    .beat.pivot.left .node{ right:-53px; }
+  }
+
+  .b-date{ font-family:var(--mono); font-size:0.76rem; letter-spacing:0.06em; color:var(--accent); font-weight:600; display:inline-block; margin:0 0 0.5rem; }
+  .beat.pivot .b-date{ color:var(--warm); }
+  .b-phase{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); margin-left:0.7rem; }
+  .beat.left .b-phase{ margin-left:0; margin-right:0.7rem; }
+  .b-title{ font-family:var(--serif); font-size:clamp(1.4rem,3.2vw,1.9rem); font-weight:600; line-height:1.14; letter-spacing:-0.01em; margin:0 0 0.6rem; color:var(--ink); }
+  .b-what{ color:var(--ink-soft); font-size:0.97rem; line-height:1.6; margin:0 0 1rem; }
+  .b-what b{ color:var(--ink); font-weight:600; }
+  .b-metric{ display:inline-flex; align-items:baseline; gap:0.5rem; font-family:var(--mono); font-size:0.74rem; color:var(--ink-soft); background:var(--wash-2); border:1px solid var(--line); border-radius:999px; padding:0.28rem 0.7rem; margin:0 0 1rem; }
+  .b-metric b{ color:var(--accent); font-weight:700; font-size:0.86rem; }
+  .beat.pivot .b-metric b{ color:var(--warm); }
+
+  .produced{ display:flex; flex-wrap:wrap; gap:0.45rem; }
+  .beat.left .produced{ justify-content:flex-end; }
+  .plabel{ display:block; width:100%; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim); margin:0 0 0.15rem; }
+  .chip{ font-family:var(--mono); font-size:0.75rem; letter-spacing:0.01em; padding:0.32rem 0.62rem; border:1px solid var(--line); border-radius:2px; color:var(--ink); background:var(--card); transition:background 0.15s,border-color 0.15s,color 0.15s; white-space:nowrap; }
+  .chip .bk{ color:var(--accent); }
+  .chip:hover{ background:var(--wash); border-color:rgba(30,90,76,0.32); color:var(--accent); }
+  .chip.ext{ border-color:rgba(30,90,76,0.3); }
+  .chip.warm .bk{ color:var(--warm); }
+  .chip.warm:hover{ background:var(--warmwash); border-color:rgba(138,61,48,0.32); color:var(--warm); }
+
+  /* closer CTA */
+  .closer{ border-top:2px solid var(--ink); margin-top:1.6rem; padding:clamp(2.4rem,6vw,3.6rem) 0 clamp(2.6rem,6vw,3.8rem); }
+  .closer h2{ font-family:var(--serif); font-size:clamp(1.6rem,4vw,2.3rem); font-weight:600; margin:0 0 0.9rem; letter-spacing:-0.01em; }
+  .closer p{ color:var(--ink-soft); max-width:66ch; margin:0 0 1.4rem; font-size:0.98rem; }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:0.6rem 0.8rem; }
+  .cta{ font-family:var(--mono); font-size:0.82rem; letter-spacing:0.02em; padding:0.55rem 1rem; border:1px solid var(--line); border-radius:2px; color:var(--ink); background:var(--card); transition:background 0.15s,border-color 0.15s,color 0.15s; }
+  .cta .bk{ color:var(--accent); }
+  .cta.primary{ background:var(--wash); border-color:rgba(30,90,76,0.32); color:var(--accent); }
+  .cta:hover{ background:var(--wash); border-color:rgba(30,90,76,0.4); color:var(--accent); }
+  .fine{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-dim); margin:1.8rem 0 0; line-height:1.6; max-width:72ch; }
+  .fine b{ color:var(--ink-soft); }
+  .sig{ font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); margin-top:1.3rem; }
+  .sig b{ color:var(--ink); }
+
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation:none !important; transition:none !important; }
+    .beat{ opacity:1; transform:none; }
+    .beat .node::after{ transform:scale(1); }
+    .spanbar .fill{ width:100%; }
+  }
+  @media print{
+    body{ background:#fff; color:#000; } .prog,.rail{ display:none; }
+    .beat{ opacity:1; transform:none; width:100%; margin-left:0; padding:0 0 1.4rem; text-align:left; break-inside:avoid; }
+    .node{ display:none; }
+  }
+</style>
+</head>
+<body class="breathe">
+<a class="skip" href="#beats">Skip to the timeline</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="frame" aria-hidden="true"></div>
+    <p class="kicker"><span>the build, in order</span> <b>master record</b> <span>2026&#8209;06&#8209;19 &rarr; 2026&#8209;07&#8209;18</span></p>
+    <h1 class="wordmark"><span class="bk">[</span><span class="nm"> NAME </span><span class="bk">]</span></h1>
+    <p class="thesis">One idea, distilled on a Thursday, carried in twenty&#8209;eight days to a kit that's ready for the <em>room</em>.</p>
+    <p class="mast-meta">founder <b>Jarred Winn</b> &nbsp;&middot;&nbsp; originating members <b>Nick Metzler</b>, <b>Carter Razink</b> &nbsp;&middot;&nbsp; jarred@winn.solutions</p>
+    <p class="mast-lede">This is the chronological record, not the pitch. It walks the initiative in the order it actually happened, from the first time the thesis was named out loud to the launch kit staged for the July meeting. <b>Every beat links to the real artifact it produced</b>, so the story and the evidence sit in one place. For the flat index of the finished deliverables, use the reading room at the end.</p>
+
+    <div class="spanbar" aria-hidden="true">
+      <div class="track"><div class="fill"></div></div>
+      <div class="ends"><span><b>Jun 19</b> &nbsp;idea named</span><span>28 days</span><span>kit ready&nbsp; <b>Jul 17</b></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="timeline wrap" id="beats">
+  <div class="rail" aria-hidden="true"><div class="drawn" id="drawn"></div></div>
+
+  <!-- 01 -->
+  <article class="beat left" data-beat>
+    <span class="node" aria-hidden="true"></span>
+    <span class="b-date">Jun 19</span><span class="b-phase">phase 01 &middot; origin</span>
+    <h2 class="b-title">The thesis, named out loud</h2>
+    <p class="b-what">A recorded working session is where the idea first gets stated as a thesis rather than a hunch: <b>compress the time between thought and output</b>, and give a person one window of consequence instead of seventeen terminal windows. The one metric everything later serves is set here.</p>
+    <p class="b-metric"><b>1</b> KPI that governs the rest</p>
+    <div class="produced">
+      <span class="plabel">produced</span>
+      <a class="chip" href="../00-call-notes/2026-06-19-fieldy-vision-distilled.md"><span class="bk">[</span> vision distilled <span class="bk">]</span></a>
+    </div>
+  </article>
+
+  <!-- 02 -->
+  <article class="beat right" data-beat>
+    <span class="node" aria-hidden="true"></span>
+    <span class="b-date">Jun 30</span><span class="b-phase">phase 02 &middot; the adoption problem</span>
+    <h2 class="b-title">Nick Metzler, and the human layer</h2>
+    <p class="b-what">Game designer Nick Metzler (tokenomics, behavioral psychology) meets Jarred. The problem gets its real name: AI is landing on people as <b>fear and replacement</b>, and it flattens them. Gamification enters not as points for their own sake, but as the layer that gets a whole company to adopt without losing itself.</p>
+    <p class="b-metric"><b>2</b> notes: meeting + digest</p>
+    <div class="produced">
+      <span class="plabel">produced</span>
+      <a class="chip" href="../00-call-notes/2026-06-30-nick-metzler-introductory-meeting.md"><span class="bk">[</span> metzler intro <span class="bk">]</span></a>
+      <a class="chip" href="../00-call-notes/2026-07-01-digest-of-0630-metzler-call.md"><span class="bk">[</span> digest <span class="bk">]</span></a>
+    </div>
+  </article>
+
+  <!-- 03 PIVOT -->
+  <article class="beat left pivot" data-beat>
+    <span class="node" aria-hidden="true"></span>
+    <span class="b-date">Jul 08</span><span class="b-phase">phase 03 &middot; the founding call</span>
+    <h2 class="b-title">Three founders, sixty&#8209;eight minutes</h2>
+    <p class="b-what">The first three&#8209;way call: Jarred, Nick Metzler, and Carter Razink (physics and math, serial founder, ex&#8209;stablecoin&#8209;rewards CTO). The concept locks. A gamified, AI&#8209;powered <b>operating system for organizations</b>: reward, don't replace; sell C&#8209;levels first and engineers second; a consulting&#8209;plus&#8209;software hybrid; unnamed on purpose. Captured three ways so nothing was lost.</p>
+    <p class="b-metric"><b>68 min</b> &middot; 3 founders &middot; captured 3&times;</p>
+    <div class="produced">
+      <span class="plabel">produced</span>
+      <a class="chip warm" href="../00-call-notes/2026-07-08-jarred-nick-carter-ai-productivity-os-gamification-ideation-9f36bc52.md"><span class="bk">[</span> call: fieldy <span class="bk">]</span></a>
+      <a class="chip warm" href="../00-call-notes/2026-07-08-agentic-org-os-rsi-for-orgs-jarred-carter-nick-strategy-call.md"><span class="bk">[</span> call: recall <span class="bk">]</span></a>
+      <a class="chip warm" href="../00-call-notes/2026-07-08-jarred-nick-metzler-carter-razink-ai-gamification-enterprise.md"><span class="bk">[</span> call: capture 3 <span class="bk">]</span></a>
+    </div>
+  </article>
+
+  <!-- 04 -->
+  <article class="beat right" data-beat>
+    <span class="node" aria-hidden="true"></span>
+    <span class="b-date">Jul 08</span><span class="b-phase">phase 04 &middot; research program</span>
+    <h2 class="b-title">Four tracks, fanned out the same day</h2>
+    <p class="b-what">Within hours of the call, a research program runs: a <b>fifty&#8209;eight&#8209;agent</b> conversation and estate sweep, an execution&#8209;path swarm, and a competitive&#8209;and&#8209;risk swarm, all distilled into a single product overview. The concept stops being a conversation and becomes a documented, sourced position.</p>
+    <p class="b-metric"><b>31</b> dossiers across 4 tracks</p>
+    <div class="produced">
+      <span class="plabel">produced</span>
+      <a class="chip" href="../01-overview/"><span class="bk">[</span> overview <span class="bk">]</span></a>
+      <a class="chip" href="../02-sweep/"><span class="bk">[</span> 8 sweep dossiers <span class="bk">]</span></a>
+      <a class="chip" href="../03-execution/"><span class="bk">[</span> execution path <span class="bk">]</span></a>
+      <a class="chip" href="../04-competitive/"><span class="bk">[</span> competitive + risk <span class="bk">]</span></a>
+    </div>
+  </article>
+
+  <!-- 05 -->
+  <article class="beat left" data-beat>
+    <span class="node" aria-hidden="true"></span>
+    <span class="b-date">Jul 08&#8209;09</span><span class="b-phase">phase 05 &middot; verification</span>
+    <h2 class="b-title">A four&#8209;model counsel, adversarially</h2>
+    <p class="b-what">Every load&#8209;bearing claim runs a panel of four independent models across four rounds plus a late&#8209;seat ratification: keep, revise, or cut. Five binding addendums come out of it, and the internal <b>16&times; throughput claim is retired from every external surface</b>. The kit is disciplined before it is designed.</p>
+    <p class="b-metric"><b>4 models</b> &middot; 4 rounds &middot; R1&#8209;R8 6&#8209;0</p>
+    <div class="produced">
+      <span class="plabel">produced</span>
+      <a class="chip" href="../05-counsel/counsel-verdicts-2026-07-08.md"><span class="bk">[</span> verdicts <span class="bk">]</span></a>
+      <a class="chip" href="../05-counsel/counsel-adjudication-r3-2026-07-09.md"><span class="bk">[</span> round 3 <span class="bk">]</span></a>
+      <a class="chip" href="../05-counsel/counsel-ratification-r4-2026-07-09.md"><span class="bk">[</span> ratification <span class="bk">]</span></a>
+    </div>
+  </article>
+
+  <!-- 06 -->
+  <article class="beat right" data-beat>
+    <span class="node" aria-hidden="true"></span>
+    <span class="b-date">Jul 09</span><span class="b-phase">phase 06 &middot; the launch kit</span>
+    <h2 class="b-title">Eight deliverables, room&#8209;ready</h2>
+    <p class="b-what">The verified concept becomes the kit: eight packaged deliverables, each authored, designed, and passed through an overclaim gate that labels every claim built or designed. A reading room walks them in one order for the reader who wants the whole thing.</p>
+    <p class="b-metric"><b>8</b> deliverables, QA&#8209;gated</p>
+    <div class="produced">
+      <span class="plabel">produced</span>
+      <a class="chip" href="../09-deliverables/pitch-deck/index.html"><span class="bk">[</span> pitch deck <span class="bk">]</span></a>
+      <a class="chip" href="../09-deliverables/whitepaper/index.html"><span class="bk">[</span> whitepaper <span class="bk">]</span></a>
+      <a class="chip" href="../09-deliverables/exec-overview/index.html"><span class="bk">[</span> exec overview <span class="bk">]</span></a>
+      <a class="chip" href="../09-deliverables/financials-icp/index.html"><span class="bk">[</span> financials + ICP <span class="bk">]</span></a>
+      <a class="chip" href="../09-deliverables/founder-memo/index.html"><span class="bk">[</span> founder memo <span class="bk">]</span></a>
+      <a class="chip" href="../09-deliverables/one-pager/index.html"><span class="bk">[</span> one&#8209;pager <span class="bk">]</span></a>
+      <a class="chip" href="../09-deliverables/legal-readiness/index.html"><span class="bk">[</span> legal readiness <span class="bk">]</span></a>
+      <a class="chip" href="../08-brand/index.html"><span class="bk">[</span> brand <span class="bk">]</span></a>
+    </div>
+  </article>
+
+  <!-- 07 -->
+  <article class="beat left" data-beat>
+    <span class="node" aria-hidden="true"></span>
+    <span class="b-date">Jul 17&#8209;18</span><span class="b-phase">phase 07 &middot; the room</span>
+    <h2 class="b-title">What it's all for</h2>
+    <p class="b-what">The meeting window. <b>Twenty&#8209;six founder decisions</b> sit ordered by blocking date, and a six&#8209;artifact meeting pack is staged for the room. Everything above the line exists to make this one conversation land, and to make sure only the decisions that genuinely need a human reach the founder.</p>
+    <p class="b-metric"><b>26</b> founder decisions, dated</p>
+    <div class="produced">
+      <span class="plabel">produced</span>
+      <a class="chip ext" href="../09-deliverables/founder-decisions.md"><span class="bk">[</span> decision sheet <span class="bk">]</span></a>
+      <a class="chip ext" href="../10-meeting-pack/run-of-show.md"><span class="bk">[</span> run of show <span class="bk">]</span></a>
+      <a class="chip ext" href="../10-meeting-pack/objections-rehearsal.md"><span class="bk">[</span> objections rehearsal <span class="bk">]</span></a>
+    </div>
+  </article>
+</div>
+
+<footer class="closer">
+  <div class="wrap">
+    <h2>The whole kit, one index.</h2>
+    <p>This page is the story in order. The reading room is the flat index of the finished deliverables, walked in the reader's order with a built&#8209;versus&#8209;designed legend on every artifact. Investors get the room on request; it is never assigned as homework.</p>
+    <div class="cta-row">
+      <a class="cta primary" href="../index.html"><span class="bk">[</span> open the reading room <span class="bk">]</span></a>
+      <a class="cta" href="../09-deliverables/founder-memo/index.html"><span class="bk">[</span> founder memo <span class="bk">]</span></a>
+      <a class="cta" href="../09-deliverables/founder-decisions.md"><span class="bk">[</span> what's still on Jarred <span class="bk">]</span></a>
+    </div>
+    <p class="fine">Honest math holds across the kit: every figure carries a tag (<b>MEASURED</b> / <b>SURVEY</b> / <b>VENDOR</b> / <b>CORPUS</b> / <b>ASSUMPTION</b>), the product is unnamed by design, and the fee, margin, and naming numbers are founder decisions that stay off external surfaces until set. The 16&times; throughput figure is retired from all external use.</p>
+    <p class="sig">the build, in order &nbsp;&middot;&nbsp; master record &nbsp;&middot;&nbsp; founder <b>Jarred Winn</b> &nbsp;&middot;&nbsp; jarred@winn.solutions</p>
+  </div>
+</footer>
+
+<script>
+  /* scroll-reveal beats + drawing rail + top progress. Self-contained, degrades gracefully. */
+  (function(){
+    var beats = document.querySelectorAll('[data-beat]');
+    if("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { rootMargin:'0px 0px -12% 0px', threshold:0.15 });
+      beats.forEach(function(b){ io.observe(b); });
+    } else {
+      beats.forEach(function(b){ b.classList.add('in'); });
+    }
+    var prog = document.getElementById('prog');
+    var drawn = document.getElementById('drawn');
+    var rail = drawn ? drawn.parentElement : null;
+    function onScroll(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      if(prog) prog.style.width = (p*100).toFixed(2) + '%';
+      if(rail && drawn){
+        var r = rail.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var drawnH = Math.min(Math.max(vh*0.5 - r.top, 0), rail.offsetHeight);
+        drawn.style.height = drawnH + 'px';
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+</script>
+</body>
+</html>

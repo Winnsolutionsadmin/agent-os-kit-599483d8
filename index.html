@@ -216,9 +216,21 @@
   .foot .sig{ font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); margin-top:1.2rem; }
   .foot .sig b{ color:var(--ink); }
 
+  /* chronological on-ramp to the master timeline */
+  .startline{ display:flex; flex-wrap:wrap; align-items:baseline; gap:0.4rem 0.9rem; margin:1.5rem 0 0; }
+  .startlink{ font-family:var(--mono); font-size:0.82rem; letter-spacing:0.02em; padding:0.5rem 0.9rem; border:1px solid rgba(30,90,76,0.32); border-radius:2px; background:var(--wash); color:var(--accent); }
+  .startlink b{ color:var(--accent); font-weight:700; }
+  .startlink:hover{ background:rgba(30,90,76,0.14); }
+  .startline span{ font-size:0.9rem; color:var(--ink-soft); }
+
+  /* scroll-reveal for entries */
+  .entry[data-rise]{ opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+  .entry[data-rise].in{ opacity:1; transform:none; }
+
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto; }
     *{ animation:none !important; transition:none !important; }
+    .entry[data-rise]{ opacity:1; transform:none; }
   }
 
   @media print{
@@ -244,6 +256,7 @@
     <p class="thesis">A trusted companion that carries a company through the AI transition, and <em>leaves it ahead</em>.</p>
     <p class="mast-meta">built <b>2026-07-09</b> &nbsp;·&nbsp; founder <b>Jarred Winn</b> &nbsp;·&nbsp; jarred@winn.solutions</p>
     <p class="unnamed">The product is intentionally unnamed. The permanent mark is chosen last, from a legally cleared shortlist, after the position is locked. <b>The brackets are the design, not a gap.</b> This room walks the kit's evidence in one order, and every claim inside each artifact is labeled built or designed. The working descriptor is an agent OS for organizations, used sparingly and never as a name.</p>
+    <p class="startline"><a class="startlink" href="00-master/index.html"><b>New</b> &middot; the build, in order &rarr;</a> <span>the chronological record, from the first idea on Jun 19 to this kit. This room is the flat index; the timeline is the story.</span></p>
   </div>
 </header>
 
@@ -282,6 +295,7 @@
       <li><a class="sp" href="#internal"><span class="n">06</span>Meeting pack</a></li>
     </ol>
     <div class="sub">
+      <a href="00-master/index.html">The build, in order &rarr;</a>
       <a href="#paths-top">Reading paths</a>
       <a href="#provenance">Provenance and tags</a>
     </div>
@@ -570,6 +584,17 @@
       });
     }, { rootMargin:'-15% 0px -70% 0px', threshold:0 });
     sections.forEach(function(s){ io.observe(s); });
+  })();
+
+  /* scroll-reveal for entry cards. Applied via JS so no-JS readers see everything. */
+  (function(){
+    var entries = document.querySelectorAll('.entry');
+    if(!("IntersectionObserver" in window)){ return; }
+    entries.forEach(function(el){ el.setAttribute('data-rise',''); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin:'0px 0px -10% 0px', threshold:0.08 });
+    entries.forEach(function(el){ io.observe(el); });
   })();
 </script>
 </body>

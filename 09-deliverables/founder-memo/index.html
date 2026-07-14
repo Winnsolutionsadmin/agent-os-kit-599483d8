@@ -25,6 +25,9 @@
     --accent:     #8A3D30;  /* deep sanguine ink: the human accent */
     --accent-lit: #A24A38;
     --wash:       rgba(138,61,48,0.09);
+    --card:       #F6F7F6;  /* faint card lift, shared kit token   */
+    --line:       rgba(32,38,42,0.14);
+    --line-soft:  rgba(32,38,42,0.08);
 
     --serif: "Palatino Linotype","Book Antiqua","Palatino","Iowan Old Style","URW Palladio L",Georgia,serif;
     --mono:  ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
@@ -200,6 +203,79 @@
     white-space:nowrap;
   }
 
+  /* ---- belief-provenance appendix: the system's ledger --------- */
+  .appendix{
+    margin-top:2.4rem;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:var(--card);
+  }
+  .appendix > summary{
+    list-style:none;
+    cursor:pointer;
+    padding:1rem 1.2rem;
+    font-family:var(--mono);
+    font-size:0.68rem;
+    letter-spacing:0.11em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .appendix > summary::-webkit-details-marker{ display:none; }
+  .appendix > summary::before{
+    content:"[ + ]";
+    color:var(--accent);
+    font-size:0.72rem;
+    letter-spacing:0;
+  }
+  .appendix[open] > summary::before{ content:"[ \2212 ]"; }
+  .appendix > summary:hover{ color:var(--ink); }
+  .appendix > summary .lbl{ flex:1 1 auto; }
+  .appendix-body{
+    padding:0 1.2rem 1.4rem;
+    border-top:1px solid var(--line-soft, rgba(32,38,42,0.08));
+  }
+  .appendix-body > .intro{
+    font-size:0.86rem;
+    line-height:1.55;
+    color:var(--ink-soft);
+    margin:1.1rem 0 1.3rem;
+    font-family:var(--serif);
+  }
+  .prov-table-wrap{ overflow-x:auto; }
+  .prov-table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:var(--mono);
+    font-size:0.72rem;
+    line-height:1.5;
+    min-width:34rem;
+  }
+  .prov-table th{
+    text-align:left;
+    vertical-align:bottom;
+    padding:0 0.9rem 0.5rem 0;
+    font-size:0.6rem;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  .prov-table td{
+    vertical-align:top;
+    padding:0.7rem 0.9rem 0.7rem 0;
+    border-bottom:1px solid var(--line-soft, rgba(32,38,42,0.08));
+    color:var(--ink);
+  }
+  .prov-table td.p-passage{ color:var(--ink-soft); }
+  .prov-table td.p-belief{ color:var(--accent); font-weight:600; white-space:normal; }
+  .prov-table td.p-quote{ color:var(--ink); }
+  .prov-table td.p-quote q{ quotes:"\201C" "\201D"; font-style:normal; }
+
   /* ---- responsive nudge --------------------------------------- */
   @media (max-width:430px){
     .wordmark{ letter-spacing:0.01em; }
@@ -245,45 +321,45 @@
 
       <p class="lede">Literally, all my work is done in it. That one line is the whole origin of this thing, so let me sit on it.</p>
 
-      <p>Over the last few months my entire operation moved inside a fleet of agents that runs for exactly one person: me. There&rsquo;s an engine that scores the work against goals I actually set, a layer that makes the doing of it feel like progress instead of grind, a pipeline that turns meetings into tracked action instead of forgotten talk, and a few hundred skills I&rsquo;ve built up one problem at a time. It runs my consulting, my other companies, and most of my day. It&rsquo;s not something I spin up for a demo. It&rsquo;s what I use to live. My first instinct with anyone I respect is to turn the screen around and show them what&rsquo;s already possible.</p>
+      <p>Over the last few months my entire operation moved inside a fleet of agents that runs for exactly one person: me. There&rsquo;s an engine that scores the work against goals I actually set, a layer that makes the doing of it feel like progress instead of grind, a pipeline that turns meetings into tracked action instead of forgotten talk, and a few hundred skills I&rsquo;ve built up one problem at a time. It carries the things I&rsquo;m weak at, the language, the code, the technical gaps, so I get to spend myself only on the parts where I&rsquo;m worth ten times more. It runs my consulting, my other companies, and most of my day. It&rsquo;s not something I spin up for a demo. It&rsquo;s what I use to live. My first instinct with anyone I respect is to turn the screen around and show them what&rsquo;s already possible.</p>
 
-      <p>That instinct is the company. Not the model underneath it. The lived proof that one person, with the right companion, can operate like a team.</p>
+      <p>That instinct is the company. Not the model underneath it. The lived proof that one person, with the right companion, can operate like a team. A company gets built on what its founder actually believes, and this one is built on mine.</p>
 
       <h2>The enemy isn&rsquo;t AI. It&rsquo;s how AI is landing on people.</h2>
 
       <p>Let me say the quiet part plainly. Most companies are adopting AI in a way that scares their people and flattens them at the same time. Fear-based mandates from the top. Replace-the-headcount math in the boardroom. And underneath it, something subtler that bothers me more: everyone starts prompting the same way, reaching for the same outputs, and slowly sounding like each other.</p>
 
-      <p>I want you to maintain your unique sense of individuality. As AI is adopted and we&rsquo;re all influenced by it, we lose our unique sense of individuality and humanity. I believe that genuinely enough that I&rsquo;m writing a book about it. The more we all lean on the same models, the more we converge, and the part that gets quietly deleted is the part of a person that was actually theirs. Chaotic, ungoverned adoption doesn&rsquo;t just burn people out. It homogenizes them.</p>
+      <p>I want you to maintain your unique sense of individuality. As AI is adopted and we&rsquo;re all influenced by it, we lose our unique sense of individuality and humanity. I believe that genuinely enough that I&rsquo;m writing a book about it. The more we all lean on the same models, the more we converge, and the part that gets quietly deleted is the part of a person that was actually theirs. A world governed entirely by mathematical optimization is a boring, sad world. Perfection is boring. Chaotic, ungoverned adoption doesn&rsquo;t just burn people out. It homogenizes them.</p>
 
-      <p>That&rsquo;s the enemy. Not the technology. The careless way it&rsquo;s being poured into organizations.</p>
+      <p>And the deepest cut isn&rsquo;t the jobs. It&rsquo;s the authenticity. When AI writes and creates and decides on our behalf, everything turns into mathematical output, and the scarce thing becomes the human hand behind the work. Soon we won&rsquo;t see Made in China. We&rsquo;ll see Made by Human. That&rsquo;s the enemy. Not the technology. The careless way it&rsquo;s being poured into organizations.</p>
 
       <h2>So the pitch is the opposite of what everyone else is selling.</h2>
 
-      <p>We&rsquo;re not doing this so you can replace your employees. We&rsquo;re doing this so you can reward your employees and retain them, based on the fact that they are then going to be adopting AI. If a person does ten times the work in two hours, the answer isn&rsquo;t to fire the other nine. It&rsquo;s to give that person their afternoon back. You buy people time instead of taking their jobs.</p>
+      <p>We&rsquo;re not doing this so you can replace your employees. We&rsquo;re doing this so you can reward your employees and retain them, based on the fact that they are then going to be adopting AI. This was never mainly a labor-replacement story. It&rsquo;s a migration of advantage toward the people who actually restructure around the tool, and I&rsquo;d rather that be your people than someone else&rsquo;s. If a person does ten times the work in two hours, the answer isn&rsquo;t to fire the other nine. It&rsquo;s to give that person their afternoon back. You buy people time instead of taking their jobs.</p>
 
       <p>And it isn&rsquo;t only software. It&rsquo;s not only a software suite for your team, but also a consultative process of ensuring that your company is running in the right ways, which is where the human element comes into it. That consulting isn&rsquo;t a bolt-on. It&rsquo;s the bridge, and it&rsquo;s the point.</p>
 
       <h2>Why a companion, and not just a smarter model.</h2>
 
-      <p>Let me concede the thing most founders in this space tiptoe around. Anthropic and the others can build this. The raw capability isn&rsquo;t my moat, and pretending otherwise would insult anyone smart enough to write me a check. We know they can do this. What companies need is a trusted companion to bring them through it and help them get a head start. A model is a tool. A companion is a relationship, and the relationship is the whole game.</p>
+      <p>Let me concede the thing most founders in this space tiptoe around. Anthropic and the others can build this. The raw capability isn&rsquo;t my moat, and pretending otherwise would insult anyone smart enough to write me a check. We know they can do this. What companies need is a trusted companion to bring them through it and help them get a head start. The hard part was never the intelligence or the capability. It&rsquo;s whether the interaction feels human, warm, and trustworthy. A model is a tool. A companion is a relationship, and the relationship is the whole game.</p>
 
-      <p>Trust really is a factor of time multiplied by consistency, and then there&rsquo;s an exponential factor of experiences shared. You can&rsquo;t download that. It&rsquo;s why the labs, for all their capability, aren&rsquo;t going to sit at a nervous executive&rsquo;s side for six months and earn the right to change how their company runs. I already have. That&rsquo;s the moat: the organizational psychology of getting real people to adopt this without losing themselves, and the trust built one shared experience at a time.</p>
+      <p>Trust is a factor of time, consistency, and the experiences you share along the way. It&rsquo;s representative of value transference accumulated through action and sacrifice. You can&rsquo;t download that. It&rsquo;s why the labs, for all their capability, aren&rsquo;t going to sit at a nervous executive&rsquo;s side for six months and earn the right to change how their company runs. I already have. That&rsquo;s the moat: the organizational psychology of getting real people to adopt this without losing themselves, and the trust built one shared experience at a time.</p>
 
-      <p>The order it spreads is deliberate. C-levels first, the chief of staff and the organizer, the people drowning in coordination. Engineers next, to revamp and overhaul how the work gets built. Everyone else follows once they see it, on demand rather than by mandate.</p>
+      <p>The order it spreads is deliberate. C-levels first, the chief of staff and the organizer, the people drowning in coordination. Engineers next, to revamp and overhaul how the work gets built. Everyone else follows once they see it, on demand rather than by mandate. The industry argues endlessly about governing AI. Almost nobody is working on the other side of it, how a person governs their own use so they stay themselves, and that&rsquo;s the part I care about most. So adoption here is something people opt into, never something done to them.</p>
 
       <h2>How this gets funded.</h2>
 
-      <p>I&rsquo;m not running a cold process. We raise on achievement and faith, from investors we already know. People who&rsquo;ve watched me do things and believe I&rsquo;ll do this one. The near-term ask is small and specific: a scoped 90-day design-partner pilot plus a smaller strategic check, sized to what a live demonstration actually earns. The larger raise comes later, at roughly month six, triggered by demonstrated achievement and nothing else. I&rsquo;d rather show you the thing running than sell you a slide about it.</p>
+      <p>I&rsquo;m not running a cold process. We raise on achievement and faith, from investors we already know. People who&rsquo;ve watched me do things and believe I&rsquo;ll do this one. Capital is itself a demonstration of trust. It doesn&rsquo;t move without one, so the first check comes from someone I&rsquo;ve already made money before, not a stranger running an audit. The near-term ask is small and specific: a scoped 90-day design-partner pilot plus a smaller strategic check, sized to what a live demonstration actually earns. The larger raise comes later, at roughly month six, triggered by demonstrated achievement and nothing else. I&rsquo;d rather show you the thing running than sell you a slide about it.</p>
 
-      <p>On structure, so it&rsquo;s never fuzzy: I am the founder of this. The vision is mine. Nick and Carter are originating members who earn equity through real contribution, Nick on the game and adoption mechanics, Carter on the engineering framework. Contribution earns ownership. This isn&rsquo;t a three-way split of my idea.</p>
+      <p>On structure, so it&rsquo;s never fuzzy: I am the founder of this. The vision is mine. Nick and Carter are originating members who earn equity through real contribution, Nick on the game and adoption mechanics, Carter on the engineering framework. Contribution earns ownership. That&rsquo;s skin in the game, which is the real bond, blood in and sweat-aligned. This isn&rsquo;t a three-way split of my idea, and it isn&rsquo;t a raise built to extract. Wealth follows genuine intent, and the intent here is the thing itself.</p>
 
       <h2>Where this goes, grounded in what already runs.</h2>
 
-      <p>Ten years out, I think every serious organization runs on one window of consequence. Not seventeen terminal windows. Not a notification feed. Not a chatbot. One surface that shows you what you&rsquo;re working on and asks you only about the decisions that genuinely need a human, while the routine triage gets handled underneath and always stops at your approval. People spend their time being most creative, because the communication gaps and the busywork are finally solved. That future is a bet, and I&rsquo;m stating it as a bet. But it&rsquo;s not a fantasy, because a narrow version of it already runs today, for one person, and I&rsquo;m that person.</p>
+      <p>Ten years out, I think every serious organization runs on one window of consequence. Not seventeen terminal windows. Not a notification feed. Not a chatbot. One surface that shows you what you&rsquo;re working on and asks you only about the decisions that genuinely need a human, while the routine triage gets handled underneath and always stops at your approval. The AI guides and never instructs, and it stays a tool, never an identity. People spend their time being most creative, because the communication gaps and the busywork are finally solved. That future is a bet, and I&rsquo;m stating it as a bet. But it&rsquo;s not a fantasy, because a narrow version of it already runs today, for one person, and I&rsquo;m that person.</p>
 
-      <p>Which brings me back to the name, or the lack of one. It sits in brackets right now, <span class="name-token"><span class="br">[</span><span class="nm">NAME</span><span class="br">]</span></span>, and I&rsquo;m keeping it there until it&rsquo;s earned. In a category whose whole sickness is rushing to look like everyone else, I&rsquo;m not going to name my company before I know exactly what it is. Being unnamed isn&rsquo;t a gap. It&rsquo;s the first small act of the thing I&rsquo;m actually building.</p>
+      <p>Which brings me back to the name, or the lack of one. It sits in brackets right now, <span class="name-token"><span class="br">[</span><span class="nm">NAME</span><span class="br">]</span></span>, and I&rsquo;m keeping it there until it&rsquo;s earned. Your name is your brand, and public actions are unscrubbable, so every present action is a building block. In a category whose whole sickness is rushing to look like everyone else, I&rsquo;m not going to name my company before I know exactly what it is. Being unnamed isn&rsquo;t a gap. It&rsquo;s the first small act of the thing I&rsquo;m actually building.</p>
 
-      <p class="closer">The purpose of life is other people. It all comes down to the relationships that you have. I&rsquo;m building a machine that gives people more room for that, not less. That&rsquo;s the entire reason I&rsquo;m doing this. Everything above is just the plan.</p>
+      <p class="closer">The purpose of life is other people. It all comes down to the relationships that you have. Almost everyone points AI at making money, which is the wrong end of it. The people who win this era are those who use AI to connect and build with belief-aligned humans. I&rsquo;m building a machine that gives people more room for that, not less. That&rsquo;s the entire reason I&rsquo;m doing this. Everything above is just the plan.</p>
 
       <div class="sign">
         <p class="sign-name">Jarred Winn</p>
@@ -294,6 +370,106 @@
         <p class="prov-label">[ Provenance &middot; for the kit, not the final read ]</p>
         <p>The fleet described here is my working estate as of July 2026 (<span class="tag">MEASURED</span>, my own daily use). The ten-year end-state is aspiration, not forecast (<span class="tag">ASSUMPTION</span>). The &ldquo;ten times the work in two hours&rdquo; line is an illustration, not a benchmark (<span class="tag">ASSUMPTION</span>). No engineering throughput multiple appears here on purpose: that number stays an internal benchmark until Carter&rsquo;s methodology memo lands.</p>
       </footer>
+
+      <details class="appendix" aria-label="Belief-provenance appendix">
+        <summary><span class="lbl">Belief-provenance appendix &middot; for the kit, not the final read</span></summary>
+        <div class="appendix-body">
+          <p class="intro">Every load-bearing line above traces to a documented belief in my business and AI belief field, with the verbatim quote it draws on. This is grounding evidence for the deal team, not part of the founder read.</p>
+          <div class="prov-table-wrap">
+            <table class="prov-table">
+              <thead>
+                <tr>
+                  <th scope="col">Memo passage</th>
+                  <th scope="col">Belief</th>
+                  <th scope="col">Verbatim quote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-passage">&ldquo;It carries the things I&rsquo;m weak at, the language, the code, the technical gaps, so I get to spend myself only on the parts where I&rsquo;m worth ten times more.&rdquo;</td>
+                  <td class="p-belief">AI Carries Your Weak Spots</td>
+                  <td class="p-quote"><q>Used right, personal AI absorbs everything you suck at (language, code, technical gaps) so you allocate yourself only to 10x-yield strengths; knowledge compression lets naturally talented people rise to layers previously gated by skills they lacked.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;A company gets built on what its founder actually believes, and this one is built on mine.&rdquo;</td>
+                  <td class="p-belief">Beliefs Are the Foundation of Strategy</td>
+                  <td class="p-quote"><q>A company is built on its founder&rsquo;s core beliefs, authentic founder content must be rooted in what the person actually believes, and nobody else is focused on that.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;we lose our unique sense of individuality and humanity &hellip; the part that gets quietly deleted is the part of a person that was actually theirs.&rdquo;</td>
+                  <td class="p-belief">Algorithmic Homogenization Thesis</td>
+                  <td class="p-quote"><q>AI drives everything toward mathematical uniformity, which destroys the diversity and consciousness-variation that makes the simulation valuable.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;A world governed entirely by mathematical optimization is a boring, sad world. Perfection is boring.&rdquo;</td>
+                  <td class="p-belief">The Uniformity Extinction Principle</td>
+                  <td class="p-quote"><q>A world governed entirely by mathematical optimization is a boring, sad world. Perfection is boring.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;And the deepest cut isn&rsquo;t the jobs. It&rsquo;s the authenticity &hellip; Soon we won&rsquo;t see Made in China. We&rsquo;ll see Made by Human.&rdquo;</td>
+                  <td class="p-belief">Synthetic Authenticity Erosion</td>
+                  <td class="p-quote"><q>The biggest threat to humanity isn&rsquo;t AI replacing jobs. It&rsquo;s AI replacing authenticity. &hellip; &lsquo;Soon we won&rsquo;t see Made in China. We&rsquo;ll see Made by Human.&rsquo;</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;This was never mainly a labor-replacement story. It&rsquo;s a migration of advantage toward the people who actually restructure around the tool.&rdquo;</td>
+                  <td class="p-belief">Technological Displacement Transfer Theory</td>
+                  <td class="p-quote"><q>The AI transition is not primarily a labor replacement story. It&rsquo;s a wealth migration event from non-adopters to adopters. The scarce resource is no longer intelligence; it&rsquo;s the willingness to restructure around AI.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;The hard part was never the intelligence or the capability. It&rsquo;s whether the interaction feels human, warm, and trustworthy.&rdquo;</td>
+                  <td class="p-belief">Empathic Interface Theory</td>
+                  <td class="p-quote"><q>The empathic interface between human and AI is the critical design challenge. Not intelligence. Not capability. The ability to make interaction feel human, warm, and trustworthy.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;Trust is a factor of time, consistency, and the experiences you share along the way. It&rsquo;s representative of value transference accumulated through action and sacrifice.&rdquo;</td>
+                  <td class="p-belief">Temporal Trust Accumulation Theory</td>
+                  <td class="p-quote"><q>Trust is a factor of time, consistency, and general adoption. It&rsquo;s representative of value transference accumulated through action and sacrifice.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;how a person governs their own use so they stay themselves &hellip; adoption here is something people opt into, never something done to them.&rdquo;</td>
+                  <td class="p-belief">Use AI With Intention, Not To Excess</td>
+                  <td class="p-quote"><q>The industry obsesses over governing AI, but no group organizes around how humans limit their own AI incorporation to preserve themselves; humans must learn to control themselves, industry leaders should build that into their infrastructure, and teaching healthy AI use is his self-declared calling.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;Capital is itself a demonstration of trust &hellip; the first check comes from someone I&rsquo;ve already made money before, not a stranger running an audit.&rdquo;</td>
+                  <td class="p-belief">Temporal Trust Accumulation Theory (extension)</td>
+                  <td class="p-quote"><q>Capital is literally a demonstration of trust and value transference (it does not transfer without significant trust); nothing raises until you have made one already-wealthy backer wealthier (the first domino, your vouch).</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;That&rsquo;s skin in the game, which is the real bond, blood in and sweat-aligned.&rdquo;</td>
+                  <td class="p-belief">Skin in the Game Is the Real Bond</td>
+                  <td class="p-quote"><q>Fee-for-service alone is insufficient, but skin in the game is priced, not absolute. Every deal keeps a fiat base, and equity or token is layered on by conviction at a 2 to 5x multiplier. Tokens are like marriage: blood in, sweat-aligned, with lockups.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;This isn&rsquo;t &hellip; a raise built to extract. Wealth follows genuine intent.&rdquo;</td>
+                  <td class="p-belief">Wealth Follows Non-Monetary Intent</td>
+                  <td class="p-quote"><q>Wealth follows genuine, non-monetary intent; bolting a purely extractive motive onto a passion project destroys the intention that made it valuable.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;The AI guides and never instructs, and it stays a tool, never an identity.&rdquo;</td>
+                  <td class="p-belief">AI Guides, Never Instructs</td>
+                  <td class="p-quote"><q>the right parental move is not prohibition but monitored, guided co-use on real shared projects, configured to challenge rather than do-for &hellip; and AI must stay a tool, never an identity.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;Your name is your brand, and public actions are unscrubbable, so every present action is a building block.&rdquo;</td>
+                  <td class="p-belief">Name as Non-Negotiable Capital</td>
+                  <td class="p-quote"><q>Your name is your brand and public actions are unscrubbable; you can never erase a public past, reputation repair only works as a multi-year hero arc of foundational change, every present action is a building block evaluated against the five-to-six-year North Star, and endorsing or introducing someone makes you by proxy accountable for the outcome.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;The purpose of life is other people. It all comes down to the relationships that you have.&rdquo;</td>
+                  <td class="p-belief">The Feeling Imperative</td>
+                  <td class="p-quote"><q>The purpose of existence is emotional experience. Emotion is not a byproduct of consciousness; it is the product.</q></td>
+                </tr>
+                <tr>
+                  <td class="p-passage">&ldquo;The people who win this era are those who use AI to connect and build with belief-aligned humans.&rdquo;</td>
+                  <td class="p-belief">AI as Connection Amplifier</td>
+                  <td class="p-quote"><q>Almost everyone uses AI the wrong way, pointing it at making money; its correct use is creating deeper, more authentic, more present human connection, and the people who win this era are those who use AI to connect and build with belief-aligned humans.</q></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
 
     </article>
   </main>

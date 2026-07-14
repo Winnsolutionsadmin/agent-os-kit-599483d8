@@ -100,7 +100,7 @@ The scaffold shape is the deliverable; the numbers are a founder decision. Ancho
 |---|---|---|---|
 | **Setup fee** (one-time) | Baseline instrumentation, capture go-live, the one gated-workflow build | VENDOR: AI proof-of-concept $20K-250K; AI pilots $50K-200K over 8-16 weeks | Founder sets; concessionary for a design partner |
 | **Monthly fee** (across the 90 days) | Design-partner delivery: capture + one gated workflow, then gamification entry | VENDOR: fractional chief of staff $7-14K/mo (up to ~$17K at full scope); full-time true cost $240-265K+/yr; anchored on the MEASURED $25K/mo precedent for the post-pilot retainer | Founder sets; internal working bands live in `pricing-model-options.md`, [unverified], off all external surfaces |
-| **Equity component** (conditional) | Transformative scope only; the counsel default is equity plus cash, cash-only requires partner sign-off | Category precedent for equity-for-transformation exists (venture-studio and JV mechanics, VENDOR); sizing is counsel territory | Founder plus counsel set; no number proposed anywhere |
+| **Equity component** (conditional) | Deepest-scope engagements only; the counsel default is equity plus cash, cash-only requires partner sign-off | Category precedent for equity-for-transformation exists (venture-studio and JV mechanics, VENDOR); sizing is counsel territory | Founder plus counsel set; no number proposed anywhere |
 
 **The anchor sentence (external-safe):** the engagement is priced against what a chief of staff plus an engineering lift is worth to this executive, not against a seat count. The chief-of-staff anchor is VENDOR-citable; the engineering-lift anchor references an internal benchmark whose methodology memo is pending and is never a customer promise (R4).
 
@@ -148,7 +148,7 @@ This model exists to answer one question: does the company survive, and stay in 
 |---|---|---|---|
 | Pilot conversion | Pilot does NOT convert (failed pilot) | Converts to retainer | Converts fast, referenceable |
 | Sales cycle | Long; no second partner in-window | One additional design partner | Multiple partners, relationship-compressed |
-| Founder capacity | Fully consumed by delivery | Supplemented by originating-member contribution | Leveraged as playbooks harden |
+| Founder capacity | Fully consumed by delivery | Supplemented by originating-member contribution | Extended as playbooks harden |
 | Implementation burden | High, fully bespoke | Falling as playbooks form | Largely productized for common workflows |
 | Reusable-product % | Low; stays services | Rising modestly | Crosses the recurring-revenue threshold (software margin begins, horizon) |
 
