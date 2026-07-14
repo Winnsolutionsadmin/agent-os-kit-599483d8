@@ -12,7 +12,7 @@ One calm conversational surface where anyone, from the CEO to the line worker, d
 
 The labs can build this. That is the premise of the market, not a threat to it. In May 2026 the labs entered the motion: Anthropic stood up a $1.5B enterprise services company with Blackstone, Hellman & Friedman, and Goldman Sachs; OpenAI followed a week later with a $4B deployment arm (VENDOR, both labs' own announcements). Capability arriving creates the demand. What none of them sells is the adoption.
 
-|  | Frontier-lab brute force | The trusted companion |
+|  | Frontier-lab general capability | The trusted companion |
 |---|---|---|
 | **What it sells** | Raw capability, general purpose | The organizational psychology of adoption |
 | **How it lands** | Top-down, as infrastructure | Bottom-up, earned as trust, company by company |

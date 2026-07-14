@@ -7,7 +7,7 @@
 | Decision | Why it matters | Blocking date | Owner | Where the supporting doc lives |
 |---|---|---|---|---|
 | Equity structure: Option C hybrid (small time-vested base plus milestone kickers) vs the milestone-only fallback | Sets the vesting mechanism the interim facts memo and the contributor term sheets encode; a counsel-bandwidth call before the milestone dates (7/10, 7/15, 7/31) begin to land | 7/11 | Jarred + counsel | legal-readiness/source.md sections 2 and 3 |
-| Was the State-of-AI teaching deck actually delivered to Alan | Decides whether pitch-deck slide 2 assumes shared vocabulary or teaches the adoption gap from scratch | 7/15 | Jarred | pitch-deck/source.md open item 3 (slide 2) |
+| Was the State-of-AI teaching deck actually delivered to Allan | Decides whether pitch-deck slide 2 assumes shared vocabulary or teaches the adoption gap from scratch | 7/15 | Jarred | pitch-deck/source.md open item 3 (slide 2) |
 | Deck spot: whether any fee arithmetic survives to the sent version | Fee math on a slide collides with R4 and S1 (no throughput figure, no fee on any slide) and the two-transaction discipline | 7/15 | Jarred | 07-roadmap/W1-concept-doc-deck/concept-deck-v1.html panel S17 |
 | Deck spot: whether the $1,000/hr illustration stays | It implicitly prices the recipient's own time, a belief-fit risk for this recipient | 7/15 | Jarred | concept-deck-v1.html panel S17 |
 | Deck spot: Branch B's "lowest base it will ever have" line vs the no-forward-looking-promises rule | A forward-looking value promise risks a securities-tone problem in written materials | 7/15 | Jarred | concept-deck-v1.html panel S17 |

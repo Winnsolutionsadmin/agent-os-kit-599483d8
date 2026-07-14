@@ -1,6 +1,6 @@
 # Pitch deck: source content + speaker notes
 
-**Deliverable:** 09-deliverables/pitch-deck | **Authored:** 2026-07-09 (recovery build) | **Recipient:** the 7/17-18 meeting (belief-indexed to Alan; slides forwardable, Alan-specific talk track in notes).
+**Deliverable:** 09-deliverables/pitch-deck | **Authored:** 2026-07-09 (recovery build) | **Recipient:** the 7/17-18 meeting (belief-indexed to Allan; slides forwardable, Allan-specific talk track in notes).
 **Render:** `index.html` (self-contained HTML deck) is the client-facing artifact. This markdown is the content of record; the HTML renders it.
 **Governing law:** repo `CLAUDE.md` corrections; `05-counsel/counsel-deepdive-2026-07-09.md` ADDENDUM 4 (R1-R8) > ADDENDUM 3 (S1-S4, B1-B11) > earlier addendums. See `_extract-notes.md` for the applied supersessions and the verbatim-quote ledger.
 **Hard constraints baked in:** no em dashes; every stat lineage-tagged (MEASURED / SURVEY / VENDOR / CORPUS / ASSUMPTION); no 16x anywhere (R4); no throughput comparison at all (S1); no "3x/10x" band (S2); no multi-year projections; no model-panel badges (B5); no client names (gate C); fleet-of-one labeled reference implementation (gate D); corpus + registry are inputs, not traction (gate E); no slide implies an executed agreement (B10); "agent OS" is a lowercase descriptor only (S4).
@@ -24,7 +24,7 @@ No stats on the cover. Open the unnamed status out loud, approved script (S3, S4
 
 **On slide:**
 - Capability is arriving. Adoption is not.
-- 94% of knowledge workers already use AI at work. But disclose that you used it, and a controlled experiment rated you 10x lazier and 24 points less likely to be picked for high-visibility work, at identical output (SURVEY, Atlassian 2026).
+- 94% of knowledge workers already use AI at work. But disclose that you used it, and a controlled experiment rated you 10x lazier and 24 percentage points less likely to be picked for high-visibility work, at identical output (SURVEY, Atlassian 2026).
 - The field is wide open: 62% of orgs are experimenting, about 23% have scaled even one system into production, and full agentic operation is rarer still (SURVEY, McKinsey Nov 2025).
 - Cost of doing nothing: every quarter you wait, shadow AI spreads ungoverned and the head start compounds to whoever crosses first.
 
@@ -115,7 +115,7 @@ Product law, "don't touch it" (counsel-kept 4/4). Graduation source: `01-overvie
 **Closing line (on slide):** If a demo has to pretend to be live, the trust is already gone. This one won't pretend.
 
 **Speaker notes:**
-R3 sets demo scope; B2 sets demo agency law. POST routes disabled, write credentials removed, persistent READ ONLY label, provenance and freshness visible, narrate only the observed data path, timestamped recording as the honest fallback. The four published demos are the watch-it-happen assets (CORPUS, at winnsolutionsadmin.github.io/allan-ai-demos/): an agentic treasury desk, a 20-vehicle registration agent with dollar-approval cards, the front-door triage pattern, and a full day run by text. Two were built against Alan's own pains (fleet registration, treasury visibility), which is why the visual language is his. The single real product view on this slide is a framed rendering of the running surface; OPEN ITEM: drop a live screen capture in before send.
+R3 sets demo scope; B2 sets demo agency law. POST routes disabled, write credentials removed, persistent READ ONLY label, provenance and freshness visible, narrate only the observed data path, timestamped recording as the honest fallback. The four published demos are the watch-it-happen assets (CORPUS, at winnsolutionsadmin.github.io/allan-ai-demos/): an agentic treasury desk, a 20-vehicle registration agent with dollar-approval cards, the front-door triage pattern, and a full day run by text. Two were built against Allan's own pains (fleet registration, treasury visibility), which is why the visual language is his. The single real product view on this slide is a framed rendering of the running surface; OPEN ITEM: drop a live screen capture in before send.
 
 ## Slide 9: The boundary of the pilot
 
@@ -240,6 +240,6 @@ R6 and B3: all activity and inventory counts live HERE, in the appendix labeled 
 
 ## Open items only the founder can answer
 1. The pilot fee number and the post-pilot retainer band (both [unverified]; nothing quotable until Jarred + counsel clear the terms skeleton).
-2. Which role Alan plays: operating counterparty vs sponsor (R8 precondition; decides which branch is the primary at close).
-3. Was the State-of-AI teaching deck actually delivered to Alan (decides whether slide 2 assumes shared vocabulary or teaches from scratch).
+2. Which role Allan plays: operating counterparty vs sponsor (R8 precondition; decides which branch is the primary at close).
+3. Was the State-of-AI teaching deck actually delivered to Allan (decides whether slide 2 assumes shared vocabulary or teaches from scratch).
 4. A real live screen capture of the running front door to drop into slide 8 before send (currently a framed rendering).

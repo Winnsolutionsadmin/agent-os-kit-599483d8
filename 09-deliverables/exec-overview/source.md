@@ -68,13 +68,13 @@ An advisor earns the right to act on a decision class on its own only after its 
 
 **Sell the C-levels first. Then engineering. Then the whole org.**
 
-1. **C-levels first:** the chief of staff, the organizer. The first one is free, so it lands as their first hit.
+1. **C-levels first:** the chief of staff, the organizer. The first seat is the wedge, because that role feels the coordination pain most.
 2. **Engineers next:** the revamp, the overhaul. They feel the throughput and they want it.
 3. **Everyone else** follows, pulled in by demand once the first two land.
 
 The wedge is a C-suite that finally has a chief of staff which never sleeps. Once the executives feel it, engineering wants the overhaul, and the rest of the organization is pulled in by demand rather than pushed by mandate.
 
-*Why engineers follow: an internal benchmark on a scoped engineering task is underway via Carter Razink's Recurro framework. Its methodology memo, covering task universe, baseline, and confidence, is pending, so no throughput figure is claimed here, only that the benchmark exists, and the result is never a customer promise (ASSUMPTION).*
+*Why engineers follow: an internal benchmark on a scoped engineering task is underway. Its methodology memo, covering task universe, baseline, and confidence, is pending, so no throughput figure is claimed here, only that the benchmark exists, and the result is never a customer promise (ASSUMPTION).*
 
 ---
 

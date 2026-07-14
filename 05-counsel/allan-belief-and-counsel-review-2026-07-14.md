@@ -108,16 +108,46 @@
 
 ## (d) Counsel panel
 
-**Status: INCONCLUSIVE (ran past budget; omitted).** The panel was invoked over the full 8-deliverable dossier (177 KB) with the Allan operator-epistemology profile seeded and the mandatory numeric help/hurt (-100..+100) protocol appended, full six-model roster (`grok,gemini,codex,claude,glm,kimi`), on the mini.
+**Panel: 3 of 6 models substantive** (grok, glm, codex). gemini and kimi both hit usage quota ("Individual quota reached ... Resets in 59h" / "refreshed in the next cycle"); claude's slot was consumed by a mini hook error (`gbrain-recall-hook.py` missing) that blocked the prompt and echoed it back, so claude produced no critique. Three substantive answers exceed the two-model minimum. Run in review posture via consult mode (review mode emits code-defect JSON and would not elicit the -100..+100 help/hurt scores or positioning prose the task requires), full dossier (177 KB), Allan profile seeded, numeric protocol appended, on the mini.
 
-Partial run log (from the engine's stderr, before the consolidated transcript could render):
-- `claude answered (177561 chars)` — substantive.
-- `grok answered (8696 chars)` — substantive.
-- `glm answered (7178 chars)` — substantive.
-- `gemini answered (110 chars)` — effectively a stub / near-empty.
-- `kimi FAILED` — weekly usage quota exhausted ("l be refreshed in the next cycle ... purchase extra usage or upgrade your plan").
-- `codex` — still running at ultra effort on the 177 KB dossier when the run exceeded budget; consult mode only writes the consolidated output once all models return or time out, so no per-model transcript text was retrievable and no numeric score matrix was produced.
+### Score matrix (-100 = actively hurts the raise with Allan, +100 = strongly helps)
 
-Because the engine buffers consult output until completion, the individual answer **text** (verbatim critiques and the -100..+100 score matrix) never landed on disk, so nothing quotable survives to reproduce here. Where a panel score matrix would slot in: a per-deliverable row (1-8) plus an `OVERALL` row, columns per model, with mean / median / spread, followed by verbatim key critiques under each model's name. The belief-fit review in sections (a)-(c) was designed to stand independently of the panel and does not rely on it. A re-run with a trimmed dossier (or codex isolated at 600s) would recover the numeric layer without changing the belief-fit conclusions.
+| Deliverable | grok | glm | codex | mean |
+|---|---:|---:|---:|---:|
+| 1 Pitch deck | +12 | -20 | -66 | -25 |
+| 2 Exec overview | +2 | -35 | -78 | -37 |
+| 3 Whitepaper | +28 | -50 | -60 | -27 |
+| 4 Financials+ICP | +8 | -40 | -92 | -41 |
+| 5 One-pager | +18 | -10 | -86 | -26 |
+| 6 Legal-readiness | -35 | -30 | -78 | -48 |
+| 7 Founder memo | +6 | -70 | -68 | -44 |
+| 8 Brand package | -48 | -80 | -84 | -71 |
+| **OVERALL (kit as instrument)** | **-14** | **-45** | **-76** | **-45** |
 
-*Note on mode: the /counsel engine's literal `review` mode emits code-defect JSON and does not elicit the -100..+100 help/hurt scores or free-form positioning prose the task requires; the review posture was therefore executed via consult mode with the numeric-rating protocol block appended, per the skill's "every mode elicits a numeric verdict" rule.*
+Spread is high (grok is the lone near-neutral; codex is the harshest), but the **direction is unanimous — the kit as currently written hurts more than it helps with this specific buyer**, and all three converge on the same three causes. grok is the outlier on the high side because it credits the honesty layer (built/designed truth table, refusals, READ-ONLY demo) more heavily; it still lands negative overall.
+
+### The three defects all three models name
+
+1. **Missing math (all three; ~40% of codex's and glm's weight).**
+   - glm: *"The math is missing ... zero actual dollars are on the page. You cannot pitch a math person with shapes."*
+   - codex (Financials, its -92): *"These are not financials ... There is no price, founder-hours cost, COGS, margin, cash balance, burn, check size, or runway."*
+   - grok: *"the kit is over-lawyered on process and under-finished on the only things Allan buys: title, price, running multi-person proof."*
+2. **Services / n=1 estate framed as an "operating system for organizations."**
+   - grok: *"Calling it an operating system for organizations, while the name, entity, and productization are still open, is how you lose a math-grounded operator."*
+   - glm: *"a services business masquerading as an OS. He will not pay a software multiple for a consulting shop."*
+   - codex: *"Founder-only activity telemetry is presented beside organizational proof while the core control plane remains unbuilt and its status changes across documents."*
+3. **Kit bloat / performance against an anti-performance operator (S25).**
+   - glm on the founder memo (its -70): *"This is cringe tech-bro posturing ... a TED talk, not a business memo."* and on brand (-80): *"This entire document is performance."*
+   - grok on brand (-48): *"delete from the investor kit"*; on the memo: *"anti-performance man smells performance of authenticity."*
+   - codex (-76 overall): *"25%: Trust cost from packaging. Eight overlapping artifacts, `[NAME]` theater, a misspelled recipient, expired deadlines ... look engineered rather than candid."*
+
+### What the panel says WINS him (the positives to protect)
+All three credit the same short list: the four-column **built-vs-designed truth table**; the **READ-ONLY, honest-about-the-spike demo**; the **narrow baseline-plus-kill-criterion pilot** with two-transaction separation; the **human gate**; and the **candid N=1 / no-SOC-2 admissions**. grok: *"Built vs designed / READ ONLY demo honesty ... the only large positive."* codex: *"Those strengths do not offset the absent arithmetic."*
+
+### Highest-leverage fixes the panel converges on (all FOUNDER-DECISION)
+- Put a real **one-page costed pilot P&L** and the **pilot fee + check size/method** on the economics surfaces (fixes the #1 defect).
+- **Cut the brand package and the full whitepaper from Allan's kit** (keep them internal / for later technical diligence); lead the operator with what runs, the numbers, and the demo.
+- **Finish the legal container** (entity, IP chain, contributor papers) and hand him a one-page done/not-done status instead of blank drafts.
+- **Reconcile the maturity labels** across docs (X5) and **fill the real trace** (P1) so the "proof isn't a roadmap" claim is not undercut by placeholders and a still-prototype control plane.
+
+*Caveat: these are the panel's opinions on the kit as a fundraising instrument; several (cut the whitepaper/brand, put fees on slides) run against explicit governing rules in the kit (fee-off-all-slides, two-transaction discipline) and are FOUNDER-DECISIONs, not safe-fixes. The belief-fit review in (a)-(c) and the panel agree on the mechanical items (X1 name, X5 maturity contradiction, P1 empty trace, O1/O3 one-pager) and diverge only on how much unpriced-but-disciplined framing Allan will tolerate.*
