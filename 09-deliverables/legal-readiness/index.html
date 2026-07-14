@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legal readiness &middot; drafts lane &middot; [NAME]</title>
+<meta name="description" content="The legal-readiness drafts lane for an unnamed agent OS for organizations. Seven lawyer-review-required drafts: entity and IP, interim facts memorandum, contribution-equity term sheet, pilot success charter, SAFE overview, data-security one-pager, competitor objection matrix. Nothing here is executed or binding.">
+<style>
+  /* ============================================================
+     LEGAL READINESS  ·  drafts lane
+     Kit tokens: cool structural paper + graphite, pine accent.
+     This lane's signature: the lawyer-review banner is unmissable
+     on every section, and each doc wears status / owner / deadline
+     chips. Sober. No whimsy. Mono is the system's instrument voice.
+     ============================================================ */
+  :root{
+    --paper:     #ECEEEC;
+    --paper-2:   #E4E7E4;
+    --card:      #F6F7F6;
+    --ink:       #20262A;
+    --ink-soft:  #586067;
+    --ink-dim:   #6C727A;
+    --line:      rgba(32,38,42,0.14);
+    --line-soft: rgba(32,38,42,0.08);
+    --accent:    #1E5A4C;
+    --accent-lit:#2B7A66;
+    --wash:      rgba(30,90,76,0.08);
+    --wash-2:    rgba(30,90,76,0.045);
+    --warn:      #8A5A1C;   /* muted ochre: caution marker only, sober */
+    --warn-wash: rgba(138,90,28,0.10);
+    --sans: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+    --mono: ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
+    --maxw: 62rem;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    overflow-wrap:break-word;
+  }
+  ::selection{ background:var(--wash); color:var(--ink); }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ color:var(--accent-lit); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.1rem,4vw,2.4rem); }
+  .skip{ position:absolute; left:-9999px; top:0; background:var(--ink); color:var(--paper); padding:0.6rem 1rem; z-index:80; font-family:var(--mono); font-size:0.8rem; }
+  .skip:focus{ left:1rem; top:1rem; }
+
+  /* sticky global lawyer-review banner: unmissable, sober dark bar */
+  .gbanner{
+    position:sticky; top:0; z-index:60;
+    background:var(--ink); color:var(--paper);
+    border-bottom:2px solid var(--warn);
+    font-family:var(--mono); font-size:0.74rem; letter-spacing:0.05em;
+  }
+  .gbanner .in{ max-width:var(--maxw); margin:0 auto; padding:0.5rem clamp(1.1rem,4vw,2.4rem); display:flex; gap:0.6rem 1rem; align-items:center; flex-wrap:wrap; }
+  .gbanner .mk{ color:var(--warn); font-weight:700; }
+  .gbanner b{ color:#fff; font-weight:600; }
+  .gbanner .sep{ opacity:0.4; }
+
+  /* masthead */
+  .mast{ padding:clamp(2.2rem,6vw,3.8rem) 0 clamp(1.4rem,3vw,2rem); border-bottom:1px solid var(--line); }
+  .kicker{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 1.1rem; display:flex; flex-wrap:wrap; gap:0.4rem 1rem; align-items:baseline; }
+  .kicker b{ color:var(--accent); font-weight:600; }
+  .wordmark{ font-family:var(--mono); font-size:clamp(2rem,6vw,3rem); line-height:1; letter-spacing:0.02em; margin:0; }
+  .wordmark .bk{ color:var(--accent); font-weight:600; }
+  .wordmark .nm{ color:var(--ink-dim); padding:0 0.12em; }
+  .mast h1{ font-family:var(--sans); font-weight:650; font-size:clamp(1.4rem,3vw,1.9rem); letter-spacing:-0.014em; margin:1.1rem 0 0; max-width:34ch; text-wrap:balance; }
+  .mast-meta{ font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); margin:1.2rem 0 0; }
+  .mast-meta b{ color:var(--ink); font-weight:600; }
+
+  /* the global caveat card, prominent */
+  .caveat{ margin:1.5rem 0 0; border:1px solid var(--warn); border-left:4px solid var(--warn); background:var(--warn-wash); border-radius:4px; padding:1.05rem 1.25rem; }
+  .caveat .clabel{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--warn); font-weight:700; display:block; margin-bottom:0.5rem; }
+  .caveat p{ margin:0 0 0.6rem; font-size:0.95rem; line-height:1.55; }
+  .caveat p:last-child{ margin-bottom:0; }
+  .caveat b{ font-weight:650; }
+
+  /* table of contents / anchored nav */
+  .toc{ padding:clamp(1.4rem,4vw,2rem) 0; border-bottom:1px solid var(--line); }
+  .toc h2{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); margin:0 0 0.9rem; font-weight:600; }
+  .toc ol{ margin:0; padding:0; list-style:none; display:grid; gap:0.5rem; grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr)); }
+  .toc li{ display:flex; align-items:baseline; gap:0.6rem; }
+  .toc .tn{ font-family:var(--mono); font-size:0.78rem; color:var(--accent); flex:0 0 auto; }
+  .toc a{ font-size:0.92rem; color:var(--ink); border-bottom:1px solid var(--line); }
+  .toc a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  /* document sections */
+  .doc{ padding:clamp(2rem,5vw,3rem) 0; border-bottom:1px solid var(--line); scroll-margin-top:3.2rem; }
+  .doc-head{ display:flex; align-items:baseline; gap:0.6rem 1rem; flex-wrap:wrap; }
+  .doc-n{ font-family:var(--mono); font-size:0.9rem; color:var(--accent); font-weight:600; }
+  .doc h2{ font-family:var(--sans); font-weight:650; font-size:clamp(1.3rem,2.6vw,1.72rem); letter-spacing:-0.012em; margin:0; text-wrap:balance; }
+
+  /* per-section banner: the unmissable rule, on every doc */
+  .docban{ margin:0.9rem 0 1rem; background:var(--ink); color:var(--paper); border-radius:4px; border-left:4px solid var(--warn); padding:0.7rem 1rem; font-family:var(--mono); font-size:0.76rem; letter-spacing:0.03em; line-height:1.5; }
+  .docban .mk{ color:var(--warn); font-weight:700; }
+  .docban b{ color:#fff; font-weight:600; }
+
+  /* status / owner / deadline chips */
+  .chips{ display:flex; flex-wrap:wrap; gap:0.5rem; margin:0 0 1.1rem; }
+  .chip{ font-family:var(--mono); font-size:0.72rem; line-height:1; border:1px solid var(--line); border-radius:3px; padding:0.4rem 0.6rem; background:var(--card); color:var(--ink); white-space:nowrap; }
+  .chip .k{ color:var(--ink-dim); }
+  .chip.owner{ border-color:rgba(30,90,76,0.28); }
+  .chip.owner .k{ color:var(--accent); }
+  .chip.deadline{ border-color:var(--warn); background:var(--warn-wash); }
+  .chip.deadline .k{ color:var(--warn); }
+  .chip.blocks{ background:var(--warn); color:#fff; border-color:var(--warn); font-weight:600; }
+  .chip.internal{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+  /* prose + structures */
+  .doc .intro{ font-size:1rem; line-height:1.6; color:var(--ink-soft); margin:0 0 1.2rem; max-width:70ch; }
+  .doc .intro b{ color:var(--ink); font-weight:600; }
+  .doc h3{ font-family:var(--sans); font-weight:650; font-size:1.02rem; letter-spacing:-0.006em; margin:1.5rem 0 0.5rem; color:var(--ink); }
+  .doc p{ margin:0 0 0.8rem; max-width:72ch; }
+  .doc ul.check{ list-style:none; margin:0.4rem 0 0.9rem; padding:0; }
+  .doc ul.check li{ position:relative; padding:0.34rem 0 0.34rem 1.7rem; font-size:0.95rem; line-height:1.5; border-top:1px solid var(--line-soft); max-width:74ch; }
+  .doc ul.check li:first-child{ border-top:none; }
+  .doc ul.check li::before{ content:"\2610"; position:absolute; left:0; top:0.28rem; font-family:var(--mono); color:var(--accent); font-size:1rem; }
+  .doc ul.check li b{ font-weight:650; }
+  .doc ul.plain{ margin:0.4rem 0 0.9rem; padding-left:1.2rem; }
+  .doc ul.plain li{ margin:0.3rem 0; font-size:0.95rem; line-height:1.5; max-width:74ch; }
+
+  table{ width:100%; border-collapse:collapse; margin:0.6rem 0 1rem; font-size:0.9rem; }
+  th,td{ text-align:left; padding:0.55rem 0.7rem; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.45; }
+  th{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; background:var(--wash-2); }
+  td .blank{ font-family:var(--mono); color:var(--ink-dim); }
+  .mat{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; white-space:nowrap; }
+  .mat.built{ color:var(--accent); }
+  .mat.internal{ color:var(--ink); }
+  .mat.pilot{ color:var(--warn); }
+  .mat.roadmap{ color:var(--ink-dim); }
+
+  /* the field-blank grid for the charter */
+  .fields{ border-top:1px solid var(--line); margin:0.4rem 0 1rem; }
+  .field{ display:flex; justify-content:space-between; gap:1rem; padding:0.6rem 0; border-bottom:1px solid var(--line-soft); flex-wrap:wrap; }
+  .field .fl{ font-size:0.95rem; }
+  .field .fv{ font-family:var(--mono); font-size:0.86rem; color:var(--ink-dim); flex:0 0 auto; }
+  .field .fv.dec .a{ padding:0 0.35em; }
+
+  /* unresolved facts callout */
+  .unres{ border:1px solid var(--line); border-left:3px solid var(--warn); border-radius:3px; background:var(--warn-wash); padding:1rem 1.15rem; margin:1.2rem 0 0; }
+  .unres .ulabel{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--warn); font-weight:700; display:block; margin-bottom:0.55rem; }
+  .unres ol{ margin:0; padding-left:1.2rem; }
+  .unres li{ font-size:0.9rem; line-height:1.5; margin:0.3rem 0; max-width:76ch; }
+  .unres li .meta{ font-family:var(--mono); font-size:0.76rem; color:var(--ink-soft); }
+
+  .tag{ font-family:var(--mono); font-size:0.7em; letter-spacing:0.03em; color:var(--accent); white-space:nowrap; }
+  .tag::before{ content:"[\00a0"; opacity:0.7; }
+  .tag::after{ content:"\00a0]"; opacity:0.7; }
+  .tag.soft{ color:var(--ink-soft); }
+
+  /* footer */
+  .foot{ padding:clamp(1.8rem,5vw,2.8rem) 0 clamp(2.4rem,6vw,3.4rem); }
+  .foot .legend{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap:0.5rem 1.4rem; margin:0 0 1.2rem; }
+  .foot .li{ font-size:0.82rem; color:var(--ink-soft); line-height:1.45; }
+  .foot .fine{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-soft); line-height:1.6; margin:0 0 0.5rem; max-width:76ch; }
+  .foot .fine b{ color:var(--ink); }
+  .foot .sig{ font-family:var(--mono); font-size:0.78rem; color:var(--ink-soft); margin-top:1rem; }
+  .foot .sig b{ color:var(--ink); }
+
+  @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } *{ animation:none!important; transition:none!important; } }
+  @media print{
+    body{ background:#fff; color:#000; font-size:11pt; }
+    .gbanner{ position:static; }
+    .doc,.unres,.caveat{ break-inside:avoid; }
+    a{ color:#000; }
+    .docban,.gbanner{ background:#000; color:#fff; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#toc">Skip to the document list</a>
+
+<div class="gbanner" role="alert">
+  <div class="in">
+    <span class="mk">&#9650; DRAFT FOR LAWYER REVIEW</span>
+    <span class="sep">&middot;</span> <b>NOT LEGAL ADVICE</b>
+    <span class="sep">&middot;</span> <b>DO NOT EXECUTE</b>
+    <span class="sep">&middot;</span> nothing here is binding
+  </div>
+</div>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="kicker"><span>legal readiness</span> <b>drafts lane</b> <span>2026-07-09</span> <span>launch kit</span></p>
+    <p class="wordmark"><span class="bk">[</span><span class="nm">NAME</span><span class="bk">]</span></p>
+    <h1>Seven lawyer-review drafts that make counsel fast, not that replace counsel.</h1>
+    <p class="mast-meta">built <b>2026-07-09</b> &nbsp;&middot;&nbsp; founder <b>Jarred Winn</b> &nbsp;&middot;&nbsp; jarred@winn.solutions</p>
+
+    <div class="caveat">
+      <span class="clabel">&#9650; Lawyer review required</span>
+      <p>Every document in this lane is a <b>DRAFT FOR LAWYER REVIEW. NOT LEGAL ADVICE. DO NOT EXECUTE.</b> Nothing here is executed or binding, and no artifact anywhere in this kit implies an agreement that is not signed.</p>
+      <p><b>Two separate transactions, never blended.</b> The pilot paper and the investment paper are two independent decisions with two independent evidence thresholds. A yes to one is never a yes to the other, and there are no cross-contingencies between them anywhere.</p>
+      <p><b>Founder structure is fixed.</b> Jarred Winn is the sole founder; the vision is his. Nick Metzler and Carter Razink are originating members who earn equity through contribution. No co-founder framing, no fixed split.</p>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" id="toc" aria-label="Documents in this set">
+  <div class="wrap">
+    <h2>The seven drafts</h2>
+    <ol>
+      <li><span class="tn">01</span><a href="#doc-1">Entity formation and IP assignment checklist</a></li>
+      <li><span class="tn">02</span><a href="#doc-2">Interim facts memorandum (template)</a></li>
+      <li><span class="tn">03</span><a href="#doc-3">Contribution-earns-equity term sheet outline</a></li>
+      <li><span class="tn">04</span><a href="#doc-4">One-page pilot success charter</a></li>
+      <li><span class="tn">05</span><a href="#doc-5">SAFE and instrument overview</a></li>
+      <li><span class="tn">06</span><a href="#doc-6">Data-security one-pager</a></li>
+      <li><span class="tn">07</span><a href="#doc-7">Competitor objection-handling matrix</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main class="wrap">
+<section class="doc" id="doc-1" aria-labelledby="d1t">
+  <div class="doc-head"><span class="doc-n">01</span><h2 id="d1t">Entity formation and IP assignment checklist</h2></div>
+  <div class="docban"><span class="mk">&#9650; DRAFT FOR LAWYER REVIEW.</span> <b>NOT LEGAL ADVICE. DO NOT EXECUTE.</b></div>
+  <div class="chips">
+    <span class="chip"><span class="k">status</span> DRAFT v0.1</span>
+    <span class="chip owner"><span class="k">owner</span> Jarred + counsel</span>
+    <span class="chip deadline"><span class="k">deadline</span> this week, before 7/17</span>
+    <span class="chip blocks">survival-critical</span>
+  </div>
+  <p class="intro">A clean legal container with founder control preserved and an unbroken chain of title on the IP that makes the company worth forming. A checklist, not an opinion; a licensed attorney selects the actual instruments.</p>
+
+  <h3>A. Entity</h3>
+  <ul class="check">
+    <li>Entity type and state chosen with counsel. Delaware C-corporation is the diligence-standard shape; the choice stays counsel plus founder. Vendor paths are framework only. <span class="tag soft">ASSUMPTION</span></li>
+    <li>Named legal / compliance owner recorded (counsel blind spot 3: one named human accountable, not a diffuse team).</li>
+    <li>Founder confirms the legal form of Winn.solutions (LLC, DBA, or sole proprietorship). <b>Unresolved in the estate and load-bearing:</b> intercompany or background-IP paper cannot be clean against an entity that is not a distinct legal person.</li>
+  </ul>
+
+  <h3>B. Founder control (control, not just percentage)</h3>
+  <ul class="check">
+    <li><b>Board composition.</b> Founder controls the board at formation. Originating members do not receive board seats by default.</li>
+    <li><b>Voting.</b> Founder retains voting control by an instrument counsel selects (dual-class, voting agreement, or irrevocable proxy). Contribution grants can be non-voting or proxied so earned economics never transfer control.</li>
+    <li><b>Reserved decisions.</b> A written list reserved to the founder: issuing equity, incurring debt, changing purpose, selling or licensing core IP, hiring or removing officers, budgets, any related-party transaction.</li>
+    <li><b>Protective provisions</b> align with the reserved-decisions list so control survives future financings.</li>
+  </ul>
+
+  <h3>C. IP assignment: background vs foreground schedule</h3>
+  <ul class="check">
+    <li><b>Background IP schedule</b> lists the founder's pre-existing estate assets assigned in as the seed platform: the fleet HUD, the OKR engine, the achievement engine, the meeting-capture pipeline, the skill registry, and their reusable patterns. <span class="tag">MEASURED</span></li>
+    <li><b>Foreground IP</b> is everything created specifically for the company after formation; it belongs to the company.</li>
+    <li><b>Client-specific material is EXCLUDED:</b> consulting client configurations, client data, and per-client feedback registries stay with Winn.solutions.</li>
+    <li><b>Mima is EXCLUDED</b> by name from every assignment schedule (a separate venture; not part of this product).</li>
+    <li><b>Carter Razink's Recurro is treated as HIS property.</b> His agentic-engineering framework and an input to the engineering pillar, not the company's product. Any company rights are an explicit, separate <b>license-or-assignment decision</b> for Carter and counsel, papered as a prior-inventions carve-out, never a silent sweep-in.</li>
+    <li><b>Prior-inventions carve-outs</b> filed for every contributor: Carter keeps Recurro; Nick keeps any pre-existing tokenomics or mechanics IP; the founder excludes Mima and other out-of-scope personal ventures.</li>
+  </ul>
+
+  <h3>D. Assignment chain (mechanics counsel will paper)</h3>
+  <ul class="check">
+    <li>Present-tense "hereby assigns" language (not "agrees to assign").</li>
+    <li>Real consideration for the founder's IP assignment: founder stock, not a gift.</li>
+    <li>Section 83(b) election filed within 30 days of any restricted-stock grant tied to the IP assignment.</li>
+    <li>A Confidential Information and Invention Assignment Agreement, with the prior-inventions carve-out attached, for the founder and each contributor.</li>
+    <li>Existing client agreements pulled and checked for an invention-assignment or "improvements" clause that could sweep in the estate tooling (California Labor Code 2870 / 2872).</li>
+  </ul>
+
+  <h3>E. Conflict-of-interest hygiene</h3>
+  <ul class="check">
+    <li>Where a prospective investor is also a contact in a separate consulting engagement, ordinary written conflict-of-interest disclosure is prepared and delivered before terms are discussed. A routine disclosure item, nothing more.</li>
+  </ul>
+
+  <div class="unres">
+    <span class="ulabel">Unresolved facts, must be answered before counsel finalizes</span>
+    <ol>
+      <li>Legal form of Winn.solutions. <span class="meta">Owner: Jarred. Needed: before any intercompany or background-IP paper.</span></li>
+      <li>Entity type and state of incorporation. <span class="meta">Owner: Jarred + counsel. Needed: this week.</span></li>
+      <li>Named legal / compliance owner. <span class="meta">Owner: Jarred. Needed: at formation.</span></li>
+      <li>Whether the company needs rights to Recurro, and if so license or assignment. <span class="meta">Owner: Carter + Jarred + counsel. Needed: before the engineering pillar builds on it.</span></li>
+      <li>Exact background-IP schedule line items and client-specific exclusions. <span class="meta">Owner: Jarred + counsel. Needed: before signing.</span></li>
+      <li>Whether any existing client agreement reaches the estate tooling. <span class="meta">Owner: Jarred + counsel. Needed: before assignment.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="doc" id="doc-2" aria-labelledby="d2t">
+  <div class="doc-head"><span class="doc-n">02</span><h2 id="d2t">Interim facts memorandum (template)</h2></div>
+  <div class="docban"><span class="mk">&#9650; DRAFT FOR LAWYER REVIEW.</span> <b>NOT LEGAL ADVICE. DO NOT EXECUTE.</b> Signed only after counsel review.</div>
+  <div class="chips">
+    <span class="chip"><span class="k">status</span> DRAFT v0.1</span>
+    <span class="chip owner"><span class="k">owner</span> Jarred authors + signs; counsel blesses</span>
+    <span class="chip deadline"><span class="k">deadline</span> 7/11</span>
+  </div>
+  <p class="intro">The one instrument designed to be signed early. It memorializes <b>facts and intentions</b> so no downstream artifact implies agreements that do not exist. Expressly non-binding as to final equity terms, valuations, or percentages. Fill every blank; leave nothing implied.</p>
+
+  <p>Regarding the unnamed organization operating under the working descriptor "an agent OS for organizations" (the "Company", not yet formed). This memorandum records the current understanding of the parties. It is not an operating agreement, a stock purchase agreement, or a binding term sheet, and it creates no equity, no employment, and no obligation to invest. It is subject in all respects to definitive documentation prepared by counsel.</p>
+
+  <h3>1. Founder status</h3>
+  <ul class="plain"><li>Jarred Winn is the sole founder. The vision and direction of the Company are his.</li>
+  <li>The founder operates the reference implementation at fleet-of-one scale today (a reference implementation, not an installed customer). <span class="tag">MEASURED</span></li></ul>
+
+  <h3>2. Contributors and time commitments (fill the blanks)</h3>
+  <ul class="plain">
+    <li>Nick Metzler, originating member. Game design, adoption mechanics, anti-abuse. Time commitment: <span class="blank">____ / basis ____</span>.</li>
+    <li>Carter Razink, originating member. Engineering; his Recurro framework is an input and remains his property. Time commitment: <span class="blank">____ / basis ____</span>.</li>
+    <li>No party is described as a co-founder. Originating members earn equity through contribution.</li>
+  </ul>
+
+  <h3>3. Equity mechanism (intent only, no numbers)</h3>
+  <p>The intended mechanism is a hybrid: a small time-vested base grant per originating member (with a cliff) plus milestone kickers tied to named deliverables. Fallback if counsel bandwidth is short: milestone-vested grants only.</p>
+  <table>
+    <thead><tr><th>Deliverable</th><th>Owner</th><th>Due</th><th>Kicker vests on</th></tr></thead>
+    <tbody>
+      <tr><td>Recurro framework doc</td><td>Carter</td><td>7/10</td><td>landed and usable by the engineering pillar</td></tr>
+      <tr><td>Case study + methodology memo</td><td>Carter</td><td>7/15</td><td>surviving the honest-math audit</td></tr>
+      <tr><td>Gamification mechanics definition</td><td>Nick</td><td>7/31</td><td>landed with anti-abuse coverage</td></tr>
+    </tbody>
+  </table>
+  <p>Percentages, grant sizes, and valuations are set by the founder with counsel and appear nowhere in this memorandum.</p>
+
+  <h3>4. Governance</h3>
+  <p>Founder control is preserved structurally. The instrument (dual-class, voting agreement, or proxy) is selected by counsel. Contribution grants do not transfer voting control.</p>
+
+  <h3>5. IP boundaries</h3>
+  <ul class="plain">
+    <li>The founder's pre-existing estate IP is intended to be assigned in as the seed platform (document 1).</li>
+    <li>Recurro remains Carter's property; any company rights are a separate license-or-assignment decision.</li>
+    <li>Mima is excluded entirely. Consulting client-specific material is excluded and stays with Winn.solutions.</li>
+  </ul>
+
+  <h3>6. The two transactions are separate</h3>
+  <p>Any design-partner pilot and any strategic investment are two separate decisions with separate documents and separate evidence. Nothing in this memorandum conditions one on the other.</p>
+
+  <h3>7. Unresolved items (owner and date each)</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Owner</th><th>Needed by</th></tr></thead>
+    <tbody>
+      <tr><td>Entity formation and IP assignment</td><td>Jarred + counsel</td><td>this week</td></tr>
+      <tr><td>Final equity percentages and grant sizes</td><td>Jarred + counsel</td><td>with definitive docs</td></tr>
+      <tr><td>Recurro license vs assignment</td><td>Carter + Jarred + counsel</td><td>before pillar build</td></tr>
+      <tr><td>Legal form of Winn.solutions confirmed</td><td>Jarred</td><td>before intercompany paper</td></tr>
+    </tbody>
+  </table>
+
+  <div class="fields">
+    <div class="field"><span class="fl">Jarred Winn, Founder</span><span class="fv">signature ______________  date ______</span></div>
+    <div class="field"><span class="fl">Nick Metzler, Originating member</span><span class="fv">signature ______________  date ______</span></div>
+    <div class="field"><span class="fl">Carter Razink, Originating member</span><span class="fv">signature ______________  date ______</span></div>
+  </div>
+  <p class="intro" style="margin-top:0.6rem">Signatures are added only after counsel review.</p>
+
+  <div class="unres">
+    <span class="ulabel">Unresolved facts, must be answered before counsel finalizes</span>
+    <ol>
+      <li>Each contributor's actual stated time commitment. <span class="meta">Owner: Jarred with Nick and Carter. Needed: by 7/11.</span></li>
+      <li>Whether the hybrid or the milestone-only fallback is used this week. <span class="meta">Owner: Jarred + counsel. Needed: by 7/11.</span></li>
+      <li>The governance instrument that preserves control. <span class="meta">Owner: counsel. Needed: with definitive docs.</span></li>
+      <li>Whether all three sign a facts memorandum at all, versus going straight to definitive docs. <span class="meta">Owner: Jarred + counsel. Needed: by 7/11.</span></li>
+    </ol>
+  </div>
+</section>
+<section class="doc" id="doc-3" aria-labelledby="d3t">
+  <div class="doc-head"><span class="doc-n">03</span><h2 id="d3t">Contribution-earns-equity term sheet outline</h2></div>
+  <div class="docban"><span class="mk">&#9650; DRAFT FOR LAWYER REVIEW.</span> <b>NOT LEGAL ADVICE. DO NOT EXECUTE.</b></div>
+  <div class="chips">
+    <span class="chip"><span class="k">status</span> DRAFT v0.1 (outline)</span>
+    <span class="chip owner"><span class="k">owner</span> Jarred + counsel</span>
+    <span class="chip deadline"><span class="k">deadline</span> this week, before milestone dates</span>
+  </div>
+  <p class="intro">An <b>outline</b> of the terms a contribution-earns-equity grant would contain, one per originating member, so counsel can draft quickly. Not a grant and not an offer. Nothing goes to Nick or Carter except through the founder. No percentages; those are founder plus counsel only. The word "co-founder" is never used; the parties are originating members.</p>
+
+  <h3>Structure (Option C hybrid, founder-decided)</h3>
+  <ul class="plain">
+    <li><b>Time-vested base grant (small).</b> A modest restricted grant per originating member that recognizes origination, with a cliff (counsel sets cliff and term). Kept small enough that a non-performing member's total stake stays immaterial.</li>
+    <li><b>Milestone kickers.</b> Additional tranches, each tied to one named deliverable, vesting only on acceptance of that deliverable.</li>
+  </ul>
+
+  <h3>Milestone acceptance tests (each kicker vests only on acceptance)</h3>
+  <table>
+    <thead><tr><th>Deliverable</th><th>Member</th><th>Acceptance test</th></tr></thead>
+    <tbody>
+      <tr><td>Recurro framework doc (due 7/10)</td><td>Carter</td><td>Landed and usable by the engineering pillar, confirmed by the founder.</td></tr>
+      <tr><td>Case study + methodology memo (due 7/15)</td><td>Carter</td><td>Survives the honest-math audit (task universe, baseline, comparison design, quality measure, confidence all defined).</td></tr>
+      <tr><td>Gamification mechanics definition (due 7/31)</td><td>Nick</td><td>Landed with anti-abuse coverage (leagues, caps, outlier detection, role-adjusted scoring).</td></tr>
+    </tbody>
+  </table>
+  <p>Acceptance is a written determination by the founder against the stated test. Further milestones are added as the roadmap firms, each with its own written acceptance test.</p>
+
+  <h3>Unvested treatment</h3>
+  <ul class="plain">
+    <li>Unvested tranches lapse and are forfeited if the tied deliverable is not accepted, or if the member departs, before vesting. No acceleration on non-delivery.</li>
+    <li>The time-vested base stops vesting on departure at the then-current vested amount, subject to the cliff.</li>
+  </ul>
+
+  <h3>Termination path</h3>
+  <ul class="plain">
+    <li>The founder (or the board the founder controls) may end the relationship at any time. On termination, all unvested equity lapses; vested equity is treated per counsel's standard leaver provisions.</li>
+    <li>Termination does not, by itself, transfer or reclaim any prior-inventions carve-out (Recurro stays Carter's; any company license to it survives per its own terms).</li>
+  </ul>
+
+  <h3>Founder control preserved</h3>
+  <ul class="plain">
+    <li>Grants are structured so earned economics never carry voting control (non-voting class or an irrevocable proxy, consistent with document 1).</li>
+    <li>Section 83(b) election filed within 30 days of any restricted-stock grant.</li>
+  </ul>
+
+  <h3>Explicitly out of scope for this outline</h3>
+  <p>No valuation, no percentage, no dollar figure. No investment terms (the strategic check is a separate document with no contingency to this one). No employment terms.</p>
+
+  <div class="unres">
+    <span class="ulabel">Unresolved facts, must be answered before counsel finalizes</span>
+    <ol>
+      <li>Base grant size and vesting term / cliff. <span class="meta">Owner: Jarred + counsel. Needed: this week.</span></li>
+      <li>Kicker sizes per deliverable. <span class="meta">Owner: Jarred + counsel. Needed: before the milestone dates land.</span></li>
+      <li>Whether acceptance is founder-only or founder-plus-one-reviewer, to reduce relationship strain on scope disputes. <span class="meta">Owner: Jarred. Needed: before the 7/11 conversation.</span></li>
+      <li>Leaver provisions (good-leaver vs bad-leaver treatment of vested equity). <span class="meta">Owner: counsel. Needed: with definitive docs.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="doc" id="doc-4" aria-labelledby="d4t">
+  <div class="doc-head"><span class="doc-n">04</span><h2 id="d4t">One-page pilot success charter</h2></div>
+  <div class="docban"><span class="mk">&#9650; DRAFT FOR LAWYER REVIEW.</span> <b>NOT LEGAL ADVICE. DO NOT EXECUTE.</b></div>
+  <div class="chips">
+    <span class="chip"><span class="k">status</span> DRAFT v0.1</span>
+    <span class="chip owner"><span class="k">owner</span> Jarred</span>
+    <span class="chip deadline"><span class="k">deadline</span> before 7/17</span>
+    <span class="chip blocks">blocks the meeting (R8)</span>
+  </div>
+  <p class="intro">One page, filled in the room or before it. This is the pilot paper. It has <b>no contingency to any investment</b>; the pilot fee is a pilot fee and is not tied to any check. This page is the scope behind the pilot half of the ask.</p>
+  <p class="intro"><b>Sendable copy:</b> the standalone one-page version is <a href="pilot-charter.md">pilot-charter.md</a>, the artifact sent 24 to 48 hours ahead with the executive overview (R2). It names the methodology memo as a pilot deliverable and carries dated scoping-session blanks in both branches.</p>
+
+  <h3>The named fields (fill every blank)</h3>
+  <div class="fields">
+    <div class="field"><span class="fl">Operating counterparty (the company running the pilot)</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Executive sponsor</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Workflow owner</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Data owner</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Baseline (measured before day 1)</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Success threshold</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Kill criterion</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Fee</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Cadence (check-ins / reporting rhythm)</span><span class="fv">______________________</span></div>
+    <div class="field"><span class="fl">Day-90 decision</span><span class="fv dec"><span class="a">[ stop ]</span><span class="a">[ extend ]</span><span class="a">[ expand ]</span></span></div>
+  </div>
+
+  <h3>Scope (90 days, three phases)</h3>
+  <table>
+    <thead><tr><th>Phase</th><th>What runs</th></tr></thead>
+    <tbody>
+      <tr><td>Days 1 to 30</td><td>Boundaries, baselines, read-only capture, and one gated workflow. Capture is read-only. One workflow goes live behind the human gate (Approve / Edit / Skip). No write access to counterparty systems.</td></tr>
+      <tr><td>Days 31 to 60</td><td>Measured recommendations and instrumented gates. The system produces recommendations measured against the baseline; every action stays behind an instrumented human gate.</td></tr>
+      <tr><td>Days 61 to 90</td><td>Opt-in adoption cohort. A voluntary cohort adopts the gamified adoption layer. Adoption is measured; participation is opt-in.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Data handling (agreed on the same page)</h3>
+  <ul class="plain">
+    <li><b>Consent:</b> capture proceeds only with documented consent; all-party consent for every recorded session.</li>
+    <li><b>Retention:</b> data retained only for the pilot term and its evaluation window; period stated here: <span class="blank">______</span>.</li>
+    <li><b>Deletion:</b> on pilot end or on request, counterparty data deleted on a stated timeline: <span class="blank">______</span>.</li>
+    <li><b>Evidence rights:</b> what may be used as anonymized evidence after the pilot, and what may not, agreed in writing: <span class="blank">______</span>.</li>
+    <li><b>Foreground IP:</b> IP created specifically for the counterparty is owned or licensed per this charter; the reusable platform stays the company's background IP.</li>
+    <li><b>Post-pilot use:</b> any use of counterparty data after day 90 requires separate written agreement; the default is no post-pilot use.</li>
+  </ul>
+
+  <h3>Two branches (rehearse both before 7/17)</h3>
+  <ul class="plain">
+    <li><b>If the investor IS the operating counterparty:</b> this charter goes on the table, fields filled, at the meeting.</li>
+    <li><b>If the investor is NOT the operating counterparty:</b> the charter is not signed in the room. The ask becomes sponsorship plus the strategic check plus a dated scoping session (target within 72 hours) to name the operating counterparty. After that session, this same charter goes to the named counterparty.</li>
+  </ul>
+
+  <div class="unres">
+    <span class="ulabel">Unresolved facts, must be answered before counsel finalizes</span>
+    <ol>
+      <li>Which role the investor plays: operating counterparty or sponsor. <span class="meta">Owner: Jarred. Needed: before 7/17 (decides which branch runs).</span></li>
+      <li>The fee for the pilot. <span class="meta">Owner: Jarred + counsel. Needed: before 7/17.</span></li>
+      <li>Retention and deletion timelines. <span class="meta">Owner: Jarred + data owner. Needed: before day 1 capture.</span></li>
+      <li>The specific one gated workflow for days 1 to 30. <span class="meta">Owner: Jarred + workflow owner. Needed: at scoping.</span></li>
+      <li>Baseline definition and success threshold (must be measurable). <span class="meta">Owner: Jarred + executive sponsor. Needed: before day 1.</span></li>
+    </ol>
+  </div>
+</section>
+<section class="doc" id="doc-5" aria-labelledby="d5t">
+  <div class="doc-head"><span class="doc-n">05</span><h2 id="d5t">SAFE and instrument overview</h2></div>
+  <div class="docban"><span class="mk">&#9650; DRAFT FOR LAWYER REVIEW.</span> <b>NOT LEGAL ADVICE. DO NOT EXECUTE.</b></div>
+  <div class="chips">
+    <span class="chip"><span class="k">status</span> DRAFT v0.1</span>
+    <span class="chip owner"><span class="k">owner</span> Jarred + counsel</span>
+    <span class="chip deadline"><span class="k">deadline</span> before terms are discussed (pre-7/17)</span>
+  </div>
+  <p class="intro">The investment paper's overview: a plain-language map of the standard instrument, not a recommendation and not an offer. Instrument selection is left to the founder and counsel. This document has <b>no contingency to the pilot paper</b>; a strategic check and a design-partner pilot are two separate decisions.</p>
+
+  <h3>The current standard: the YC post-money SAFE</h3>
+  <ul class="plain">
+    <li>A SAFE (Simple Agreement for Future Equity) is a right to future equity that converts at a later priced financing. No maturity date, no interest, which makes it lighter than a convertible note. <span class="tag soft">web-checked 2026-07-09</span></li>
+    <li>The <b>post-money</b> SAFE has been standard since 2018, replacing the pre-money SAFE. Its defining property: founder and investor compute the exact ownership sold, and therefore dilution, at signing. <span class="tag soft">web-checked 2026-07-09</span></li>
+    <li>The current forms on YC's documents page are <b>Postmoney Safe, Valuation Cap Only v1.1</b> (US) and <b>Postmoney Safe, MFN Only v1.2</b>, with international variants for Canada, Cayman, and Singapore. <span class="tag soft">web-checked 2026-07-09</span></li>
+    <li>The <b>valuation-cap-and-discount</b> variant was removed from YC's site around August 2021 (an archived copy remains on the Wayback Machine); the Safe User Guide still describes it. Discount Rate equals 100 minus the discount percent; at conversion whichever of cap or discount favors the investor applies. <span class="tag soft">web-checked 2026-07-09</span></li>
+    <li>Source: YC documents page and the "Primer for post-money safe v1.1" (<a href="https://www.ycombinator.com/documents">ycombinator.com/documents</a>), retrieved 2026-07-09. <span class="tag">VENDOR</span></li>
+  </ul>
+
+  <h3>Cap vs discount considerations</h3>
+  <ul class="plain">
+    <li><b>Valuation cap</b> sets the maximum valuation at conversion. On a post-money SAFE the cap fixes the investor's ownership floor.</li>
+    <li><b>Discount</b> gives a percentage reduction off the priced-round price per share; it rewards early risk without setting a valuation.</li>
+    <li><b>Cap only</b> (the current standard form) is simplest; usually only the cap is negotiated. <b>Cap and discount</b> stacks both, investor takes whichever is better. <b>MFN only</b> gives the investor the best terms granted to any later SAFE holder.</li>
+    <li>For a first, relationship-anchored check, fewer moving parts is better; the standard cap-only post-money form exists for exactly this. The selection is still counsel plus founder.</li>
+  </ul>
+
+  <h3>Capitalization effect illustration (placeholder numbers, not a proposal)</h3>
+  <p>The mechanics only, with invented numbers to show the shape. Every figure here is illustrative and is NOT a proposed term. <span class="tag soft">ASSUMPTION</span></p>
+  <ul class="plain">
+    <li>On a post-money SAFE, ownership on conversion is approximately the investment divided by the post-money valuation cap.</li>
+    <li>Illustrative: a strategic check of $250,000 on a post-money valuation cap of $5,000,000 converts to roughly 5.0 percent of the post-money capitalization. <span class="tag soft">ASSUMPTION</span></li>
+    <li>That percentage is measured against the post-money cap, so later SAFEs or the priced round dilute the founder and prior holders, not this investor's stated post-money percentage, until the round itself. <span class="tag soft">ASSUMPTION</span></li>
+    <li>Real cap, check size, and instrument are set by the founder with counsel and appear in the definitive documents, not here.</li>
+  </ul>
+
+  <h3>Accredited-investor and private-placement note (general)</h3>
+  <ul class="plain">
+    <li>A strategic check into a private company is a securities sale, typically placed under a Regulation D exemption, which generally means the investor is accredited and the issuance is documented and, where required, notice-filed. General federal framing only; counsel confirms the exemption and filings.</li>
+    <li>Where the investor is also a contact in a separate consulting engagement, ordinary written conflict-of-interest disclosure precedes the discussion of terms (document 1).</li>
+  </ul>
+
+  <h3>Instrument selection (left to founder + counsel)</h3>
+  <p>SAFE (lightest, standard for a first check), convertible note (adds maturity and interest), or a priced round (heaviest, sets a valuation now). No default is asserted here.</p>
+
+  <div class="unres">
+    <span class="ulabel">Unresolved facts, must be answered before counsel finalizes</span>
+    <ol>
+      <li>Instrument: SAFE, note, or priced round. <span class="meta">Owner: Jarred + counsel. Needed: before terms.</span></li>
+      <li>If SAFE: cap-only, cap-and-discount, or MFN. <span class="meta">Owner: Jarred + counsel. Needed: before terms.</span></li>
+      <li>Check size and valuation cap. <span class="meta">Owner: Jarred + counsel. Needed: with definitive docs.</span></li>
+      <li>The investor's accredited status and the specific Reg D path. <span class="meta">Owner: counsel. Needed: before issuance.</span></li>
+      <li>Whether a pro-rata side letter is offered. <span class="meta">Owner: Jarred + counsel. Needed: with definitive docs.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="doc" id="doc-6" aria-labelledby="d6t">
+  <div class="doc-head"><span class="doc-n">06</span><h2 id="d6t">Data-security one-pager (partner-facing trust annex seed)</h2></div>
+  <div class="docban"><span class="mk">&#9650; DRAFT FOR LAWYER REVIEW.</span> <b>NOT LEGAL ADVICE. DO NOT EXECUTE.</b></div>
+  <div class="chips">
+    <span class="chip"><span class="k">status</span> DRAFT v0.1 (seed)</span>
+    <span class="chip owner"><span class="k">owner</span> Jarred, with Carter on isolation</span>
+    <span class="chip deadline"><span class="k">deadline</span> pilot-prerequisite; sketch useful pre-pitch</span>
+  </div>
+  <p class="intro">The seed of a partner-facing trust annex, the document a design partner's security team asks for first. Every control carries an honest maturity label; nothing designed-but-unbuilt is described as running.</p>
+  <p>Maturity labels: <span class="mat built">built-and-tested</span> runs and is verified in the estate today; <span class="mat internal">internal-only</span> exists for the single-operator estate, not yet generalized to a tenant; <span class="mat pilot">pilot-prerequisite</span> must be in place before day-1 capture; <span class="mat roadmap">roadmap</span> planned, not yet built.</p>
+
+  <table>
+    <thead><tr><th>Control</th><th>Posture</th><th>Maturity</th></tr></thead>
+    <tbody>
+      <tr><td><b>Data map</b></td><td>What the product touches (meeting, OKR, scoring data), where it lives, who can see it.</td><td><span class="mat internal">internal-only</span>; counterparty map <span class="mat pilot">pilot-prerequisite</span></td></tr>
+      <tr><td><b>Access</b></td><td>Who and what can read each data class; least-privilege intent.</td><td><span class="mat built">built-and-tested</span> for the estate; formal role-based access for a tenant <span class="mat pilot">pilot-prerequisite</span></td></tr>
+      <tr><td><b>Retention</b></td><td>Data kept only for the pilot term and its evaluation window.</td><td><span class="mat roadmap">roadmap</span> (written policy pending, W9.3)</td></tr>
+      <tr><td><b>Deletion</b></td><td>Counterparty data deleted on pilot end or on request, on a stated timeline.</td><td><span class="mat pilot">pilot-prerequisite</span></td></tr>
+      <tr><td><b>Tenant isolation</b></td><td>The estate is single-operator; a pilot runs in a dedicated workspace walled from the estate and other clients.</td><td>isolated pilot workspace <span class="mat pilot">pilot-prerequisite</span>; general multi-tenant <span class="mat roadmap">roadmap</span></td></tr>
+      <tr><td><b>Provider list</b></td><td>Every vendor in the capture and processing path, each on a no-training, access-controlled configuration.</td><td><span class="mat internal">internal-only</span>; per-provider no-training confirmation <span class="mat pilot">pilot-prerequisite</span></td></tr>
+      <tr><td><b>Incident response</b></td><td>A written plan: detect, contain, notify, remediate, with a notification timeline.</td><td><span class="mat roadmap">roadmap</span> (W9.4)</td></tr>
+      <tr><td><b>Consent</b></td><td>Documented consent for capture; all-party consent for every recorded session.</td><td><span class="mat pilot">pilot-prerequisite</span></td></tr>
+      <tr><td><b>Human-gate enforcement</b></td><td>Nothing touching money, an outside party, or anything irreversible executes without a person deciding (Approve / Edit / Skip). Autonomy on a decision class is earned only after the system matches the human's actual choice at least 90 percent of the time across at least 20 reps.</td><td><span class="mat built">built-and-tested</span> <span class="tag">MEASURED</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Posture notes</h3>
+  <ul class="plain">
+    <li>The sensitive class is scoring data; the surveillance-vs-reward posture is a values statement the founder owns, not only an engineering setting (W9.3 founder review).</li>
+    <li>A formal SOC2-style audit is a roadmap item, undertaken off a real enterprise deal, not a pilot precondition. No buyer-requirement statistic is cited here; the estate's own SOC2-demand figure is unsourced and is not used until independently sourced (W9.5).</li>
+  </ul>
+
+  <div class="unres">
+    <span class="ulabel">Unresolved facts, must be answered before counsel finalizes</span>
+    <ol>
+      <li>Retention and deletion timelines (specific durations). <span class="meta">Owner: Jarred + data owner. Needed: before day-1 capture.</span></li>
+      <li>The confirmed provider list and each provider's no-training configuration. <span class="meta">Owner: Jarred + Carter. Needed: pilot-prerequisite.</span></li>
+      <li>The written incident-response plan and notification timeline. <span class="meta">Owner: Jarred + Carter. Needed: before pilot go-live.</span></li>
+      <li>The tenant-isolation model for the pilot workspace. <span class="meta">Owner: Carter + Jarred. Needed: pilot-prerequisite.</span></li>
+      <li>A sourced buyer-requirement statistic, if any is ever used externally. <span class="meta">Owner: Jarred. Needed: before any deck use (currently unsourced, do not use).</span></li>
+    </ol>
+  </div>
+</section>
+<section class="doc" id="doc-7" aria-labelledby="d7t">
+  <div class="doc-head"><span class="doc-n">07</span><h2 id="d7t">Competitor objection-handling matrix</h2></div>
+  <div class="docban"><span class="mk">&#9650; DRAFT FOR LAWYER REVIEW.</span> <b>NOT LEGAL ADVICE. DO NOT EXECUTE.</b> Internal founder-prep; do not send.</div>
+  <div class="chips">
+    <span class="chip"><span class="k">status</span> DRAFT v0.1</span>
+    <span class="chip owner"><span class="k">owner</span> Jarred</span>
+    <span class="chip deadline"><span class="k">deadline</span> before 7/17 (prep)</span>
+    <span class="chip internal">internal only, not investor-facing</span>
+  </div>
+  <p class="intro">Four objections, each with the honest counter. The rule across all four: <b>concede the technology baseline plainly.</b> Capability is the market premise, not our fear; frontier-lab immunity is never claimed. The moat is the organizational psychology of adoption and the trust relationship, not the model.</p>
+
+  <table>
+    <thead><tr><th>Objection</th><th>Concede</th><th>Honest counter</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>"We will just build this internally."</b></td>
+        <td>A capable internal team can assemble the components; none of the parts are secret.</td>
+        <td>Building it is not the blocker; getting a whole organization to adopt it is. The adoption layer (reward-not-replace, gamification, human-gated delivery) is the hard part internal builds skip. Externally-partnered tools reach measurable impact more often than internal builds (MIT NANDA 2025; methodology publicly contested, cite directionally only). <span class="tag">CORPUS</span></td>
+      </tr>
+      <tr>
+        <td><b>"Copilot-class bundles already ship this."</b></td>
+        <td>Platform vendors and frontier labs can and will ship agent capability; that is the market premise.</td>
+        <td>A horizontal copilot is raw capability without the organizational container: no objective-scoring spine, no gamified adoption, no earned graduated-autonomy governance. Enterprises want a safe, governable companion, not more raw capability. Of organizations experimenting with agents, only about 23 percent have scaled even one system into production and full agentic operation is rarer still; the gap is adoption, not model access. <span class="tag">SURVEY</span> (McKinsey Nov 2025)</td>
+      </tr>
+      <tr>
+        <td><b>"There are many agent startups doing this."</b></td>
+        <td>Many startups ship agent orchestration and workflow tooling.</td>
+        <td>They sell software. This is consulting-plus-software that takes cash and equity because it is an in-the-box solution requiring out-of-box consultation per business. The differentiator is trusted-companion delivery, relationships that compress the sales cycle, and a running reference implementation that is the demonstration. <span class="tag">MEASURED</span></td>
+      </tr>
+      <tr>
+        <td><b>"A big consultancy plus ChatGPT already does this."</b></td>
+        <td>Large consultancies pair advisory with frontier models competently.</td>
+        <td>That engagement delivers a report and leaves. This leaves a running, gamified operating system behind, with provenance on the work and autonomy earned rep by rep behind a human gate. The deliverable is an adopted system, not slideware.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>The through-line (say it the same way every time)</h3>
+  <p>The technology baseline is conceded everywhere. Capabilities do not equal adoption. The moat is organizational psychology, gamification, and the trusted-companion relationship that carries a company across the transition and leaves it ahead.</p>
+
+  <div class="unres">
+    <span class="ulabel">Unresolved facts, must be answered before counsel finalizes</span>
+    <ol>
+      <li>Whether to name specific competitor products aloud, or keep the categories generic. <span class="meta">Owner: Jarred. Needed: before 7/17.</span></li>
+      <li>The exact primary source and caveat for the internal-vs-external pilot-success figure, if used aloud at all. <span class="meta">Owner: Jarred. Needed: before 7/17 (contested methodology; cite directionally or not at all).</span></li>
+    </ol>
+  </div>
+</section>
+
+<footer class="foot" id="provenance">
+  <div class="legend">
+    <p class="li"><span class="tag">MEASURED</span> live telemetry from the running reference-implementation estate.</p>
+    <p class="li"><span class="tag">SURVEY</span> a cited third-party study.</p>
+    <p class="li"><span class="tag">VENDOR</span> a vendor's own claim, including YC's own SAFE forms and guidance.</p>
+    <p class="li"><span class="tag">CORPUS</span> an internal build or a contested external figure, self-reported, cited directionally.</p>
+    <p class="li"><span class="tag soft">ASSUMPTION</span> a stated design choice or an illustrative placeholder, held to its scope.</p>
+  </div>
+  <p class="fine">Every document above is a <b>DRAFT FOR LAWYER REVIEW. NOT LEGAL ADVICE. DO NOT EXECUTE.</b> The pilot paper and the investment paper are two separate decisions with no cross-contingency. Jarred Winn is the sole founder; Nick Metzler and Carter Razink are originating members earning equity through contribution.</p>
+  <p class="sig">legal readiness &middot; drafts lane &middot; 2026-07-09 &nbsp;&middot;&nbsp; built <b>2026-07-09</b> &nbsp;&middot;&nbsp; founder <b>Jarred Winn</b> &nbsp;&middot;&nbsp; jarred@winn.solutions</p>
+</footer>
+
+</main>
+</body>
+</html>

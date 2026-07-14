@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>[NAME] · design-partner pitch · 2026-07</title>
+<meta name="description" content="Investor pitch for an unnamed agent OS for organizations. One reproducible trace, a four-column truth table, a scoped 90-day design-partner pilot. Every claim labeled built or designed.">
+<style>
+  /* ============================================================
+     KIT BASE (shared across the launch kit): cool structural
+     paper, graphite ink, the [NAME] bracket motif. This deck's
+     accent is deep pine (the kit signature the flagship earns);
+     its own treatment is the dark focus slide, reserved for the
+     one trace and the ask. Boldness spent there, quiet elsewhere.
+     ============================================================ */
+  :root{
+    --paper:#ECEEEC;        /* cool structural paper, NOT cream */
+    --paper-2:#E4E7E4;
+    --card:#F6F7F6;
+    --ink:#20262A;          /* graphite near-black: the voice   */
+    --ink-soft:#586067;
+    --ink-dim:#8A9299;      /* the UNFILLED [NAME] placeholder  */
+    --line:rgba(32,38,42,0.14);
+    --line-soft:rgba(32,38,42,0.07);
+
+    --pine:#1E5A4C;         /* this deck's accent (kit signature) */
+    --pine-lit:#2B7A66;
+    --wash:rgba(30,90,76,0.08);
+    --wash-2:rgba(30,90,76,0.045);
+
+    --pine-ink:#12211E;     /* dark focus slide ground           */
+    --pine-surf:#183029;
+    --on-dark:#E8EBE6;
+    --on-dark-soft:#9DB3AF;
+    --line-dark:rgba(232,235,230,0.16);
+
+    --serif:"Iowan Old Style","Palatino Linotype","Palatino","Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
+
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-snap-type:y proximity;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--wash);color:var(--ink)}
+  a{color:var(--pine);text-decoration:none}
+  a:hover{color:var(--pine-lit)}
+  :focus-visible{outline:2px solid var(--pine);outline-offset:3px;border-radius:2px}
+
+  /* ---------- fixed chrome: rail, progress, counter ---------- */
+  .rail{
+    position:fixed;top:0;left:0;right:0;height:42px;z-index:60;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:0 clamp(16px,4vw,34px);
+    background:rgba(236,238,236,0.82);backdrop-filter:blur(9px);
+    border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .rail .mk{font-weight:400;color:var(--ink-dim);letter-spacing:0.02em}
+  .rail .mk b{color:var(--pine);font-weight:600}
+  .rail .mk .nm{color:var(--ink-dim)}
+  .rail .r{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .rail .r .ttl{color:var(--ink)}
+  .progress{position:fixed;top:42px;left:0;height:2px;width:0;background:var(--pine);z-index:61;transition:width .28s cubic-bezier(.2,.8,.2,1)}
+  .counter{
+    position:fixed;right:clamp(16px,4vw,34px);bottom:16px;z-index:60;
+    font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--ink-soft);
+    background:rgba(236,238,236,0.72);backdrop-filter:blur(6px);
+    padding:4px 11px;border-radius:20px;border:1px solid var(--line);
+  }
+  .counter b{color:var(--pine);font-weight:600}
+  .hint{
+    position:fixed;left:clamp(16px,4vw,34px);bottom:16px;z-index:60;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-dim);
+    opacity:.9;transition:opacity .5s ease .8s;
+  }
+  .hint.gone{opacity:0;pointer-events:none}
+
+  /* ---------- slide frame ---------- */
+  .slide{
+    min-height:100vh;scroll-snap-align:start;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:78px clamp(22px,6vw,90px) 62px;
+    position:relative;border-bottom:1px solid var(--line-soft);
+  }
+  .slide .inner{max-width:var(--maxw);width:100%;margin:0 auto}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+    color:var(--pine);display:flex;align-items:center;gap:12px;margin-bottom:22px;
+  }
+  .eyebrow .n{color:var(--ink-dim)}
+  .eyebrow::after{content:"";flex:0 0 auto;width:44px;height:1px;background:var(--pine);opacity:0.5}
+
+  h1.deck{
+    font-family:var(--serif);font-weight:600;letter-spacing:-0.015em;line-height:1.04;
+    font-size:clamp(30px,5.2vw,58px);color:var(--ink);max-width:20ch;
+  }
+  h2.deck{
+    font-family:var(--serif);font-weight:600;letter-spacing:-0.012em;line-height:1.08;
+    font-size:clamp(26px,4vw,44px);color:var(--ink);max-width:22ch;margin-bottom:8px;
+  }
+  .lead{font-size:clamp(16px,1.7vw,20px);color:var(--ink-soft);line-height:1.55;max-width:60ch;margin-top:18px}
+  .lead b,.pt b{color:var(--ink);font-weight:600}
+
+  /* beats: 2-3 per slide, pine bracket marker */
+  .beats{list-style:none;margin:26px 0 0;display:flex;flex-direction:column;gap:16px;max-width:66ch}
+  .beats>li{position:relative;padding-left:30px;font-size:clamp(15px,1.5vw,18px);line-height:1.5;color:var(--ink)}
+  .beats>li::before{
+    content:"[";position:absolute;left:0;top:-1px;font-family:var(--mono);color:var(--pine);font-weight:600;font-size:16px;
+  }
+  .beats>li .k{color:var(--ink);font-weight:600}
+  .beats>li .sub{display:block;color:var(--ink-soft);font-size:0.92em;margin-top:3px}
+
+  /* honest-math tags */
+  .tag{
+    display:inline-block;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.1em;
+    padding:2px 6px 1.5px;border-radius:3px;vertical-align:1.5px;white-space:nowrap;text-transform:uppercase;
+  }
+  .tag.measured{color:var(--pine);border:1px solid var(--pine)}
+  .tag.survey{color:var(--ink-soft);border:1px solid var(--ink-soft)}
+  .tag.vendor{color:var(--ink-soft);border:1px dashed var(--ink-soft)}
+  .tag.corpus{color:var(--pine-lit);border:1px solid var(--pine-lit)}
+  .tag.na{color:var(--ink-dim);border:1px dotted var(--ink-dim)}
+
+  /* the recurring signature: every slide closes on an arguable claim */
+  .claim{
+    margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+    font-family:var(--serif);font-style:italic;font-size:clamp(17px,2vw,23px);line-height:1.32;color:var(--ink);max-width:40ch;
+  }
+  .claim::before{content:"";display:inline-block;width:18px;height:2px;background:var(--pine);vertical-align:middle;margin-right:12px;transform:translateY(-4px)}
+
+  /* ---------- cover ---------- */
+  .cover{justify-content:center}
+  .cover .kick{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:30px}
+  .cover .kick b{color:var(--pine);font-weight:600}
+  .cover .mark{
+    font-family:var(--sans);font-weight:800;font-size:clamp(60px,14vw,158px);line-height:0.88;
+    letter-spacing:-0.02em;display:inline-flex;align-items:center;gap:0.05em;color:var(--ink);margin-left:-0.03em;
+  }
+  .cover .mark .brk{color:var(--pine);font-weight:300}
+  .cover .mark .brk.l{animation:settleL .9s cubic-bezier(.2,.8,.2,1) both}
+  .cover .mark .brk.r{animation:settleR .9s cubic-bezier(.2,.8,.2,1) both}
+  .cover .mark .fill{color:var(--ink-dim);letter-spacing:0.04em;font-weight:400;animation:fadeUp .9s ease .16s both}
+  .cover .tag-line{font-family:var(--serif);font-size:clamp(20px,2.6vw,30px);color:var(--ink);margin-top:24px;max-width:26ch;line-height:1.25}
+  .cover .desc{font-size:clamp(14px,1.4vw,17px);color:var(--ink-soft);margin-top:20px;max-width:52ch}
+  .cover .meta{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:34px;display:flex;gap:8px 20px;flex-wrap:wrap}
+  .cover .meta .nm{color:var(--ink-dim)}
+  @keyframes settleL{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+  @keyframes settleR{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* ---------- dark focus slide (this deck's own treatment) ---------- */
+  .slide.dark{background:var(--pine-ink);color:var(--on-dark);border-bottom-color:var(--line-dark)}
+  .slide.dark h1.deck,.slide.dark h2.deck{color:var(--on-dark)}
+  .slide.dark .lead{color:var(--on-dark-soft)}
+  .slide.dark .lead b{color:var(--on-dark)}
+  .slide.dark .eyebrow{color:var(--pine-lit)}
+  .slide.dark .eyebrow .n{color:var(--on-dark-soft)}
+  .slide.dark .eyebrow::after{background:var(--pine-lit)}
+  .slide.dark .beats>li{color:var(--on-dark)}
+  .slide.dark .beats>li .k{color:var(--on-dark)}
+  .slide.dark .beats>li::before{color:var(--pine-lit)}
+  .slide.dark .claim{color:var(--on-dark);border-top-color:var(--line-dark)}
+  .slide.dark .tag.measured{color:var(--pine-lit);border-color:var(--pine-lit)}
+  .slide.dark .tag.corpus{color:var(--on-dark-soft);border-color:var(--on-dark-soft)}
+
+  /* ---------- THE SIGNATURE: one trace, assembling top to bottom ---------- */
+  .trace{position:relative;margin-top:26px;padding-left:46px;max-width:800px}
+  .trace svg.spine{position:absolute;left:12.5px;top:8px;height:calc(100% - 30px);width:2px;overflow:visible}
+  .trace svg.spine line{stroke:var(--pine-lit);stroke-width:2;stroke-dasharray:100;stroke-dashoffset:100}
+  .trace.play svg.spine line{animation:draw 1.7s ease forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .trace .nodes{display:flex;flex-direction:column;gap:17px}
+  .trace .node{position:relative;opacity:0;transform:translateY(9px)}
+  .trace.play .node{animation:nodeIn .5s cubic-bezier(.2,.8,.2,1) forwards}
+  .trace.play .node:nth-child(1){animation-delay:.10s}
+  .trace.play .node:nth-child(2){animation-delay:.34s}
+  .trace.play .node:nth-child(3){animation-delay:.58s}
+  .trace.play .node:nth-child(4){animation-delay:.86s}
+  .trace.play .node:nth-child(5){animation-delay:1.12s}
+  .trace.play .node:nth-child(6){animation-delay:1.38s}
+  @keyframes nodeIn{to{opacity:1;transform:none}}
+  .trace .node .dot{position:absolute;left:-40px;top:1px;width:15px;height:15px;border-radius:50%;background:var(--pine-ink);border:2px solid var(--pine-lit)}
+  .trace .node.gate .dot{border-radius:3px;transform:rotate(45deg);background:var(--pine-lit)}
+  .trace .node.receipt .dot{background:var(--pine-lit)}
+  .trace .node .step{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--on-dark-soft)}
+  .trace .node .val{color:var(--on-dark);font-size:clamp(13.5px,1.35vw,16px);line-height:1.44;margin-top:3px}
+  .trace .node .val .src{color:var(--pine-lit);font-family:var(--mono);font-size:0.82em}
+  .trace .node .val .low{color:#C9A35C;font-family:var(--mono);font-size:0.78em}
+  .gatechips{display:inline-flex;gap:8px;margin-top:7px}
+  .gatechips .gc{font-family:var(--mono);font-size:11px;letter-spacing:0.05em;padding:4px 13px;border-radius:5px;border:1px solid var(--line-dark);color:var(--on-dark-soft)}
+  .trace.play .gatechips .gc.on{background:var(--pine-lit);color:var(--pine-ink);border-color:var(--pine-lit);font-weight:600}
+
+  /* ---------- four-column truth table ---------- */
+  .tablewrap{margin-top:22px;overflow-x:auto}
+  .ttable{width:100%;border-collapse:collapse;font-size:clamp(12.5px,1.2vw,14.5px);min-width:640px}
+  .ttable th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:0 14px 10px;border-bottom:1px solid var(--line);vertical-align:bottom}
+  .ttable th .st{display:block;font-weight:400;color:var(--ink-dim);font-size:8.5px;margin-top:4px;letter-spacing:0.05em}
+  .ttable th.built{color:var(--pine)} .ttable th.proto{color:var(--ink)} .ttable th.pilot{color:var(--pine-lit)} .ttable th.horizon{color:var(--ink-dim)}
+  .ttable td{padding:9px 14px;vertical-align:top;border-bottom:1px solid var(--line-soft);color:var(--ink)}
+  .ttable td.built{border-left:2px solid var(--pine)}
+  .ttable td.proto{border-left:2px solid var(--line)}
+  .ttable td.pilot{border-left:2px dashed var(--pine-lit)}
+  .ttable td.horizon{color:var(--ink-soft);border-left:2px dotted var(--ink-dim)}
+  .ttable td.blank{border-left:2px solid transparent}
+
+  /* ---------- human gate + graduation meter ---------- */
+  .gates{display:inline-flex;gap:10px;margin-top:8px}
+  .gates .g{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;padding:7px 17px;border-radius:6px;border:1px solid var(--line);color:var(--ink-soft);background:var(--card)}
+  .gates .g.approve{border-color:var(--pine);color:var(--pine);font-weight:600}
+  .meter{margin-top:26px;max-width:440px}
+  .meter .bar{height:11px;border-radius:6px;background:var(--paper-2);border:1px solid var(--line);overflow:hidden}
+  .meter .bar i{display:block;height:100%;width:90%;background:var(--pine)}
+  .meter .lab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;color:var(--ink-soft);margin-top:9px;text-transform:uppercase}
+  .meter .lab b{color:var(--pine)}
+
+  /* ---------- 90-day phase timeline ---------- */
+  .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:24px}
+  .phase{background:var(--card);border:1px solid var(--line);padding:17px 18px 18px;position:relative}
+  .phase:nth-child(1){border-radius:8px 0 0 8px}
+  .phase:nth-child(3){border-radius:0 8px 8px 0}
+  .phase .rng{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--pine);text-transform:uppercase}
+  .phase h4{font-family:var(--sans);font-weight:600;font-size:15.5px;margin:7px 0 8px;color:var(--ink)}
+  .phase p{font-size:13px;color:var(--ink-soft);line-height:1.46}
+  .phase .gatelab{font-family:var(--mono);font-size:9px;letter-spacing:0.09em;color:var(--pine);text-transform:uppercase;margin-top:12px;display:inline-block;border:1px solid var(--pine);border-radius:3px;padding:2px 7px}
+
+  /* ---------- economics: external anchor vs open bracket ---------- */
+  .anchor{margin-top:24px;max-width:580px;display:flex;flex-direction:column;gap:16px}
+  .anchor .top{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--ink-soft);margin-bottom:7px}
+  .anchor .top b{color:var(--ink);font-size:14px}
+  .anchor .cbar{height:28px;border-radius:5px;background:linear-gradient(90deg,var(--wash),var(--wash-2));border:1px solid var(--line);border-left:3px solid var(--pine)}
+  .anchor .slot{height:28px;border:1.5px dashed var(--pine);border-radius:5px;display:flex;align-items:center;gap:9px;padding:0 13px;font-family:var(--mono);font-size:11px;color:var(--pine);letter-spacing:0.04em}
+  .anchor .slot .brk{color:var(--ink-dim);font-size:14px}
+  .anchor .cap{font-family:var(--mono);font-size:10px;letter-spacing:0.05em;color:var(--ink-dim);margin-top:6px}
+
+  /* ---------- slide 2 gap bars ---------- */
+  .gap{display:flex;align-items:flex-end;gap:34px;margin-top:26px;height:184px}
+  .gap .col{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+  .gap .col .n{font-family:var(--serif);font-size:clamp(26px,3.4vw,42px);line-height:1;color:var(--pine)}
+  .gap .col.b .n{color:var(--ink-dim)}
+  .gap .col .bar{width:104px;background:var(--wash);border-top:3px solid var(--pine);margin-top:9px}
+  .gap .col.a .bar{height:62%} .gap .col.b .bar{height:23%;border-top-color:var(--ink-dim);background:var(--paper-2)}
+  .gap .col .lab{font-family:var(--mono);font-size:10px;letter-spacing:0.07em;text-transform:uppercase;color:var(--ink-soft);margin-top:9px;max-width:15ch;line-height:1.4}
+
+  /* ---------- product view (slide 8) ---------- */
+  .screen{margin-top:22px;max-width:560px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+  .screen .bar2{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;background:var(--paper-2);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .screen .ro{color:var(--pine);border:1px solid var(--pine);border-radius:3px;padding:1px 7px;letter-spacing:0.14em;font-weight:600}
+  .screen .sbody{padding:15px 16px;display:flex;flex-direction:column;gap:9px}
+  .screen .card{border:1px solid var(--line);border-radius:7px;padding:11px 13px;background:var(--paper);display:flex;flex-direction:column;gap:5px}
+  .screen .card .h{font-size:13.5px;color:var(--ink);font-weight:600}
+  .screen .card .m{font-family:var(--mono);font-size:10px;color:var(--ink-soft);letter-spacing:0.03em}
+  .screen .card .m .src{color:var(--pine)}
+  .screen .card .acts{display:flex;gap:7px;margin-top:4px}
+  .screen .card .acts span{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:4px;border:1px solid var(--line);color:var(--ink-soft)}
+  .screen .card .acts span.ap{border-color:var(--pine);color:var(--pine);font-weight:600}
+  .screen .note{font-family:var(--mono);font-size:9.5px;color:var(--ink-dim);padding:9px 13px;border-top:1px dashed var(--line);letter-spacing:0.02em}
+
+  /* ---------- appendix ---------- */
+  .slide.appx{background:var(--paper-2)}
+  .slide.appx .eyebrow{color:var(--ink-soft)}
+  .slide.appx .eyebrow::after{background:var(--ink-soft)}
+  .pillars{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:0;max-width:74ch}
+  .pillars li{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
+  .pillars li .role{font-family:var(--serif);font-size:16.5px;color:var(--ink);flex:1 1 34%}
+  .pillars li .role b{font-weight:600}
+  .pillars li .desc{color:var(--ink-soft);font-size:13px;flex:1 1 46%;line-height:1.4}
+  .pillars li .state{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;white-space:nowrap;flex:0 0 auto}
+  .state.b-built{color:var(--pine);border:1px solid var(--pine)}
+  .state.b-proto{color:var(--ink);border:1px solid var(--line)}
+  .state.b-pilot{color:var(--pine-lit);border:1px dashed var(--pine-lit)}
+  .state.b-designed{color:var(--ink-dim);border:1px dotted var(--ink-dim)}
+  .eviList{list-style:none;margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:13px 30px}
+  .eviList li{padding:11px 0 11px 15px;border-left:2px solid var(--pine)}
+  .eviList li .n{font-family:var(--serif);font-size:clamp(17px,1.9vw,22px);color:var(--ink);line-height:1.15}
+  .eviList li .d{color:var(--ink-soft);font-size:12.5px;line-height:1.4;margin-top:3px}
+  .note-line{margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:0.03em;color:var(--ink-dim);max-width:74ch;line-height:1.5}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:760px){
+    .phases{grid-template-columns:1fr}
+    .phase{border-radius:8px}
+    .phase .gate{display:none}
+    .eviList{grid-template-columns:1fr}
+    .gap{height:150px;gap:22px}
+    .pillars li{flex-wrap:wrap}
+    h1.deck{font-size:clamp(28px,8vw,40px)}
+  }
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .trace .node{opacity:1;transform:none}
+    .trace svg.spine line{stroke-dashoffset:0}
+    .trace .gatechips .gc.on{background:var(--pine-lit);color:var(--pine-ink);border-color:var(--pine-lit);font-weight:600}
+    .cover .mark .brk,.cover .mark .fill{opacity:1;transform:none}
+  }
+
+  /* ---------- print: one slide per page ---------- */
+  @media print{
+    html{scroll-snap-type:none}
+    .rail,.progress,.counter,.hint{display:none!important}
+    body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .slide{min-height:auto;height:auto;page-break-after:always;break-after:page;border-bottom:none;padding:30px 38px;justify-content:flex-start}
+    .slide.dark{background:#12211E!important}
+    .slide.appx{background:#E4E7E4!important}
+    .trace .node{opacity:1;transform:none}
+    .trace svg.spine line{stroke-dashoffset:0}
+    .trace .gatechips .gc.on{background:var(--pine-lit)!important;color:#12211E!important}
+  }
+</style>
+</head>
+<body>
+  <a class="skip" href="#s1" style="position:absolute;left:-9999px">Skip to deck</a>
+  <div class="rail" role="banner">
+    <span class="mk"><b>[</b><span class="nm">&nbsp;NAME&nbsp;</span><b>]</b></span>
+    <span class="r"><span class="ttl" id="railTitle">Cover</span><span>design-partner pitch</span></span>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="counter" aria-hidden="true"><b id="cur">01</b> / <span id="tot">16</span></div>
+  <div class="hint" id="hint">&larr; &rarr; or scroll</div>
+  <main id="deck">
+    <section class="slide cover" id="s1" data-title="Cover">
+      <div class="inner">
+        <div class="kick">A trusted companion for the AI transition &nbsp;·&nbsp; <b>unnamed by design</b></div>
+        <div class="mark" aria-label="[ NAME ]: a deliberate placeholder"><span class="brk l">[</span><span class="fill">NAME</span><span class="brk r">]</span></div>
+        <div class="tag-line">A gamified, AI-powered operating system for organizations.</div>
+        <div class="desc">The company isn't named yet. That choice is still open, and the brackets mark it. Today is about the mechanics, not the wordmark.</div>
+        <div class="meta"><span>Prepared for the 7/17-18 meeting</span><span>Jarred Winn, founder</span><span class="nm">July 2026</span></div>
+      </div>
+    </section>
+
+    <section class="slide" id="s2" data-title="The problem">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">02</span> The problem</div>
+        <h2 class="deck">The problem is adoption, not capability.</h2>
+        <p class="lead">Capability is arriving. Adoption is not. The blocker is human.</p>
+        <ul class="beats">
+          <li><span class="k">94% already use AI at work.</span> Disclose it, though, and a controlled experiment rated you 10x lazier and 24 points less likely to be picked for high-visibility work, at identical output. <span class="tag survey">Survey</span> <span class="sub">Atlassian, 2026. Employees hide the exact behavior an adoption product needs them to show.</span></li>
+          <li><span class="k">The cost of waiting.</span> Every quarter, shadow AI spreads ungoverned and the head start compounds to whoever crosses first.</li>
+        </ul>
+        <div class="gap" role="img" aria-label="62 percent of organizations experimenting with agents; about 23 percent have scaled even one system into production">
+          <div class="col a"><span class="n">62%</span><span class="bar"></span><span class="lab">experimenting with agents</span></div>
+          <div class="col b"><span class="n">~23%</span><span class="bar"></span><span class="lab">scaled one system <span class="tag survey">Survey</span></span></div>
+        </div>
+        <div class="claim">The company that makes its people safe to use AI takes the vertical. Nobody's selling that yet.</div>
+      </div>
+    </section>
+
+    <section class="slide" id="s3" data-title="The wedge">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">03</span> The wedge, and why this founder</div>
+        <h2 class="deck">Concede the labs. Win the adoption.</h2>
+        <ul class="beats">
+          <li><span class="k">Say it plainly.</span> Anthropic and its peers can build the capability. That's the market premise, not our fear.</li>
+          <li><span class="k">The wedge</span> is a C-suite that finally has a chief of staff which never sleeps. Then engineering wants the overhaul. Then the rest is pulled in by demand.</li>
+          <li><span class="k">The proof isn't a roadmap.</span> Jarred runs the reference implementation today, at fleet-of-one scale. This operation is the demonstration. <span class="tag measured">Measured</span></li>
+        </ul>
+        <div class="claim">Companies don't need another platform. They need a companion that gets the whole building to actually use one.</div>
+      </div>
+    </section>
+
+    <section class="slide" id="s4" data-title="The ask, up front">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">04</span> The ask, up front</div>
+        <h2 class="deck">I'm asking for two separate decisions.</h2>
+        <p class="lead" style="font-family:var(--serif);font-size:clamp(19px,2.5vw,28px);color:var(--ink);max-width:35ch;line-height:1.34">A scoped 90-day design-partner pilot plus a smaller strategic check. The larger raise comes at roughly month 6, triggered by demonstrated achievement.</p>
+        <ul class="beats">
+          <li><span class="k">The pilot</span> is your operator seat.</li>
+          <li><span class="k">The check</span> is your owner seat. Papered separately, never blended.</li>
+        </ul>
+        <div class="claim">Read everything after this through that ask. The evidence is sized to it.</div>
+      </div>
+    </section>
+    <section class="slide dark" id="s5" data-title="One trace, end to end">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">05</span> One trace, end to end</div>
+        <h2 class="deck">A single trace from the running estate.</h2>
+        <div class="cap" style="margin:6px 0 14px;font-family:var(--mono);font-size:11px;color:var(--on-dark-soft);letter-spacing:.03em">Rendering of a real trace; frozen source and receipt attached in the demo pack.</div>
+        <div class="trace" id="trace">
+          <svg class="spine" viewBox="0 0 2 100" preserveAspectRatio="none" aria-hidden="true"><line x1="1" y1="0" x2="1" y2="100" vector-effect="non-scaling-stroke"/></svg>
+          <div class="nodes">
+            <div class="node source"><span class="dot"></span><div class="step">1 &nbsp;Source sentence</div><div class="val"><span class="src">[ filled from the frozen 7/12 trace ]</span></div></div>
+            <div class="node"><span class="dot"></span><div class="step">2 &nbsp;Freshness timestamp</div><div class="val"><span class="src">[ filled from the frozen 7/12 trace ]</span></div></div>
+            <div class="node"><span class="dot"></span><div class="step">3 &nbsp;Stable locator / hash</div><div class="val"><span class="src">[ filled from the frozen 7/12 trace ]</span></div></div>
+            <div class="node"><span class="dot"></span><div class="step">4 &nbsp;Context retrieved</div><div class="val">The related objective from the OKR tree, plus the prior notes it cites by locator.</div></div>
+            <div class="node"><span class="dot"></span><div class="step">5 &nbsp;Recommendation</div><div class="val">Create a task and a CRM entry, sourced to the sentence and the objective. <span class="low">owner: please confirm (low confidence)</span></div></div>
+            <div class="node gate"><span class="dot"></span><div class="step">6 &nbsp;Human gate</div><div class="gatechips"><span class="gc on">Approve</span><span class="gc">Edit</span><span class="gc">Skip</span></div></div>
+            <div class="node receipt"><span class="dot"></span><div class="step">7 &nbsp;Audit receipt ID</div><div class="val"><span class="src">[ filled from the frozen 7/12 trace ]</span> &nbsp;append-only: who decided, timestamp, elapsed from spoken to surfaced.</div></div>
+            <div class="node"><span class="dot"></span><div class="step">8 &nbsp;Replay steps</div><div class="val"><span class="src">[ filled from the frozen 7/12 trace ]</span> &nbsp;the exact sequence to reproduce this readout from the frozen source.</div></div>
+            <div class="node"><span class="dot"></span><div class="step">9 &nbsp;Boundary</div><div class="val">It detected, retrieved, rendered, and appended. It did not send anything, and it did not act outside the gate.</div></div>
+          </div>
+        </div>
+        <div class="claim">Every output arrives sourced, and stops at a person. That's the product.</div>
+        <div style="margin-top:14px"><span class="tag measured">Measured</span> <span style="font-family:var(--mono);font-size:10px;color:var(--on-dark-soft);letter-spacing:.05em">estate, n=1 reference implementation &nbsp;·&nbsp; the current spike detects, renders, appends, idempotent (not closed-loop relay)</span></div>
+      </div>
+    </section>
+
+    <section class="slide" id="s6" data-title="What's real, in four columns">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">06</span> What's real</div>
+        <h2 class="deck">Every capability, in four columns.</h2>
+        <p class="lead">An outside reviewer can place each one without asking me.</p>
+        <div class="tablewrap">
+          <table class="ttable">
+            <thead><tr>
+              <th class="built">Operating internally<span class="st">built, running now</span></th>
+              <th class="proto">Prototype<span class="st">working, not hardened</span></th>
+              <th class="pilot">Pilot build<span class="st">the 90 days deliver it</span></th>
+              <th class="horizon">Horizon<span class="st">designed, not running</span></th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="built">Meeting capture to tasks</td><td class="proto">Front-door triage surface</td><td class="pilot">Capture live in one org</td><td class="horizon">Skill marketplace</td></tr>
+              <tr><td class="built">OKR alignment scoring</td><td class="proto">Pre-meeting briefing packs</td><td class="pilot">One gated workflow in production</td><td class="horizon">Attribution, proof-of-origination</td></tr>
+              <tr><td class="built">Achievement engine</td><td class="blank"></td><td class="pilot">Gamification for an opt-in cohort</td><td class="blank"></td></tr>
+              <tr><td class="built">Fleet HUD, skill registry</td><td class="blank"></td><td class="pilot">The signed baseline</td><td class="blank"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="claim">Built things run. Designed things are named as designed. No blur.</div>
+      </div>
+    </section>
+
+    <section class="slide" id="s7" data-title="How autonomy works">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">07</span> How autonomy works</div>
+        <h2 class="deck">The system does the work. The human holds the gate.</h2>
+        <div class="gates" role="img" aria-label="Approve, Edit, or Skip"><span class="g approve">Approve</span><span class="g">Edit</span><span class="g">Skip</span></div>
+        <ul class="beats" style="margin-top:24px">
+          <li>Nothing that touches money, an outside party, or anything irreversible moves without a person deciding.</li>
+          <li><span class="k">Autonomy is earned, not granted.</span> An advisor acts on a decision class on its own only after it has matched your actual choice across many reps. No tier buys an exception.</li>
+        </ul>
+        <div class="meter" role="img" aria-label="graduation bar: 90 percent agreement over 20 or more reps">
+          <div class="bar"><i></i></div>
+          <div class="lab"><span>graduation bar</span><span><b>90%</b> agreement &nbsp;·&nbsp; <b>20+</b> reps</span></div>
+        </div>
+        <div class="claim">Autonomy is earned in reps, never sold in tiers.</div>
+      </div>
+    </section>
+
+    <section class="slide" id="s8" data-title="The live inspection">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">08</span> The live inspection</div>
+        <h2 class="deck">What you'll see, and what you won't.</h2>
+        <ul class="beats">
+          <li><span class="k">In the room:</span> one sourced estate readout, live and read-only. A real event, its provenance, a freshness stamp, one moment where the system says what it isn't sure of, then 2 or 3 questions you pick from a cleared set, answered with citations.</li>
+          <li><span class="k">What it won't do:</span> no writes, no sends, no action-shaped buttons. The label stays up the whole time.</li>
+          <li><span class="k">Honest on the spike:</span> today it detects, renders, appends, and stays idempotent. It doesn't yet consume its own answer and keep going.</li>
+        </ul>
+        <div class="screen" role="img" aria-label="Front-door triage card, read only, from the running estate">
+          <div class="bar2"><span>front door &nbsp;·&nbsp; running estate</span><span class="ro">Read only</span></div>
+          <div class="sbody">
+            <div class="card"><div class="h">Create task: draft the 3-way collaboration doc</div><div class="m">source <span class="src">meeting 2026-07-08</span> &nbsp;·&nbsp; objective: launch-kit &nbsp;·&nbsp; owner: confirm</div><div class="acts"><span class="ap">Approve</span><span>Edit</span><span>Skip</span></div></div>
+          </div>
+          <div class="note">Framed rendering of the running surface. A live screen capture drops in here before send.</div>
+        </div>
+        <div class="claim">If a demo has to pretend to be live, the trust is already gone. This one won't pretend.</div>
+        <div style="margin-top:12px"><span class="tag corpus">Corpus</span> <span style="font-family:var(--mono);font-size:10px;color:var(--ink-dim);letter-spacing:.05em">four published demos at winnsolutionsadmin.github.io/allan-ai-demos</span></div>
+      </div>
+    </section>
+
+    <section class="slide" id="s9" data-title="The boundary">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">09</span> The boundary of the pilot</div>
+        <h2 class="deck" style="max-width:28ch">The boundary, in one sentence.</h2>
+        <p class="lead" style="font-family:var(--serif);font-size:clamp(19px,2.5vw,28px);color:var(--ink);max-width:42ch;line-height:1.34">During the pilot, the product turns one organization's meetings, objectives, and workflow state into sourced recommendations an executive can approve, edit, or skip.</p>
+        <ul class="beats" style="margin-top:24px">
+          <li><span class="k">In scope:</span> capture on a designated, disclosed surface, plus one gated workflow chosen with you in week one.</li>
+          <li><span class="k">Out of scope:</span> undisclosed capture, ungated actions, anything you didn't sanction. Capture is always disclosed.</li>
+        </ul>
+        <div class="claim">One org, one workflow, one gate. Narrow on purpose.</div>
+      </div>
+    </section>
+    <section class="slide" id="s10" data-title="The 90-day pilot">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">10</span> The 90-day pilot</div>
+        <h2 class="deck">You sign a baseline, then watch it move.</h2>
+        <div class="phases">
+          <div class="phase"><div class="rng">Days 1 to 30</div><h4>Capture plus one gated workflow</h4><p>Capture goes live. One gated workflow in production. You sign a two-week time baseline and your day-zero follow-up debt. Zero ungated actions.</p><span class="gatelab">Day-30 gate</span></div>
+          <div class="phase"><div class="rng">Days 31 to 60</div><h4>Gamification, measured</h4><p>Gamification enters for an opt-in cohort, anti-abuse on from its first day. Adoption gets measured. The hours-recovered signal appears.</p><span class="gatelab">Day-60 gate</span></div>
+          <div class="phase"><div class="rng">Days 61 to 90</div><h4>Evidence, then the decision</h4><p>Hours hold or they don't. Follow-up debt near zero. At least one decision class at or past graduation, or an honest reason why not. Then the conversion decision.</p><span class="gatelab">Day-90 gate</span></div>
+        </div>
+        <div class="claim">You don't buy a promise. You sign a baseline, then watch it move.</div>
+      </div>
+    </section>
+
+    <section class="slide" id="s11" data-title="The economics">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">11</span> The economics, as a shape</div>
+        <h2 class="deck">Priced against a job you'd otherwise hire.</h2>
+        <ul class="beats">
+          <li><span class="k">Consulting plus software.</span> Consulting revenue funds the build and makes the evidence first. Software margin layers on later, it doesn't lead.</li>
+          <li><span class="k">The hurdle:</span> the pilot clears it if it returns your hours and clears your follow-up debt, against the baseline you sign, at your own rate. No multiplier is sold.</li>
+        </ul>
+        <div class="anchor">
+          <div class="row"><div class="top"><b>A full-time chief of staff</b><span>$240-265K / yr fully loaded &nbsp;·&nbsp; fractional $7-14K / mo</span></div><div class="cbar"></div><div class="cap">Vendor &nbsp;·&nbsp; external market anchor, not our price</div></div>
+          <div class="row"><div class="top"><b>The 90-day pilot</b><span>a fraction of that, for 90 days</span></div><div class="slot"><span class="brk">[</span>&nbsp; set in the charter &nbsp;<span class="brk">]</span></div><div class="cap">our own fee is set with you, never on a slide</div></div>
+        </div>
+        <div class="note-line">Post-pilot converts to a monthly companion retainer, anchored on one retained client already at $25k/mo. <span class="tag measured">Measured</span></div>
+        <div class="claim">The margin story starts as a service, and earns the right to become software.</div>
+      </div>
+    </section>
+
+    <section class="slide" id="s12" data-title="The team, honestly">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">12</span> The team, honestly</div>
+        <h2 class="deck">One founder accountable. Two contributors earning in.</h2>
+        <ul class="beats">
+          <li><span class="k">Jarred Winn, founder.</span> The vision is his. He operates the reference implementation.</li>
+          <li><span class="k">Nick Metzler and Carter Razink,</span> originating members, earning equity through contribution. Deliverable-tied, vested. Not a three-way split.</li>
+          <li><span class="k">Status, plainly:</span> entity formation and IP assignment are in flight this week. Nothing here implies an agreement that isn't signed.</li>
+        </ul>
+        <div class="claim">One founder accountable. Two contributors earning in. No fictional org chart.</div>
+      </div>
+    </section>
+
+    <section class="slide dark" id="s13" data-title="The ask, re-landed">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">13</span> The ask, re-landed</div>
+        <h2 class="deck">Two decisions, one dated next step.</h2>
+        <p class="lead" style="font-family:var(--serif);font-size:clamp(18px,2.3vw,26px);color:var(--on-dark);max-width:40ch;line-height:1.34">A scoped 90-day design-partner pilot plus a smaller strategic check. The larger raise comes at roughly month 6, triggered by demonstrated achievement.</p>
+        <ul class="beats">
+          <li><span class="k">If you're the operating counterparty:</span> the one-page pilot charter goes on the table. Named owner, baseline, success threshold, kill criterion, day-90 decision. Next step, dated: a pilot scoping session on [ date, within 72 hours ].</li>
+          <li><span class="k">If you're the sponsor, not the operator:</span> sponsorship plus the check, plus a scoping session on [ date, within 72 hours ] to name who runs it.</li>
+        </ul>
+        <div class="claim">A pass keeps the relationship, and we come back with a signed partner's day-30 evidence, not a re-pitch.</div>
+      </div>
+    </section>
+    <section class="slide appx" id="s14" data-title="Appendix A: Architecture">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">Appendix A</span> The architecture</div>
+        <h2 class="deck">Seven pillars, one system. Every part labeled.</h2>
+        <ul class="pillars">
+          <li><span class="role"><b>Front door</b>, the face</span><span class="desc">The one calm surface.</span><span class="state b-proto">Prototype</span></li>
+          <li><span class="role"><b>OKR engine</b>, the brain</span><span class="desc">Objectives to weighted, agent-run subtasks.</span><span class="state b-built">Built</span></li>
+          <li><span class="role"><b>Gamification</b>, the adoption engine</span><span class="desc">Reward, do not replace.</span><span class="state b-pilot">Pilot scope</span></li>
+          <li><span class="role"><b>Meeting capture</b>, the senses</span><span class="desc">Transcripts to decisions, actions, memory.</span><span class="state b-built">Built</span></li>
+          <li><span class="role"><b>Client relationships</b>, the channel</span><span class="desc">Sales-cycle compression, part of the moat.</span><span class="state b-built">Built</span></li>
+          <li><span class="role"><b>Skill marketplace</b>, the network effect</span><span class="desc">Skills and workflows are the commodity.</span><span class="state b-designed">Designed</span></li>
+          <li><span class="role"><b>Attribution</b>, the trust layer</span><span class="desc">Proof-of-origination for ideas and work.</span><span class="state b-designed">Designed</span></li>
+        </ul>
+        <div class="note-line">Every connection is labeled built, pilot-scope, or designed. No unlabeled bidirectional-everything diagram.</div>
+      </div>
+    </section>
+
+    <section class="slide appx" id="s15" data-title="Appendix B: The horizon">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">Appendix B</span> The horizon</div>
+        <h2 class="deck">Marketplace and attribution: designed, not running.</h2>
+        <ul class="beats">
+          <li><span class="k">The skill marketplace</span> is the long-term network effect. Skills and workflows are the commodity. A 296-skill personal registry with a nightly self-improver is the proof of the pattern, an input, not traction. <span class="tag measured">Measured</span></li>
+          <li><span class="k">Attribution</span> is proof-of-origination for ideas and work. It's the least-built pillar today. On the roadmap, named as designed, not running.</li>
+        </ul>
+        <div class="note-line">The research corpus and skill registry are inputs, never demand validation or traction.</div>
+      </div>
+    </section>
+
+    <section class="slide appx" id="s16" data-title="Appendix C: N=1 operating evidence">
+      <div class="inner">
+        <div class="eyebrow"><span class="n">Appendix C</span> N=1 operating evidence</div>
+        <h2 class="deck">The reference implementation, measured.</h2>
+        <p class="lead">One operator, one estate. Not an installed customer. <span class="tag measured">Measured</span></p>
+        <ul class="eviList">
+          <li><span class="n">Org-wide</span><span class="d">Internal agent OS running org-wide since 2026-07-01.</span></li>
+          <li><span class="n">99.3%</span><span class="d">of commits scored against the objective tree on first run (275 of 277).</span></li>
+          <li><span class="n">5,027 pts, 23-day streak</span><span class="d">Achievement engine, never broken, live since 2026-04-19.</span></li>
+          <li><span class="n">322 commits</span><span class="d">Fleet HUD. Session recall cut from 8 to 10 seconds down to 0.06.</span></li>
+          <li><span class="n">343 notes, 47k embeddings</span><span class="d">Meeting capture. 5 real tasks from one meeting.</span></li>
+          <li><span class="n">296 skills</span><span class="d">Skill registry, 835 commits, a nightly self-improver.</span></li>
+          <li><span class="n">6+ clients, $25k/mo</span><span class="d">Consultative delivery. One retained client at $25,000 a month.</span></li>
+        </ul>
+        <div class="note-line">Operating evidence and inputs. Not customer traction. No readiness score appears anywhere.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function(){
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var curEl = document.getElementById('cur');
+    var totEl = document.getElementById('tot');
+    var prog  = document.getElementById('progress');
+    var railTitle = document.getElementById('railTitle');
+    var hint  = document.getElementById('hint');
+    var idx = 0, total = slides.length;
+
+    function pad(n){ n = String(n); return n.length < 2 ? '0' + n : n; }
+    totEl.textContent = pad(total);
+
+    function setActive(i){
+      idx = Math.max(0, Math.min(total - 1, i));
+      curEl.textContent = pad(idx + 1);
+      prog.style.width = ((idx + 1) / total * 100) + '%';
+      railTitle.textContent = slides[idx].getAttribute('data-title') || '';
+    }
+    function go(i){
+      i = Math.max(0, Math.min(total - 1, i));
+      slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActive(i);
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting && e.intersectionRatio >= 0.5){
+          var i = slides.indexOf(e.target);
+          if (i >= 0) setActive(i);
+          if (e.target.id === 's5'){
+            var tr = document.getElementById('trace');
+            if (tr) tr.classList.add('play');
+          }
+        }
+      });
+    }, { threshold: [0.5] });
+    slides.forEach(function(s){ io.observe(s); });
+
+    function hideHint(){ if (hint) hint.classList.add('gone'); }
+
+    window.addEventListener('keydown', function(ev){
+      var k = ev.key;
+      if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || k === ' ' || k === 'Spacebar'){
+        ev.preventDefault(); go(idx + 1); hideHint();
+      } else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp'){
+        ev.preventDefault(); go(idx - 1); hideHint();
+      } else if (k === 'Home'){ ev.preventDefault(); go(0); hideHint(); }
+      else if (k === 'End'){ ev.preventDefault(); go(total - 1); hideHint(); }
+    }, { passive: false });
+
+    window.addEventListener('wheel', hideHint, { passive: true, once: true });
+    window.addEventListener('touchstart', hideHint, { passive: true, once: true });
+
+    setActive(0);
+    setTimeout(hideHint, 6000);
+  })();
+  </script>
+</body>
+</html>

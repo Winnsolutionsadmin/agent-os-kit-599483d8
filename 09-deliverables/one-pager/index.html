@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>one-pager · a trusted companion for the AI transition</title>
+<style>
+/* ============================================================
+   TOKENS
+   palette : paper limestone / ink slate-petrol / verdigris patina (single accent)
+   type    : mono = system voice · serif = human voice · sans = neutral body
+   ============================================================ */
+:root{
+  --paper:#F4F5F2;
+  --ink:#182A2C;
+  --ink-2:#54635F;
+  --ink-3:#7C8884;
+  --verdigris:#33705E;
+  --verdigris-deep:#255544;
+  --wash:#E5EDE7;
+  --cold:#E9ECEA;
+  --line:#CED6CF;
+  --axis-w:158px;
+
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:#E6E9E5;
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+/* --- the desk (screen only) --- */
+.desk{ padding:26px 18px 40px; }
+
+/* --- the sheet: Letter, print-perfect --- */
+.sheet{
+  position:relative;
+  width:8.5in;
+  min-height:11in;
+  margin:0 auto;
+  background:var(--paper);
+  padding:0.5in 0.56in 0.46in;
+  box-shadow:0 1px 0 rgba(24,42,44,.04), 0 18px 50px rgba(24,42,44,.14);
+}
+
+/* engineering registration ticks: structural integrity, calm precision */
+.sheet::before,.sheet::after{
+  content:""; position:absolute; width:13px; height:13px; pointer-events:none;
+  border-color:var(--verdigris); opacity:.55;
+}
+.sheet::before{ top:0.30in; left:0.32in; border-left:1.5px solid; border-top:1.5px solid; }
+.sheet::after{ bottom:0.26in; right:0.32in; border-right:1.5px solid; border-bottom:1.5px solid; }
+.tick-tr,.tick-bl{ position:absolute; width:13px; height:13px; pointer-events:none; opacity:.55; border-color:var(--verdigris); }
+.tick-tr{ top:0.30in; right:0.32in; border-right:1.5px solid; border-top:1.5px solid; }
+.tick-bl{ bottom:0.26in; left:0.32in; border-left:1.5px solid; border-bottom:1.5px solid; }
+
+/* ============================================================ MASTHEAD */
+.masthead{ display:flex; justify-content:space-between; align-items:flex-start; }
+.wordmark{
+  font-family:var(--mono);
+  font-size:18px;
+  letter-spacing:.10em;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1;
+}
+.wordmark .br{ color:var(--verdigris); font-weight:400; }
+.wordmark .caret{
+  display:inline-block; width:2px; height:0.92em; margin-left:1px;
+  background:var(--verdigris); vertical-align:-2px;
+  animation:caret 1.4s ease-in-out infinite;
+}
+.kicker{ margin-top:6px; font-family:var(--mono); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); }
+.meta{ text-align:right; font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--ink-3); line-height:1.75; text-transform:uppercase; }
+.meta .lead{ color:var(--verdigris-deep); }
+
+.hairline{ height:0; border-top:1px solid var(--line); margin:14px 0 0; }
+
+/* ============================================================ THESIS */
+.thesis{ margin-top:20px; }
+.tagline{
+  font-family:var(--serif);
+  font-size:25px;
+  line-height:1.26;
+  letter-spacing:.002em;
+  color:var(--ink);
+  max-width:8.2in;
+  margin:0;
+}
+.tagline .ahead{ color:var(--verdigris-deep); font-style:italic; }
+.triad{ margin-top:13px; display:flex; flex-wrap:wrap; gap:8px 18px; font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--ink-2); }
+.triad .st{ display:inline-flex; align-items:center; }
+.triad .st .b{ color:var(--verdigris); margin:0 5px; }
+.triad .st strong{ color:var(--ink); font-weight:600; }
+
+/* ============================================================ BEATS */
+.beat{ margin-top:20px; }
+.eyebrow{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--verdigris-deep); margin:0 0 9px;
+}
+.eyebrow::before{ content:""; width:22px; height:2px; background:var(--verdigris); display:inline-block; }
+.body{ font-size:13px; line-height:1.55; color:var(--ink); max-width:8.1in; margin:0; }
+.body .em{ color:var(--verdigris-deep); font-weight:600; }
+.body .fig{ font-family:var(--mono); font-size:12px; color:var(--ink); }
+.chip{
+  display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.05em;
+  color:var(--verdigris-deep); margin-top:9px;
+}
+.chip .b{ color:var(--verdigris); }
+
+.whynow-lead{ font-size:13px; line-height:1.55; margin:0; color:var(--ink); }
+.whynow-lead .prem{ font-family:var(--serif); font-size:14px; font-style:italic; color:var(--ink); }
+
+/* ============================================================ THE MATRIX (signature) */
+.matrix-wrap{ margin-top:16px; }
+.matrix{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr var(--axis-w) 1fr;
+  align-items:stretch;
+}
+/* column backgrounds: the argument as asymmetry */
+.mx-bg{ position:absolute; top:0; bottom:0; z-index:0; }
+.mx-bg-left{
+  left:0; width:calc(50% - (var(--axis-w) / 2));
+  background:var(--cold);
+  border:1px solid #DFE3E0;
+}
+.mx-bg-right{
+  right:0; width:calc(50% - (var(--axis-w) / 2));
+  top:-7px; bottom:-7px;                 /* rises ahead */
+  background:var(--wash);
+  border:1.5px solid var(--verdigris);
+  border-radius:5px;
+  box-shadow:0 10px 26px rgba(37,85,68,.15);
+}
+.mx-cell{ position:relative; z-index:1; padding:11px 15px; }
+.mx-axis-cell{ padding:11px 12px; text-align:center; }
+
+/* header row */
+.mx-h{ padding-top:12px; padding-bottom:12px; }
+.mx-h-left{ font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); }
+.mx-h-axis{ font-family:var(--mono); font-size:8.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); }
+.mx-h-right{ font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--verdigris-deep); font-weight:600; }
+.mx-h-right .br{ color:var(--verdigris); font-weight:400; }
+
+/* axis (center gutter): the dimensions of comparison */
+.mx-axis{ font-family:var(--mono); font-size:9.5px; letter-spacing:.05em; color:var(--ink-2); }
+
+/* brute column: infra voice (sans), cold, muted */
+.mx-left{ font-family:var(--sans); font-size:11.5px; line-height:1.4; color:var(--ink-2); }
+
+/* companion column: human voice (serif), warm, held */
+.mx-right{ font-family:var(--serif); font-size:12.5px; line-height:1.42; color:var(--ink); }
+.mx-right .gate{ border-bottom:1.5px solid var(--verdigris); padding-bottom:.5px; }
+
+.mx-row-line{ grid-column:1 / -1; height:0; border-top:1px solid var(--line); z-index:1; position:relative; }
+.mx-left.sep, .mx-axis.sep, .mx-right.sep{ border-top:1px solid rgba(206,214,207,.7); }
+
+/* ============================================================ PROOF */
+.proof{ margin-top:15px; display:flex; align-items:flex-start; gap:12px; }
+.proof p{ margin:0; font-size:12.5px; line-height:1.5; color:var(--ink); }
+.proof p strong{ font-weight:600; }
+.tag{
+  flex:none; margin-top:2px;
+  font-family:var(--mono); font-size:8px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--verdigris-deep); border:1px solid var(--verdigris); border-radius:3px;
+  padding:2px 6px; white-space:nowrap;
+}
+
+/* ============================================================ THE ASK */
+.ask{ margin-top:20px; }
+.ask-callout{
+  position:relative;
+  border-left:2px solid var(--verdigris);
+  border-right:2px solid var(--verdigris);
+  padding:14px 22px;
+  background:transparent;
+}
+.ask-callout::before,.ask-callout::after{
+  content:""; position:absolute; width:14px; height:1.5px; background:var(--verdigris);
+}
+.ask-callout::before{ top:0; left:0; box-shadow:calc(100% - 14px) 0 0 var(--verdigris); }
+.ask-callout::after{ bottom:0; left:0; box-shadow:calc(100% - 14px) 0 0 var(--verdigris); }
+.ask-callout p{
+  margin:0; font-family:var(--serif); font-size:15px; line-height:1.42; color:var(--ink);
+}
+.ask-callout .key{ color:var(--verdigris-deep); }
+
+/* ============================================================ FOOTER / NEXT STEP */
+.footer{ margin-top:22px; padding-top:16px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }
+.next{ max-width:5.1in; }
+.next .body{ font-size:12px; }
+.contact{ margin-top:11px; font-family:var(--mono); font-size:11px; letter-spacing:.02em; color:var(--ink); }
+.contact a{ color:var(--verdigris-deep); text-decoration:none; border-bottom:1px solid var(--verdigris); padding-bottom:1px; }
+.contact a:focus-visible{ outline:2px solid var(--verdigris); outline-offset:3px; border-radius:2px; }
+.provenance{ margin-top:9px; font-family:var(--mono); font-size:9px; letter-spacing:.05em; color:var(--ink-3); line-height:1.5; }
+
+.qr{
+  flex:none; width:96px; height:96px; position:relative;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+  color:var(--ink-3);
+}
+.qr .frame{ position:absolute; inset:0; }
+.qr .frame span{ position:absolute; width:16px; height:16px; border-color:var(--verdigris); }
+.qr .frame .a{ top:0; left:0; border-left:2px solid; border-top:2px solid; }
+.qr .frame .b{ top:0; right:0; border-right:2px solid; border-top:2px solid; }
+.qr .frame .c{ bottom:0; left:0; border-left:2px solid; border-bottom:2px solid; }
+.qr .frame .d{ bottom:0; right:0; border-right:2px solid; border-bottom:2px solid; }
+.qr .label{ font-family:var(--mono); font-size:8.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--verdigris-deep); line-height:1.5; }
+.qr .sub{ font-family:var(--mono); font-size:7.5px; letter-spacing:.06em; color:var(--ink-3); margin-top:3px; }
+
+/* ============================================================ MOTION */
+@keyframes caret{ 0%,42%{opacity:1} 50%,92%{opacity:0} 100%{opacity:1} }
+@keyframes rise{ to{ opacity:1; transform:none; } }
+.rise{ opacity:0; transform:translateY(7px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+.d1{ animation-delay:.05s } .d2{ animation-delay:.16s } .d3{ animation-delay:.28s } .d4{ animation-delay:.40s } .d5{ animation-delay:.52s }
+
+@media (prefers-reduced-motion: reduce){
+  .rise{ opacity:1 !important; transform:none !important; animation:none !important; }
+  .wordmark .caret{ animation:none; opacity:.45; }
+}
+
+/* ============================================================ RESPONSIVE (screen) */
+@media (max-width: 900px){
+  .desk{ padding:14px 10px 30px; }
+  .sheet{ width:100%; min-height:0; padding:26px 20px 30px; }
+  .tagline{ font-size:21px; }
+  .matrix{ grid-template-columns:1fr; }
+  .mx-bg{ display:none; }
+  .mx-h{ display:none; }
+  .mx-cell,.mx-axis-cell{ padding:6px 0; }
+  .mx-axis{ font-family:var(--mono); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--verdigris-deep); padding-top:12px; }
+  .mx-left{ padding-left:12px; border-left:2px solid #DFE3E0; }
+  .mx-right{ padding-left:12px; border-left:2px solid var(--verdigris); background:var(--wash); border-radius:0 4px 4px 0; padding:8px 12px; }
+  .mx-left::before{ content:"labs / "; font-family:var(--mono); font-size:9px; color:var(--ink-3); }
+  .mx-right::before{ content:"companion / "; font-family:var(--mono); font-size:9px; color:var(--verdigris); }
+  .footer{ flex-direction:column; align-items:flex-start; }
+}
+
+/* ============================================================ PRINT */
+@media print{
+  @page{ size:8.5in 11in; margin:0; }
+  body{ background:#fff; }
+  .desk{ padding:0; }
+  .sheet{ box-shadow:none; margin:0; width:8.5in; min-height:11in; }
+  .rise{ opacity:1 !important; transform:none !important; animation:none !important; }
+  .wordmark .caret{ animation:none; opacity:.4; }
+}
+</style>
+</head>
+<body>
+<div class="desk">
+  <main class="sheet" role="document" aria-label="One-pager">
+    <span class="tick-tr" aria-hidden="true"></span>
+    <span class="tick-bl" aria-hidden="true"></span>
+
+    <!-- MASTHEAD -->
+    <header class="masthead rise d1">
+      <div>
+        <div class="wordmark"><span class="br">[</span>&nbsp;NAME<span class="caret" aria-hidden="true"></span>&nbsp;<span class="br">]</span></div>
+        <div class="kicker">the name is the founder's to lock</div>
+      </div>
+      <div class="meta">
+        <div class="lead">one-pager</div>
+        <div>a trusted companion</div>
+        <div>2026</div>
+      </div>
+    </header>
+    <div class="hairline rise d1" aria-hidden="true"></div>
+
+    <!-- THESIS -->
+    <section class="thesis rise d2">
+      <p class="tagline">A trusted companion that carries a company through the AI transition, <span class="ahead">and leaves it ahead.</span></p>
+      <div class="triad">
+        <span class="st">product<span class="b">/</span><strong>unnamed by design</strong></span>
+        <span class="st">architecture<span class="b">/</span><strong>live</strong></span>
+        <span class="st">name<span class="b">/</span><strong>the founder's to lock</strong></span>
+      </div>
+    </section>
+
+    <!-- BEAT 1 : WHAT IT IS -->
+    <section class="beat rise d3">
+      <p class="eyebrow">what it is</p>
+      <p class="body">One calm conversational surface where anyone, from the CEO to the line worker, <span class="em">directs and consumes agent work</span>. Company objectives decompose into weighted, agent-executed subtasks. Adoption runs on mechanics that reward people for using AI, instead of threatening them with replacement.</p>
+      <span class="chip"><span class="b">[</span>&nbsp;delivered as consulting plus software&nbsp;<span class="b">]</span></span>
+    </section>
+
+    <!-- BEAT 2 : WHY NOW + MATRIX -->
+    <section class="beat rise d4">
+      <p class="eyebrow">why now</p>
+      <p class="whynow-lead"><span class="prem">The labs can build this. That is the premise of the market, not a threat to it.</span> In May 2026 the labs moved: a <span class="body fig">$1.5B</span> enterprise-services company, then a <span class="body fig">$4B</span> <span class="tag" title="Vendor-published: both labs' own announcements, provenance in the reading room">vendor</span> deployment arm a week later. Capability arriving creates the demand. What none of them sells is the adoption.</p>
+
+      <div class="matrix-wrap">
+        <div class="matrix" role="table" aria-label="Frontier-lab brute force compared with the trusted companion">
+          <div class="mx-bg mx-bg-left" aria-hidden="true"></div>
+          <div class="mx-bg mx-bg-right" aria-hidden="true"></div>
+
+          <!-- header -->
+          <div class="mx-cell mx-h mx-h-left" role="columnheader">frontier-lab brute force</div>
+          <div class="mx-axis-cell mx-h mx-h-axis" role="columnheader">compared on</div>
+          <div class="mx-cell mx-h mx-h-right" role="columnheader"><span class="br">[</span>&nbsp;the trusted companion&nbsp;<span class="br">]</span></div>
+
+          <!-- row 1 -->
+          <div class="mx-cell mx-left" role="cell">raw capability, general purpose</div>
+          <div class="mx-axis-cell mx-axis" role="rowheader">what it sells</div>
+          <div class="mx-cell mx-right" role="cell">the organizational psychology of adoption</div>
+
+          <div class="mx-row-line" aria-hidden="true"></div>
+
+          <!-- row 2 -->
+          <div class="mx-cell mx-left" role="cell">top-down, as infrastructure</div>
+          <div class="mx-axis-cell mx-axis" role="rowheader">how it lands</div>
+          <div class="mx-cell mx-right" role="cell">bottom-up, earned as trust, company by company</div>
+
+          <div class="mx-row-line" aria-hidden="true"></div>
+
+          <!-- row 3 -->
+          <div class="mx-cell mx-left" role="cell">a services arm bolted onto the model</div>
+          <div class="mx-axis-cell mx-axis" role="rowheader">where it starts</div>
+          <div class="mx-cell mx-right" role="cell">your own meetings, objectives, and people</div>
+
+          <div class="mx-row-line" aria-hidden="true"></div>
+
+          <!-- row 4 -->
+          <div class="mx-cell mx-left" role="cell">granted up front</div>
+          <div class="mx-axis-cell mx-axis" role="rowheader">on autonomy</div>
+          <div class="mx-cell mx-right" role="cell">earned over reps; <span class="gate">a human holds the final gate</span></div>
+
+          <div class="mx-row-line" aria-hidden="true"></div>
+
+          <!-- row 5 -->
+          <div class="mx-cell mx-left" role="cell">a pitch and a roadmap</div>
+          <div class="mx-axis-cell mx-axis" role="rowheader">what proves it</div>
+          <div class="mx-cell mx-right" role="cell">a working estate already running</div>
+        </div>
+      </div>
+
+      <div class="proof">
+        <p><strong>This is not a roadmap.</strong> The founder runs his own operation through it, live since July 1. One retained consulting client is signed at <span class="body fig">$25k</span> a month.</p>
+        <span class="tag" title="Measured from the founder's own operation; provenance in the reading room">measured</span>
+      </div>
+    </section>
+
+    <!-- BEAT 3 : THE ASK -->
+    <section class="ask rise d5">
+      <p class="eyebrow">the ask</p>
+      <div class="ask-callout">
+        <p>A scoped <span class="key">90-day design-partner pilot</span> plus a smaller strategic check. The larger raise comes at roughly <span class="key">month 6</span>, triggered by demonstrated achievement.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER : NEXT STEP -->
+    <footer class="footer rise d5">
+      <div class="next">
+        <p class="eyebrow">next step</p>
+        <p class="body">A reading room walks the evidence end to end, every claim labeled built or designed. To see the system running, reach the founder directly.</p>
+        <p class="contact">Jarred Winn, founder&nbsp;&nbsp;·&nbsp;&nbsp;<a href="mailto:jarred@winn.solutions">jarred@winn.solutions</a></p>
+        <p class="provenance">Every figure here is sourced and traceable; provenance lives in the reading room.</p>
+      </div>
+      <div class="qr" role="img" aria-label="Reading room link and QR code, pending">
+        <div class="frame" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span></div>
+        <div class="label">reading<br>room</div>
+        <div class="sub">link + QR<br>pending</div>
+      </div>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

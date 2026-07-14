@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financials and ICP &middot; [NAME]</title>
+<meta name="description" content="The unit-economics spine: ICP as firmographics, a buyer ROI model with explicit formulas, the pilot fee scaffold, the pilot P&amp;L, and the forward-deployed service-becoming-software margin shape. Tables first; every number carries its basis. Pilot P&amp;L only, no hockey stick.">
+<style>
+  /* ============================================================
+     FINANCIALS AND ICP  ·  the unit-economics spine
+     Kit base (cool structural paper + graphite) with the pine
+     accent shared across the launch kit. This deliverable is the
+     spine other artifacts cite, so the aesthetic is credibility:
+     tables first, every number wearing its provenance bracket,
+     at most two quiet bar figures. Mono is the system's instrument
+     voice; a humanist sans is the reading voice. No mature-SaaS
+     margins, no hockey stick, no multiplier. The fee number is the
+     founder's to set; the scaffold and method are the deliverable.
+     ============================================================ */
+
+  :root{
+    --paper:     #ECEEEC;
+    --paper-2:   #E4E7E4;
+    --card:      #F6F7F6;
+    --ink:       #20262A;
+    --ink-soft:  #586067;
+    --ink-dim:   #6C727A;
+    --line:      rgba(32,38,42,0.14);
+    --line-soft: rgba(32,38,42,0.08);
+    --accent:    #1E5A4C;
+    --accent-lit:#2B7A66;
+    --wash:      rgba(30,90,76,0.08);
+    --wash-2:    rgba(30,90,76,0.04);
+    --amber:     #8A5A1C;   /* founder-decision / unset, used sparingly */
+    --sans: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+    --mono: ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:clamp(1rem, 0.95rem + 0.24vw, 1.06rem);
+    line-height:1.6;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    font-kerning:normal;
+    overflow-wrap:break-word;
+  }
+  ::selection{ background:var(--wash); color:var(--ink); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+
+  .sheet{
+    max-width:52rem;
+    margin:0 auto;
+    padding:clamp(2.4rem,6vh,4.6rem) clamp(1.2rem,5vw,2.4rem) clamp(3.4rem,9vh,5.6rem);
+  }
+
+  /* ---- shared tokens ----------------------------------------- */
+  .tag{ font-family:var(--mono); font-size:0.66em; letter-spacing:0.04em; color:var(--accent); white-space:nowrap; }
+  .tag::before{ content:"[\00a0"; opacity:0.7; }
+  .tag::after{ content:"\00a0]"; opacity:0.7; }
+  .tag--survey{ color:var(--ink-soft); }
+  .tag--vendor{ color:var(--ink-soft); }
+  .tag--assume{ color:var(--accent-lit); }
+  .tag--corpus{ color:var(--ink-soft); }
+  .tag--unv{ color:var(--amber); }
+
+  .set{ font-family:var(--mono); font-size:0.72em; letter-spacing:0.02em; color:var(--amber); white-space:nowrap; }
+  .set::before{ content:"[\00a0"; opacity:0.7; }
+  .set::after{ content:"\00a0]"; opacity:0.7; }
+
+  .eyebrow{
+    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 0.6rem;
+  }
+  .eyebrow .k{ color:var(--ink-soft); }
+
+  /* ---- masthead ---------------------------------------------- */
+  .masthead{ margin-bottom:2rem; }
+  .wordmark{
+    font-family:var(--mono);
+    font-size:clamp(1.7rem, 1.3rem + 2.1vw, 2.4rem);
+    letter-spacing:0.02em; line-height:1;
+    display:inline-flex; align-items:baseline; white-space:nowrap;
+  }
+  .wordmark .br{ color:var(--accent); font-weight:600; }
+  .wordmark .nm{ color:var(--ink-dim); padding:0 0.14em; }
+  .caret{ display:inline-block; width:0.08em; height:0.9em; background:var(--accent); margin-left:0.05em; transform:translateY(0.03em); animation:blink 1.15s steps(1,end) infinite; }
+  @keyframes blink{ 0%,52%{opacity:1;} 53%,100%{opacity:0;} }
+  .wm-caption{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.02em; color:var(--ink-soft); margin:0.9rem 0 0; }
+
+  .metaline{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin:1.6rem 0 1.4rem; }
+  .metaline .dot{ opacity:0.45; padding:0 0.5em; }
+  .metaline .lead{ color:var(--accent); }
+
+  .thesis{ font-weight:600; font-size:clamp(1.5rem,1.15rem + 1.7vw,2.1rem); line-height:1.16; letter-spacing:-0.018em; margin:0 0 1rem; text-wrap:balance; }
+  .subthesis{ font-size:clamp(1.02rem,0.98rem + 0.4vw,1.16rem); line-height:1.5; color:var(--ink-soft); margin:0 0 1.5rem; max-width:40rem; }
+  .subthesis strong{ color:var(--ink); font-weight:600; }
+
+  /* laws strip */
+  .laws{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:1.05rem 0; margin:1.5rem 0 0; display:grid; gap:0.5rem; }
+  .laws .law{ display:grid; grid-template-columns:1.4rem 1fr; gap:0.7rem; font-size:0.9rem; line-height:1.45; color:var(--ink-soft); }
+  .laws .law .m{ font-family:var(--mono); font-size:0.8rem; color:var(--accent); }
+  .laws .law b{ color:var(--ink); font-weight:600; }
+
+  /* ---- section rhythm ---------------------------------------- */
+  section{ margin-top:clamp(2.6rem,6vh,4.2rem); }
+  h2{ font-weight:600; font-size:clamp(1.24rem,1.05rem + 0.85vw,1.5rem); line-height:1.22; letter-spacing:-0.012em; margin:0 0 0.5rem; text-wrap:balance; }
+  .say{ font-size:1.02rem; line-height:1.5; color:var(--ink-soft); margin:0 0 1.2rem; max-width:40rem; }
+  .say strong{ color:var(--ink); font-weight:600; }
+
+  /* ---- tables (the primary instrument) ----------------------- */
+  .twrap{ overflow-x:auto; margin:0.4rem 0 0; border:1px solid var(--line); border-radius:4px; background:var(--card); }
+  table{ border-collapse:collapse; width:100%; font-size:0.9rem; min-width:34rem; }
+  caption{ text-align:left; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); padding:0.7rem 0.85rem 0; }
+  thead th{
+    font-family:var(--mono); font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--accent); text-align:left; font-weight:600;
+    padding:0.7rem 0.85rem; border-bottom:1.5px solid var(--ink); vertical-align:bottom;
+  }
+  tbody td{ padding:0.62rem 0.85rem; border-bottom:1px solid var(--line-soft); vertical-align:top; line-height:1.42; }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:nth-child(even){ background:var(--wash-2); }
+  td .lbl{ font-weight:600; color:var(--ink); }
+  td .f{ font-family:var(--mono); font-size:0.84em; color:var(--ink); background:var(--paper-2); padding:0.05rem 0.3rem; border-radius:2px; display:inline-block; }
+  td.num{ font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .col2{ display:grid; grid-template-columns:1fr 1fr; }
+  @media (max-width:640px){ .col2{ grid-template-columns:1fr; } }
+
+  .note{ font-size:0.92rem; line-height:1.5; color:var(--ink-soft); margin:0.9rem 0 0; max-width:40rem; }
+  .note b{ color:var(--ink); font-weight:600; }
+  .note .tag{ margin:0 0.1em; }
+
+  /* ---- callout box (trigger, method) ------------------------- */
+  .box{ border:1px solid var(--accent); border-radius:5px; background:var(--wash-2); padding:clamp(1.2rem,3.5vw,1.7rem); margin:0.6rem 0 0; }
+  .box.plain{ border-color:var(--line); background:var(--card); }
+  .box h3{ font-size:1.05rem; font-weight:600; margin:0 0 0.7rem; letter-spacing:-0.006em; }
+  .box ol{ margin:0; padding-left:1.2rem; }
+  .box ol li{ margin:0 0 0.5rem; font-size:0.95rem; line-height:1.45; }
+  .box ol li:last-child{ margin-bottom:0; }
+  .box ol li b{ font-weight:600; }
+  .box .then{ margin:1rem 0 0; padding-top:0.9rem; border-top:1px solid var(--line); font-size:0.97rem; line-height:1.5; }
+  .box .then b{ color:var(--accent); font-weight:600; }
+
+  pre.method{
+    font-family:var(--mono); font-size:0.82rem; line-height:1.55; color:var(--ink);
+    background:var(--paper-2); border-left:2px solid var(--accent); border-radius:2px;
+    padding:0.9rem 1rem; margin:0.4rem 0 0; overflow-x:auto; white-space:pre;
+  }
+  pre.method .op{ color:var(--accent); }
+  pre.method .c{ color:var(--ink-dim); }
+
+  /* ---- figures: two quiet bar comparisons -------------------- */
+  figure{ margin:1.1rem 0 0; }
+  figure svg{ width:100%; height:auto; display:block; }
+  figcaption{ font-family:var(--mono); font-size:0.7rem; line-height:1.55; color:var(--ink-soft); margin:0.5rem 0 0; }
+  figcaption b{ color:var(--accent); font-weight:600; }
+
+  /* ---- footer ------------------------------------------------ */
+  .footer{ margin-top:clamp(2.8rem,7vh,4rem); padding-top:1.6rem; border-top:1px solid var(--line); }
+  .legend{ display:grid; grid-template-columns:1fr 1fr; gap:0.55rem 1.5rem; margin:0 0 1.4rem; }
+  @media (max-width:600px){ .legend{ grid-template-columns:1fr; } }
+  .legend .li{ font-size:0.8rem; line-height:1.45; color:var(--ink-soft); }
+  .foot-note{ font-family:var(--mono); font-size:0.72rem; line-height:1.65; color:var(--ink-soft); margin:0 0 0.9rem; max-width:42rem; }
+  .foot-note .name-token{ white-space:nowrap; }
+  .foot-note .name-token .br{ color:var(--accent); }
+  .foot-note .name-token .nm{ color:var(--ink-dim); padding:0 0.1em; }
+  .foot-ask{ font-size:0.95rem; line-height:1.5; color:var(--ink); border-left:2px solid var(--accent); padding-left:0.9rem; margin:0; max-width:42rem; }
+  .foot-ask b{ font-weight:600; }
+
+  @media (max-width:640px){
+    .laws .law{ grid-template-columns:1.2rem 1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .caret{ animation:none; opacity:1; }
+  }
+  @media print{
+    body{ background:#fff; color:#000; }
+    .caret{ display:none; }
+    .sheet{ max-width:none; padding:0; }
+    section, .twrap, .box, figure{ break-inside:avoid; }
+    thead th{ color:#000; }
+    h2{ break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <!-- ============================ MASTHEAD ============================ -->
+  <header class="masthead">
+    <div class="wordmark" role="img" aria-label="[NAME], an unnamed company awaiting its name">
+      <span class="br" aria-hidden="true">[</span><span class="nm" aria-hidden="true">NAME</span><span class="caret" aria-hidden="true"></span><span class="br" aria-hidden="true">]</span>
+    </div>
+    <p class="wm-caption">a company being named, on purpose</p>
+  </header>
+
+  <p class="metaline">
+    <span class="lead">[ Financials and ICP ]</span>
+    <span class="dot">&middot;</span> the unit-economics spine
+    <span class="dot">&middot;</span> July 2026
+  </p>
+
+  <h1 class="thesis">The spine other artifacts cite, not another projection.</h1>
+
+  <p class="subthesis">Who the first buyer is, in firmographics. What the pilot is worth to them, by formula. What it costs us, with the founder&rsquo;s own time fully priced in. <strong>Pilot P&amp;L only; no multi-year hockey stick, no mature-SaaS margin, no throughput multiplier.</strong> The fee number is the founder&rsquo;s to set; the scaffold and the method are the deliverable here.</p>
+
+  <div class="laws" aria-label="Governing laws">
+    <div class="law"><span class="m">01</span><span><b>Pilot P&amp;L only.</b> The 24-month model is an internal capacity-and-survival model, not a revenue curve.</span></div>
+    <div class="law"><span class="m">02</span><span><b>Consulting first; software is designed, not running.</b> A forward-deployed service engineered to become software as reusable product accrues.</span></div>
+    <div class="law"><span class="m">03</span><span><b>Full founder cost is always in the model.</b> Single-operator capacity is the binding constraint, treated as real, not free.</span></div>
+    <div class="law"><span class="m">04</span><span><b>Anchored to a chief of staff plus an engineering lift, never per-seat.</b> No throughput multiplier appears anywhere; the engineering benchmark is internal, methodology pending, never a customer promise.</span></div>
+  </div>
+
+  <!-- ============================ 1. ICP AS FIRMOGRAPHICS ============================ -->
+  <section aria-labelledby="icp-h">
+    <p class="eyebrow" id="icp-h">[ 1 ] The ICP as firmographics <span class="k">&middot; not the go-to-market motion</span></p>
+    <h2>Who the first buyer&rsquo;s company is, in terms a stranger could screen against.</h2>
+    <p class="say">The domino sequence (C-levels, then engineers, then everyone else) is a <strong>motion, not an ICP</strong>. The motion tells you the order you sell in; the firmographics below tell an investor exactly which company to introduce.</p>
+    <div class="twrap">
+      <table>
+        <caption>Domino-1 firmographic screen</caption>
+        <thead><tr><th scope="col">Firmographic</th><th scope="col">Domino-1 target</th><th scope="col">Basis</th></tr></thead>
+        <tbody>
+          <tr><td><span class="lbl">Headcount / revenue</span></td><td>Mid-market, roughly $50M to $3B revenue, lean executive team <span class="tag tag--unv">unverified</span></td><td>Lab and SI mid-market pushes target the $300M to $3B band <span class="tag tag--vendor">VENDOR</span></td></tr>
+          <tr><td><span class="lbl">Vertical candidates</span></td><td>Vertical-agnostic on product; screened for a decision-bottlenecked executive and an internal engineering org. Concentrations: digital-asset / fintech operators, PE-owned companies at ownership transition, founder-led growth-stage firms</td><td>Reasoned from trigger conditions plus PE-portfolio targeting <span class="tag tag--vendor">VENDOR</span></td></tr>
+          <tr><td><span class="lbl">Incumbent tools</span></td><td>Meeting capture, an OKR platform, point AI assistants, and a human or fractional chief of staff. The engagement displaces none of them; it sits above and deletes the loops between them</td><td>Priced against the incumbent stack, not with it <span class="tag tag--vendor">VENDOR</span></td></tr>
+          <tr><td><span class="lbl">Buyer titles</span></td><td>The CEO personally (or a COO / President who fully owns operations). Domino-2: CTO or VP Engineering, CEO as sponsor</td><td>CEO personal ownership is the strongest success predictor across 51 deployments <span class="tag tag--survey">SURVEY</span></td></tr>
+          <tr><td><span class="lbl">Monday-morning trigger</span></td><td>The executive is personally the bottleneck: meeting overload, follow-up debt that never clears, status assembly done by hand, a board asking for an AI story. They are the single point of failure for their own company&rsquo;s follow-through</td><td>Reference-implementation analogue: 39 overdue follow-ups cleared, 3 to 6 hours per week recovered for one operator <span class="tag">MEASURED</span> n=1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Disqualifiers, screen out fast:</b> CEO will not personally own it; replace-not-reward intent; demands day-1 autonomy on money, irreversible, or external actions; will not sign a baseline and a kill criterion; procurement-led cold buying; disclosure-sensitive capture scope before the data-governance posture exists; a live customer-facing crisis; and, softly, no engineering org, which caps the account at the chief-of-staff seat.</p>
+  </section>
+
+  <!-- ============================ 2. BUYER ROI MODEL ============================ -->
+  <section aria-labelledby="roi-h">
+    <p class="eyebrow" id="roi-h">[ 2 ] Buyer ROI model <span class="k">&middot; explicit formulas</span></p>
+    <h2>Executive hours alone cannot carry it. Seven dimensions do.</h2>
+    <p class="say">The ROI accrues to the executive&rsquo;s own operating capacity, not to headcount cost. Every input is an <span class="tag tag--assume">ASSUMPTION</span> with a stated range; the structure is the deliverable, the magnitudes are the negotiation. Nothing is dollarized except at the buyer&rsquo;s own agreed rate.</p>
+    <div class="twrap">
+      <table>
+        <caption>The seven dimensions, by formula</caption>
+        <thead><tr><th scope="col">Dimension</th><th scope="col">Formula</th><th scope="col">Key inputs (ASSUMPTION, range)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="lbl">D1 Workflow cycle time</span></td><td><span class="f">(baseline cycle time per instance &minus; pilot cycle time) &times; instances per period &times; value of that time</span></td><td>cycle-time reduction 20 to 60% <span class="tag tag--assume">ASSUMPTION</span>; time value at buyer&rsquo;s rate</td></tr>
+          <tr><td><span class="lbl">D2 Decision latency</span></td><td><span class="f">(baseline request-to-decision elapsed &minus; pilot elapsed) &times; decisions per period &times; cost of delay per unit time</span></td><td>latency reduction 30 to 70% <span class="tag tag--assume">ASSUMPTION</span>; cost-of-delay buyer-stated</td></tr>
+          <tr><td><span class="lbl">D3 Rework</span></td><td><span class="f">(baseline rework rate &minus; pilot rework rate) &times; units per period &times; cost per rework</span></td><td>rework-rate delta 10 to 40% <span class="tag tag--assume">ASSUMPTION</span></td></tr>
+          <tr><td><span class="lbl">D4 Quality</span></td><td><span class="f">(baseline defect-escape rate &minus; pilot rate) &times; cost per escaped defect</span>; a tracked index where not dollarizable</td><td>defect-escape delta 10 to 30% <span class="tag tag--assume">ASSUMPTION</span></td></tr>
+          <tr><td><span class="lbl">D5 Missed commitments</span></td><td><span class="f">(baseline overdue count &minus; end-state count) &times; value at risk per missed commitment</span>; count-only when value not agreed</td><td>overdue count toward zero <span class="tag tag--assume">ASSUMPTION</span>; analogue: 39 cleared <span class="tag">MEASURED</span> n=1</td></tr>
+          <tr><td><span class="lbl">D6 Adoption</span></td><td><span class="f">weekly active participation as a share of the cohort</span>; a durability gate, not a dollar line: it multiplies whether D1 to D5 persist</td><td>adoption 50 to 70% weekly-active <span class="tag tag--assume">ASSUMPTION</span></td></tr>
+          <tr><td><span class="lbl">D7 Capacity redeployment</span></td><td><span class="f">(executive + team hours recovered) &times; value of the higher-value work it is redeployed into</span>; NOT headcount removed</td><td>3 to 6 hrs/wk exec recovered <span class="tag tag--assume">ASSUMPTION</span> (analogue <span class="tag">MEASURED</span> n=1)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Why hours alone cannot carry it:</b> hours recovered (part of D7, dollarized at the buyer&rsquo;s rate) is the most legible line and the easiest to dismiss as soft. A defensible case reads across the set: a workflow that runs faster (D1), decides sooner (D2), with less rework (D3) and fewer escaped defects (D4), where commitments stop slipping (D5), the behavior sticks (D6), and recovered capacity goes to work that matters (D7). The contracted pair is <b>D7 plus D5</b>, because both have measured internal analogues and both are auditable by the buyer&rsquo;s own records. No baseline, no ROI claim.</p>
+  </section>
+
+  <!-- ============================ 3. BUYER VS SELLER OUTCOMES ============================ -->
+  <section aria-labelledby="bvs-h">
+    <p class="eyebrow" id="bvs-h">[ 3 ] Buyer outcomes vs seller outcomes <span class="k">&middot; kept separate</span></p>
+    <h2>Two ledgers, never blended.</h2>
+    <p class="say">The buyer is sold on the left column only. The right column is our economics; it belongs in the achievement ledger, never in the buyer&rsquo;s ROI case.</p>
+    <div class="twrap">
+      <table>
+        <caption>The separation of outcomes</caption>
+        <thead><tr><th scope="col">Buyer outcomes (what the buyer buys)</th><th scope="col">Seller outcomes (our economics)</th></tr></thead>
+        <tbody>
+          <tr><td>Cycle time compressed, decision latency down (D1, D2)</td><td>A signed 90-day pilot: the raise trigger and first ledger entry</td></tr>
+          <tr><td>Rework and escaped defects down (D3, D4)</td><td>Conversion to the companion retainer at day 91</td></tr>
+          <tr><td>Missed commitments cleared and held (D5)</td><td>Referenceability a known investor can verify directly</td></tr>
+          <tr><td>Adoption that sticks, felt as reward not threat (D6)</td><td>Domino-2 pull inside the same account</td></tr>
+          <tr><td>Capacity redeployed to higher-value work (D7)</td><td>Reusable-playbook percentage: the asset that converts service to software</td></tr>
+          <tr><td>A production-grade, human-gated workflow they keep</td><td>Gross-margin trajectory along the forward-deployed curve</td></tr>
+          <tr><td>The head start: first across the adoption gap in their vertical</td><td>Cash actuals that turn the model&rsquo;s ASSUMPTION ranges into MEASURED</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>The discipline:</b> never pitch the buyer on the seller&rsquo;s outcomes, and never book a seller outcome as buyer ROI. The two columns move on separate evidence.</p>
+  </section>
+
+  <!-- ============================ 4. REVENUE ARCHITECTURE ============================ -->
+  <section aria-labelledby="rev-h">
+    <p class="eyebrow" id="rev-h">[ 4 ] Revenue architecture <span class="k">&middot; consult vs software</span></p>
+    <h2>A forward-deployed service, engineered to become software.</h2>
+    <p class="say">Domino-1 is a service; domino-3 is software; domino-2 is where the conversion happens. Software margin is named in the future tense throughout. The margin story is a trajectory, not a level, and it is capped short of any mature-SaaS assumption.</p>
+    <div class="twrap">
+      <table>
+        <caption>Consult-versus-software split by domino</caption>
+        <thead><tr><th scope="col">Stage</th><th scope="col">Revenue type</th><th scope="col">Margin character</th><th scope="col">Basis</th></tr></thead>
+        <tbody>
+          <tr><td><span class="lbl">Domino-1</span><br>chief-of-staff seat</td><td>Consulting-margin delivery, operator-capacity-bound</td><td>Services band, high touch</td><td>$25,000/mo retainer precedent, one client, unnamed <span class="tag">MEASURED</span></td></tr>
+          <tr><td><span class="lbl">Domino-2</span><br>engineering overhaul</td><td>Blended, repeatable delivery informed by Carter Razink&rsquo;s Recurro framework (an input to the pillar, not the product)</td><td>Improving as playbooks harden</td><td>Outcome-shaped engineering pricing, PRs merged, $492M ARR run-rate <span class="tag tag--vendor">VENDOR</span></td></tr>
+          <tr><td><span class="lbl">Domino-3</span><br>whole-org software</td><td>Software subscription (per-org or per-seat) plus retained advisory</td><td>Approaches the hybrid band as recurring share rises (designed, horizon)</td><td>Stacked OKR + gamification $20 to 50/user/mo; enterprise-assistant ACV $200 to 600K/yr <span class="tag tag--vendor">VENDOR</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure aria-labelledby="marginfig-t">
+      <svg viewBox="0 0 600 224" role="img" aria-labelledby="marginfig-t marginfig-d">
+        <title id="marginfig-t">The forward-deployed margin shape</title>
+        <desc id="marginfig-d">Horizontal gross-margin bands on a zero to one hundred percent axis. Pure services is modeled at thirty to fifty percent, not a current-state margin. The hybrid stage widens. The domino-three product-formation band is drawn dashed as a designed horizon, expanding only as recurring software revenue crosses thirty then fifty percent. A separate reference marker shows Palantir at eighty-four to eighty-eight percent, cited as the shape, not our margin.</desc>
+        <!-- axis -->
+        <line x1="150" y1="188" x2="560" y2="188" stroke="#20262A" stroke-opacity="0.3" stroke-width="1.2"></line>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#6C727A" text-anchor="middle">
+          <line x1="150" y1="188" x2="150" y2="193" stroke="#20262A" stroke-opacity="0.3"></line><text x="150" y="206">0%</text>
+          <line x1="252.5" y1="188" x2="252.5" y2="193" stroke="#20262A" stroke-opacity="0.3"></line><text x="252.5" y="206">25%</text>
+          <line x1="355" y1="188" x2="355" y2="193" stroke="#20262A" stroke-opacity="0.3"></line><text x="355" y="206">50%</text>
+          <line x1="457.5" y1="188" x2="457.5" y2="193" stroke="#20262A" stroke-opacity="0.3"></line><text x="457.5" y="206">75%</text>
+          <line x1="560" y1="188" x2="560" y2="193" stroke="#20262A" stroke-opacity="0.3"></line><text x="560" y="206">100%</text>
+        </g>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#20262A">
+          <!-- row 1: services (30-50), solid -->
+          <text x="8" y="52" fill="#1E5A4C">SERVICES</text>
+          <rect x="273" y="38" width="82" height="20" rx="3" fill="rgba(30,90,76,0.14)" stroke="#1E5A4C" stroke-width="1.6"></rect>
+          <text x="363" y="52" fill="#586067" font-size="10">30 to 50% modeled</text>
+          <!-- row 2: hybrid (35-60), solid widening -->
+          <text x="8" y="90" fill="#20262A">HYBRID</text>
+          <rect x="293.5" y="76" width="102.5" height="20" rx="3" fill="rgba(30,90,76,0.09)" stroke="#1E5A4C" stroke-width="1.4"></rect>
+          <text x="404" y="90" fill="#586067" font-size="10">widening</text>
+          <!-- row 3: horizon (45-75), dashed designed -->
+          <text x="8" y="128" fill="#6C727A">HORIZON</text>
+          <rect x="334.5" y="114" width="123" height="20" rx="3" fill="none" stroke="#6C727A" stroke-width="1.3" stroke-dasharray="4 3"></rect>
+          <text x="463" y="128" fill="#6C727A" font-size="10">designed</text>
+          <!-- row 4: palantir reference marker (84-88) -->
+          <text x="8" y="166" fill="#586067">REF</text>
+          <rect x="494.4" y="152" width="16.4" height="20" rx="2" fill="#586067" fill-opacity="0.25" stroke="#586067" stroke-width="1.2"></rect>
+          <text x="150" y="166" fill="#586067" font-size="10">Palantir 84 to 88%, the shape, not our margin</text>
+        </g>
+      </svg>
+      <figcaption><b>The shape, not a promise.</b> The services band is modeled under assumptions, not a current-state margin: the pilot fee is a founder decision and is not yet set. Margin expands only as the reusable-product percentage earns it. The a16z discipline holds: no pretending to be SaaS while being services with a platform. <span class="tag tag--assume">ASSUMPTION</span> pilot margin; <span class="tag tag--vendor">VENDOR</span> bands, retrieved 2026-07-08.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============================ 5. PILOT FEE SCAFFOLD ============================ -->
+  <section aria-labelledby="fee-h">
+    <p class="eyebrow" id="fee-h">[ 5 ] The pilot fee scaffold <span class="k">&middot; setup + monthly + equity, never per-seat</span></p>
+    <h2>Priced against a chief of staff plus an engineering lift, not against seats.</h2>
+    <p class="say">The scaffold shape is the deliverable; the numbers are a founder decision. The anchors below are citable; the fee itself stays off every external surface until the founder sets it.</p>
+    <div class="twrap">
+      <table>
+        <caption>The three-part scaffold</caption>
+        <thead><tr><th scope="col">Component</th><th scope="col">What it covers</th><th scope="col">Anchor (citable)</th><th scope="col">The number</th></tr></thead>
+        <tbody>
+          <tr><td><span class="lbl">Setup fee</span><br>one-time</td><td>Baseline instrumentation, capture go-live, the one gated-workflow build</td><td>AI proof of concept $20 to 250K; AI pilots $50 to 200K over 8 to 16 weeks <span class="tag tag--vendor">VENDOR</span></td><td><span class="set">founder sets</span></td></tr>
+          <tr><td><span class="lbl">Monthly fee</span><br>across the 90 days</td><td>Design-partner delivery: capture and one gated workflow, then gamification entry</td><td>Fractional chief of staff $7 to 14K/mo; full-time true cost $240 to 265K+/yr; retainer anchored on $25,000/mo <span class="tag tag--vendor">VENDOR</span> <span class="tag">MEASURED</span></td><td><span class="set">founder sets</span></td></tr>
+          <tr><td><span class="lbl">Equity component</span><br>conditional</td><td>Transformative scope only; counsel default is equity plus cash, cash-only needs partner sign-off</td><td>Equity-for-transformation precedent (venture-studio and JV mechanics) <span class="tag tag--vendor">VENDOR</span></td><td><span class="set">founder + counsel</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure aria-labelledby="anchorfig-t">
+      <svg viewBox="0 0 600 214" role="img" aria-labelledby="anchorfig-t anchorfig-d">
+        <title id="anchorfig-t">The chief-of-staff budget line</title>
+        <desc id="anchorfig-d">Monthly cost on a zero to thirty thousand dollar per month axis. A fractional chief of staff runs seven to fourteen thousand a month. A full-time chief of staff true cost is about twenty to twenty-two thousand a month equivalent. The one measured retainer precedent sits at twenty-five thousand a month. The pilot fee is a dashed founder-set bracket spanning that same budget line, never a per-seat figure.</desc>
+        <line x1="150" y1="178" x2="560" y2="178" stroke="#20262A" stroke-opacity="0.3" stroke-width="1.2"></line>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#6C727A" text-anchor="middle">
+          <line x1="150" y1="178" x2="150" y2="183" stroke="#20262A" stroke-opacity="0.3"></line><text x="150" y="196">$0</text>
+          <line x1="286.7" y1="178" x2="286.7" y2="183" stroke="#20262A" stroke-opacity="0.3"></line><text x="286.7" y="196">$10K</text>
+          <line x1="423.3" y1="178" x2="423.3" y2="183" stroke="#20262A" stroke-opacity="0.3"></line><text x="423.3" y="196">$20K</text>
+          <line x1="560" y1="178" x2="560" y2="183" stroke="#20262A" stroke-opacity="0.3"></line><text x="560" y="196">$30K/mo</text>
+        </g>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="11">
+          <!-- fractional CoS 7-14K -->
+          <text x="8" y="52" fill="#586067">FRACTIONAL COS</text>
+          <rect x="245.7" y="38" width="95.6" height="20" rx="3" fill="rgba(30,90,76,0.09)" stroke="#586067" stroke-width="1.3"></rect>
+          <text x="349" y="52" fill="#6C727A" font-size="10">$7 to 14K</text>
+          <!-- full-time true cost 20-22K -->
+          <text x="8" y="90" fill="#586067">FULL-TIME COS</text>
+          <rect x="423.3" y="76" width="27.4" height="20" rx="3" fill="rgba(30,90,76,0.09)" stroke="#586067" stroke-width="1.3"></rect>
+          <text x="458" y="90" fill="#6C727A" font-size="10">$20 to 22K/mo</text>
+          <!-- measured retainer 25K marker -->
+          <text x="8" y="128" fill="#1E5A4C">RETAINER</text>
+          <line x1="491.7" y1="110" x2="491.7" y2="136" stroke="#1E5A4C" stroke-width="2.4"></line>
+          <text x="150" y="128" fill="#586067" font-size="10">$25,000/mo measured precedent, one client, unnamed</text>
+          <!-- pilot fee: founder-set dashed bracket across the anchor zone -->
+          <text x="8" y="166" fill="#8A5A1C">PILOT FEE</text>
+          <rect x="245.7" y="152" width="246" height="20" rx="3" fill="none" stroke="#8A5A1C" stroke-width="1.4" stroke-dasharray="4 3"></rect>
+          <text x="150" y="166" fill="#8A5A1C" font-size="10">founder sets</text>
+        </g>
+      </svg>
+      <figcaption><b>Same budget line, more coverage.</b> The engagement substitutes for a chief of staff with delivery and a software seat included, and is never priced per user. <span class="tag tag--vendor">VENDOR</span> and <span class="tag">MEASURED</span> anchors; the fee itself is a founder decision.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============================ 6. THE PILOT P&L ============================ -->
+  <section aria-labelledby="pnl-h">
+    <p class="eyebrow" id="pnl-h">[ 6 ] The pilot P&amp;L <span class="k">&middot; one pilot, 90 days, full founder cost</span></p>
+    <h2>A real, costed engagement, not a loss leader disguised as a product.</h2>
+    <p class="say">Revenue is the founder-set scaffold. The cost side is real and estimable now. This is the only P&amp;L that goes external, and it stays a single-pilot model.</p>
+    <div class="twrap">
+      <table>
+        <caption>Single-pilot cost lines (90 days)</caption>
+        <thead><tr><th scope="col">Cost line</th><th scope="col">Character</th><th scope="col">Basis</th></tr></thead>
+        <tbody>
+          <tr><td><span class="lbl">Fully loaded founder delivery time</span></td><td>The largest line and the binding constraint; single-operator capacity</td><td>founder&rsquo;s own loaded rate &times; pilot hours <span class="tag tag--assume">ASSUMPTION</span></td></tr>
+          <tr><td><span class="lbl">Model / inference / infrastructure</span></td><td>Per-run compute for capture, agents, scoring</td><td>metered, small next to founder time <span class="tag tag--assume">ASSUMPTION</span></td></tr>
+          <tr><td><span class="lbl">Tooling and capture licenses</span></td><td>Capture, storage, embeddings</td><td>$10 to 30/user/mo class <span class="tag tag--vendor">VENDOR</span></td></tr>
+          <tr><td><span class="lbl">Originating-member contribution</span></td><td>Gamification and engineering; equity-earning, not cash payroll at pilot stage</td><td>contribution-for-equity, per decision 0003 <span class="tag tag--assume">ASSUMPTION</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Pilot gross margin</b> = (pilot revenue &minus; the lines above) as a percentage. It sits in the services band, not a SaaS band, because founder delivery time dominates the cost. The point of the pilot P&amp;L is to show a costed engagement with the founder&rsquo;s own time fully priced in. Revenue is deliberately concessionary for a design partner.</p>
+  </section>
+
+  <!-- ============================ 7. 24-MONTH THREE-BRANCH MODEL ============================ -->
+  <section aria-labelledby="branch-h">
+    <p class="eyebrow" id="branch-h">[ 7 ] The 24-month model <span class="k">&middot; internal capacity-and-survival, not a revenue curve</span></p>
+    <h2>Does the company survive, and stay in the founder&rsquo;s control, under each scenario?</h2>
+    <p class="say">Scenario planning on five levers, not a growth projection. It is internal; the external surface stays the pilot P&amp;L. It carries this label wherever it travels. <strong>No revenue line hockey-sticks in any branch.</strong></p>
+    <div class="twrap">
+      <table>
+        <caption>Three branches across five levers</caption>
+        <thead><tr><th scope="col">Lever</th><th scope="col">Downside</th><th scope="col">Base</th><th scope="col">Upside</th></tr></thead>
+        <tbody>
+          <tr><td><span class="lbl">Pilot conversion</span></td><td>Does NOT convert (failed pilot)</td><td>Converts to retainer</td><td>Converts fast, referenceable</td></tr>
+          <tr><td><span class="lbl">Sales cycle</span></td><td>Long; no second partner in-window</td><td>One additional design partner</td><td>Multiple, relationship-compressed</td></tr>
+          <tr><td><span class="lbl">Founder capacity</span></td><td>Fully consumed by delivery</td><td>Supplemented by member contribution</td><td>Leveraged as playbooks harden</td></tr>
+          <tr><td><span class="lbl">Implementation burden</span></td><td>High, fully bespoke</td><td>Falling as playbooks form</td><td>Largely productized for common workflows</td></tr>
+          <tr><td><span class="lbl">Reusable-product %</span></td><td>Low; stays services</td><td>Rising modestly</td><td>Crosses the recurring threshold (software margin begins, horizon)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box plain">
+      <h3>The downside branch must survive a failed pilot.</h3>
+      <p style="margin:0;font-size:0.95rem;line-height:1.5;color:var(--ink-soft)">If the pilot fails to convert, the company still stands, for reasons independent of the pilot: the strategic check is sized as runway to the month-6 milestone with contingency (section 9), not as a bet on one conversion; the founder&rsquo;s existing consulting book already generates services revenue independent of the product (the $25,000/mo precedent among active engagements, <span class="tag">MEASURED</span>); full founder cost is already in the model, so there is no hidden capacity cliff; and a failed pilot still produces a baseline, a costed engagement, and lessons that sharpen the next offer. <b>Survival, not growth, is the downside metric.</b></p>
+    </div>
+  </section>
+
+  <!-- ============================ 8. DAY-91 CONVERSION TRIGGER ============================ -->
+  <section aria-labelledby="d91-h">
+    <p class="eyebrow" id="d91-h">[ 8 ] The day-91 conversion trigger</p>
+    <h2>What turns the pilot into an annual contract.</h2>
+    <p class="say">An evidence threshold, not a sales close. The pilot converts at day 91 only when the day-90 gate clears on buyer-verifiable evidence.</p>
+    <div class="box">
+      <h3>All of the following must hold at the day-90 gate</h3>
+      <ol>
+        <li><b>Sustained capacity recovery</b> (D7): executive hours recovered holding across 4+ consecutive weeks, in the buyer&rsquo;s own records.</li>
+        <li><b>Missed-commitment debt cleared</b> (D5): overdue count at or near zero and staying there.</li>
+        <li><b>Graduation status honest:</b> at least one decision class at or past 90% agreement over 20+ reps with written sign-off, or a documented honest reason. Money, irreversible, and external classes do not graduate within the pilot.</li>
+        <li><b>The buyer&rsquo;s own baseline confirms the ROI</b> on the contracted metric pair (D7 + D5).</li>
+        <li><b>Zero ungated</b> money, irreversible, or external actions across the entire pilot. A single ungated action fails the gate regardless of everything else.</li>
+        <li><b>CEO personal ownership sustained</b> through weekly check-ins.</li>
+      </ol>
+      <p class="then"><b>Day 91:</b> the buyer converts to the companion retainer (annual, anchored on the $25,000/mo precedent, number founder-set), grants a defined referenceability scope, and opens the domino-2 sponsorship conversation.</p>
+    </div>
+  </section>
+
+  <!-- ============================ 9. DOMINO-TRIGGER METRICS ============================ -->
+  <section aria-labelledby="dom-h">
+    <p class="eyebrow" id="dom-h">[ 9 ] Domino-trigger metrics <span class="k">&middot; per go-to-market stage</span></p>
+    <h2>Each stage advances only on its own evidence.</h2>
+    <div class="twrap">
+      <table>
+        <caption>What opens the next door</caption>
+        <thead><tr><th scope="col">Stage</th><th scope="col">Trigger to advance</th><th scope="col">Metric that opens the next domino</th></tr></thead>
+        <tbody>
+          <tr><td><span class="lbl">Domino-1 to 2</span></td><td>Day-90 gate cleared: capacity recovered, commitments cleared, workflow in production, zero ungated actions, conversion signed</td><td>90 days of gated agent work on the CEO&rsquo;s own calendar, plus a CEO-made internal referral to the CTO / VP Engineering</td></tr>
+          <tr><td><span class="lbl">Domino-2 to 3</span></td><td>Domino-1 gate cleared first (hard precondition). Engineering engagement instrumented like domino-1: baseline, named owner, kill criterion</td><td>Engineering throughput, cycle time, and cost per shipped unit on the buyer&rsquo;s own definition. The engineering-lift anchor references an internal benchmark, methodology pending, never a customer promise</td></tr>
+          <tr><td><span class="lbl">Domino-3</span></td><td>Playbooks hardened into reusable product; per-org or per-seat software displaces bespoke delivery</td><td>Recurring-software revenue share crossing ~30%, then ~50%, of account revenue. The point at which the service has become software</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================ 10. STRATEGIC-CHECK SIZING METHOD ============================ -->
+  <section aria-labelledby="chk-h">
+    <p class="eyebrow" id="chk-h">[ 10 ] Strategic-check sizing method <span class="k">&middot; method, not a number</span></p>
+    <h2>A runway-to-milestone calculation, never a valuation of the vision.</h2>
+    <p class="say">The strategic check is the smaller check of the canonical ask. Its size is a founder-and-counsel decision; no band appears in any external material. The method is the deliverable.</p>
+    <pre class="method">strategic check  <span class="op">=</span>  six-month milestone budget
+                    <span class="c">(fully loaded runway to the ~month-6</span>
+                    <span class="c"> demonstrated-achievement milestone that</span>
+                    <span class="c"> triggers the larger raise)</span>
+                 <span class="op">+</span>  contingency
+                    <span class="c">(the 20 to 40% AI-engagement overrun anchor, VENDOR)</span>
+                 <span class="op">&minus;</span>  pilot revenue that offsets the same period</pre>
+    <p class="note">Full founder cost is inside the six-month budget. A converting pilot shrinks the ask, which is the honest direction. The two-transaction discipline holds: the strategic check (investment) and the pilot (services) are separate decisions on separate evidence; a yes to one is never a yes to both.</p>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer" aria-label="Provenance and the ask">
+    <div class="legend">
+      <p class="li"><span class="tag">MEASURED</span> instrumented first-party or a signed engagement.</p>
+      <p class="li"><span class="tag tag--vendor">VENDOR</span> a vendor or third-party-reported market figure.</p>
+      <p class="li"><span class="tag tag--survey">SURVEY</span> a cited third-party study.</p>
+      <p class="li"><span class="tag tag--assume">ASSUMPTION</span> a stated design estimate, held to its range.</p>
+      <p class="li"><span class="tag tag--corpus">CORPUS</span> an internal build, not independently benchmarked.</p>
+      <p class="li"><span class="set">founder sets</span> a decision that is the founder&rsquo;s alone; off every external surface until confirmed.</p>
+    </div>
+    <p class="foot-note">Honest math: every figure above carries the basis it stands on. Vendor bands retrieved 2026-07-08; re-verify before external use. The company is unnamed by the founder&rsquo;s ruling; the brackets around <span class="name-token"><span class="br">[</span><span class="nm">NAME</span><span class="br">]</span></span> mark the one decision still open. Pilot P&amp;L only; no multi-year hockey stick, no mature-SaaS margin, no throughput multiplier. No client or partner is named; the fleet-of-one is a reference implementation, not an installed customer.</p>
+    <p class="foot-ask"><b>The ask:</b> A scoped 90-day design-partner pilot plus a smaller strategic check. The larger raise comes at roughly month 6, triggered by demonstrated achievement.</p>
+  </footer>
+
+</main>
+</body>
+</html>

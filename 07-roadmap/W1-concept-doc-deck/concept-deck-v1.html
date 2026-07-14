@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Concept deck, draft v1: the trusted companion through the AI transition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1A26; --panel:#15293C; --panel2:#1B3145; --line:#2B4257;
+    --fog:#D8DEE3; --dim:#8CA3B5; --horizon:#8FB3C7;
+    --brass:#C9A45C; --brass-bright:#E3C685; --copper:#A97E52; --clay:#C05B40;
+    --ok:#7FA98A;
+    --serif:'Instrument Serif',Georgia,serif;
+    --sans:'Instrument Sans',-apple-system,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--fog);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--brass);color:var(--ink)}
+
+  /* ---------- draft banner ---------- */
+  .draftbar{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(14,26,38,.92);border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+    padding:7px 16px;display:flex;justify-content:space-between;gap:12px;backdrop-filter:blur(6px)}
+  .draftbar b{color:var(--clay);font-weight:600}
+
+  /* ---------- rail ---------- */
+  nav.rail{position:fixed;left:0;top:0;bottom:34px;width:212px;padding:26px 0 26px 22px;z-index:50;
+    display:flex;flex-direction:column;gap:2px;overflow-y:auto;scrollbar-width:none;
+    border-right:1px solid rgba(43,66,87,.55);background:linear-gradient(180deg,rgba(14,26,38,.6),rgba(14,26,38,.2))}
+  nav.rail::-webkit-scrollbar{display:none}
+  .rail .brand{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--brass);text-transform:uppercase;margin-bottom:18px}
+  .rail a{display:flex;gap:9px;align-items:baseline;padding:4px 10px 4px 0;color:var(--dim);text-decoration:none;
+    font-size:11.5px;letter-spacing:.02em;border-left:2px solid transparent;padding-left:10px;margin-left:-12px;
+    transition:color .2s,border-color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rail a .n{font-family:var(--mono);font-size:9.5px;color:var(--line);transition:color .2s;flex:0 0 auto}
+  .rail a.on{color:var(--fog);border-left-color:var(--brass)}
+  .rail a.on .n{color:var(--brass)}
+  .rail a:hover{color:var(--horizon)}
+
+  /* ---------- slides ---------- */
+  main{margin-left:212px}
+  section.slide{min-height:100vh;padding:76px 68px 96px;position:relative;display:flex;flex-direction:column;justify-content:center;
+    border-bottom:1px solid rgba(43,66,87,.45)}
+  .snum{position:absolute;top:30px;right:64px;font-family:var(--mono);font-size:11px;color:var(--line);letter-spacing:.18em}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);margin-bottom:18px}
+  .eyebrow.risk{color:var(--clay)}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.4vw,74px);line-height:1.04;color:#F2F0EA;letter-spacing:-.01em}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.08;color:#F2F0EA;margin-bottom:26px;max-width:22ch}
+  h2 em{font-style:italic;color:var(--brass-bright)}
+  h3{font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--horizon);margin-bottom:10px}
+  p.lead{font-size:clamp(17px,1.5vw,20px);color:var(--fog);max-width:62ch}
+  p.body{font-size:15.5px;color:#B9C6CF;max-width:66ch;margin-top:12px}
+  .thesis{font-family:var(--serif);font-style:italic;font-size:clamp(19px,1.9vw,25px);color:var(--brass-bright);
+    border-left:2px solid var(--brass);padding-left:20px;margin-top:34px;max-width:56ch;line-height:1.35}
+
+  /* ---------- lineage chips (the signature) ---------- */
+  .tag{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;
+    padding:2px 7px 1.5px;border-radius:2px;vertical-align:2px;margin-left:6px;white-space:nowrap}
+  .tag.m{background:var(--brass);color:var(--ink)}
+  .tag.s{background:transparent;color:var(--horizon);border:1px solid var(--horizon)}
+  .tag.v{background:transparent;color:var(--copper);border:1px solid var(--copper)}
+  .tag.u{background:transparent;color:var(--dim);border:1px dashed var(--dim)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:26px;font-family:var(--mono);font-size:10.5px;color:var(--dim);align-items:center}
+  .legend span.k{letter-spacing:.16em}
+
+  /* ---------- stat rows / cards ---------- */
+  .grid{display:grid;gap:14px;margin-top:30px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+  .card .big{font-family:var(--serif);font-size:clamp(30px,3vw,44px);color:#F2F0EA;line-height:1}
+  .card .big .unit{font-size:.5em;color:var(--dim)}
+  .card .lbl{font-size:12.5px;color:var(--dim);margin-top:8px;line-height:1.45}
+  .card.brass{border-color:rgba(201,164,92,.5)}
+  .card.brass .big{color:var(--brass-bright)}
+
+  /* ---------- ledger block ---------- */
+  .ledger{font-family:var(--mono);font-size:13px;background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    margin-top:26px;max-width:760px;overflow:hidden}
+  .ledger .lhead{padding:10px 18px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);
+    border-bottom:1px solid var(--line);background:var(--panel2)}
+  .ledger .row{display:flex;justify-content:space-between;gap:20px;padding:9px 18px;border-bottom:1px dashed rgba(43,66,87,.7);color:#C4D0D8}
+  .ledger .row .r{text-align:right;color:#F2F0EA;flex:0 0 auto}
+  .ledger .row.sum{border-bottom:none;border-top:1.5px solid var(--brass);background:rgba(201,164,92,.07);color:var(--brass-bright);font-weight:600;flex-direction:column;gap:4px}
+  .ledger .row.sum .r{text-align:left;color:var(--brass-bright)}
+  .ledger .row span:first-child{flex:1 1 58%}
+  .ledger .row .r{flex:0 1 auto;max-width:42%}
+  .ledger .row.sum span:first-child,.ledger .row.sum .r{max-width:none;flex:none}
+  .ledger .row .d{color:var(--dim)}
+
+  /* ---------- pillar / competitor tables ---------- */
+  table.tbl{width:100%;border-collapse:collapse;margin-top:26px;font-size:14px}
+  .tbl th{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
+    text-align:left;padding:8px 14px;border-bottom:1px solid var(--line)}
+  .tbl td{padding:10px 14px;border-bottom:1px solid rgba(43,66,87,.5);vertical-align:top;color:#B9C6CF}
+  .tbl td:first-child{color:#F2F0EA;font-weight:500;white-space:nowrap}
+  .tbl td .role{font-family:var(--mono);font-size:10px;color:var(--brass);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:2px}
+
+  /* ---------- gates ---------- */
+  .law{display:flex;gap:16px;margin-top:18px;max-width:760px}
+  .law .gate{flex:0 0 auto;width:22px;position:relative;margin-top:4px}
+  .law .gate::before,.law .gate::after{content:"";position:absolute;top:0;bottom:0;width:3px;background:var(--clay);border-radius:2px}
+  .law .gate::before{left:4px}.law .gate::after{right:4px}
+  .law .t{font-size:15px;color:#D5DDE3}
+  .law .t b{color:#F2F0EA;font-weight:600}
+
+  /* ---------- steps / dominos ---------- */
+  .step{display:flex;gap:18px;margin-top:20px;max-width:740px;align-items:baseline}
+  .step .num{font-family:var(--serif);font-size:34px;color:var(--brass);flex:0 0 44px;line-height:1}
+  .step .t b{display:block;color:#F2F0EA;font-size:16.5px;font-weight:600;margin-bottom:3px}
+  .step .t{font-size:14.5px;color:#AEBDC8}
+
+  /* ---------- branch panels ---------- */
+  .branches{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+  .branch{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:8px}
+  .branch .bl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+  .branch h4{font-family:var(--serif);font-weight:400;font-size:21px;color:#F2F0EA}
+  .branch p{font-size:13px;color:#AEBDC8}
+  .branch.b .bl{color:var(--brass-bright)}
+  .branch.b{border-color:rgba(201,164,92,.55);background:linear-gradient(180deg,rgba(201,164,92,.08),var(--panel))}
+
+  /* ---------- two-column ---------- */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:26px}
+  .col h3.ground{color:var(--brass)} .col h3.threat{color:var(--clay)}
+  .reconcile{margin-top:26px;border:1px solid var(--line);border-left:3px solid var(--brass);background:var(--panel);
+    border-radius:0 6px 6px 0;padding:18px 22px;font-size:15px;color:#D5DDE3;max-width:900px}
+
+  /* ---------- conditional / banners ---------- */
+  .cond{border:1px dashed var(--copper);border-radius:6px;padding:14px 18px;margin-top:22px;
+    font-family:var(--mono);font-size:12px;color:var(--copper);max-width:760px}
+  .verdict{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink);
+    background:var(--ok);padding:3px 10px;border-radius:2px;margin-bottom:16px}
+
+  ul.tight{list-style:none;margin-top:16px;max-width:70ch}
+  ul.tight li{padding:9px 0 9px 22px;position:relative;font-size:15px;color:#C4D0D8;border-bottom:1px solid rgba(43,66,87,.4)}
+  ul.tight li::before{content:"";position:absolute;left:0;top:17px;width:8px;height:2px;background:var(--brass)}
+  ul.tight li b{color:#F2F0EA;font-weight:600}
+
+  .quote{font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.8vw,23px);color:#EDE9DF;line-height:1.4;max-width:56ch}
+  .quote .attr{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.16em;color:var(--dim);margin-top:10px;text-transform:uppercase}
+
+  html.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  html.js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){html.js .reveal{opacity:1;transform:none;transition:none}}
+  @media print{
+    html.js .reveal{opacity:1 !important;transform:none !important;transition:none}
+    nav.rail,.draftbar{display:none}
+    body{background:#fff;color:#1a2733}
+    section.slide{min-height:auto;page-break-after:always;border-bottom:none;padding:40px 32px}
+  }
+
+  /* ---------- cover ---------- */
+  #s00{justify-content:center;background:
+    radial-gradient(1100px 500px at 78% 12%,rgba(143,179,199,.10),transparent 60%),
+    radial-gradient(800px 420px at 18% 88%,rgba(201,164,92,.08),transparent 60%),var(--ink)}
+  #s00 .covermeta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:44px;display:flex;gap:26px;flex-wrap:wrap}
+
+  @media (max-width:960px){
+    nav.rail{display:none} main{margin-left:0}
+    section.slide{padding:64px 26px 96px}
+    .g2,.g3,.branches,.twocol{grid-template-columns:1fr}
+    .snum{right:26px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="rail" id="rail">
+  <div class="brand">Concept deck · v1</div>
+  <a href="#s00"><span class="n">00</span>Cover</a>
+  <a href="#s01"><span class="n">01</span>The category</a>
+  <a href="#s02"><span class="n">02</span>Where the market is</a>
+  <a href="#s03"><span class="n">03</span>The premise</a>
+  <a href="#s04"><span class="n">04</span>What it is</a>
+  <a href="#s05"><span class="n">05</span>Seven pillars, one system</a>
+  <a href="#s06"><span class="n">06</span>The dominos</a>
+  <a href="#s07"><span class="n">07</span>The running system</a>
+  <a href="#s08"><span class="n">08</span>Reward, not replace</a>
+  <a href="#s09"><span class="n">09</span>Product law</a>
+  <a href="#s10"><span class="n">10</span>Evidence</a>
+  <a href="#s11"><span class="n">11</span>Value by seat</a>
+  <a href="#s12"><span class="n">12</span>Open ground + threat</a>
+  <a href="#s13"><span class="n">13</span>Competitors, named</a>
+  <a href="#s14"><span class="n">14</span>Business model</a>
+  <a href="#s15"><span class="n">15</span>The 90-day pilot</a>
+  <a href="#s16"><span class="n">16</span>The ask + the hurdle</a>
+  <a href="#s17"><span class="n">17</span>Status + provenance</a>
+</nav>
+
+<main>
+
+<!-- ============ 00 COVER ============ -->
+<section class="slide" id="s00">
+  <div class="snum">S00</div>
+  <div class="eyebrow reveal">Concept deck · draft v1 · founder review only</div>
+  <h1 class="reveal">The trusted companion<br>through the AI transition.</h1>
+  <p class="lead reveal" style="margin-top:28px">A gamified, AI-powered operating system for organizations. One calm surface where anyone, CEO to line worker, directs agent work and consumes the results. Delivered as consulting plus software, because no box product survives contact with a real org chart.</p>
+  <div class="thesis reveal">Companies won't be sorted by which AI they bought. They'll be sorted by who they trusted to install it.</div>
+  <div class="covermeta reveal">
+    <span>2026-07-08</span><span>Product deliberately unnamed</span><span>Counsel-verified layer: 4/4 panel</span><span>Source: agent-os-foundation corpus</span>
+  </div>
+  <div class="legend reveal">
+    <span class="k">LINEAGE, ON EVERY STAT:</span>
+    <span class="tag m">MEASURED</span><span class="tag s">SURVEY</span><span class="tag v">VENDOR</span><span class="tag u">UNVERIFIED</span>
+    <span>unverified numbers are candidates, never quotable in the room</span>
+  </div>
+</section>
+
+<!-- ============ 01 CATEGORY ============ -->
+<section class="slide" id="s01">
+  <div class="snum">S01</div>
+  <div class="eyebrow reveal">The category</div>
+  <h2 class="reveal">Every company is about to run on agents. The real question is <em>who takes us through it</em> without breaking what works.</h2>
+  <p class="lead reveal">That part isn't in question. The question each CEO actually faces is simpler and more personal, and it is the one this business answers.</p>
+  <p class="body reveal">The product is deliberately unnamed today. The category it occupies has a name: the trusted companion that brings a company through the AI transition and gives it a head start. Consulting plus software, one accountable operator, one calm surface.</p>
+</section>
+
+<!-- ============ 02 MARKET ============ -->
+<section class="slide" id="s02">
+  <div class="snum">S02</div>
+  <div class="eyebrow reveal">Where the market actually is</div>
+  <h2 class="reveal">The noise says everyone is doing this. The measured numbers say almost no one is.</h2>
+  <div class="grid g3 reveal">
+    <div class="card"><div class="big">62<span class="unit">%</span></div><div class="lbl">of organizations are experimenting with AI agents <span class="tag s">SURVEY</span> McKinsey. Roughly 6% qualify as high performers.</div></div>
+    <div class="card"><div class="big">17<span class="unit">%</span></div><div class="lbl">have actually deployed <span class="tag s">SURVEY</span> Gartner</div></div>
+    <div class="card"><div class="big">~5<span class="unit">%</span></div><div class="lbl">capture real value from what they deploy <span class="tag s">SURVEY</span> MIT</div></div>
+  </div>
+  <div class="ledger reveal">
+    <div class="lhead">Worked through, on the page</div>
+    <div class="row"><span>Deployed <span class="d">(Gartner)</span></span><span class="r">17%</span></div>
+    <div class="row"><span>x capturing real value <span class="d">(MIT)</span></span><span class="r">~5%</span></div>
+    <div class="row sum"><span>Companies operating on agents in any real sense</span><span class="r">~0.85% · call it 1 in 100</span></div>
+  </div>
+  <p class="body reveal">We take the smaller, sourced number every time. That discipline held once before in material prepared for this recipient, when an 88% adoption headline was walked back to the ~1% it really supported. This isn't a fear window and we put no clock on it. Being early here compounds. Being on time doesn't.</p>
+</section>
+
+<!-- ============ 03 PREMISE ============ -->
+<section class="slide" id="s03">
+  <div class="snum">S03</div>
+  <div class="eyebrow reveal">The premise</div>
+  <h2 class="reveal">Let's say the uncomfortable part ourselves: <em>the frontier labs can build this.</em></h2>
+  <p class="lead reveal">That's not a risk to this plan. It's the premise of the market. Capability doesn't install itself. A company needs someone who knows its people, its meetings, its objectives, and its risk lines, and who stays accountable while the org changes underneath. That's a companion role, not a platform feature.</p>
+  <ul class="tight reveal">
+    <li><b>The premise is now visibly true:</b> Anthropic launched a $1.5B enterprise AI services joint venture with Blackstone, Hellman &amp; Friedman, and Goldman Sachs <span class="tag m">MEASURED</span> own announcement + CNBC, 2026-05-04. The labs themselves are entering the transition motion.</li>
+    <li><b>Hygiene, in one line, because that's what it is:</b> the system can swap the model vendor it runs on, and every account and key is audited. Counsel kept it 4/4. A hedge, not a fear posture.</li>
+  </ul>
+  <div class="thesis reveal">The labs build the capability. Someone still has to walk each company through the transition. We're that companion, and we hand them a head start.</div>
+</section>
+
+<!-- ============ 04 WHAT IT IS ============ -->
+<section class="slide" id="s04">
+  <div class="snum">S04</div>
+  <div class="eyebrow reveal">What it is</div>
+  <h2 class="reveal">One conversational surface for the whole company. Behind it, three things happen.</h2>
+  <div class="step reveal"><div class="num">1</div><div class="t"><b>Objectives become scored agent work.</b>Company objectives get decomposed into weighted subtasks that agents execute, so every piece of agent work scores against a stated objective.</div></div>
+  <div class="step reveal"><div class="num">2</div><div class="t"><b>Game mechanics reward the adopters.</b>People who adopt earn recognition, standing, and time back, instead of being threatened with replacement.</div></div>
+  <div class="step reveal"><div class="num">3</div><div class="t"><b>A human gate sits in front of consequence.</b>Anything that touches money, anything irreversible, anything external. Always.</div></div>
+  <div class="grid g2" style="margin-top:34px">
+    <div class="card reveal"><div class="quote">"The compression of time between thought and output."<span class="attr">The single KPI the whole system optimizes · <span class="tag m">MEASURED</span> call verbatim, 2026-07-08</span></div></div>
+    <div class="card reveal"><div class="quote">"We're not doing this so you can replace your employees, we're doing this so you can reward your employees and retain them."<span class="attr">The adoption contract · <span class="tag m">MEASURED</span> call verbatim, 2026-07-08</span></div></div>
+  </div>
+  <p class="body reveal">Most AI rollouts fail on people, not technology. This one is built people-first on purpose.</p>
+</section>
+
+<!-- ============ 05 PILLARS ============ -->
+<section class="slide" id="s05">
+  <div class="snum">S05</div>
+  <div class="eyebrow reveal">One system, seven pillars</div>
+  <h2 class="reveal">These aren't seven products. They stack into one, and <em>the stack is the point.</em></h2>
+  <table class="tbl reveal">
+    <tr><th>Pillar</th><th>What it does</th></tr>
+    <tr><td>Conversational surface<span class="role">The face</span></td><td>One front door: a conversation pane plus a workspace pane. Approve, edit, or skip. Noise stays out; facts, questions, and decisions come through.</td></tr>
+    <tr><td>Objective engine<span class="role">The brain</span></td><td>North Star, then drivers, then key results, then weighted agent-run subtasks. Every run scores against a stated objective.</td></tr>
+    <tr><td>Game mechanics<span class="role">The adoption engine</span></td><td>Points, tiers, streaks, leagues. Decoupled from compensation, with anti-abuse on from day one.</td></tr>
+    <tr><td>Meeting capture<span class="role">The senses</span></td><td>Meetings become transcripts, decisions, actions, and memory while people are still in the room.</td></tr>
+    <tr><td>Client delivery<span class="role">The channel</span></td><td>Consultative engagement is how the software lands inside a company and stays. Part of the product, not overhead.</td></tr>
+    <tr><td>Skill marketplace<span class="role">The network effect</span></td><td>Skills and workflows become the commodity; a working 296-skill internal registry is the proof of pattern <span class="tag m">MEASURED</span>. Long-term; tokenization parked.</td></tr>
+    <tr><td>Attribution<span class="role">The trust layer</span></td><td>Proof of who originated, who authorized, what ran on its own. Roadmap-stage; nothing built yet, and we say so. It supports the story; it doesn't carry it.</td></tr>
+  </table>
+  <div class="thesis reveal">Any one pillar can be copied. The stack, delivered by a companion who's accountable for the whole, is the thing nobody currently sells.</div>
+</section>
+
+<!-- ============ 06 DOMINOS ============ -->
+<section class="slide" id="s06">
+  <div class="snum">S06</div>
+  <div class="eyebrow reveal">The dominos: how it enters a company</div>
+  <h2 class="reveal">The entry order is confirmed and simple.</h2>
+  <div class="step reveal"><div class="num">1</div><div class="t"><b>C-levels first.</b>A chief-of-staff seat for the executive: their meetings, their follow-through, their one gated workflow. Evidence lands on the CEO's own calendar.</div></div>
+  <div class="step reveal"><div class="num">2</div><div class="t"><b>Engineers next.</b>A department revamp informed by Recurro, Carter Razink's framework for agentic engineering. His framework, feeding this pillar; not this product's name.</div></div>
+  <div class="step reveal"><div class="num">3</div><div class="t"><b>Everyone else follows on demand.</b>Packaged good, better, best. Engineers turn the executive's evidence into internal pull.</div></div>
+  <div class="thesis reveal">Demand walks down the org chart on its own. Nobody has to push it.</div>
+</section>
+
+<!-- ============ 07 RUNNING SYSTEM ============ -->
+<section class="slide" id="s07">
+  <div class="snum">S07</div>
+  <div class="eyebrow reveal">The running system</div>
+  <h2 class="reveal">This isn't a plan on paper. A reference implementation <em>runs today,</em> and it's inspectable live.</h2>
+  <p class="body reveal">All figures below are <span class="tag m">MEASURED</span> on the reference implementation. One operator's estate, n=1, and we say that plainly.</p>
+  <div class="grid g3 reveal">
+    <div class="card brass"><div class="big">99.3<span class="unit">%</span></div><div class="lbl">objective-alignment score on the engine's first run: 275 of 277 commits scored against stated objectives</div></div>
+    <div class="card brass"><div class="big">343</div><div class="lbl">meeting notes processed into decisions, tasks, and memory by the capture pipeline</div></div>
+    <div class="card brass"><div class="big">296</div><div class="lbl">skills in a registry that improves itself nightly</div></div>
+  </div>
+  <div class="grid g3 reveal">
+    <div class="card"><div class="big">322</div><div class="lbl">commits on the always-on fleet dashboard, the estate's most active repo; agent OS enforced org-wide since 2026-07-01</div></div>
+    <div class="card"><div class="big">23<span class="unit">-day</span></div><div class="lbl">unbroken streak on the achievement engine, live since April</div></div>
+    <div class="card"><div class="big">$25K<span class="unit">/mo</span></div><div class="lbl">signed consulting retainer on the existing book; the delivery machine has paying clients</div></div>
+  </div>
+  <p class="body reveal">The demonstration precedent already exists for this recipient: four live, clickable demo pages built against real operational pain. The same rule applies here. Nothing in this deck is a mockup of intent; it's a photograph of an operation.</p>
+  <div class="thesis reveal">One is a small number and we won't pretend otherwise. But one running system beats any number of decks, and this is the only one like it we know of that's running.</div>
+</section>
+
+<!-- ============ 08 ADOPTION ============ -->
+<section class="slide" id="s08">
+  <div class="snum">S08</div>
+  <div class="eyebrow reveal">The adoption engine</div>
+  <h2 class="reveal">Every employee has heard the quiet threat inside "AI transformation." This system <em>inverts it.</em></h2>
+  <p class="lead reveal">Adoption earns points, tiers, standing, and time back. The verbatim contract on S04 is the design brief. Three design rules keep it honest.</p>
+  <div class="step reveal"><div class="num">1</div><div class="t"><b>Decoupled from compensation.</b>Counsel kept this 4/4. Recognition and time first; money mechanics only later, deliberately, with HR at the table.</div></div>
+  <div class="step reveal"><div class="num">2</div><div class="t"><b>Anti-abuse on from day one.</b>Caps, outlier detection, role-adjusted scoring. Nick Metzler, originating member and the game designer here, has watched his own published metric get gamed by professionals. The mechanics assume adversaries.</div></div>
+  <div class="step reveal"><div class="num">3</div><div class="t"><b>Output and value, never hours or activity.</b>Nothing in the mechanics rewards looking busy.</div></div>
+  <ul class="tight reveal">
+    <li><b>Status, honestly tagged:</b> the single-operator version runs today <span class="tag m">MEASURED</span> (S07). The multi-person mechanics are design-stage; the mechanics definition lands 7/31. Nothing here claims a shipped multi-player system.</li>
+    <li><b>The backlash precedent is real and sourced:</b> Meta's internal AI-token leaderboard (85,000+ employees) was shut down after press exposure, with the CTO stating token usage is not a measure of impact <span class="tag m">MEASURED</span> Fortune, 2026-04-09. Surveillance with points fails. Reward with consent is the opposite design, and it's ours.</li>
+  </ul>
+</section>
+
+<!-- ============ 09 PRODUCT LAW ============ -->
+<section class="slide" id="s09">
+  <div class="snum">S09</div>
+  <div class="eyebrow risk reveal">Product law: how trust is earned</div>
+  <div class="reveal"><span class="verdict">PANEL VERDICT, 4/4: "DON'T TOUCH IT"</span></div>
+  <h2 class="reveal">Gates and a graduation bar do for agent work what covenants do for capital.</h2>
+  <div class="law reveal"><div class="gate"></div><div class="t"><b>No agent ever acts on money, anything irreversible, or anything external without a human gate.</b> No fee or tier purchases an exception, ever.</div></div>
+  <div class="law reveal"><div class="gate"></div><div class="t"><b>The system fails open to surfacing.</b> Decisions, money, deadlines, and irreversible items can never be silently suppressed.</div></div>
+  <div class="law reveal"><div class="gate"></div><div class="t"><b>Autonomy is earned per decision class, never assumed.</b> An agent graduates only after matching the human's actual choice 90% of the time across 20 or more repetitions, with executive sign-off.</div></div>
+  <p class="body reveal">Read it as what it is: risk-reduction structure. Gates, a written kill criterion, and a graduation bar cap the downside before anyone discusses the upside.</p>
+  <div class="thesis reveal">Every vendor says "human in the loop." Almost none can show you the graduation ledger. We can, and that's an auditable difference, not a slogan.</div>
+</section>
+
+<!-- ============ 10 EVIDENCE ============ -->
+<section class="slide" id="s10">
+  <div class="snum">S10</div>
+  <div class="eyebrow reveal">Evidence</div>
+  <div class="cond reveal">CONDITIONAL SECTION · resolves on the methodology memo due 7/15 · exactly one version below ships · the fallback is the same fact stated at the strength the evidence supports today</div>
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card reveal"><h3>Primary, only with the landed memo</h3><p style="font-size:14.5px;color:#C4D0D8">A 4-engineer team measured at 16x baseline output against an 18-engineer control team at 2.5x, with methodology, measurement window, and definitions attached. <span class="tag u">UNVERIFIED</span> until the memo lands and clears review.</p></div>
+    <div class="card brass reveal"><h3 style="color:var(--brass)">Fallback, ships by default</h3><p style="font-size:14.5px;color:#C4D0D8">Output parity: a team of 4 matched the output of a team of 18. <span class="tag u">UNVERIFIED</span> Carter Razink's engagement observation; methodology in preparation. We won't put a multiplier on it until the measurement is on paper.</p></div>
+  </div>
+  <h3 style="margin-top:34px" class="reveal">Sourced today, independent of that case</h3>
+  <ul class="tight reveal">
+    <li>A randomized controlled trial found roughly <b>40% quality improvement</b> on knowledge-work tasks with AI assistance <span class="tag m">MEASURED</span> BCG RCT.</li>
+    <li><b>Loop deletion, not speed-up, is where the money is:</b> review cycles compressed from 13 rounds to 1, and 24 days to 5, in the documented cases <span class="tag m">MEASURED</span> per packet sources.</li>
+  </ul>
+  <div class="thesis reveal">Don't buy a multiplier. Count the loops that stop consuming your people. Deleted loops are auditable; multipliers usually aren't.</div>
+</section>
+
+<!-- ============ 11 VALUE ============ -->
+<section class="slide" id="s11">
+  <div class="snum">S11</div>
+  <div class="eyebrow reveal">What it's worth, seat by seat</div>
+  <h2 class="reveal">Value claims that survive the buyer's own auditor are the only ones worth making.</h2>
+  <div class="grid g3 reveal">
+    <div class="card"><h3>The employee</h3><p style="font-size:14px;color:#C4D0D8">AI that pays you, in the currencies that matter: recognition, standing, and time back. Output buys hours off, not a layoff list.</p></div>
+    <div class="card"><h3>The C-suite</h3><p style="font-size:14px;color:#C4D0D8">One window of consequence. In the built demonstration scenario, a full day of delegated agent work resolved into <b>14 actions, 3 approvals, and 41 seconds</b> of executive attention <span class="tag m">MEASURED</span> as a built demo scenario, not a client result. It becomes a client-measured number only inside a pilot.</p></div>
+    <div class="card"><h3>The organization</h3><p style="font-size:14px;color:#C4D0D8">Compression of thought-to-output as the economic lever. The band we stand behind: a <b>3x floor, 10x ceiling</b> on affected workflows <span class="tag s">SURVEY</span>/<span class="tag m">MEASURED</span> mix, told through deleted loops, never raw multipliers.</p></div>
+  </div>
+  <div class="ledger reveal">
+    <div class="lhead">The honest-math rule, in practice</div>
+    <div class="row"><span>Recovered executive hours, reference band <span class="d">(n=1; generalization unverified until the audit)</span></span><span class="r">3-6 hrs/week</span></div>
+    <div class="row"><span>Over a 13-week pilot</span><span class="r">39-78 hours</span></div>
+    <div class="row sum"><span>Dollarized ONLY at the buyer's own stated rate, or reported raw</span><span class="r">their arithmetic, not ours</span></div>
+  </div>
+</section>
+
+<!-- ============ 12 GROUND + THREAT ============ -->
+<section class="slide" id="s12">
+  <div class="snum">S12</div>
+  <div class="eyebrow reveal">The open ground, and the honest threat read</div>
+  <h2 class="reveal">These two facts are true at once, and they belong on the same page.</h2>
+  <div class="twocol reveal">
+    <div class="col">
+      <h3 class="ground">The open ground</h3>
+      <p style="font-size:14.5px;color:#C4D0D8">No funded company today occupies the specific stack this deck describes: objective-scored agent execution, plus adoption game mechanics, plus attribution, delivered as a companion engagement. <span class="tag u">UNVERIFIED</span> as an absence-of-evidence claim; a monthly competitive review sustains it or retires it. We put no time window on this. Any number of months would be false precision, so we don't say one.</p>
+    </div>
+    <div class="col">
+      <h3 class="threat">The threat read</h3>
+      <p style="font-size:14.5px;color:#C4D0D8">Two of the seven pillars are commoditizing fast right now: meeting capture and agent chat surfaces, per the competitive dossiers in this corpus. Anyone building on those two pillars alone is building on sand, and we'd say so about our own plan if it did.</p>
+    </div>
+  </div>
+  <div class="reconcile reveal"><b style="color:var(--brass-bright)">The reconciliation is the strategy itself.</b> The defensible position was never any single pillar. It's the un-commoditized combination: scored objectives plus consented game mechanics plus earned autonomy, installed and operated by a companion who's accountable for the whole. Attribution supports this claim as a roadmap-stage pillar; it doesn't anchor it.</div>
+  <div class="thesis reveal">Whitespace claims usually die under one good question. This one is stated with its own counterargument attached, which is why it can survive the room.</div>
+</section>
+
+<!-- ============ 13 COMPETITORS ============ -->
+<section class="slide" id="s13">
+  <div class="snum">S13</div>
+  <div class="eyebrow reveal">Competitors, named</div>
+  <h2 class="reveal">We name them ourselves. Self-disclosure beats discovery.</h2>
+  <table class="tbl reveal">
+    <tr><th>Actor</th><th>The sourced move</th><th>What it means here</th></tr>
+    <tr><td>Cognition (Devin)</td><td>$1B+ Series D at $26B post-money <span class="tag m">MEASURED</span> TechCrunch + own announcement, 2026-05-27, on a reported $492M ARR run-rate <span class="tag v">VENDOR</span> company-disclosed, not audited</td><td>Buyers pay for outcomes. Sharpens the engineering domino rather than blocking it.</td></tr>
+    <tr><td>Microsoft</td><td>Viva Goals retired 2025-12-31 with no replacement <span class="tag m">MEASURED</span> Microsoft Learn; Agent 365 GA 2026-05-01 at $15/user/month <span class="tag m">MEASURED</span></td><td>The incumbent exited the OKR lane exactly where our objective engine lives, while commoditizing the agent-surface lane we don't depend on.</td></tr>
+    <tr><td>Salesforce</td><td>Agentforce at $800M ARR / 29,000 deals <span class="tag v">VENDOR</span> Q4 FY26 earnings release; analyst reads put install-base adoption near 5-10% <span class="tag s">SURVEY</span></td><td>Big-platform agent revenue is real, and its shallow adoption is the companion gap in one datapoint.</td></tr>
+    <tr><td>Meeting capture field</td><td>Otter consolidated wiretap litigation; Zoom AI Companion 3.0; Granola $125M Series C <span class="tag m">MEASURED</span> per sources file</td><td>Confirms the S12 threat read: capture alone is sand. It's our senses, not our moat.</td></tr>
+    <tr><td>OKR incumbents</td><td>WorkBoard/Quantive shipped an "AI Chief of Staff" agent <span class="tag m">MEASURED</span> per sources file</td><td>Validates the wedge vocabulary; none carry game mechanics, graduation law, or a companion model.</td></tr>
+    <tr><td>Meta (precedent)</td><td>Internal AI-token leaderboard, 85,000+ employees, shut down after press exposure <span class="tag m">MEASURED</span> Fortune 2026-04-09</td><td>The documented gamification backlash, and the sourced case for our decoupled, consented design.</td></tr>
+  </table>
+  <p class="body reveal">The bar for this page: every named move carries a source a skeptic can click (full URLs, publishers, and dates in the sources file). A further do-not-render list stays off every page until a monthly review sources it. What can't meet the bar doesn't get said.</p>
+</section>
+
+<!-- ============ 14 BUSINESS MODEL ============ -->
+<section class="slide" id="s14">
+  <div class="snum">S14</div>
+  <div class="eyebrow reveal">Business model</div>
+  <h2 class="reveal">Consulting plus software, in that order, <em>on purpose.</em></h2>
+  <ul class="tight reveal">
+    <li><b>Consulting revenue leads.</b> It funds the build and generates evidence at the same time (counsel-kept, 4/4). The precedent is signed: a $25K/mo retainer on the existing book <span class="tag m">MEASURED</span>. The product itself has no revenue yet; we say that plainly.</li>
+    <li><b>Equity plus cash is the default on transformative engagements.</b> Cash-only requires explicit partner sign-off. We want to be aligned with the outcome, not just paid for the attempt.</li>
+    <li><b>The skill marketplace is the long-term network effect.</b> Tokenization is parked; it would detract right now.</li>
+  </ul>
+  <p class="body reveal">The advantage in diligence-grade terms, not slogans: relationships compress sales cycles; delivery speed compounds client data; and the running reference implementation is a packaged, demonstrable asset no competitor can photograph.</p>
+  <p class="body reveal"><b style="color:#F2F2EA">On the people behind it:</b> Jarred Winn is the founder; the vision and the operating estate are his. Nick Metzler (game design, adoption mechanics) and Carter Razink (engineering, his Recurro framework) are originating members who earn equity through contribution. Entity formation and IP assignment are in motion this week.</p>
+  <div class="thesis reveal">A business model where the operator eats the same risk as the client is rare in consulting and rarer in software. That alignment is the product working on its own P&amp;L.</div>
+</section>
+
+<!-- ============ 15 PILOT ============ -->
+<section class="slide" id="s15">
+  <div class="snum">S15</div>
+  <div class="eyebrow reveal">The 90-day design-partner pilot</div>
+  <h2 class="reveal">Ninety days, two phases, instrumented before day 1. The structure is the offer.</h2>
+  <div class="step reveal"><div class="num">0</div><div class="t"><b>Before day 1: the baseline gets signed.</b>A two-week executive time audit, a day-0 count of open follow-up commitments, a named business owner, a written kill criterion, and a dollarization rule: the buyer's own rate or raw hours. Every threshold below is a candidate the partner co-signs, not a term we impose.</div></div>
+  <div class="step reveal"><div class="num">1</div><div class="t"><b>Days 1-30: capture plus one gated workflow.</b>Meeting capture live on a designated, disclosed surface; one workflow, selected together in week 1, running in production behind human gates. Day-30 gate: 90%+ capture coverage <span class="tag u">UNVERIFIED</span> candidate, 15+ gated executions <span class="tag u">UNVERIFIED</span> candidate, and zero ungated actions, which is a hard requirement, not a candidate.</div></div>
+  <div class="step reveal"><div class="num">2</div><div class="t"><b>Days 31-90: game mechanics for an opt-in cohort.</b>Entering only on day-30 evidence, anti-abuse on from its first day. Day-60 and day-90 gates measure participation (60%+ weekly active <span class="tag u">UNVERIFIED</span> candidate), executive hours recovered against the signed baseline, follow-up debt reduction (50%+ <span class="tag u">UNVERIFIED</span> candidate), and graduation progress on the gated decision class.</div></div>
+  <p class="body reveal">No fee appears on this page or in the meeting room until counsel and founder clear the terms. The structure is quotable today; the numbers aren't.</p>
+  <div class="thesis reveal">If the kill criterion trips, the pilot stops and we say so in writing. A pilot that can't fail can't prove anything either.</div>
+</section>
+
+<!-- ============ 16 ASK ============ -->
+<section class="slide" id="s16">
+  <div class="snum">S16</div>
+  <div class="eyebrow reveal">The ask, and the three ways this can go</div>
+  <h2 class="reveal">A 90-day design-partner pilot, plus a smaller strategic check, papered separately and never blended. <em>This is not a raise.</em></h2>
+  <p class="body reveal">Staged, priced-by-proof capital is the discipline the recipient already practices. A large diffuse ask at this evidence level would deserve to be declined. All three branches below are acceptable outcomes we name out loud.</p>
+  <div class="branches reveal">
+    <div class="branch"><span class="bl">Branch A</span><h4>The pilot</h4><p>The operator seat. Ninety days, instrumented before day 1: signed baseline, named owner, written kill criterion. The check isn't pressed on this branch: the pilot generates the evidence, and the ownership conversation follows the evidence.</p></div>
+    <div class="branch b"><span class="bl">Branch B</span><h4>Pilot + smaller strategic check</h4><p>Everything in A, plus the owner seat, taken from strength: early, low base, evidence-gated, priced by proof. Two disciplines stated in the room: two papers, never blended (the check buys no pilot concessions); and instrument and size settle off the table, counsel and founder territory, after the securities pass.</p></div>
+    <div class="branch"><span class="bl">Branch C</span><h4>A pass, and it's respected</h4><p>Only accretive moves, no scope creep: if this doesn't clear the bar today, passing IS the discipline this deck praises. The structure doesn't expire. We sign the first design partner elsewhere, and the next look is at measured day-30 evidence, not a new pitch. A pass costs the relationship nothing.</p></div>
+  </div>
+  <div class="ledger reveal">
+    <div class="lhead">The hurdle, worked · adjectives aren't arithmetic · every input a candidate until the baseline signs</div>
+    <div class="row"><span>Recovered hours, reference band <span class="d">MEASURED n=1; generalization unverified</span></span><span class="r">3-6 hrs/wk x 13 wks = 39-78 hrs</span></div>
+    <div class="row"><span>At the buyer's own rate <span class="d">illustration $1,000/hr, unverified; the buyer's number governs</span></span><span class="r">$39K-78K recovered time</span></div>
+    <div class="row"><span>Against a pilot fee working band <span class="d">unverified; founder sets it; not quotable in the room</span></span><span class="r">$45K-60K</span></div>
+    <div class="row"><span>Same-budget-line check: full-time chief of staff true cost <span class="d">VENDOR, secondhand</span></span><span class="r">$240-265K+/yr · ~$60-66K per 90 days</span></div>
+    <div class="row sum"><span>Hours alone roughly return the fee at mid-band. The hurdle is a double: the second half is what the buyer keeps</span><span class="r">a production gated workflow + follow-up debt toward zero + the head start</span></div>
+  </div>
+  <div class="thesis reveal">The whole deck reduces to one arguable sentence: the evidence shown here justifies exactly the ask being made, no more. An ask that matches its evidence is the rarest thing an investor gets shown.</div>
+</section>
+
+<!-- ============ 17 STATUS ============ -->
+<section class="slide" id="s17">
+  <div class="snum">S17</div>
+  <div class="eyebrow risk reveal">Status + provenance · internal page · strip before any send</div>
+  <h2 class="reveal">What blocks the send, and where every claim lives.</h2>
+  <ul class="tight reveal">
+    <li><b>Render fork:</b> S10 resolves on the methodology memo due 7/15. Exactly one version ships; the fallback is the default.</li>
+    <li><b>Founder judgment spots (6), open:</b> whether any fee arithmetic survives to the sent version and whether the $1,000/hr illustration stays (it implicitly prices the recipient's time); Branch B's "lowest base it will ever have" line vs the no-forward-looking-promises rule; the fallback attribution wording; the 7-row pillar table vs the 2-3-item list cap; Branch C's re-engagement trigger and whether B's check may close before the pilot signs.</li>
+    <li><b>Hard gates before any external send:</b> counsel securities pass (task 1.7) over deck, doc, branch section, and presenter notes; founder sign-off (1.8); entity formation + IP assignment; written conflict-of-interest disclosure before any money moves.</li>
+    <li><b>Provenance:</b> concept-doc-draft-v1.md (16 sections) · branch-scenarios-section.md · deck-skeleton.md · recipient-profile-alan.md + primary-source addendum · competitor-sources.md (27 sourced moves, 19 actors, next review 2026-08-08) · buyer-roi-model.md · pilot design W7 · counsel verdicts 4/4 · decision 0003.</li>
+  </ul>
+  <p class="body reveal">Every stat on every page carries its lineage tag. Anything tagged UNVERIFIED is a candidate, not a claim, and is not quotable in the room.</p>
+</section>
+
+</main>
+
+<div class="draftbar">
+  <span><b>DRAFT V1 · FOUNDER REVIEW ONLY · NOT FOR CIRCULATION</b> · securities pass + sign-off pending</span>
+  <span>agent-os-foundation · 2026-07-08 · product unnamed</span>
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  // rail highlight + reveal on intersect
+  const links=[...document.querySelectorAll('.rail a')];
+  const slides=[...document.querySelectorAll('section.slide')];
+  const byId=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(a=>a.classList.remove('on'));
+        (byId[e.target.id]||links[0]).classList.add('on');
+      }
+    });
+  },{threshold:.45});
+  slides.forEach(s=>io.observe(s));
+  const ro=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      [...e.target.querySelectorAll('.reveal')].forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*90));
+    }});
+  },{threshold:.2});
+  slides.forEach(s=>ro.observe(s));
+  // keyboard deck nav
+  let idx=0;
+  const go=i=>{idx=Math.max(0,Math.min(slides.length-1,i));slides[idx].scrollIntoView({behavior:'smooth'})};
+  addEventListener('keydown',e=>{
+    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(idx+1)}
+    if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(idx-1)}
+  });
+  const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)idx=slides.indexOf(e.target)})},{threshold:.55});
+  slides.forEach(s=>io2.observe(s));
+</script>
+</body>
+</html>

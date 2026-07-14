@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[NAME] · technical whitepaper · 2026-07-09</title>
+<meta name="description" content="Technical whitepaper for an unnamed agent OS for organizations: a governed control loop that observes, proposes, gates, and executes only what a human authorizes. Every capability labeled built or designed; every number tagged.">
+<style>
+:root{
+  --paper:#ECEEEC;      /* cool structural paper, not cream */
+  --desk:#E4E7E4;
+  --card:#F6F7F6;
+  --ink:#20262A;        /* graphite near-black: the voice */
+  --ink-soft:#586067;
+  --ink-dim:#8A9299;    /* the unfilled [NAME] placeholder */
+  --line:rgba(32,38,42,0.14);
+  --line-soft:rgba(32,38,42,0.07);
+  --accent:#1E5A4C;     /* deep pine: the kit accent */
+  --accent-lit:#2B7A66;
+  --wash:rgba(30,90,76,0.08);
+  --wash-2:rgba(30,90,76,0.045);
+  --slate:#3E5C6E;      /* prototype tone */
+  --slate-wash:rgba(62,92,110,0.09);
+  --serif:"Iowan Old Style","Palatino Linotype","Palatino","Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
+  --measure:70ch;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+::selection{background:var(--wash);color:var(--ink);}
+a{color:var(--accent);text-decoration:none;}
+a:hover{color:var(--accent-lit);text-decoration:underline;text-underline-offset:2px;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:0.6rem 1rem;z-index:80;font-family:var(--mono);font-size:0.8rem;}
+.skip:focus{left:1rem;top:1rem;}
+
+/* ---------- shell: fixed TOC + main ---------- */
+.shell{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:236px minmax(0,1fr);gap:clamp(1.4rem,4vw,3.4rem);padding:0 clamp(1.1rem,4vw,2.4rem);}
+.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:2.2rem 0 2rem;border-right:1px solid var(--line-soft);}
+.toc .tt{font-family:var(--mono);font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 1rem;}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;}
+.toc li{margin:0;}
+.toc a{display:block;font-family:var(--mono);font-size:0.76rem;letter-spacing:0.01em;color:var(--ink-soft);padding:0.34rem 0.2rem 0.34rem 0;border-left:2px solid transparent;padding-left:0.7rem;transition:color .15s,border-color .15s;}
+.toc a:hover{color:var(--ink);text-decoration:none;border-color:var(--line);}
+.toc a.on{color:var(--accent);border-color:var(--accent);}
+.toc a .tn{color:var(--ink-dim);margin-right:0.5rem;font-variant-numeric:tabular-nums;}
+.toc a.on .tn{color:var(--accent);}
+.toc .toc-foot{margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:0.64rem;line-height:1.7;color:var(--ink-dim);}
+
+main{min-width:0;padding:2.2rem 0 5rem;}
+
+/* ---------- masthead ---------- */
+.mast{padding:1rem 0 1.8rem;border-bottom:1px solid var(--line);margin-bottom:2.4rem;position:relative;}
+.eyebrow{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 1.4rem;display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;}
+.wordmark{font-family:var(--serif);font-size:clamp(2.6rem,7vw,4.2rem);line-height:0.98;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.5rem;}
+.wordmark .bk{color:var(--accent);font-weight:400;}
+.wordmark .nm{color:var(--ink-dim);letter-spacing:0.03em;}
+.subtitle{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.5rem);font-weight:500;color:var(--ink);margin:0 0 1.1rem;max-width:var(--measure);line-height:1.28;}
+.mast-note{font-size:0.92rem;color:var(--ink-soft);max-width:var(--measure);margin:0;}
+.mast-note b{color:var(--ink);font-weight:600;}
+.mast-meta{font-family:var(--mono);font-size:0.72rem;color:var(--ink-dim);margin:1rem 0 0;letter-spacing:0.02em;}
+
+/* ---------- prose ---------- */
+main section{margin:0 0 3rem;scroll-margin-top:1.4rem;}
+.h{display:flex;align-items:baseline;gap:0.8rem;margin:0 0 1.2rem;border-bottom:1px solid var(--line-soft);padding-bottom:0.7rem;}
+.h .n{font-family:var(--mono);font-size:0.9rem;color:var(--accent);font-variant-numeric:tabular-nums;flex:0 0 auto;padding-top:0.35rem;}
+.h h2{font-family:var(--serif);font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:600;letter-spacing:-0.01em;margin:0;line-height:1.1;}
+h3{font-family:var(--sans);font-size:1.06rem;font-weight:680;letter-spacing:-0.01em;color:var(--ink);margin:2rem 0 0.7rem;}
+main p{max-width:var(--measure);margin:0 0 1.05rem;}
+main ol,main ul{max-width:var(--measure);padding-left:1.3rem;margin:0 0 1.15rem;}
+main li{margin:0 0 0.55rem;}
+main li::marker{color:var(--ink-dim);}
+main strong,main b{font-weight:680;color:var(--ink);}
+.lead{font-family:var(--serif);font-size:1.18rem;line-height:1.5;color:var(--ink);max-width:var(--measure);}
+.abstract p{font-size:1.04rem;}
+
+/* ---------- chips + tags ---------- */
+.chip{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;padding:0.08em 0.5em;border-radius:2px;border:1px solid var(--line);vertical-align:middle;}
+.chip.built{color:var(--accent);border-color:rgba(30,90,76,0.4);background:var(--wash-2);}
+.chip.proto{color:var(--slate);border-color:rgba(62,92,110,0.32);background:var(--slate-wash);}
+.chip.pilot{color:var(--ink-soft);border-color:var(--line);border-style:dashed;}
+.chip.horizon{color:var(--ink-dim);border-color:var(--line-soft);}
+.tag{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.04em;color:var(--ink-dim);white-space:nowrap;}
+.tag.m{color:var(--accent);}
+code,.mono{font-family:var(--mono);font-size:0.86em;background:var(--desk);padding:0.05em 0.34em;border-radius:2px;color:var(--ink);}
+
+/* ---------- legend card ---------- */
+.legend{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:1.3rem 1.4rem;margin:0 0 1rem;max-width:var(--measure);}
+.legend .lh{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 0.9rem;}
+.legend .lg{display:grid;grid-template-columns:auto 1fr;gap:0.5rem 0.9rem;align-items:baseline;font-size:0.9rem;}
+.legend .lg .k{white-space:nowrap;}
+.legend .lg .d{color:var(--ink-soft);}
+.legend hr{border:0;border-top:1px solid var(--line-soft);margin:1rem 0;}
+
+/* ---------- figures ---------- */
+.fig{margin:1.8rem 0;padding:1.3rem;background:var(--card);border:1px solid var(--line);border-radius:3px;max-width:var(--measure);}
+.fig svg{display:block;width:100%;height:auto;}
+.fig figcaption{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.03em;color:var(--ink-soft);margin-top:0.9rem;line-height:1.5;}
+.fig figcaption b{color:var(--accent);font-weight:600;}
+svg text{font-family:var(--mono);}
+
+/* ---------- tables ---------- */
+.tw{max-width:100%;overflow-x:auto;margin:1.4rem 0;border:1px solid var(--line);border-radius:3px;}
+table{border-collapse:collapse;width:100%;font-size:0.86rem;min-width:520px;}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-dim);padding:0.8rem 0.9rem 0.5rem;}
+th,td{text-align:left;padding:0.6rem 0.9rem;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+thead th{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);background:var(--desk);font-weight:500;}
+tbody tr:last-child td{border-bottom:0;}
+td.c{text-align:center;font-family:var(--mono);color:var(--accent);}
+td.tn{font-family:var(--mono);font-size:0.82rem;color:var(--ink);white-space:nowrap;}
+
+/* ---------- misc ---------- */
+.dontclaim li{list-style:none;position:relative;padding-left:1.5rem;}
+.dontclaim{padding-left:0;}
+.dontclaim li::before{content:"[ x ]";position:absolute;left:0;font-family:var(--mono);font-size:0.7rem;color:var(--ink-dim);top:0.18rem;}
+.foot{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:0.74rem;color:var(--ink-soft);line-height:1.7;max-width:var(--measure);}
+.foot b{color:var(--accent);font-weight:600;}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr;}
+  .toc{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:1.2rem 0;}
+  .toc ol{columns:2;column-gap:1.2rem;}
+  main{padding-top:1.6rem;}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+<a class="skip" href="#s1">Skip to the whitepaper</a>
+<div class="shell">
+
+<nav class="toc" aria-label="Contents">
+  <p class="tt">Whitepaper · contents</p>
+  <ol>
+    <li><a href="#abstract"><span class="tn">00</span>Abstract</a></li>
+    <li><a href="#legend"><span class="tn">--</span>Legend</a></li>
+    <li><a href="#s1"><span class="tn">01</span>The pain</a></li>
+    <li><a href="#s2"><span class="tn">02</span>Capability vs adoption</a></li>
+    <li><a href="#s3"><span class="tn">03</span>The control loop</a></li>
+    <li><a href="#s4"><span class="tn">04</span>Architecture</a></li>
+    <li><a href="#s5"><span class="tn">05</span>The product law</a></li>
+    <li><a href="#s6"><span class="tn">06</span>Incentive governance</a></li>
+    <li><a href="#s7"><span class="tn">07</span>Data posture</a></li>
+    <li><a href="#s8"><span class="tn">08</span>What we do not claim</a></li>
+    <li><a href="#appendix"><span class="tn">A</span>N=1 evidence</a></li>
+  </ol>
+  <div class="toc-foot">
+    unnamed by design<br>
+    architecture is the subject<br>
+    2026-07-09
+  </div>
+</nav>
+
+<main>
+  <header class="mast">
+    <p class="eyebrow"><span>Technical whitepaper</span><span>·</span><span>for an engineering leader</span><span>·</span><span>internal review draft</span></p>
+    <h1 class="wordmark"><span class="bk">[</span><span class="nm">&nbsp;NAME&nbsp;</span><span class="bk">]</span></h1>
+    <p class="subtitle">A governed control loop for agent work inside an organization.</p>
+    <p class="mast-note">The product is intentionally unnamed. The permanent mark is chosen last, from a legally cleared shortlist, after the position is locked. <b>The brackets are the design, not a gap.</b> The working descriptor is an agent OS for organizations, used sparingly and never as a name.</p>
+    <p class="mast-meta">Founder: Jarred Winn &nbsp;·&nbsp; jarred@winn.solutions &nbsp;·&nbsp; document date 2026-07-09</p>
+  </header>
+
+  <section id="abstract" class="abstract">
+    <div class="h"><span class="n">00</span><h2>Abstract</h2></div>
+    <p class="lead">Enterprises do not lack AI capability. They lack a way to let a whole organization use that capability without losing control of it.</p>
+    <p>This document specifies the system we are building to close that gap: a single conversational front door over a governed control loop that observes a company's real events, proposes work against stated objectives, and executes only what a human authorizes, with autonomy earned per class of decision rather than assumed.</p>
+    <p>It is written for an engineering leader, not a buyer. It is honest about what runs today and what is still design. A reference implementation, operated by the founder at the scale of one person directing many agents, already runs the observe-and-propose half of the loop in production. The gate, the executor, the graduation ledger, and the multi-tenant substrate are specified here and are the real build. Every capability carries a build-status label, and every number carries an evidence tag. Nothing designed but unbuilt is written in the present tense.</p>
+    <p>The claim is narrow and, we think, defensible: the moat is not the model. It is the organizational psychology of adoption and the governance that makes agent work safe to run. This paper describes the mechanics of both.</p>
+  </section>
+
+  <section id="legend">
+    <div class="h"><span class="n">--</span><h2>Legend</h2></div>
+    <p>Read every claim in this document through two labels: what is real today, and how each number is known.</p>
+    <div class="legend">
+      <p class="lh">Build status</p>
+      <div class="lg">
+        <span class="k"><span class="chip built">Built</span></span><span class="d">Runs in the reference implementation today. Present tense allowed.</span>
+        <span class="k"><span class="chip proto">Prototype</span></span><span class="d">A validated spike exists, not deployed.</span>
+        <span class="k"><span class="chip pilot">Pilot-scope</span></span><span class="d">Specified and scheduled for the first design-partner build. Design tense only.</span>
+        <span class="k"><span class="chip horizon">Horizon</span></span><span class="d">A future wedge. No build now.</span>
+      </div>
+      <hr>
+      <p class="lh">Evidence lineage</p>
+      <div class="lg">
+        <span class="k"><span class="tag m">MEASURED</span></span><span class="d">Read from live telemetry in the reference implementation.</span>
+        <span class="k"><span class="tag">SURVEY</span></span><span class="d">A cited third-party study.</span>
+        <span class="k"><span class="tag">VENDOR</span></span><span class="d">A vendor or press term of record.</span>
+        <span class="k"><span class="tag">[unverified]</span></span><span class="d">An internal estimate or a proposed default not yet confirmed.</span>
+      </div>
+    </div>
+    <p>The reference implementation is a reference implementation. It is operated by the founder to prove the pattern. It is not an installed customer, and no count in it is customer traction.</p>
+  </section>
+
+  <section id="s1">
+    <div class="h"><span class="n">01</span><h2>The pain this is about</h2></div>
+    <p>Start inside a company that has already "adopted AI." The adoption is real and it is a mess. Every team bought its own tools. Meeting bots join calls that nobody sanctioned. The decisions made in those meetings evaporate into a recap email that nobody reads, and the work they implied never gets built. The company's objectives live in a quarterly deck that has no wire connecting it to what people did this week. And the employees who use AI best are the ones hiding it, because disclosing it is punished.</p>
+    <p>None of that is hypothetical, and the team building this has lived the sharp end of it. While assembling this launch kit, the operator of the reference implementation found more than sixteen undisclosed meeting-capture bots embedded across the estate's own Google and Zoom accounts, some with standing calendar access, and had to forensically evict them across several sessions <span class="tag m">MEASURED</span> (internal history, 2026-07-06 to 2026-07-08). That is shadow-AI sprawl inside a single disciplined operator's accounts. Multiply it by a workforce that was never given a sanctioned path, and you have the real starting condition of most "AI-forward" companies.</p>
+    <p>Named plainly, the pains are five:</p>
+    <ol>
+      <li><b>Sprawl without control.</b> Tools, bots, and agents proliferate faster than anyone governs them. The undisclosed-notetaker incident above is one operator's version of a company-wide problem.</li>
+      <li><b>Meetings that decide nothing that ships.</b> Work is agreed in a room and then lost between the room and the tools where work actually happens.</li>
+      <li><b>Objectives disconnected from execution.</b> A North Star in a deck cannot tell you whether today's work moved it.</li>
+      <li><b>Fear that suppresses the exact behavior adoption needs.</b> 94 percent of knowledge workers already use AI at work, yet in a controlled study a colleague who disclosed using it was rated 10x lazier and 24 points less likely to be picked for a high-visibility project, at identical output <span class="tag">SURVEY</span> (Atlassian 2026). The behavior a company most needs to see is the behavior its own culture drives underground.</li>
+      <li><b>No trace.</b> On the rare occasion an agent does act, no one can reconstruct what it saw, why it acted, or who let it. Without a trace there is no trust, and without trust there is no mandate to let it act again.</li>
+    </ol>
+    <p>The cost of doing nothing is not zero. It is sprawl that compounds, a culture that hides its own best practice, and a growing surface of automated actions that no one can account for. A company in this state does not need more capability. It needs a container.</p>
+  </section>
+
+  <section id="s2">
+    <div class="h"><span class="n">02</span><h2>Capability is arriving; adoption is not</h2></div>
+    <p>The capability to do agent work well is arriving on schedule from the frontier labs. We concede that plainly, because it is the premise of the whole business rather than a threat to it. The labs will keep shipping stronger models and better agent frameworks. What no lab has claimed, and what no model release closes, is the distance between a capability existing and a whole organization actually using it under control.</p>
+    <p>The measured shape of that distance: 62 percent of organizations are experimenting with agents, roughly 23 percent have scaled even one system into production, and full agentic operation is rarer still <span class="tag">SURVEY</span> (McKinsey Nov 2025). The gap between experimenting and operating is not a model gap. It is an organizational one. It is the five pains above, and every one of them is a problem of psychology, governance, and workflow rather than of raw capability.</p>
+    <p>This reframes what the product is. The product is not a smarter agent. It is the layer that lets an organization put agents to work without the sprawl, the fear, and the missing trace. That layer is three things braided together: <b>organizational psychology</b> (adoption driven by rewarding people for using AI, not by threatening to replace them), <b>governance made visible as product behavior</b> (the system cites its sources, separates observation from inference, exposes uncertainty, and refuses to act outside its authority), and <b>consultative delivery</b> (an in-the-box system that requires out-of-box configuration per business, because legacy integration is real friction, not magic).</p>
+    <p>One metric sits above the others: the compression of time between thought and output. Everything the system does is downstream of that. The governance exists so that this compression never comes at the price of an action no one authorized. The adoption spreads, by design, in one order.</p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 640 214" role="img" aria-labelledby="domino-t">
+        <title id="domino-t">The designed go-to-market sequence: C-suite tips engineering, which tips the whole organization.</title>
+        <line x1="34" y1="150" x2="606" y2="150" stroke="rgba(32,38,42,0.14)" stroke-width="1"/>
+        <text x="34" y="26" font-size="10" letter-spacing="1.5" fill="#8A9299">DESIGNED GO-TO-MARKET SEQUENCE  ·  NOT DEMONSTRATED ADOPTION</text>
+        <!-- tile 1 : C-suite, falling -->
+        <g transform="translate(112,150) rotate(-24)">
+          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="rgba(30,90,76,0.08)" stroke="#1E5A4C" stroke-width="1.5"/>
+          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#1E5A4C" stroke-width="1" opacity="0.5"/>
+        </g>
+        <!-- tile 2 : engineering, tipping -->
+        <g transform="translate(316,150) rotate(-13)">
+          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="rgba(30,90,76,0.05)" stroke="#1E5A4C" stroke-width="1.5"/>
+          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#1E5A4C" stroke-width="1" opacity="0.5"/>
+        </g>
+        <!-- tile 3 : whole org, next -->
+        <g transform="translate(520,150) rotate(-3)">
+          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.5"/>
+          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#586067" stroke-width="1" opacity="0.5"/>
+        </g>
+        <!-- motion arcs -->
+        <path d="M164 78 q40 -20 96 6" fill="none" stroke="#2B7A66" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <path d="M368 74 q40 -16 96 8" fill="none" stroke="#2B7A66" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <!-- labels -->
+        <text x="112" y="172" font-size="12" text-anchor="middle" fill="#20262A" font-weight="600">C-SUITE</text>
+        <text x="112" y="188" font-size="9.5" text-anchor="middle" fill="#586067">chief of staff, first hit</text>
+        <text x="316" y="172" font-size="12" text-anchor="middle" fill="#20262A" font-weight="600">ENGINEERING</text>
+        <text x="316" y="188" font-size="9.5" text-anchor="middle" fill="#586067">the overhaul</text>
+        <text x="520" y="172" font-size="12" text-anchor="middle" fill="#20262A" font-weight="600">WHOLE ORG</text>
+        <text x="520" y="188" font-size="9.5" text-anchor="middle" fill="#586067">pulled by demand</text>
+      </svg>
+      <figcaption><b>Figure 1.</b> The domino sequence is a designed order of adoption: land the C-suite, then engineering feels the throughput and wants it, then the rest of the organization is pulled in by demand rather than pushed by mandate. It is a plan, not a funnel we have run.</figcaption>
+    </figure>
+  </section>
+
+  <section id="s3">
+    <div class="h"><span class="n">03</span><h2>The control loop</h2></div>
+    <p>Everything the system does is one loop, run over and over, per event. The loop has eight steps. The first three are observation and proposal; the middle two are the human gate and the single execution path; the last three are how the system checks its own work and how authority is earned and taken back.</p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 780 250" role="img" aria-labelledby="loop-t">
+        <title id="loop-t">The eight-step control loop, with the human holding the gate and revocation returning authority to the gate.</title>
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#586067"/>
+          </marker>
+          <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1E5A4C"/>
+          </marker>
+        </defs>
+        <text x="16" y="22" font-size="10" letter-spacing="1.5" fill="#8A9299">ONE LOOP, PER EVENT</text>
+        <!-- connectors -->
+        <g stroke="#586067" stroke-width="1.3" marker-end="url(#ah)">
+          <line x1="112" y1="80" x2="132" y2="80"/>
+          <line x1="230" y1="80" x2="250" y2="80"/>
+          <line x1="348" y1="80" x2="360" y2="80"/>
+          <line x1="416" y1="80" x2="432" y2="80"/>
+          <line x1="550" y1="80" x2="570" y2="80"/>
+          <line x1="668" y1="80" x2="688" y2="80"/>
+        </g>
+        <!-- nodes -->
+        <g font-size="11.5" text-anchor="middle">
+          <rect x="20" y="58" width="92" height="44" rx="3" fill="rgba(30,90,76,0.06)" stroke="#1E5A4C" stroke-width="1.3"/>
+          <text x="66" y="78" fill="#20262A">observe</text><text x="66" y="94" font-size="8.5" fill="#8A9299">1 · BUILT</text>
+          <rect x="138" y="58" width="92" height="44" rx="3" fill="rgba(30,90,76,0.06)" stroke="#1E5A4C" stroke-width="1.3"/>
+          <text x="184" y="78" fill="#20262A">contextualize</text><text x="184" y="94" font-size="8.5" fill="#8A9299">2 · BUILT</text>
+          <rect x="256" y="58" width="92" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
+          <text x="302" y="78" fill="#20262A">propose</text><text x="302" y="94" font-size="8.5" fill="#8A9299">3 · PILOT</text>
+          <!-- GATE emphasized -->
+          <rect x="366" y="44" width="68" height="72" rx="3" fill="#1E5A4C" stroke="#1E5A4C" stroke-width="1.3"/>
+          <text x="400" y="78" fill="#ECEEEC" font-weight="600">GATE</text><text x="400" y="94" font-size="8.5" fill="#ECEEEC" opacity="0.85">4</text>
+          <rect x="458" y="58" width="92" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
+          <text x="504" y="78" fill="#20262A">execute</text><text x="504" y="94" font-size="8.5" fill="#8A9299">5 · PILOT</text>
+          <rect x="576" y="58" width="92" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
+          <text x="622" y="78" fill="#20262A">verify</text><text x="622" y="94" font-size="8.5" fill="#8A9299">6 · PILOT</text>
+          <rect x="694" y="58" width="76" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
+          <text x="732" y="78" fill="#20262A">learn</text><text x="732" y="94" font-size="8.5" fill="#8A9299">7 · PILOT</text>
+        </g>
+        <!-- human marker over gate -->
+        <circle cx="400" cy="30" r="5.5" fill="none" stroke="#1E5A4C" stroke-width="1.4"/>
+        <line x1="400" y1="35.5" x2="400" y2="44" stroke="#1E5A4C" stroke-width="1.4"/>
+        <text x="400" y="20" font-size="9" text-anchor="middle" fill="#1E5A4C" font-weight="600">HUMAN HOLDS THIS</text>
+        <!-- revoke arc: learn -> gate -->
+        <path d="M732 102 L732 200 Q732 214 718 214 L414 214 Q400 214 400 200 L400 118" fill="none" stroke="#1E5A4C" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahg)"/>
+        <text x="566" y="230" font-size="10" text-anchor="middle" fill="#1E5A4C">8 · revoke  ·  authority is reversible, a class drops back to the gate</text>
+      </svg>
+      <figcaption><b>Figure 2.</b> The loop. Observe and contextualize run in the reference implementation today <span class="chip built">Built</span>. Propose, gate, execute, verify, and learn are the first-partner build <span class="chip pilot">Pilot-scope</span>. Revocation returns any earned autonomy to the human gate.</figcaption>
+    </figure>
+
+    <p><b>1. Observe.</b> A source event enters the system: a captured meeting, a webhook from the work tracker, a message, a scheduled check. <span class="chip built">Built</span> in the reference implementation, the capture pipeline ingests meetings today and turns them into structured notes, decisions, and action items.</p>
+    <p><b>2. Contextualize.</b> The system retrieves what bears on the event: relevant memory, the objective tree, prior decisions, contact records. Each retrieved item is stamped with its source and its age, and the system narrates only the data path it actually traversed. It does not smooth over a gap; it marks it. <span class="chip built">Built</span> for retrieval and provenance; the objective tree is <span class="chip built">Built</span> as a personal tool and <span class="chip pilot">Pilot-scope</span> as an org-shaped, multi-tenant structure.</p>
+    <p><b>3. Propose.</b> An agent produces a recommendation, not an action. The proposal is typed. It carries a decision class, the exact payload that would change the world if approved, the initiating session and tenant, and references to the evidence it used. A proposal is inert until a gate resolves it. <span class="chip pilot">Pilot-scope</span>.</p>
+    <p><b>4. Gate.</b> The proposal reaches a human as a decision card with three moves: Approve, Edit, Reject. The gate classifies every proposal into exactly one decision class; an unclassifiable proposal is gated at the strictest level, because unknown means gated, always. Nothing that touches money, an outside party, or anything irreversible passes this step without a person deciding. This is the step the human holds, and can always take back. <span class="chip pilot">Pilot-scope</span>; the two-pane interaction and Approve/Edit/Skip pattern exist as <span class="chip proto">Prototype</span> from the operator console.</p>
+    <p><b>5. Execute where authorized.</b> On approval, a single service, the Action Executor, performs the side effect. It is the only path to a side effect in the entire system. It refuses any request lacking a valid, single-use, class-scoped token bound to the exact payload that was approved. Agents never hold the credentials that move money or reach an outside party; those live only inside the executor's boundary. An agent that wanted to act on its own would have to defeat a service boundary, not ignore an instruction. <span class="chip pilot">Pilot-scope</span>.</p>
+    <p><b>6. Verify.</b> The outcome is scored against the objective it was meant to serve, and an audit receipt is written: what changed, who approved, how long it took. The receipt is append-only. <span class="chip built">Built</span> for objective scoring (activity alignment; outcome movement needs a real key-result data source before it is more than a vanity number); <span class="chip pilot">Pilot-scope</span> for the audit receipt as a product surface.</p>
+    <p><b>7. Learn.</b> The system records whether its recommendation matched the human's actual choice, per decision class. Agreement accrues only where a human approved without editing. This is the raw material of earned autonomy in section 5. <span class="chip pilot">Pilot-scope</span>.</p>
+    <p><b>8. Revoke.</b> Authority is reversible by construction. A class that earned the right to act loses it the moment a human overrides an auto-acted item or an audit flags one; it drops back to a full human gate and has to earn the right again from zero. Demotion is cheap and carries no ceremony. <span class="chip pilot">Pilot-scope</span>.</p>
+
+    <h3>3.1 One event, end to end</h3>
+    <p>An engineer should be able to follow a single event through the whole loop. Here is one, with each rung's build status inline so the trace is honest about what runs and what is designed.</p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 700 210" role="img" aria-labelledby="trace-t">
+        <title id="trace-t">One event traced from a captured meeting through the human gate to an append-only receipt.</title>
+        <text x="16" y="20" font-size="10" letter-spacing="1.5" fill="#8A9299">ONE EVENT, END TO END  ·  A VENDOR RENEWAL</text>
+        <line x1="60" y1="86" x2="650" y2="86" stroke="rgba(32,38,42,0.14)" stroke-width="1.3"/>
+        <!-- stop 1 built -->
+        <circle cx="60" cy="86" r="8" fill="rgba(30,90,76,0.1)" stroke="#1E5A4C" stroke-width="1.6"/>
+        <text x="60" y="90" font-size="9" text-anchor="middle" fill="#1E5A4C">1</text>
+        <text x="60" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">observe</text>
+        <text x="60" y="106" font-size="8.5" text-anchor="middle" fill="#586067">meeting</text>
+        <text x="60" y="117" font-size="8.5" text-anchor="middle" fill="#586067">captured</text>
+        <text x="60" y="131" font-size="7.5" text-anchor="middle" fill="#1E5A4C">BUILT</text>
+        <!-- stop 2 -->
+        <circle cx="178" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
+        <text x="178" y="90" font-size="9" text-anchor="middle" fill="#586067">2</text>
+        <text x="178" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">context</text>
+        <text x="178" y="106" font-size="8.5" text-anchor="middle" fill="#586067">terms, last 3</text>
+        <text x="178" y="117" font-size="8.5" text-anchor="middle" fill="#586067">decisions, objective</text>
+        <text x="178" y="128" font-size="8.5" text-anchor="middle" fill="#586067">stamped source + age</text>
+        <!-- stop 3 -->
+        <circle cx="296" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
+        <text x="296" y="90" font-size="9" text-anchor="middle" fill="#586067">3</text>
+        <text x="296" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">propose</text>
+        <text x="296" y="106" font-size="8.5" text-anchor="middle" fill="#586067">draft decline</text>
+        <text x="296" y="117" font-size="8.5" text-anchor="middle" fill="#586067">class</text>
+        <text x="296" y="128" font-size="8.5" text-anchor="middle" fill="#1E5A4C">external.send</text>
+        <!-- stop 4 GATE diamond -->
+        <rect x="404" y="76" width="20" height="20" transform="rotate(45 414 86)" fill="#1E5A4C" stroke="#1E5A4C"/>
+        <text x="414" y="64" font-size="10.5" text-anchor="middle" fill="#1E5A4C" font-weight="600">GATE</text>
+        <text x="414" y="112" font-size="8.5" text-anchor="middle" fill="#586067">read, edit one</text>
+        <text x="414" y="123" font-size="8.5" text-anchor="middle" fill="#586067">line, approve</text>
+        <text x="414" y="137" font-size="7.5" text-anchor="middle" fill="#1E5A4C">HUMAN</text>
+        <!-- stop 5 -->
+        <circle cx="532" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
+        <text x="532" y="90" font-size="9" text-anchor="middle" fill="#586067">5</text>
+        <text x="532" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">execute</text>
+        <text x="532" y="106" font-size="8.5" text-anchor="middle" fill="#586067">executor sends,</text>
+        <text x="532" y="117" font-size="8.5" text-anchor="middle" fill="#586067">one-time token,</text>
+        <text x="532" y="128" font-size="8.5" text-anchor="middle" fill="#586067">exact bytes</text>
+        <!-- stop 6 -->
+        <circle cx="650" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
+        <text x="650" y="90" font-size="9" text-anchor="middle" fill="#586067">6</text>
+        <text x="650" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">receipt</text>
+        <text x="650" y="106" font-size="8.5" text-anchor="middle" fill="#586067">append-only:</text>
+        <text x="650" y="117" font-size="8.5" text-anchor="middle" fill="#586067">what, who, edit,</text>
+        <text x="650" y="128" font-size="8.5" text-anchor="middle" fill="#586067">elapsed</text>
+        <!-- footer -->
+        <line x1="60" y1="164" x2="650" y2="164" stroke="rgba(32,38,42,0.07)" stroke-width="1"/>
+        <text x="60" y="182" font-size="9.5" fill="#20262A">Human attention: read one card, change one sentence.</text>
+        <text x="60" y="197" font-size="9.5" fill="#586067">Nothing left the company without a named person approving the exact bytes.</text>
+      </svg>
+      <figcaption><b>Figure 3.</b> The front-door trace. Because <code>external.send</code> is a never-graduate class, the draft always arrives as a decision card. The edit at the gate counts as a disagreement, so the class moves no closer to autonomy, and it could never graduate anyway.</figcaption>
+    </figure>
+
+    <p>Read that trace as prose. A recurring vendor-renewal meeting is captured (<b>observe</b>; <span class="chip built">Built</span>). The system retrieves the vendor's current terms, the last three decisions about this vendor, and the objective this spend rolls up to, each item stamped with its source and how old it is (<b>contextualize</b>; <span class="chip built">Built</span>). An agent drafts a short email declining the renewal and proposes it as a task of class <code>external.send</code>, attaching the draft, the vendor record it read, and the objective reference (<b>propose</b>; <span class="chip pilot">Pilot-scope</span>). Because <code>external.send</code> is a class that never graduates, the draft arrives as a decision card; the executive reads it, edits one sentence, and approves (<b>gate</b>; <span class="chip pilot">Pilot-scope</span>). Only on that approval does the executor send, validating a one-time token bound to the exact edited message and refusing anything else (<b>execute</b>; <span class="chip pilot">Pilot-scope</span>). The send, its approver, the edit, and the elapsed time are written to an append-only receipt (<b>verify</b>). Because the human edited rather than approved clean, the system counts this as a disagreement for the class, so it moves no closer to autonomy (<b>learn</b>), and as a never-graduate class it could never act unattended anyway (<b>revoke / never-graduate</b>).</p>
+    <p>That trace is the product. The compression is real (a decision made in a meeting becomes a reviewed, sent, and recorded action in minutes), and the control is real (nothing left the company without a named person approving the exact bytes). The loop is the same whether the event is a meeting, a webhook, or a scheduled check; only the class and the payload change.</p>
+  </section>
+
+  <section id="s4">
+    <div class="h"><span class="n">04</span><h2>Architecture: the reference implementation, mapped to the enterprise target</h2></div>
+    <h3>4.1 What runs today</h3>
+    <p>The reference implementation is one person directing a fleet of agents across a working consulting operation. It runs the observe-and-propose half of the loop in production. Its operating counts are <span class="tag">N=1 operating evidence</span>, not customer traction, and they are collected in the appendix. In plain terms, today there is a native operator console that surfaces only the tiles that need a human; a capture pipeline that turns meetings into notes, decisions, and tasks; an objective-alignment scorer that maps work back to a stated objective tree; and a recognition engine that scores the operation's own output. All <span class="chip built">Built</span>.</p>
+    <h3>4.2 Why the code does not port, and what does</h3>
+    <p>Being honest about the starting point: nothing in the reference implementation is multi-tenant-shaped <span class="tag m">MEASURED</span> (repo-reality scan 2026-07-08). It was built for one operator. That is a feature for proving the pattern and a liability for shipping a product, and we treat it as both.</p>
+    <p>Three of the four core pillars carry validated logic worth consolidating into libraries rather than rewriting: the objective-alignment scoring, the capture pipeline, and the recognition-engine math. The front door is the one pillar with no shipping code to consolidate; it gets built new as a multi-tenant web application. The rule across the board: the patterns migrate (the two-pane surface, the Approve/Edit/Skip card, the graduated-autonomy rule), the code does not. Anyone who claims the reference implementation is the product is selling the wrong thing.</p>
+    <h3>4.3 The productization work, named honestly</h3>
+    <p>Between the reference implementation and an enterprise-grade product sits real engineering. Naming it honestly is part of the trust case, so here it is, each item <span class="chip pilot">Pilot-scope</span> unless noted.</p>
+    <ul>
+      <li><b>Tenancy.</b> The estate is single-operator. The pilot is a dedicated single-tenant deployment: the partner's data in its own database instance under its own encryption keys, physically segregated from the reference implementation from day one. The multi-tenant version is schema-per-tenant plus row-level security on every query, per-tenant keys, per-tenant budget caps, and a cross-tenant leak test in the build that fails if any query ever returns another tenant's rows.</li>
+      <li><b>Identity.</b> Redirect-based SSO in the browser (SAML/OIDC), never OAuth inside an embedded webview. Role-based access control in the application, with the scoring store held as its own access role separate from everything else.</li>
+      <li><b>Permissions.</b> The decision-class registry and the single-use, payload-bound gate token in section 5. This is what makes "execute only what is authorized" a property of the code rather than a promise.</li>
+      <li><b>Durable execution.</b> The agent SDK gives sessions and tool calls. It does not give retries, per-tenant budget caps, durable execution across failures, centralized observability, or multi-tenancy. Those are the substance of the V1 build, not incidental plumbing, and we say so rather than imply the SDK ships them.</li>
+      <li><b>Integrations.</b> A work-tracker-agnostic adapter (tasks read and write, objective and key-result read and write, inbound webhooks, idempotent upserts keyed by external id). One connector is built first; a second when a design partner requires it. No product logic ever imports a vendor SDK directly; everything crosses the adapter. Legacy integration is real friction; the consultative companion is the bridge.</li>
+      <li><b>Evaluations.</b> Per-client evaluation sets that measure whether the system's recommendations match that client's actual choices, per decision class. These are the input to earned autonomy and they are client-specific by design (section 7).</li>
+      <li><b>Audit.</b> An append-only event log with UPDATE and DELETE revoked at the database role level, shipped to an object-storage archive in hash-chained batches so tampering is detectable. It is the single source for the zero-ungated attestation, for graduation evidence, and for any client security review.</li>
+      <li><b>Incident response.</b> Surfacing fails open to the human: if the triage layer errors or is uncertain, the item escalates raw rather than being dropped. An attempted ungated action is a severity-one event that pauses the workflow and informs the executive; it is never quietly retried. The breach commitment is 24-hour internal and 72-hour partner notification, and tenant-aware logging makes blast-radius determination a query rather than an investigation.</li>
+    </ul>
+    <h3>4.4 Where each capability actually stands</h3>
+    <p>An uninvolved reviewer should be able to place every visible capability without asking the founder. This table does that.</p>
+    <div class="tw">
+      <table>
+        <caption>Capability truth table</caption>
+        <thead><tr><th>Capability</th><th>Operating internally (N=1)</th><th>Prototype</th><th>Pilot build</th><th>Horizon</th></tr></thead>
+        <tbody>
+          <tr><td class="tn">Meeting capture to notes/tasks</td><td class="c">&#9679;</td><td></td><td>harden for a tenant</td><td></td></tr>
+          <tr><td class="tn">Objective-alignment scoring</td><td class="c">&#9679; activity axis</td><td></td><td>outcome axis on real KR data</td><td></td></tr>
+          <tr><td class="tn">Recognition / achievement engine</td><td class="c">&#9679; single tally</td><td></td><td>per-person model</td><td></td></tr>
+          <tr><td class="tn">Operator console (fleet HUD)</td><td class="c">&#9679;</td><td></td><td>patterns export</td><td></td></tr>
+          <tr><td class="tn">Front door (client web app)</td><td></td><td class="c">read-only readout</td><td>multi-tenant two-pane</td><td></td></tr>
+          <tr><td class="tn">Gate service + class registry</td><td></td><td></td><td>build</td><td></td></tr>
+          <tr><td class="tn">Graduation ledger</td><td></td><td></td><td>build</td><td></td></tr>
+          <tr><td class="tn">Action executor (single path)</td><td></td><td></td><td>build</td><td></td></tr>
+          <tr><td class="tn">Immutable audit log (product)</td><td>event shape in use</td><td></td><td>build</td><td></td></tr>
+          <tr><td class="tn">Tenant + governance substrate</td><td></td><td></td><td>single-tenant, then RLS</td><td></td></tr>
+          <tr><td class="tn">Work-tracker adapter</td><td></td><td></td><td>first connector</td><td>second on demand</td></tr>
+          <tr><td class="tn">Speaker attribution</td><td></td><td class="c">validated</td><td>consent-gated deploy</td><td></td></tr>
+          <tr><td class="tn">Gamification (per-person/org)</td><td></td><td></td><td>after mechanics spec</td><td>rewards economy</td></tr>
+          <tr><td class="tn">Skill marketplace (per-run)</td><td>registry as pattern-proof</td><td></td><td></td><td>build</td></tr>
+          <tr><td class="tn">Attribution / proof-of-origination</td><td></td><td></td><td></td><td>build</td></tr>
+          <tr><td class="tn">SOC 2 Type II</td><td>controls aligned</td><td></td><td></td><td>audit on first deal</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The read-only estate readout is exactly that: a live, read-only view of real estate data, with no action paths behind it. It is the honest thing to demonstrate, and it is labeled read-only wherever it appears.</p>
+  </section>
+
+  <section id="s5">
+    <div class="h"><span class="n">05</span><h2>The product law: graduated autonomy per action class</h2></div>
+    <p>This is the part an engineering leader should read most carefully, because it is where the trust is either real or theater. The law is enforced by architecture, not by prompt discipline. Everything in this section is <span class="chip pilot">Pilot-scope</span>; the reference implementation's operator console carries the pattern, not the multi-tenant machinery.</p>
+    <h3>5.1 The hard invariant</h3>
+    <p>Zero ungated money, irreversible, or external actions. Formally: every side-effecting action executes through exactly one path, the executor, and the executor refuses any request lacking a valid gate token for the action's class. There is no second path. The invariant is computed, not asserted: the attestation that zero ungated actions occurred over a period is a count of ungated-attempt events equal to zero, derived from the event stream. If the stream cannot prove it, it did not happen.</p>
+    <h3>5.2 The unit of governance is the action class</h3>
+    <p>A decision class is a named, versioned definition: an action category, a blast radius (money bands, reversibility, external visibility), a tenant scope, and the approver role required. A seed taxonomy for a pilot includes classes like <code>capture.scope_change</code>, <code>artifact.external_send</code>, <code>task.create_in_partner_tool</code>, <code>commitment.close</code>, plus <code>money.any</code>, <code>irreversible.any</code>, and the one pilot workflow's own classes chosen in week one. Changing a class definition is itself a gated, human-only action, and it resets that class's evidence to zero, because agreement measured against one definition means nothing against another.</p>
+    <h3>5.3 The evidence threshold</h3>
+    <p>A class earns autonomy only when the system's recommendation has matched the human's actual choice at least 90 percent of the time across at least 20 resolved decisions. The 20-plus are consecutive and trailing, not cherry-picked across a lifetime. Below the threshold, every action in the class is gated to a human. This is the same 90-percent-over-20-reps rule the reference implementation's own design has carried from the start; it is deliberately conservative and deliberately boring.</p>
+    <h3>5.4 Disagreement semantics</h3>
+    <p>Only an approval with no edit counts as agreement. An Edit and a Reject both count against the class. The reasoning: an edit is the human correcting the system, and a system that needs correcting has not earned the right to skip the human. This is the conservative reading, and it is the working rule; it needs founder confirmation before the first pilot day, and if weighted partial credit for small edits is wanted later, only the ledger function changes, not the schema. We flag it as an open decision rather than pretend it is settled.</p>
+    <h3>5.5 Sign-off and the record</h3>
+    <p>Resolution happens on a human decision card. When a class has graduated, the gate service may auto-approve for that class, and it still writes the full record with an explicit auto-approved flag plus the complete audit entry. Graduation changes who approves. It never changes whether the record is written. Per-class status is visible to the client on a weekly attestation, so autonomy is never invisible to the people it acts for.</p>
+    <h3>5.6 Revocation</h3>
+    <p>Autonomy is a lease, not a grant. A single post-graduation disagreement (a human overriding an auto-acted item, or an audit flagging one) demotes the class immediately back to a full human gate and restarts its window. Re-graduation requires the whole 90-over-20 again. Demotion is cheap and unceremonious on purpose: the machinery must make taking authority back a routine act, not a confession of failure.</p>
+    <h3>5.7 Classes that never graduate</h3>
+    <p>Three classes are marked never-graduate at the schema level, not by convention: money in any amount, anything irreversible, and anything external-facing above a de-minimis definition. The graduation machinery is structurally unable to flip these to auto-act, and no API surface, including an administrator's, can override that. Product law says autonomy is earned. It does not say every class is earnable. The de-minimis lines (does an internal comment in a partner's own tool count as external?) are a founder decision; the safe default is that anything visible to a non-operator human is external until narrowed.</p>
+    <h3>5.8 The graduation ladder</h3>
+
+    <figure class="fig">
+      <svg viewBox="0 0 600 300" role="img" aria-labelledby="ladder-t">
+        <title id="ladder-t">The graduation ladder: classes start gated, may earn graduated status, and can be demoted; three classes are locked and never graduate.</title>
+        <!-- locked tier -->
+        <rect x="40" y="30" width="520" height="54" rx="3" fill="#20262A" stroke="#20262A"/>
+        <text x="60" y="54" font-size="12" fill="#ECEEEC" font-weight="600">MONEY  ·  IRREVERSIBLE  ·  EXTERNAL</text>
+        <text x="60" y="72" font-size="10" fill="#ECEEEC" opacity="0.75">locked at the schema level, never graduates at any rep count</text>
+        <!-- lock glyph -->
+        <g transform="translate(524,44)">
+          <rect x="0" y="6" width="16" height="12" rx="1.5" fill="none" stroke="#ECEEEC" stroke-width="1.4"/>
+          <path d="M3 6 V3.5 A5 5 0 0 1 13 3.5 V6" fill="none" stroke="#ECEEEC" stroke-width="1.4"/>
+        </g>
+        <!-- ceiling barrier -->
+        <line x1="40" y1="102" x2="560" y2="102" stroke="#20262A" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="300" y="118" font-size="9.5" text-anchor="middle" fill="#586067">ceiling: these classes cannot rise, whatever the record</text>
+        <!-- graduated tier -->
+        <rect x="40" y="132" width="520" height="54" rx="3" fill="rgba(30,90,76,0.1)" stroke="#1E5A4C" stroke-width="1.4"/>
+        <text x="60" y="156" font-size="12" fill="#1E5A4C" font-weight="600">GRADUATED</text>
+        <text x="60" y="174" font-size="10" fill="#586067">may auto-act, and every act is still logged with an auto flag</text>
+        <!-- gated tier -->
+        <rect x="40" y="230" width="520" height="54" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.4"/>
+        <text x="60" y="254" font-size="12" fill="#20262A" font-weight="600">GATED</text>
+        <text x="60" y="272" font-size="10" fill="#586067">every action to a human; all classes start here</text>
+        <!-- earn arrow up (right) -->
+        <line x1="470" y1="230" x2="470" y2="188" stroke="#1E5A4C" stroke-width="1.5" marker-end="url(#ahg)"/>
+        <text x="484" y="205" font-size="9" fill="#1E5A4C">earn</text>
+        <!-- demote arrow down (left) -->
+        <line x1="130" y1="188" x2="130" y2="230" stroke="#586067" stroke-width="1.5" marker-end="url(#ah)"/>
+        <text x="116" y="205" font-size="9" text-anchor="end" fill="#586067">demote</text>
+        <!-- condition -->
+        <text x="300" y="221" font-size="9.5" text-anchor="middle" fill="#20262A">&#8805; 90% agreement over &#8805; 20 trailing reps</text>
+      </svg>
+      <figcaption><b>Figure 4.</b> The ladder is the product's spine. A class starts gated, earns its way up on a boring, computed record, may be demoted in an instant, and, for the three classes that matter most, can never leave the ground floor.</figcaption>
+    </figure>
+
+    <p>An engineer can test every rung: no sequence shorter than 20 reps graduates, any post-graduation disagreement demotes, a class-definition edit resets the count, and the never-graduate classes cannot be flipped by any call. Those are the gate-invariant tests, and they run in the build.</p>
+  </section>
+
+  <section id="s6">
+    <div class="h"><span class="n">06</span><h2>Gamification as incentive governance</h2></div>
+    <p>The adoption layer is a scoring system, and every scoring system inside a workplace is a governance system whether or not it admits it. We treat it as one. The design goal is not to rank people. It is to reward the behavior a company needs (people using AI in the open) while protecting people from the failure modes scoring systems always have. In the reference implementation this exists today only as a single running tally over one operator's own output <span class="chip built">Built</span>; the per-person and per-organization version is a genuine rebuild <span class="chip pilot">Pilot-scope</span>, deliberately blocked on a mechanics specification owned by an originating member so it is designed once rather than twice.</p>
+    <p><b>Mechanics.</b> Points are earned as rarity times impact, surfaced in a small number of tiers, with routine events silenced so the layer never becomes a notification feed. Streaks reward consistency. Leagues group people so that no one competes against a structurally different role. On top sit the rewards a company chooses to attach: time bought back, recognition, a points economy. The core value proposition to the individual is direct: the system rewards people who adopt AI, instead of leaving them afraid of being replaced by it. An employee who does far more in far less time buys time back, rather than being handed more work.</p>
+    <p><b>Abuse cases, named first.</b> A scoring system attracts gaming, and we design against specific attacks rather than a vague ideal of fairness: inflating a metric by burning tokens without producing output; a coordinated or automated actor farming a time-weighted leaderboard (a real failure one contributor lived on a past project); outliers that look like excellence and are actually exploits; and the structural unfairness of penalizing meeting-heavy or non-technical roles for producing fewer of the measured events.</p>
+    <p><b>Fairness countermetrics.</b> Against those: daily attainment caps, with the standing rule that about 90 percent of people never reach the cap, so the ones who do are the population to analyze, not celebrate. Outlier detection on the shape of scoring, not just its size. Consistency gating so a single burst cannot buy a league. Role-adjusted scoring so a role is measured against its own kind of work. These are aimed at protecting people from the system, which is the opposite of the usual purpose of workplace scoring.</p>
+    <p><b>Visibility, appeal, and consent.</b> An individual sees their own data. Organization administrators see aggregate standings, without named-individual drill-down, unless the individual consents. Every scored item can be disputed through an appeal path, generalized from the reference implementation's own reject-to-learn correction loop, where a bad scoring event is flagged and the system stops repeating it. Participation is opt-in under a reviewed consent text before any collection begins; opting out stops forward scoring.</p>
+    <p><b>Management limits.</b> The hardest limit is structural: there is no data path from scores to compensation systems, enforced at the code level, not by policy. The scoring store is its own access role, siloed from everything else (section 7). The system measures loop deletion and output, not hours and not presence; it is not built to watch people, and it is architecturally prevented from feeding the systems that would.</p>
+    <p><b>The regulatory read, stated plainly.</b> Objective-weighted scoring plus gamification of workers reads, under the EU AI Act, as an Annex III high-risk system (worker monitoring and task allocation), enforceable from August 2026 <span class="tag">VENDOR</span> (press). This is not an edge case for us; it is two of our pillars read literally. It is not a blocker for a US pilot, and it becomes binding the moment a client has an EU workforce. The useful consequence: the logging, human-oversight, and risk documentation the Act demands are the same artifacts the gate service and audit log already produce, so we keep them export-ready rather than bolt them on later.</p>
+  </section>
+
+  <section id="s7">
+    <div class="h"><span class="n">07</span><h2>Data posture</h2></div>
+    <p>This is the first question a design partner's security team asks, so it gets a real answer rather than a reassurance. Everything below is <span class="chip pilot">Pilot-scope</span> as product machinery; the postures marked as proposed defaults carry a founder review gate and are tagged <span class="tag">[unverified]</span> until confirmed.</p>
+    <p><b>Siloing.</b> Data classes do not share stores, keys, or access roles across sensitivity boundaries. In particular, scoring data and meeting capture never share a store, a key, or an access role with each other. The scoring store is the single most sensitive class and is held alone. This is control one of the aligned control set, not an afterthought.</p>
+    <p><b>Tenant boundary.</b> For the pilot, a design partner's data lives in its own database instance under its own keys, physically segregated from the reference implementation and from any other account from day one. At n=1 this is cheaper to reason about and to attest than row-level security, and a partner's security team can audit it in a single meeting. The multi-tenant version adds schema-per-tenant separation with row-level security as the backstop, per-tenant keys, and a cross-tenant leak test that fails the build if a query ever crosses the line.</p>
+    <p><b>Provenance.</b> Every event carries its initiator, approver, executor, tenant, timestamps, and a hash of the payload. The system shows where a fact came from and how fresh it is, and it narrates only the data path it actually used. Provenance is not a report generated later; it is the shape of every event as it is written.</p>
+    <p><b>Retention</b> (proposed defaults, founder gate, <span class="tag">[unverified]</span>). Raw transcripts: 90 days, then auto-deleted unless the partner explicitly archives them. Derived artifacts (decisions, actions, commitments): the life of the engagement plus a contracted wind-down. Scoring events: the life of the engagement, then anonymized aggregates. The audit log: never deleted within the engagement, and exported to the partner at wind-down. Provider traffic: zero-retention requested in writing, with the one model-family carve-out that does not offer it kept off any sensitive path so the assumption never breaks silently.</p>
+    <p><b>Consent and the hard walls.</b> Sanctioned capture only. The undisclosed-notetaker eviction in section 1 is the lesson encoded as policy: no undisclosed bots, ever. An executive designates the capture scope and all participants are disclosed to. Speaker attribution deploys only with explicit all-party consent, given the active wiretap and biometric litigation against that whole feature class <span class="tag">VENDOR</span> (press, 2025 to 2026). Legal, board, and merger-related meetings are walled out of capture by policy before any regulated-client pilot, because a 2026 holding that AI conversations are not privileged makes that exposure concrete rather than theoretical <span class="tag">VENDOR</span> (press).</p>
+    <p><b>No pooled client-data learning.</b> This is the load-bearing commitment and the differentiator, so it is stated without hedging: no client's data is used to train models, and nothing learned inside one tenant pools into another. What compounds is client-specific. Each engagement's own configuration and its own evaluation sets make that engagement's system better over time, and they stay inside that engagement's boundary. The compounding asset is the fit of the system to one company, earned on that company's ground, never a shared pool skimmed across clients.</p>
+    <p><b>What we hold, and what we do not.</b> We adopt the aligned control set now (a current data map, SSO and role-based access, tenant-scoped logging, encryption at rest and in transit, quarterly vendor review). We do not hold a SOC 2 Type II report, and we do not imply one. A formal audit is a 9-to-15-month effort triggered by the first real enterprise deal <span class="tag">SURVEY</span> (compliance-market sources), and until it exists the engagement sells on relationship, demonstration, and this documented posture, not on a certificate we do not have.</p>
+  </section>
+
+  <section id="s8">
+    <div class="h"><span class="n">08</span><h2>What we deliberately do not claim</h2></div>
+    <p>A trust document is defined as much by its refusals as by its claims. These are ours, stated so they cannot be read as hedging.</p>
+    <ul class="dontclaim">
+      <li><b>We do not claim immunity from the frontier labs.</b> A lab could build this capability. That is the market premise, not a fear we hide. The defensible part is adoption psychology, governance, and trusted delivery, earned per organization.</li>
+      <li><b>We do not claim the system runs your company.</b> The system orchestrates and proposes; a human holds the gate. Money, irreversible, and external actions never graduate to unattended action. Autonomy is earned per class and revocable in an instant.</li>
+      <li><b>We do not claim zero hallucination or perfect accuracy.</b> We claim provenance, traceability, and refusal outside authority. The system marks what it inferred versus what it observed, and exposes uncertainty rather than smoothing it.</li>
+      <li><b>We do not claim effortless integration.</b> Legacy integration is real friction. The consultative companion is the bridge across it, not a promise that the bridge is not needed.</li>
+      <li><b>We do not claim a throughput multiplier as a customer outcome.</b> An internal engineering benchmark exists and is being formalized with a methodology memo; no throughput figure appears in this document, and no such number is ever a customer promise.</li>
+      <li><b>We do not claim compliance we do not hold.</b> There is no SOC 2 report today. The controls are aligned; the certificate is a future event tied to a real deal.</li>
+      <li><b>We do not present the reference implementation as an installed customer.</b> It is a reference implementation operated by the founder. Its counts prove a pattern, not demand.</li>
+      <li><b>We do not present the research corpus or the skill registry as traction.</b> They are inputs and pattern-proof. Demand is measured by signed pilots, of which the honest count is stated wherever the question is asked.</li>
+      <li><b>We do not claim a name.</b> The product is intentionally unnamed until the position is locked and a mark clears legal review. The brackets are the design.</li>
+    </ul>
+    <p class="lead">Trust is made visible as product behavior, not asserted as brand language. A system that cites its sources, distinguishes observation from inference, exposes its uncertainty, and refuses to act outside its authority earns more conviction than a product that merely appears finished. We are building for the first of those.</p>
+  </section>
+
+  <section id="appendix">
+    <div class="h"><span class="n">A</span><h2>Appendix: N=1 operating evidence</h2></div>
+    <p>These are counts from the reference implementation, read from live telemetry. They are one operator's operating evidence, <span class="tag">N=1</span>. They demonstrate that the observe-and-propose pattern runs in production. They are not customer traction, and none should be read as adoption by anyone other than the founder.</p>
+    <div class="tw">
+      <table>
+        <caption>Reference implementation, live telemetry</caption>
+        <thead><tr><th>Signal</th><th>Value</th><th>Tag</th></tr></thead>
+        <tbody>
+          <tr><td class="tn">Internal agent operation, org-wide since</td><td>2026-07-01</td><td><span class="tag m">MEASURED</span></td></tr>
+          <tr><td class="tn">Objective-alignment scoring, first run</td><td>99.3% of commits mapped to the objective tree (275 of 277)</td><td><span class="tag m">MEASURED</span></td></tr>
+          <tr><td class="tn">Recognition engine, live since</td><td>2026-04-19; 5,027 points; a 23-day streak unbroken</td><td><span class="tag m">MEASURED</span></td></tr>
+          <tr><td class="tn">Operator console (most-active repo)</td><td>322 commits; session recall cut from 8 to 10 seconds down to 0.06</td><td><span class="tag m">MEASURED</span></td></tr>
+          <tr><td class="tn">Capture pipeline</td><td>343 processed notes; roughly 47,000 embeddings; 5 real tasks auto-extracted from one meeting</td><td><span class="tag m">MEASURED</span></td></tr>
+          <tr><td class="tn">Skill registry (an input, not traction)</td><td>296 skills with a nightly self-improver</td><td><span class="tag m">MEASURED</span></td></tr>
+          <tr><td class="tn">Consultative delivery engine</td><td>6-plus active engagements, one at 25,000 dollars per month</td><td><span class="tag m">MEASURED</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="foot"><b>Provenance.</b> This document is a working technical specification for an unnamed product, authored 2026-07-09 from the foundation repository's architecture, data-governance, and product-law artifacts and the conversation-sweep dossiers behind them. Build-status and evidence tags are load-bearing; treat any untagged number as a defect. Founder: Jarred Winn (jarred@winn.solutions). No em dashes, by house rule and recipient preference. This is an internal review draft, not an external publication.</p>
+  </section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var map = {};
+  links.forEach(function(a){ var id=a.getAttribute('href').slice(1); map[id]=a; });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){ a.classList.remove('on'); });
+        var a = map[e.target.id]; if(a){ a.classList.add('on'); }
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+  document.querySelectorAll('main section[id]').forEach(function(s){ obs.observe(s); });
+})();
+</script>
+</body>
+</html>

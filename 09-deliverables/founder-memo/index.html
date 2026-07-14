@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Founder Memo &middot; [NAME]</title>
+<meta name="description" content="Founder memo by Jarred Winn. A working fleet-of-one, and the case for a trusted companion through the AI transition. The company is being named on purpose.">
+<style>
+  /* ============================================================
+     FOUNDER MEMO  ·  design system
+     Concept: a quiet, handwritten-in-spirit letter set in a
+     humanist serif (the founder's voice), with the being-born
+     company appearing only as bracketed MONO tokens (the system's
+     voice, deferring to the human). The one moving thing is a
+     terminal caret waiting in the empty name slot.
+     Palette is the kit's neutral base (cool structural paper +
+     graphite) with this deliverable's warm accent: sanguine ink.
+     ============================================================ */
+
+  :root{
+    --paper:      #ECEEEC;  /* cool structural paper, NOT cream */
+    --ink:        #20262A;  /* graphite near-black: the voice     */
+    --ink-soft:   #586067;  /* secondary / meta / provenance      */
+    --ink-dim:    #6C727A;  /* the unfilled NAME placeholder       */
+    --accent:     #8A3D30;  /* deep sanguine ink: the human accent */
+    --accent-lit: #A24A38;
+    --wash:       rgba(138,61,48,0.09);
+
+    --serif: "Palatino Linotype","Book Antiqua","Palatino","Iowan Old Style","URW Palladio L",Georgia,serif;
+    --mono:  ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:clamp(1.06rem, 0.92rem + 0.55vw, 1.2rem);
+    line-height:1.62;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    font-kerning:normal;
+  }
+
+  ::selection{ background:var(--wash); color:var(--ink); }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:1px;
+  }
+
+  .memo{
+    max-width:39rem;
+    margin:0 auto;
+    padding:clamp(3rem,7vh,6rem) clamp(1.4rem,5vw,2rem) clamp(4rem,11vh,8rem);
+  }
+
+  /* ---- masthead: the being-named company as a code slot -------- */
+  .masthead{ margin-bottom:2.5rem; }
+
+  .wordmark{
+    font-family:var(--mono);
+    font-size:clamp(2.1rem, 1.45rem + 3.3vw, 3.25rem);
+    letter-spacing:0.02em;
+    line-height:1;
+    display:inline-flex;
+    align-items:baseline;
+    white-space:nowrap;
+  }
+  .wordmark .br{ color:var(--accent); font-weight:600; }
+  .wordmark .nm{ color:var(--ink-dim); padding:0 0.04em 0 0.16em; }
+
+  /* the one moving thing on the page: a caret waiting in the slot,
+     sitting just after the placeholder with the field open before ] */
+  .caret{
+    display:inline-block;
+    width:0.08em;
+    height:0.92em;
+    background:var(--accent);
+    margin:0 0.18em 0 0.02em;
+    transform:translateY(0.04em);
+    animation:blink 1.15s steps(1,end) infinite;
+  }
+  @keyframes blink{ 0%,52%{opacity:1;} 53%,100%{opacity:0;} }
+
+  .wm-caption{
+    font-family:var(--mono);
+    font-size:0.7rem;
+    letter-spacing:0.02em;
+    color:var(--ink-soft);
+    margin:0.95rem 0 0;
+  }
+
+  /* ---- dateline + epigraph ------------------------------------- */
+  .dateline{
+    font-family:var(--mono);
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:1.15rem;
+    line-height:1.9;
+  }
+  .dateline .tok{ color:var(--ink-soft); }
+  .dateline .tok-draft{ color:var(--accent); }
+  .dateline .sep{ opacity:0.5; padding:0 0.15em; }
+
+  .epigraph{
+    font-style:italic;
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    margin:0 0 2.6rem;
+  }
+
+  /* ---- hero thesis -------------------------------------------- */
+  .thesis{
+    font-weight:400;
+    font-size:clamp(1.85rem, 1.28rem + 2.55vw, 2.72rem);
+    line-height:1.15;
+    letter-spacing:-0.012em;
+    margin:0 0 1.35rem;
+    text-wrap:balance;
+  }
+
+  .lede{ margin:0 0 1.4rem; }
+
+  /* ---- body --------------------------------------------------- */
+  .memo p{ margin:0 0 1.35em; }
+  .memo p:last-child{ margin-bottom:0; }
+
+  h2{
+    font-weight:700;
+    font-size:clamp(1.3rem, 1.06rem + 1.05vw, 1.55rem);
+    line-height:1.28;
+    letter-spacing:-0.006em;
+    margin:3.5rem 0 1rem;
+    text-wrap:balance;
+  }
+
+  .closer{ margin-top:1.35em; }
+
+  /* ---- the [NAME] token, inline in prose ---------------------- */
+  .name-token{
+    font-family:var(--mono);
+    font-size:0.92em;
+    letter-spacing:0.01em;
+    white-space:nowrap;
+  }
+  .name-token .br{ color:var(--accent); }
+  .name-token .nm{ color:var(--ink-dim); padding:0 0.12em; }
+
+  /* ---- signature ---------------------------------------------- */
+  .sign{ margin-top:3rem; }
+  .sign-name{
+    font-size:1.35rem;
+    line-height:1.2;
+    margin:0 0 0.5rem;
+  }
+  .sign-sub{
+    font-family:var(--mono);
+    font-size:0.7rem;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .sign-sub .name-token .nm{ color:var(--ink-soft); }
+
+  /* ---- provenance: the system's footnote ---------------------- */
+  .provenance{
+    margin-top:3.6rem;
+    padding-top:2.1rem;
+    font-size:0.85rem;
+    line-height:1.58;
+    color:var(--ink-soft);
+    max-width:33rem;
+  }
+  .prov-label{
+    font-family:var(--mono);
+    font-size:0.66rem;
+    letter-spacing:0.11em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 0.85rem;
+  }
+  .provenance p{ margin:0; }
+
+  /* honest-math tags stay visible, styled as system tokens */
+  .tag{
+    font-family:var(--mono);
+    font-size:0.74em;
+    letter-spacing:0.05em;
+    color:var(--accent);
+    background:var(--wash);
+    padding:0.06em 0.4em;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+
+  /* ---- responsive nudge --------------------------------------- */
+  @media (max-width:430px){
+    .wordmark{ letter-spacing:0.01em; }
+    .dateline{ line-height:2.1; }
+  }
+
+  /* ---- respect reduced motion --------------------------------- */
+  @media (prefers-reduced-motion:reduce){
+    .caret{ animation:none; opacity:1; }
+  }
+
+  /* ---- print: the memo as a real sheet ------------------------ */
+  @media print{
+    body{ background:#fff; color:#000; }
+    .caret{ display:none; }
+    .memo{ max-width:none; padding:0; }
+    h2{ page-break-after:avoid; }
+    .memo p, .epigraph, .thesis{ page-break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <article class="memo">
+
+      <header class="masthead">
+        <div class="wordmark" role="img" aria-label="[NAME], an unnamed company awaiting its name">
+          <span class="br" aria-hidden="true">[</span><span class="nm" aria-hidden="true">NAME</span><span class="caret" aria-hidden="true"></span><span class="br" aria-hidden="true">]</span>
+        </div>
+        <p class="wm-caption">a company being named, on purpose</p>
+      </header>
+
+      <p class="dateline">
+        <span class="tok">[ Founder Memo ]</span>
+        <span class="sep">&middot;</span> Jarred Winn
+        <span class="sep">&middot;</span> July 9, 2026
+        <span class="sep">&middot;</span> <span class="tok tok-draft">[ Draft ]</span>
+      </p>
+
+      <p class="epigraph">My voice, my draft, mine to cut.</p>
+
+      <h1 class="thesis">I never leave my Claude code terminal anymore.</h1>
+
+      <p class="lede">Literally, all my work is done in it. That one line is the whole origin of this thing, so let me sit on it.</p>
+
+      <p>Over the last few months my entire operation moved inside a fleet of agents that runs for exactly one person: me. There&rsquo;s an engine that scores the work against goals I actually set, a layer that makes the doing of it feel like progress instead of grind, a pipeline that turns meetings into tracked action instead of forgotten talk, and a few hundred skills I&rsquo;ve built up one problem at a time. It runs my consulting, my other companies, and most of my day. It&rsquo;s not something I spin up for a demo. It&rsquo;s what I use to live. My first instinct with anyone I respect is to turn the screen around and show them what&rsquo;s already possible.</p>
+
+      <p>That instinct is the company. Not the model underneath it. The lived proof that one person, with the right companion, can operate like a team.</p>
+
+      <h2>The enemy isn&rsquo;t AI. It&rsquo;s how AI is landing on people.</h2>
+
+      <p>Let me say the quiet part plainly. Most companies are adopting AI in a way that scares their people and flattens them at the same time. Fear-based mandates from the top. Replace-the-headcount math in the boardroom. And underneath it, something subtler that bothers me more: everyone starts prompting the same way, reaching for the same outputs, and slowly sounding like each other.</p>
+
+      <p>I want you to maintain your unique sense of individuality. As AI is adopted and we&rsquo;re all influenced by it, we lose our unique sense of individuality and humanity. I believe that genuinely enough that I&rsquo;m writing a book about it. The more we all lean on the same models, the more we converge, and the part that gets quietly deleted is the part of a person that was actually theirs. Chaotic, ungoverned adoption doesn&rsquo;t just burn people out. It homogenizes them.</p>
+
+      <p>That&rsquo;s the enemy. Not the technology. The careless way it&rsquo;s being poured into organizations.</p>
+
+      <h2>So the pitch is the opposite of what everyone else is selling.</h2>
+
+      <p>We&rsquo;re not doing this so you can replace your employees. We&rsquo;re doing this so you can reward your employees and retain them, based on the fact that they are then going to be adopting AI. If a person does ten times the work in two hours, the answer isn&rsquo;t to fire the other nine. It&rsquo;s to give that person their afternoon back. You buy people time instead of taking their jobs.</p>
+
+      <p>And it isn&rsquo;t only software. It&rsquo;s not only a software suite for your team, but also a consultative process of ensuring that your company is running in the right ways, which is where the human element comes into it. That consulting isn&rsquo;t a bolt-on. It&rsquo;s the bridge, and it&rsquo;s the point.</p>
+
+      <h2>Why a companion, and not just a smarter model.</h2>
+
+      <p>Let me concede the thing most founders in this space tiptoe around. Anthropic and the others can build this. The raw capability isn&rsquo;t my moat, and pretending otherwise would insult anyone smart enough to write me a check. We know they can do this. What companies need is a trusted companion to bring them through it and help them get a head start. A model is a tool. A companion is a relationship, and the relationship is the whole game.</p>
+
+      <p>Trust really is a factor of time multiplied by consistency, and then there&rsquo;s an exponential factor of experiences shared. You can&rsquo;t download that. It&rsquo;s why the labs, for all their capability, aren&rsquo;t going to sit at a nervous executive&rsquo;s side for six months and earn the right to change how their company runs. I already have. That&rsquo;s the moat: the organizational psychology of getting real people to adopt this without losing themselves, and the trust built one shared experience at a time.</p>
+
+      <p>The order it spreads is deliberate. C-levels first, the chief of staff and the organizer, the people drowning in coordination. Engineers next, to revamp and overhaul how the work gets built. Everyone else follows once they see it, on demand rather than by mandate.</p>
+
+      <h2>How this gets funded.</h2>
+
+      <p>I&rsquo;m not running a cold process. We raise on achievement and faith, from investors we already know. People who&rsquo;ve watched me do things and believe I&rsquo;ll do this one. The near-term ask is small and specific: a scoped 90-day design-partner pilot plus a smaller strategic check, sized to what a live demonstration actually earns. The larger raise comes later, at roughly month six, triggered by demonstrated achievement and nothing else. I&rsquo;d rather show you the thing running than sell you a slide about it.</p>
+
+      <p>On structure, so it&rsquo;s never fuzzy: I am the founder of this. The vision is mine. Nick and Carter are originating members who earn equity through real contribution, Nick on the game and adoption mechanics, Carter on the engineering framework. Contribution earns ownership. This isn&rsquo;t a three-way split of my idea.</p>
+
+      <h2>Where this goes, grounded in what already runs.</h2>
+
+      <p>Ten years out, I think every serious organization runs on one window of consequence. Not seventeen terminal windows. Not a notification feed. Not a chatbot. One surface that shows you what you&rsquo;re working on and asks you only about the decisions that genuinely need a human, while the routine triage gets handled underneath and always stops at your approval. People spend their time being most creative, because the communication gaps and the busywork are finally solved. That future is a bet, and I&rsquo;m stating it as a bet. But it&rsquo;s not a fantasy, because a narrow version of it already runs today, for one person, and I&rsquo;m that person.</p>
+
+      <p>Which brings me back to the name, or the lack of one. It sits in brackets right now, <span class="name-token"><span class="br">[</span><span class="nm">NAME</span><span class="br">]</span></span>, and I&rsquo;m keeping it there until it&rsquo;s earned. In a category whose whole sickness is rushing to look like everyone else, I&rsquo;m not going to name my company before I know exactly what it is. Being unnamed isn&rsquo;t a gap. It&rsquo;s the first small act of the thing I&rsquo;m actually building.</p>
+
+      <p class="closer">The purpose of life is other people. It all comes down to the relationships that you have. I&rsquo;m building a machine that gives people more room for that, not less. That&rsquo;s the entire reason I&rsquo;m doing this. Everything above is just the plan.</p>
+
+      <div class="sign">
+        <p class="sign-name">Jarred Winn</p>
+        <p class="sign-sub"><span class="name-token"><span class="br">[</span><span class="nm">NAME</span><span class="br">]</span></span> &nbsp;unnamed on purpose &middot; July 2026</p>
+      </div>
+
+      <footer class="provenance" aria-label="Provenance note">
+        <p class="prov-label">[ Provenance &middot; for the kit, not the final read ]</p>
+        <p>The fleet described here is my working estate as of July 2026 (<span class="tag">MEASURED</span>, my own daily use). The ten-year end-state is aspiration, not forecast (<span class="tag">ASSUMPTION</span>). The &ldquo;ten times the work in two hours&rdquo; line is an illustration, not a benchmark (<span class="tag">ASSUMPTION</span>). No engineering throughput multiple appears here on purpose: that number stays an internal benchmark until Carter&rsquo;s methodology memo lands.</p>
+      </footer>
+
+    </article>
+  </main>
+</body>
+</html>
