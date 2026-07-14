@@ -294,13 +294,21 @@
   /* scroll-reveal beats + drawing rail + top progress. Self-contained, degrades gracefully. */
   (function(){
     var beats = document.querySelectorAll('[data-beat]');
+    function revealAll(){ beats.forEach(function(b){ b.classList.add('in'); }); }
     if("IntersectionObserver" in window){
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
       }, { rootMargin:'0px 0px -12% 0px', threshold:0.15 });
       beats.forEach(function(b){ io.observe(b); });
+      /* reveal anything already in view on load so the top of the timeline is never blank */
+      requestAnimationFrame(function(){
+        beats.forEach(function(b){ if(b.getBoundingClientRect().top < window.innerHeight*0.94){ b.classList.add('in'); } });
+      });
+      /* failsafe: never leave a beat permanently hidden (print, PDF, full-page capture, observer misfire) */
+      window.addEventListener('beforeprint', revealAll);
+      setTimeout(revealAll, 3200);
     } else {
-      beats.forEach(function(b){ b.classList.add('in'); });
+      revealAll();
     }
     var prog = document.getElementById('prog');
     var drawn = document.getElementById('drawn');
