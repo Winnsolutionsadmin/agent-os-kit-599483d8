@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C4 · Graphite — everything in the glass</title><style>
+:root{--ink:#000;--soft:#4B5158;--dim:#A2A8AF;--accent:#FF4D2E;}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:#F6F7F8;color:var(--ink);min-height:100vh;display:grid;place-items:center;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mist{position:fixed;inset:0;pointer-events:none;background:
+ radial-gradient(56% 44% at 50% 26%,rgba(0,0,0,.06),transparent 70%),
+ radial-gradient(120% 100% at 50% 50%,transparent 50%,rgba(246,247,248,.92) 82%,#F6F7F8 100%)}
+/* the whole composition lives inside ONE deeply shadowed glass sheet */
+.sheet{position:relative;width:min(860px,94vw);background:rgba(255,255,255,.66);backdrop-filter:blur(30px) saturate(1.35);-webkit-backdrop-filter:blur(30px) saturate(1.35);
+ border:1px solid rgba(255,255,255,.9);outline:1px solid rgba(0,0,0,.06);border-radius:28px;
+ box-shadow:0 60px 140px -50px rgba(10,22,40,.5),0 3px 8px rgba(10,22,40,.05);padding:52px 56px 40px}
+.top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink);font-weight:700}
+.top .conf{color:var(--accent);font-weight:600}
+h1{font-size:clamp(32px,4.8vw,50px);font-weight:800;letter-spacing:-.042em;line-height:.98;margin-bottom:6px}
+h1 .thin{display:block;font-weight:300;color:var(--soft);letter-spacing:-.03em;font-size:.55em;margin-top:8px}
+.rule{height:2px;background:var(--ink);width:64px;margin:20px 0 22px}
+.row{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:10px;padding:14px 2px;border-bottom:1px solid rgba(0,0,0,.09);text-decoration:none;color:inherit;transition:padding .18s}
+.row:last-of-type{border-bottom:none}
+.row:hover{padding-left:12px}
+.num{font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums}
+.name{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.desc{font-size:13px;color:var(--soft);margin-top:2px;font-weight:400}
+.go{font-size:17px;color:var(--dim)}
+.row:hover .go,.row:hover .name{color:var(--accent)}
+.foot{display:flex;justify-content:space-between;margin-top:26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+@media(max-width:640px){.sheet{padding:34px 26px 28px}}
+</style></head><body>
+<div class="mist"></div>
+<main class="sheet">
+  <div class="top"><span><b>AgentOS</b> · reading room</span><span class="conf">confidential</span></div>
+  <h1>Read it in the order it happened.<span class="thin">The memo, the numbers, the architecture.</span></h1>
+  <div class="rule"></div>
+  <a class="row" href="#"><span class="num">01</span><span><span class="name">Master Timeline</span><br><span class="desc">The chronological spine — start here</span></span><span class="go">→</span></a>
+  <a class="row" href="#"><span class="num">02</span><span><span class="name">Founder Memo</span><br><span class="desc">Why this, why now, why us</span></span><span class="go">→</span></a>
+  <a class="row" href="#"><span class="num">03</span><span><span class="name">Whitepaper</span><br><span class="desc">The system, end to end</span></span><span class="go">→</span></a>
+  <a class="row" href="#"><span class="num">04</span><span><span class="name">Financials &amp; ICP</span><br><span class="desc">Model, margins, who buys</span></span><span class="go">→</span></a>
+  <a class="row" href="#"><span class="num">05</span><span><span class="name">Legal Readiness</span><br><span class="desc">Mutual NDA &amp; protections</span></span><span class="go">→</span></a>
+  <div class="foot"><span>winn.solutions</span><span>do not distribute</span></div>
+</main>
+</body></html>
