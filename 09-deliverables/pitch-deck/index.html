@@ -323,10 +323,12 @@
 .backbar{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif}
 .backbar a{color:#000;font-weight:700;text-decoration:none}.backbar a:hover{color:#FF4D2E}.backbar .sep{color:#A2A8AF}.backbar .here{color:#A2A8AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 main{margin-top:34px}
+.xx{color:#FF4D2E;transition:color .18s}
+a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover .xx,h1:hover .xx,.name-token:hover .xx,.mark:hover .xx{color:inherit}
 </style>
 </head>
 <body>
-<nav class="backbar"><a href="../../">&larr; Proj-X &middot; reading room</a><span class="sep">/</span><span class="here">Pitch Deck</span></nav>
+<nav class="backbar"><a href="../../">&larr; Proj-<span class="xx">X</span> &middot; reading room</a><span class="sep">/</span><span class="here">Pitch Deck</span></nav>
   <a class="skip" href="#s1" style="position:absolute;left:-9999px">Skip to deck</a>
   <div class="rail" role="banner">
     <span class="mk"><b>[</b><span class="nm">&nbsp;NAME&nbsp;</span><b>]</b></span>
@@ -339,7 +341,7 @@ main{margin-top:34px}
     <section class="slide cover" id="s1" data-title="Cover">
       <div class="inner">
         <div class="kick">A trusted companion for the AI transition &nbsp;·&nbsp; <b>unnamed by design</b></div>
-        <div class="mark" aria-label="Proj-X: a deliberate placeholder"><span class="brk l">[</span><span class="fill">PROJ-X</span><span class="brk r">]</span></div>
+        <div class="mark" aria-label="Proj-X: a deliberate placeholder"><span class="brk l">[</span><span class="fill">PROJ-<span class="xx">X</span></span><span class="brk r">]</span></div>
         <div class="tag-line">A gamified, AI-powered operating system for organizations.</div>
         <div class="desc">The company isn't named yet. That choice is still open, and the brackets mark it. Today is about the mechanics, not the wordmark.</div>
         <div class="meta"><span>Prepared for the 7/17-18 meeting</span><span>the operation, owner</span><span class="nm">July 2026</span></div>

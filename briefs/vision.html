@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>The vision, distilled · Proj-X</title><style>
+:root{--ink:#000;--soft:#4B5158;--dim:#A2A8AF;--accent:#FF4D2E;}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:#FFF;color:var(--ink);-webkit-font-smoothing:antialiased}
+.doc{max-width:760px;margin:0 auto;padding:90px 24px 80px;line-height:1.65;font-size:16px}
+.kick{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:10px} .kick b{color:var(--accent);font-weight:600}
+h1{font-size:clamp(28px,4.6vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.04;margin:0 0 26px}
+h2{font-size:22px;font-weight:750;letter-spacing:-.02em;margin:34px 0 10px}
+h3{font-size:17px;font-weight:700;margin:26px 0 8px}
+h4{font-size:15px;font-weight:700;margin:20px 0 6px;color:var(--soft)}
+p{margin:0 0 14px;color:#1a1d21} ul,ol{margin:0 0 16px 22px} li{margin:0 0 6px}
+b{font-weight:700} code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.88em;background:rgba(11,12,14,.05);border-radius:5px;padding:1px 5px}
+pre{background:rgba(11,12,14,.045);border-radius:12px;padding:14px 16px;overflow-x:auto;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.5;margin:0 0 16px}
+blockquote{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--soft);margin:0 0 14px}
+hr{border:0;border-top:1px solid rgba(11,12,14,.1);margin:26px 0}
+table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14px}
+th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:8px 10px;border-bottom:2px solid #000}
+td{padding:8px 10px;border-bottom:1px solid rgba(11,12,14,.08);vertical-align:top}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.backbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.backbar a{color:var(--ink);font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px} .backbar a:hover{color:var(--accent)}
+.backbar .sep{color:var(--dim)} .backbar .here{color:var(--dim);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.sk{margin:26px 0;padding:20px;background:#FCFCFC;border:1px solid rgba(11,12,14,.07);border-radius:14px}
+.sk figcaption{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A2A8AF;margin-top:12px;text-align:center}
+.sk svg{display:block;margin:0 auto;max-width:100%}
+.xx{color:#FF4D2E;transition:color .18s}
+a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover .xx,h1:hover .xx,.name-token:hover .xx,.mark:hover .xx{color:inherit}
+</style></head><body>
+<nav class="backbar"><a href="../">&larr; Proj-<span class="xx">X</span> &middot; reading room</a><span class="sep">/</span><span class="here">The vision, distilled</span></nav>
+<main class="doc"><p class="kick">proj-<span class="xx">x</span> <b>&middot; vision</b></p><h1>The vision, distilled</h1>
+
+<p>The canonical articulation of the thesis, distilled from the operator recordings that seeded this project. Statements below are near verbatim; each one is a design commitment, not a slogan.</p>
+<h2>Core thesis</h2>
+<blockquote>Communication gaps between employees should be solved, and people should be spending their time being most creative.</blockquote>
+<p>Meetings are for creativity. Humans bounce ideas; agents grab the output and triage it. Everything else is wasted attention.</p>
+<h2>The end-state interface: one window of consequence</h2>
+<p>A single zone-screen showing what you are working on, OKR style, objective plus key results, with the agent layer putting decisions in front of you. Not a notification feed. Not seventeen terminal windows.</p>
+<figure class="sk"><svg viewBox="0 0 560 300" role="img" aria-label="Early sketch: one window of consequence"><defs><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter></defs>
+<rect x="30" y="18" width="500" height="258" rx="10" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<line x1="30" y1="58" x2="530" y2="58" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<circle cx="52" cy="38" r="5" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><circle cx="72" cy="38" r="5" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<text x="100" y="43" font-family="cursive" font-size="15" fill="#3a3f45">objective: ship the pilot</text>
+<rect x="52" y="80" width="290" height="44" rx="7" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><text x="66" y="107" font-family="cursive" font-size="14" fill="#3a3f45">agent: renewed the vendor contract ✓</text>
+<rect x="52" y="136" width="290" height="44" rx="7" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><text x="66" y="163" font-family="cursive" font-size="14" fill="#3a3f45">agent: drafted the client reply ✓</text>
+<rect x="52" y="192" width="290" height="58" rx="7" fill="none" stroke="#E8401F" stroke-width="2.2" stroke-linecap="round" filter="url(#rough)"/>
+<text x="66" y="218" font-family="cursive" font-size="14" fill="#E8401F">DECISION: approve the hire?</text>
+<text x="66" y="238" font-family="cursive" font-size="12" fill="#3a3f45">[approve]  [edit]  [skip]</text>
+<rect x="368" y="80" width="138" height="170" rx="7" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<text x="382" y="104" font-family="cursive" font-size="13" fill="#3a3f45">tally / score</text>
+<line x1="382" y1="120" x2="480" y2="120" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><line x1="382" y1="150" x2="460" y2="150" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><line x1="382" y1="180" x2="470" y2="180" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<text x="382" y="230" font-family="cursive" font-size="12" fill="#3a3f45">streak: 12 days</text>
+</svg><figcaption>early sketch · the one window of consequence</figcaption></figure>
+<h2>Triage as the new operating layer</h2>
+<p>An agent essentially manages the triage layer. The small choices, the ones where you would pick the recommended option about seven times out of ten, get absorbed by the triage agent. The human only sees the high-leverage forks. This is the flow and focus mechanism.</p>
+<figure class="sk"><svg viewBox="0 0 560 220" role="img" aria-label="Early sketch: the triage layer"><defs><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter></defs>
+<text x="30" y="34" font-family="cursive" font-size="13" fill="#3a3f45">everything the org emits</text>
+<line x1="40" y1="60" x2="180" y2="105" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><line x1="40" y1="90" x2="180" y2="110" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><line x1="40" y1="120" x2="180" y2="115" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><line x1="40" y1="150" x2="180" y2="120" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" /><line x1="40" y1="180" x2="180" y2="125" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<ellipse cx="255" cy="115" rx="75" ry="42" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<text x="212" y="110" font-family="cursive" font-size="14" fill="#3a3f45">agent triage</text>
+<text x="216" y="130" font-family="cursive" font-size="11" fill="#3a3f45">~7/10 absorbed</text>
+<line x1="330" y1="115" x2="430" y2="115" fill="none" stroke="#3a3f45" stroke-width="1.6" stroke-linecap="round" filter="url(#rough)" />
+<polygon points="430,108 444,115 430,122" fill="#3a3f45" filter="url(#rough)"/>
+<rect x="448" y="88" width="82" height="54" rx="8" fill="none" stroke="#E8401F" stroke-width="2.2" filter="url(#rough)"/>
+<text x="458" y="112" font-family="cursive" font-size="12" fill="#E8401F">the human</text>
+<text x="458" y="130" font-family="cursive" font-size="11" fill="#E8401F">high-leverage</text>
+</svg><figcaption>early sketch · triage as the operating layer</figcaption></figure>
+<h2>Visual and ambient</h2>
+<p>A persistent tally and score bar keeps the state of the operation visible at the edge of attention. The working prototype of that bar already runs daily in the reference implementation.</p>
+<h2>Agreements carried forward</h2>
+<ul>
+<li>One surface of consequence, never a feed. Decisions come to the human; the human does not hunt for them.</li>
+<li>The triage layer is the product's spine. Autonomy is earned per class of decision, never assumed.</li>
+<li>Adoption is designed, not mandated. Mechanics reward use; nothing threatens replacement.</li>
+</ul>
+</main></body></html>

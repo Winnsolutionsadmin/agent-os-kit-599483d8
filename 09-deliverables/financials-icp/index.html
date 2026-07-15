@@ -190,16 +190,18 @@
 .backbar{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif}
 .backbar a{color:#000;font-weight:700;text-decoration:none}.backbar a:hover{color:#FF4D2E}.backbar .sep{color:#A2A8AF}.backbar .here{color:#A2A8AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 main{margin-top:34px}
+.xx{color:#FF4D2E;transition:color .18s}
+a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover .xx,h1:hover .xx,.name-token:hover .xx,.mark:hover .xx{color:inherit}
 </style>
 </head>
 <body>
-<nav class="backbar"><a href="../../">&larr; Proj-X &middot; reading room</a><span class="sep">/</span><span class="here">Financials & ICP</span></nav>
+<nav class="backbar"><a href="../../">&larr; Proj-<span class="xx">X</span> &middot; reading room</a><span class="sep">/</span><span class="here">Financials & ICP</span></nav>
 <main class="sheet">
 
   <!-- ============================ MASTHEAD ============================ -->
   <header class="masthead">
     <div class="wordmark" role="img" aria-label="Proj-X, an unnamed company awaiting its name">
-      <span class="br" aria-hidden="true">[</span><span class="nm" aria-hidden="true">PROJ-X</span><span class="caret" aria-hidden="true"></span><span class="br" aria-hidden="true">]</span>
+      <span class="br" aria-hidden="true">[</span><span class="nm" aria-hidden="true">PROJ-<span class="xx">X</span></span><span class="caret" aria-hidden="true"></span><span class="br" aria-hidden="true">]</span>
     </div>
     <p class="wm-caption">a company being named, on purpose</p>
   </header>
@@ -500,7 +502,7 @@ main{margin-top:34px}
       <p class="li"><span class="tag tag--corpus">CORPUS</span> an internal build, not independently benchmarked.</p>
       <p class="li"><span class="set">owner sets</span> a decision that is the owner&rsquo;s alone; off every external surface until confirmed.</p>
     </div>
-    <p class="foot-note">Honest math: every figure above carries the basis it stands on. Vendor bands retrieved 2026-07-08; re-verify before external use. The company is unnamed by the owner&rsquo;s ruling; the brackets around <span class="name-token"><span class="br">[</span><span class="nm"> PROJ-X </span><span class="br">]</span></span> mark the one decision still open. Pilot P&amp;L only; no multi-year hockey stick, no mature-SaaS margin, no throughput multiplier. No client or partner is named; the fleet-of-one is a reference implementation, not an installed customer.</p>
+    <p class="foot-note">Honest math: every figure above carries the basis it stands on. Vendor bands retrieved 2026-07-08; re-verify before external use. The company is unnamed by the owner&rsquo;s ruling; the brackets around <span class="name-token"><span class="br">[</span><span class="nm"> PROJ-<span class="xx">X</span> </span><span class="br">]</span></span> mark the one decision still open. Pilot P&amp;L only; no multi-year hockey stick, no mature-SaaS margin, no throughput multiplier. No client or partner is named; the fleet-of-one is a reference implementation, not an installed customer.</p>
     <p class="foot-ask"><b>The ask:</b> A scoped 90-day design-partner pilot plus a smaller strategic check. The larger raise comes at roughly month 6, triggered by demonstrated achievement.</p>
   </footer>
 

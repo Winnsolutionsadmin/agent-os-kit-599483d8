@@ -21,9 +21,11 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 .backbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .backbar a{color:var(--ink);font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px} .backbar a:hover{color:var(--accent)}
 .backbar .sep{color:var(--dim)} .backbar .here{color:var(--dim);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xx{color:#FF4D2E;transition:color .18s}
+a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover .xx,h1:hover .xx,.name-token:hover .xx,.mark:hover .xx{color:inherit}
 </style></head><body>
-<nav class="backbar"><a href="../">&larr; Proj-X &middot; reading room</a><span class="sep">/</span><span class="here">Counsel adjudication R3</span></nav>
-<main class="doc"><p class="kick">proj-x <b>&middot; counsel</b></p><h1>Counsel adjudication R3</h1>
+<nav class="backbar"><a href="../">&larr; Proj-<span class="xx">X</span> &middot; reading room</a><span class="sep">/</span><span class="here">Counsel adjudication R3</span></nav>
+<main class="doc"><p class="kick">proj-<span class="xx">x</span> <b>&middot; counsel</b></p><h1>Counsel adjudication R3</h1>
 <p>counsel: consulting 6 model(s) in parallel: grok,gemini,codex,claude,glm,kimi</p>
 <p>counsel: grok FAILED — grok (error: grok2api HTTP 403: {&quot;error&quot;:{&quot;message&quot;:&quot;Chat upstream returned 403&quot;,&quot;type&quot;:&quot;upstream_error&quot;,&quot;code&quot;:&quot;upstream_error&quot;}})</p>
 <p>counsel: codex FAILED — codex (error: codex produced no output: ERROR: You&#x27;ve hit your usage limit. Visit https://chatgpt.com/codex/settings/usage to purchase)</p>

@@ -21,9 +21,11 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 .backbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .backbar a{color:var(--ink);font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px} .backbar a:hover{color:var(--accent)}
 .backbar .sep{color:var(--dim)} .backbar .here{color:var(--dim);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xx{color:#FF4D2E;transition:color .18s}
+a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover .xx,h1:hover .xx,.name-token:hover .xx,.mark:hover .xx{color:inherit}
 </style></head><body>
-<nav class="backbar"><a href="../">&larr; Proj-X &middot; reading room</a><span class="sep">/</span><span class="here">Build decisions</span></nav>
-<main class="doc"><p class="kick">proj-x <b>&middot; decisions</b></p><h1>Build decisions</h1>
+<nav class="backbar"><a href="../">&larr; Proj-<span class="xx">X</span> &middot; reading room</a><span class="sep">/</span><span class="here">Build decisions</span></nav>
+<main class="doc"><p class="kick">proj-<span class="xx">x</span> <b>&middot; decisions</b></p><h1>Build decisions</h1>
 <p><i>Internal. Every open decision only the operator can make, consolidated from the legal-readiness set, the financials-and-ICP spine, the whitepaper product law, the pitch-deck open items, the concept-deck S17 strip-before-send panel, and the round-3 counsel rulings. Built 2026-07-09.</i></p>
 <p><b>How to read the blocking date.</b> It is the deadline this decision gates, keyed to the 7/17-18 meeting window. <code>7/11</code> = the interim facts memo and the shared three-way doc. <code>7/15</code> = concept doc plus deck final lock (and the six S17 judgment spots). <code>7/16</code> = the pre-meeting materials that go out 24-48 hours ahead (counsel R2: exec overview plus the one-page pilot charter). <code>7/17</code> = entity-formation-this-week items and in-room instrument readiness. <code>none</code> = does not block the meeting window; the real trigger is noted in why-it-matters. Owner is always the operator; some rows add counsel or the engineer. Ordered by blocking date.</p>
 <table><thead><tr><th>Decision</th><th>Why it matters</th><th>Blocking date</th><th>Owner</th><th>Where the supporting doc lives</th></tr></thead><tbody>
