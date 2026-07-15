@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AgentOS · brand explorations · 2026-07-14</title><style>
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;background:#0E1013;color:#E8EAED;padding:34px 4vw 60px;-webkit-font-smoothing:antialiased}
+h1{font-size:22px;font-weight:700;letter-spacing:-.02em}
+p.sub{color:#9AA2AC;font-size:13px;margin:6px 0 30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:26px}
+.card{background:#16191D;border:1px solid #23272C;border-radius:16px;overflow:hidden}
+.chead{display:flex;justify-content:space-between;align-items:baseline;padding:14px 18px}
+.chead b{font-size:14px}
+.chead span{font-size:12px;color:#9AA2AC}
+.frame{position:relative;width:100%;aspect-ratio:16/10.4;background:#fff;overflow:hidden}
+iframe{width:1280px;height:832px;border:0;transform-origin:0 0;position:absolute;left:0;top:0}
+a.open{display:block;text-align:center;padding:11px;font-size:12px;color:#7FB3FF;text-decoration:none;border-top:1px solid #23272C}
+a.open:hover{background:#1B1F24}
+</style></head><body>
+<h1>AgentOS — 5 brand directions for the reading room</h1>
+<p class="sub">White space · Apple-system type · fog dissipating at the edges · single modular screen. Click any option to open it full-size.</p>
+<div class="grid" id="g"></div>
+<script>
+const opts=[
+ ["A","Halo","Pure white, ink + electric indigo. The page itself dissolves at the edges — quietest option.","option-a-halo.html"],
+ ["B","Aether","Perplexity-adjacent: aurora fog (blue→violet→cyan) behind frosted glass, gradient wordmark.","option-b-aether.html"],
+ ["C","Graphite","Swiss high contrast: black ink, signal-orange accent, editorial list. Boldest voice.","option-c-graphite.html"],
+ ["D","Dawn","Warm morning fog (peach/lavender wisps), violet accent, soft rounded module.","option-d-dawn.html"],
+ ["E","Frost","Apple-glass: cool blue cloud bank behind heavy frosted glass, SF-blue accent.","option-e-frost.html"],
+];
+const g=document.getElementById('g');
+for(const [k,name,desc,file] of opts){
+  const el=document.createElement('div');el.className='card';
+  el.innerHTML=`<div class="chead"><b>${k} · ${name}</b><span>${desc}</span></div>
+  <div class="frame"><iframe src="${file}" loading="lazy" scrolling="no"></iframe></div>
+  <a class="open" href="${file}" target="_blank">open ${k} full-size →</a>`;
+  g.appendChild(el);
+}
+function scale(){document.querySelectorAll('.frame').forEach(f=>{const s=f.clientWidth/1280;f.querySelector('iframe').style.transform=`scale(${s})`;});}
+addEventListener('resize',scale);requestAnimationFrame(scale);setTimeout(scale,300);
+</script>
+</body></html>

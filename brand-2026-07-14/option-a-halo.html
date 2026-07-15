@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A · Halo — AgentOS Reading Room</title><style>
+:root{--ink:#0B0C0E;--soft:#5A6068;--dim:#9AA0A8;--accent:#4B4DFF;--wash:rgba(75,77,255,.06);}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Inter,sans-serif;background:#fff;color:var(--ink);min-height:100vh;display:grid;place-items:center;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* fog: the module holds the page; everything beyond it dissolves */
+.stage{position:relative;width:min(880px,94vw);padding:9vh 0 7vh;
+  -webkit-mask-image:radial-gradient(120% 95% at 50% 42%,#000 55%,rgba(0,0,0,.45) 76%,transparent 98%);
+  mask-image:radial-gradient(120% 95% at 50% 42%,#000 55%,rgba(0,0,0,.45) 76%,transparent 98%);}
+.kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);text-align:center;margin-bottom:26px}
+.kicker b{color:var(--accent);font-weight:600}
+h1{font-size:clamp(40px,6.4vw,64px);font-weight:700;letter-spacing:-.035em;text-align:center;line-height:1.02}
+h1 span{color:var(--dim);font-weight:400}
+.lede{max-width:44ch;margin:18px auto 44px;text-align:center;color:var(--soft);font-size:16px;line-height:1.65}
+.module{background:#fff;border:1px solid rgba(11,12,14,.07);border-radius:20px;box-shadow:0 1px 2px rgba(11,12,14,.03),0 24px 80px -32px rgba(11,12,14,.14);overflow:hidden}
+.mhead{display:flex;justify-content:space-between;align-items:center;padding:18px 26px;border-bottom:1px solid rgba(11,12,14,.06)}
+.mhead .t{font-size:13px;font-weight:600;letter-spacing:.01em}
+.pill{font-size:11px;color:var(--accent);background:var(--wash);border-radius:99px;padding:5px 12px;font-weight:600}
+.row{display:flex;align-items:center;gap:18px;padding:17px 26px;border-bottom:1px solid rgba(11,12,14,.05);text-decoration:none;color:inherit;transition:background .15s}
+.row:hover{background:rgba(11,12,14,.025)}
+.num{font-size:11px;color:var(--dim);width:22px;font-variant-numeric:tabular-nums}
+.row .name{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.row .desc{font-size:13px;color:var(--soft);margin-top:2px}
+.row .go{margin-left:auto;color:var(--accent);font-size:14px;opacity:0;transition:opacity .15s}
+.row:hover .go{opacity:1}
+.foot{text-align:center;margin-top:34px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+</style></head><body>
+<main class="stage">
+  <p class="kicker">winn.solutions <b>· confidential data room</b></p>
+  <h1>AgentOS<br><span>the reading room</span></h1>
+  <p class="lede">Everything from the founding conversation forward — the memo, the numbers, the architecture — in the order it happened.</p>
+  <section class="module">
+    <div class="mhead"><span class="t">Documents</span><span class="pill">NDA on file</span></div>
+    <a class="row" href="#"><span class="num">01</span><span><span class="name">Master Timeline</span><br><span class="desc">The chronological spine — start here</span></span><span class="go">→</span></a>
+    <a class="row" href="#"><span class="num">02</span><span><span class="name">Founder Memo</span><br><span class="desc">Why this, why now, why us</span></span><span class="go">→</span></a>
+    <a class="row" href="#"><span class="num">03</span><span><span class="name">Whitepaper</span><br><span class="desc">The system, end to end</span></span><span class="go">→</span></a>
+    <a class="row" href="#"><span class="num">04</span><span><span class="name">Financials &amp; ICP</span><br><span class="desc">Model, margins, who buys</span></span><span class="go">→</span></a>
+    <a class="row" href="#" style="border-bottom:none"><span class="num">05</span><span><span class="name">Legal Readiness</span><br><span class="desc">Mutual NDA &amp; protections</span></span><span class="go">→</span></a>
+  </section>
+  <p class="foot">confidential · do not distribute</p>
+</main>
+</body></html>

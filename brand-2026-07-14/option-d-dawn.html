@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>D · Dawn — AgentOS Reading Room</title><style>
+:root{--ink:#221F26;--soft:#6B6472;--dim:#A79FAE;--accent:#7C3AED;}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;background:#FFFFFF;color:var(--ink);min-height:100vh;display:grid;place-items:center;-webkit-font-smoothing:antialiased;overflow:hidden}
+/* dawn fog: warm wisps, dissipating like morning cloud */
+.fog{position:fixed;inset:-15%;pointer-events:none;filter:blur(80px);opacity:.55}
+.fog i{position:absolute;border-radius:50%}
+.fog i:nth-child(1){width:46vw;height:34vw;left:-12vw;top:6vh;background:radial-gradient(circle,#FFD9C7,transparent 70%)}
+.fog i:nth-child(2){width:42vw;height:36vw;right:-10vw;top:-8vh;background:radial-gradient(circle,#E4D4FF,transparent 70%)}
+.fog i:nth-child(3){width:40vw;height:30vw;left:30vw;bottom:-14vh;background:radial-gradient(circle,#FFE9F2,transparent 72%)}
+.veil{position:fixed;inset:0;pointer-events:none;background:radial-gradient(110% 92% at 50% 44%,transparent 42%,rgba(255,255,255,.8) 76%,#fff 97%)}
+.stage{position:relative;width:min(700px,92vw);text-align:center;padding:6vh 0}
+.kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:28px}
+h1{font-size:clamp(40px,6.4vw,62px);font-weight:600;letter-spacing:-.032em;line-height:1.04}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{max-width:42ch;margin:18px auto 42px;color:var(--soft);font-size:16px;line-height:1.7}
+.module{background:rgba(255,255,255,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(34,31,38,.07);border-radius:26px;box-shadow:0 34px 90px -40px rgba(124,58,237,.35);padding:14px;text-align:left}
+.row{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;text-decoration:none;color:inherit;transition:background .16s,transform .16s}
+.row:hover{background:rgba(124,58,237,.06);transform:translateX(3px)}
+.num{width:30px;height:30px;border-radius:99px;background:rgba(124,58,237,.09);color:var(--accent);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.name{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.desc{font-size:13px;color:var(--soft);margin-top:1px}
+.go{margin-left:auto;color:var(--accent);opacity:.5}
+.foot{margin-top:32px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+</style></head><body>
+<div class="fog"><i></i><i></i><i></i></div><div class="veil"></div>
+<main class="stage">
+  <p class="kicker">winn.solutions · confidential · nda on file</p>
+  <h1>AgentOS,<br>read <em>in the order it happened.</em></h1>
+  <p class="lede">The founding conversation, the memo, the numbers, the architecture — one room, one thread.</p>
+  <section class="module">
+    <a class="row" href="#"><span class="num">1</span><span><span class="name">Master Timeline</span><br><span class="desc">The chronological spine — start here</span></span><span class="go">→</span></a>
+    <a class="row" href="#"><span class="num">2</span><span><span class="name">Founder Memo</span><br><span class="desc">Why this, why now, why us</span></span><span class="go">→</span></a>
+    <a class="row" href="#"><span class="num">3</span><span><span class="name">Whitepaper</span><br><span class="desc">The system, end to end</span></span><span class="go">→</span></a>
+    <a class="row" href="#"><span class="num">4</span><span><span class="name">Financials &amp; ICP</span><br><span class="desc">Model, margins, who buys</span></span><span class="go">→</span></a>
+    <a class="row" href="#"><span class="num">5</span><span><span class="name">Legal Readiness</span><br><span class="desc">Mutual NDA &amp; protections</span></span><span class="go">→</span></a>
+  </section>
+  <p class="foot">confidential · do not distribute</p>
+</main>
+</body></html>
