@@ -19,7 +19,7 @@
     --paper-3:#DADED9;
     --ink:#0B0C0E;        /* graphite near-black: the voice */
     --ink-soft:#4B5158;   /* secondary / meta / provenance */
-    --ink-dim:#8A9299;    /* the UNFILLED [NAME] placeholder */
+    --ink-dim:#8A9299;    /* the UNFILLED Proj-X placeholder */
     --line:rgba(11,12,14,0.14);
     --line-soft:rgba(11,12,14,0.07);
 
@@ -344,9 +344,12 @@
     .bar{position:static}
     .world{break-inside:avoid}
   }
+.backbar{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif}
+.backbar a{color:#000;font-weight:700;text-decoration:none}.backbar a:hover{color:#FF4D2E}.backbar .sep{color:#A2A8AF}.backbar .here{color:#A2A8AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body>
+<nav class="backbar"><a href="../">&larr; Proj-X &middot; reading room</a><span class="sep">/</span><span class="here">Brand</span></nav>
 
 <div class="bar">
   <span><b>Brand direction board</b> &nbsp;·&nbsp; agent os foundation &nbsp;·&nbsp; 08</span>
@@ -365,11 +368,11 @@
     <span class="eyebrow">brand direction · three worlds for a company being named</span>
 
     <div class="mark" aria-label="open bracket NAME close bracket">
-      <span class="brk l">[</span><span class="fill">NAME</span><span class="brk r">]</span>
+      <span class="brk l">[</span><span class="fill">PROJ-X</span><span class="brk r">]</span>
     </div>
 
     <p class="lockup">
-      <span class="brk">[</span><span class="nm">NAME</span><span class="brk">]</span>, the trusted companion for the AI transition.
+      <span class="brk">[</span><span class="nm"> PROJ-X </span><span class="brk">]</span>, the trusted companion for the AI transition.
       <small>descriptor is a candidate · founder locks one canonical line</small>
     </p>
 
@@ -462,7 +465,7 @@
           <div class="ap-frame">
             <span class="ap-brk" aria-hidden="true">[</span>
             <div class="ap-stack">
-              <div class="ap-interim">NAME<span class="u"></span></div>
+              <div class="ap-interim">PROJ-X<span class="u"></span></div>
               <div class="ap-cands">
                 <div class="cand"><span class="word">Keel <span class="dot" title="live collision"></span></span><span class="why">The single spine that keeps a ship on course.</span></div>
                 <div class="cand"><span class="word">Cairn <span class="dot" title="live collision"></span></span><span class="why">Stones that mark a safe path for those who follow.</span></div>
@@ -549,7 +552,7 @@
           <div class="ap-frame">
             <span class="ap-brk" aria-hidden="true">[</span>
             <div class="ap-stack">
-              <div class="ap-interim">NAME<span class="u"></span></div>
+              <div class="ap-interim">PROJ-X<span class="u"></span></div>
               <div class="ap-cands">
                 <div class="cand"><span class="word">Halcyon <span class="dot" title="live collision"></span></span><span class="why">Calm and peaceful, the halcyon days.</span></div>
                 <div class="cand"><span class="word">Haven <span class="dot" title="live collision"></span></span><span class="why">A harbor: safe passage, protective and human.</span></div>
@@ -636,7 +639,7 @@
           <div class="ap-frame">
             <span class="ap-brk" aria-hidden="true">[</span>
             <div class="ap-stack">
-              <div class="ap-interim">NAME<span class="u"></span></div>
+              <div class="ap-interim">PROJ-X<span class="u"></span></div>
               <div class="ap-cands">
                 <div class="cand"><span class="word">Vellum <span class="dot" title="live collision"></span></span><span class="why">Fine parchment: permanence, craft, provenance.</span></div>
                 <div class="cand"><span class="word">Praxis <span class="dot" title="live collision"></span></span><span class="why">Theory turned to disciplined practice.</span></div>
@@ -699,14 +702,14 @@
 
         <div class="canon">
           <div class="big" aria-label="open bracket NAME close bracket">
-            <span class="brk">[</span>NAME<span class="brk">]</span>
+            <span class="brk">[</span>PROJ-X<span class="brk">]</span>
           </div>
           <p class="canon-lock">
-            <span class="brk">[</span><span class="nm">NAME</span><span class="brk">]</span>, the trusted companion for the AI transition.
+            <span class="brk">[</span><span class="nm"> PROJ-X </span><span class="brk">]</span>, the trusted companion for the AI transition.
           </p>
           <div class="casing">
             <div class="opt">
-              <span class="g"><span class="brk">[</span>NAME<span class="brk">]</span></span>
+              <span class="g"><span class="brk">[</span>PROJ-X<span class="brk">]</span></span>
               <span class="cap">all caps · reads as a token</span>
             </div>
             <div class="opt">
@@ -733,7 +736,7 @@
             <h4>Do not</h4>
             <ul>
               <li>Fill the brackets with a favorite name in any shared artifact.</li>
-              <li>Put "agent OS", Recurro, or any retired working title inside the brackets.</li>
+              <li>Put "agent OS", the prior engineering framework, or any retired working title inside the brackets.</li>
               <li>Commission an ornate logo for a name that does not exist yet.</li>
               <li>Let the placeholder read as indecision: the name is the one call we will not rush.</li>
             </ul>
@@ -790,7 +793,7 @@
     <div class="foot-law">
       <b>House law:</b> <span class="em">no em dashes, ever</span>; no double-hyphen dashes. &nbsp;·&nbsp;
       <b>Shared base:</b> cool structural paper #FFFFFF, graphite ink #0B0C0E, one accent per deliverable. &nbsp;·&nbsp;
-      "agent OS" is a lowercase descriptor, never a name. Recurro is Carter's framework, never the product. &nbsp;·&nbsp;
+      "agent OS" is a lowercase descriptor, never a name. the prior engineering framework is the engineer's framework, never the product. &nbsp;·&nbsp;
       Built from 08-brand/source.md and 05-counsel. Every claim carries a tag; anything marked assumption is the founder's to overrule.
     </div>
   </footer>

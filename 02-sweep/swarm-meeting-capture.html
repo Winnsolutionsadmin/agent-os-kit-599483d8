@@ -1,0 +1,833 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>Sweep — meeting capture · Proj-X</title><style>
+:root{--ink:#000;--soft:#4B5158;--dim:#A2A8AF;--accent:#FF4D2E;}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:#FFF;color:var(--ink);-webkit-font-smoothing:antialiased}
+.doc{max-width:760px;margin:0 auto;padding:90px 24px 80px;line-height:1.65;font-size:16px}
+.kick{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:10px} .kick b{color:var(--accent);font-weight:600}
+h1{font-size:clamp(28px,4.6vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.04;margin:0 0 26px}
+h2{font-size:22px;font-weight:750;letter-spacing:-.02em;margin:34px 0 10px}
+h3{font-size:17px;font-weight:700;margin:26px 0 8px}
+h4{font-size:15px;font-weight:700;margin:20px 0 6px;color:var(--soft)}
+p{margin:0 0 14px;color:#1a1d21} ul,ol{margin:0 0 16px 22px} li{margin:0 0 6px}
+b{font-weight:700} code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.88em;background:rgba(11,12,14,.05);border-radius:5px;padding:1px 5px}
+pre{background:rgba(11,12,14,.045);border-radius:12px;padding:14px 16px;overflow-x:auto;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.5;margin:0 0 16px}
+blockquote{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--soft);margin:0 0 14px}
+hr{border:0;border-top:1px solid rgba(11,12,14,.1);margin:26px 0}
+table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14px}
+th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:8px 10px;border-bottom:2px solid #000}
+td{padding:8px 10px;border-bottom:1px solid rgba(11,12,14,.08);vertical-align:top}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.backbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.backbar a{color:var(--ink);font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px} .backbar a:hover{color:var(--accent)}
+.backbar .sep{color:var(--dim)} .backbar .here{color:var(--dim);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+</style></head><body>
+<nav class="backbar"><a href="../">&larr; Proj-X &middot; reading room</a><span class="sep">/</span><span class="here">Sweep — meeting capture</span></nav>
+<main class="doc"><p class="kick">proj-x <b>&middot; research</b></p><h1>Sweep — meeting capture</h1>
+<p>Synthesis of 6 independent reader passes plus direct re-reading of 3 primary sources</p>
+<p>(<code>threads/2026-07-08-agent-os-product-concept-consolidation.md</code>, <code>executive-agent-gui/research/vision-brief.md</code>,</p>
+<p><code>miscellaneous/threads/2026-07-06-recall-notetaker-not-working.md</code>). Compiled 2026-07-08.</p>
+<h2>Headline</h2>
+<p>&quot;Fieldy and Recall&quot; are not a company the game designer and the engineer work for. They are the builder&#x27;s own meeting-capture</p>
+<p>infrastructure: Fieldy is his ambient wearable-capture pipeline, and Recall is Recall.ai, a third-party</p>
+<p>meeting-bot SDK he integrated into his own &quot;recall-notetaker&quot; app. Fieldy and Recall are the tools that</p>
+<p>recorded today&#x27;s (2026-07-08) call, not the affiliation of the people on it. The primary source for</p>
+<p>today&#x27;s call states this directly: &quot;pull today&#x27;s the game designer/the engineer call from Fieldy + Recall&quot; (i.e., pull it</p>
+<p>using those two capture tools). the game-design collaborator and the engineering collaborator are independent collaborators on a</p>
+<p>separate, currently-unnamed gamified &quot;Agent OS&quot; concept, introduced to the builder as a 3-way group for the</p>
+<p>first time on 2026-07-08. No document in any of the 6 corpora searched, across roughly a dozen repos and</p>
+<p>threads, shows a company called &quot;Fieldy&quot; or &quot;Recall&quot; that the game designer or the engineer represent. This should be</p>
+<p>treated as resolved pending the builder&#x27;s explicit confirmation, per this task&#x27;s own instruction to verify</p>
+<p>naming rather than assume it.</p>
+<p>A second, equally load-bearing correction, made by the builder himself in the same primary thread and marked</p>
+<p>authoritative: the working name &quot;the prior engineering framework&quot; is the engineer&#x27;s own separate framework (his term for recursive</p>
+<p>self-improvement applied to engineering orgs), not the joint product&#x27;s name. The joint Agent OS / RSI-for-orgs</p>
+<p>product is currently unnamed. Earlier framing (including this task&#x27;s own goal context) calling the prior engineering framework a</p>
+<p>&quot;working name candidate&quot; for the joint product is superseded by this correction and should not be repeated</p>
+<p>downstream without the caveat.</p>
+<h2>Scope note</h2>
+<p>This dossier covers the meeting-capture technical stack (Fieldy, Recall.ai, ingest pipelines, speaker</p>
+<p>attribution) and the identity/relationship questions around the game designer and the engineer, because those were the</p>
+<p>explicit assignment. It does not attempt to cover the Agent OS / gamification product concept itself,</p>
+<p>the Allan Marshall deck&#x27;s full content, or mima; those are separate tracks in the same swarm</p>
+<p>(<code>swarm-gui.md</code>, <code>swarm-mima.md</code>, <code>swarm-allan-marshall.md</code> in this same directory) and are mentioned</p>
+<p>here only where they intersect with capture infrastructure or identity questions.</p>
+<h2>What exists / was built</h2>
+<p>Two distinct capture efforts exist under the &quot;meeting capture&quot; umbrella, built in what looks like two</p>
+<p>separate tracks that converge on the same downstream stores but are documented in different repos:</p>
+<p><b>(A) The ambient multi-vendor pipeline</b> (owned in <code>fieldy-clawdia</code>, <code>brain</code>, <code>clawdia-atlas</code>; oldest,</p>
+<p>most mature, dates to at least May 2026):</p>
+<ul>
+<li>Otter.ai: cloud transcription, deliberately kept as a permanent redundant layer since a 2026-05-13</li>
+</ul>
+<p>  decision, specifically because it uses a different vendor/STT/failure-mode than Fieldy.</p>
+<ul>
+<li>Fieldy: a wearable ambient-capture device with its own cloud API. Hybrid ingestion: webhook real-time</li>
+</ul>
+<p>  + v2/v3 API backfill + MCP query. Can legitimately be offline up to 7 days without that being a fault</p>
+<p>  (a monitoring bug in 2026-06-22 false-flagged it as stalled before this was corrected).</p>
+<ul>
+<li>Granola.ai (poll-based, ADR-0011) and Roam/Ro.am (real-time HMAC webhook via Tailscale Funnel,</li>
+</ul>
+<p>  ADR-0014): both added by 2026-06-17, both verified with synthetic data only as of that date, no</p>
+<p>  confirmed real-meeting acceptance test found in any corpus.</p>
+<ul>
+<li>Omi, Plaud, Screenpipe named as sources/comparables in <code>brain/docs/architecture.md</code>. Screenpipe is</li>
+</ul>
+<p>  scaffolded (empty dir on mini) but not in active use, per this task&#x27;s own goal context.</p>
+<ul>
+<li>Pipeline flow (per <code>clawdia-atlas/docs/03-meeting-ingest-pipeline.md</code>): source app to Zapier to n8n</li>
+</ul>
+<p>  (Hetzner :5678) to gateway (mini :18789) to a Clawdia agent to <code>run-pipeline.py</code>, producing a meeting</p>
+<p>  note, a CRM update, a Notion entry, a memory entry, and a Signal digest, then embedded via gbrain-sync.</p>
+<ul>
+<li>Storage as assessed 2026-06-04: 343 processed meeting notes (YAML frontmatter + wikilinks), 298</li>
+</ul>
+<p>  structured JSON records, a 47,397-embedding semantic index (gbrain/Chroma). Verdict at the time: &quot;~85%</p>
+<p>  built and adequate. Do NOT rebuild. Add the missing 15% (discoverability + dashboards).&quot;</p>
+<ul>
+<li>Downstream automation: <code>fieldy_to_clickup.py</code> armed in shadow mode as of 2026-07-01 (live proof: 5 real</li>
+</ul>
+<p>  tasks extracted from one meeting); Notion Meeting Notes DB and Action Items DB under the Command Center</p>
+<p>  page.</p>
+<p><b>(B) The Recall.ai meeting-bot integration</b> (owned in <code>claudecode-bar</code>, plus a mini-side bridge; newer,</p>
+<p>first evidence around 2026-06-25 to 2026-06-28):</p>
+<ul>
+<li><code>recall-notetaker</code>: an Electron app that auto-detects and records Zoom/Meet/Teams meetings via the</li>
+</ul>
+<p>  Recall.ai SDK/API, writes <code>~/.claude/recall-status.json</code> on every state change plus a 30-second</p>
+<p>  heartbeat, and links out to the real Recall.ai account dashboard</p>
+<p>  (<code>https://us-west-2.recall.ai/dashboard</code>).</p>
+<ul>
+<li><code>hud.html</code>&#x27;s Recall tile (in claudecode-bar, the menu-bar HUD) reads that status file and renders a</li>
+</ul>
+<p>  live transcript panel with per-speaker labels (an <code>rc-spk</code> span) and partial/interim results, in a</p>
+<p>  40-line rolling auto-scroll window (a live-scroll bug was fixed 2026-07-07, commit <code>cf3fc9e</code>).</p>
+<ul>
+<li>Shipped 2026-06-28: switched from a rejected realtime provider to async transcription</li>
+</ul>
+<p>  (<code>recallai_async</code>) specifically to get real speaker names into gbrain, then added native low-latency</p>
+<p>  realtime streaming (English-only, <code>recallai_streaming</code>) plus a <code>desktop_sdk_callback</code> for the live bar</p>
+<p>  transcript.</p>
+<ul>
+<li><code>recall-bridge.py</code> on mini: a self-contained bridge with three bearer-authed endpoints (<code>/gate</code></li>
+</ul>
+<p>  calendar-gate and upload-token mint, <code>/land</code> deterministic landing, <code>/complete</code> polls Recall until</p>
+<p>  transcript ready then lands), deliberately isolated from the core gateway config so it is removable.</p>
+<ul>
+<li>Record-on-detection is a deliberate design decision by the builder (2026-06-25, reaffirmed 2026-07-01):</li>
+</ul>
+<p>  every SDK-detected meeting is recorded regardless of calendar invite. The resulting client-visible</p>
+<p>  &quot;notetaker joined&quot; announcement is an accepted cost, explicitly not to be re-litigated.</p>
+<ul>
+<li>Security hardening: live meeting-transcript text is treated as untrusted/externally-influenced content</li>
+</ul>
+<p>  and base64-encoded before crossing the JS bridge, closing a string-breakout injection path from meeting</p>
+<p>  audio content into the app.</p>
+<ul>
+<li>As of the last update to <code>brain/docs/architecture.md</code> (2026-06-16), <code>fieldy-clawdia</code> (last commit</li>
+</ul>
+<p>  2026-06-19), and <code>clawdia-atlas</code> (last commit 2026-06-19), Recall.ai has zero mentions in any of the</p>
+<p>  three. Confirmed independently by four different readers via direct grep of each repo. This means</p>
+<p>  track (B) was built without being folded into the &quot;official&quot; documented architecture that governs</p>
+<p>  track (A), at least as of those dates.</p>
+<p><b>Convergence and redundancy</b>: both tracks feed the same downstream stores (gbrain, CRM). This has</p>
+<p>caused at least one confirmed double-ingestion: a the game-design collaborator call on 2026-06-30 was recorded by both</p>
+<p>Otter and Recall with different dedup keys, producing two separate CRM entries for one call. Today&#x27;s</p>
+<p>2026-07-08 the game designer/the engineer call was itself captured three times (once fieldy-extracted, twice via Recall,</p>
+<p>at three different timestamps between 11:25 and 12:21) plus a 149KB raw JSONL transcript, which the</p>
+<p>primary thread for that call treats as one source event to be cross-read, not triple-counted.</p>
+<p><b>Other built pieces relevant to this stack</b>: a probabilistic speaker-presence model and per-utterance</p>
+<p>turn attribution (see Speaker attribution below); a reliability/ops layer (BrainStatus skill, ReplayMeeting</p>
+<p>skill with 4 recovery input modes, <code>fragility/heartbeats.json</code> monitoring, added for recall-notetaker</p>
+<p>specifically on 2026-07-06); and a client-facing competitor-eviction effort that removed unwanted</p>
+<p>third-party notetaker bots (Read AI, custom-named &quot;Winn.ai&quot;, and Fireflies.ai) from Anchorage&#x27;s Zoom</p>
+<p>Marketplace and Google Calendar auto-join, confirmed resolved in this repo&#x27;s own git history (commits</p>
+<p><code>9376e121</code> and <code>881dcde8</code>, both 2026-07-07).</p>
+<h2>Key features</h2>
+<ul>
+<li>Auto meeting-detection and bot-join for Zoom/Meet/Teams with no calendar invite required</li>
+</ul>
+<p>  (record-on-detection, a deliberate design choice, not a bug).</p>
+<ul>
+<li>Live in-app transcript panel with per-speaker labels and partial/interim (not-yet-final) results,</li>
+</ul>
+<p>  auto-scrolling.</p>
+<ul>
+<li>Async post-call transcription specifically to recover real speaker names (Recall.ai async mode).</li>
+<li>Always-on ambient wearable capture (Fieldy) with 3-tier auto-classification: business meetings get the</li>
+</ul>
+<p>  full pipeline (CRM, notes, memory, retrievable transcript), topical chatter goes to memory only,</p>
+<p>  personal conversations are quarantined off the gbrain-indexed path (142 notes moved in one backfill).</p>
+<ul>
+<li>Cross-vendor redundancy by design (Otter kept permanently alongside Fieldy on purpose, since 2026-05-13)</li>
+</ul>
+<p>  paired with cross-vendor dedup by conversation ID or dedup key, though dedup has repeatedly failed in</p>
+<p>  practice (the 2026-06-30 double-CRM-entry incident; today&#x27;s 3x capture of one call).</p>
+<ul>
+<li>A meeting-level probabilistic speaker &quot;presence&quot; model: owner prior + self-introduction/vocative regex</li>
+</ul>
+<p>  + CRM co-occurrence + calendar-attendee match, combined with a weighted noisy-OR, and an explicit design</p>
+<p>  principle of flagging ambiguous speakers rather than guessing.</p>
+<ul>
+<li>Per-utterance turn attribution layered on top of the presence model plus time-gap turn segmentation</li>
+</ul>
+<p>  (not acoustic diarization), which works well for 2-person calls and degrades hard on 3+ person calls.</p>
+<ul>
+<li>Downstream automation: CRM sync, Notion Meeting Notes and Action Items databases, ClickUp task</li>
+</ul>
+<p>  extraction (shadow mode), a Signal digest, and gbrain semantic embedding for later recall.</p>
+<ul>
+<li>Retrieval skills: <code>fieldy-find</code>, <code>fieldy-recent</code>, <code>fieldy-digest</code> (mini-only), <code>BrainStatus</code> (layer-by-layer</li>
+</ul>
+<p>  pipeline diagnosis), <code>ReplayMeeting</code> (recovery from n8n execution ID, Otter .txt export, a pre-formed</p>
+<p>  payload, or a pasted transcript).</p>
+<ul>
+<li>Security: meeting-transcript text is handled as externally-influenced/untrusted input (base64-encoded</li>
+</ul>
+<p>  across the JS bridge), not as trusted local data.</p>
+<ul>
+<li>Active curation of which third-party notetaker bots are allowed into client meetings (Anchorage), as</li>
+</ul>
+<p>  opposed to passively accepting whatever auto-joins.</p>
+<ul>
+<li>A <code>/recall</code> Claude Code skill exists in this very environment&#x27;s skill list, and per one reader it</li>
+</ul>
+<p>  queries the gbrain corpus (hot-memory MCP tool: <code>recall</code>, <code>extract_facts</code>, <code>forget_fact</code>), not raw</p>
+<p>  meeting transcripts. This is a third, separate thing also named &quot;recall,&quot; confirmed directly by this</p>
+<p>  agent&#x27;s own tool list, not just a reader&#x27;s grep.</p>
+<h2>Must-haves</h2>
+<ul>
+<li>Capture every real business meeting; never silently drop one; filter out non-business chatter; classify</li>
+</ul>
+<p>  correctly. This became an explicit directive from the builder after a 2026-05-22 incident where business</p>
+<p>  meetings were silently dropped while family chatter was captured and stored as &quot;meetings.&quot;</p>
+<ul>
+<li>A concrete latency bar: within a minute of a conversation ending, the data should be ingested, in</li>
+</ul>
+<p>  memory, and fully retrievable as a transcript (founding goal, 2026-05-21), later refined into a</p>
+<p>  committed SLO of 30 to 60 seconds from ASR-ready to retrievable, against a measured Fieldy ASR</p>
+<p>  median of 8.4 minutes (p90 27.5 min, p99 41.8 min, n=47 over 7 days).</p>
+<ul>
+<li>Speaker attribution must flag ambiguity rather than guess or fabricate an identity. This is stated as</li>
+</ul>
+<p>  an explicit design principle (decision 0012), reacting against a rejected v1 that repeatedly asked</p>
+<p>  Slack &quot;is this the builder? (40%)&quot;.</p>
+<ul>
+<li>Every capture path needs active failure monitoring; silent failure is the recurring root cause of data</li>
+</ul>
+<p>  loss across this stack (see Reliability track record in the timeline). The stated lesson from the</p>
+<p>  2026-07-06 recall-notetaker outage: &quot;silence must look like breakage,&quot; i.e., disabled/dead components</p>
+<p>  must fail a heartbeat check, not just stop quietly.</p>
+<ul>
+<li>Untrusted content discipline: transcript text captured from live meeting audio must be treated as</li>
+</ul>
+<p>  externally-influenced input and isolated from code execution paths (the base64 bridge hardening).</p>
+<ul>
+<li>Client-facing bot hygiene: unwanted or unbranded third-party notetaker bots must not be allowed into</li>
+</ul>
+<p>  client meetings; this was enforced concretely by evicting Read AI and Fireflies.ai from Anchorage&#x27;s</p>
+<p>  Zoom Marketplace and Google Calendar auto-join in 2026-07-06/07.</p>
+<ul>
+<li>&quot;Make meetings pay off&quot;: automatically extracting decisions, action items, and attendees from captured</li>
+</ul>
+<p>  meetings into ClickUp/gbrain is explicitly named (2026-06-28) as the biggest deferred ROI lever of the</p>
+<p>  whole stack. As of that date it was described as not built, but it is treated as a requirement, not an</p>
+<p>  optional nice-to-have, and per the Allan Marshall deck (see Value propositions) it is now the headline</p>
+<p>  external value proposition too.</p>
+<ul>
+<li>Dedup across redundant capture pipelines remains an unmet requirement in practice, evidenced most</li>
+</ul>
+<p>  recently by today&#x27;s (2026-07-08) call being captured three separate times.</p>
+<h2>Grey areas and open questions</h2>
+<ul>
+<li><b>Speaker-attribution vendor decision is open.</b> A ClickUp board task, &quot;Decide between Jamie AI and</li>
+</ul>
+<p>  Recall.ai speaker attribution path,&quot; was still open as of 2026-07-06 per the thread that resolved an</p>
+<p>  unrelated recall-notetaker outage that same day. No owner, due date, or decision criteria were found</p>
+<p>  in any corpus. &quot;Jamie AI&quot; itself returned zero content hits anywhere searched, so there is no</p>
+<p>  documented comparison of it against Recall.ai to draw on.</p>
+<ul>
+<li><b>The presence model and turn-attribution work are validated but not deployed.</b> Both decision 0012</li>
+</ul>
+<p>  (meeting-level presence model, 2026-06-16) and decision 0013 (per-utterance turn attribution,</p>
+<p>  2026-06-17) show real validation results (for example, one call went from &quot;the builder ~0.40 unknown&quot; to</p>
+<p>  &quot;Sinan@0.95, the builder@0.90&quot; under the new model) but explicitly say &quot;NOT deployed. Worktree branch only,&quot;</p>
+<p>  with no launchd job. Whether this has since shipped is unknown from this pass.</p>
+<ul>
+<li><b>The speaker-attribution funnel is half-built.</b> Per <code>brain/docs/architecture.md</code> (2026-06-16), the</li>
+</ul>
+<p>  funnel is Identify (built) to Verify (partial, a Tier-2 LLM verify stage is stubbed and deferred per</p>
+<p>  ADR-0009, blocked on an API key) to Clarify (not built, called &quot;the missing rung&quot;) to Publish (built).</p>
+<p>  A registered launchd job, <code>fieldy-speaker-reconcile</code>, could not be matched to any script in the</p>
+<p>  workspace tree as of the last check in that repo, a possible broken reference that was not resolved.</p>
+<ul>
+<li><b>Granola and Roam ingestion are unproven on real meetings.</b> Both were verified only against synthetic</li>
+</ul>
+<p>  data as of 2026-06-17; no real acceptance test was found in any corpus.</p>
+<ul>
+<li><b>Identity: is &quot;the game designer from Recall.ai&quot; the same person as the game-design collaborator?</b> One reader found that mini&#x27;s</li>
+</ul>
+<p>  <code>crm/interactions/nick.md</code> merges a 2026-06-25 entry (the game designer, of Recall.ai, gave a live desktop-SDK demo)</p>
+<p>  with 2026-07-08 entries about the game-design collaborator (game designer, <code>nick@winwin.game</code>). The reader&#x27;s read is</p>
+<p>  that these are two different people conflated by first-name-only contact matching, since no other</p>
+<p>  evidence anywhere ties the game-design collaborator to Recall.ai. This was not independently re-verified in this pass</p>
+<p>  (no mini access was exercised for this specific file) and should be confirmed directly with the builder</p>
+<p>  before being stated as fact either way.</p>
+<ul>
+<li>**Identity: is the unconfirmed &quot;the engineer&quot; in executive-agent-gui&#x27;s vision brief the same as the engineer</li>
+</ul>
+<p>  the engineering collaborator?** Directly re-read for this dossier: <code>executive-agent-gui/research/vision-brief.md</code> (compiled</p>
+<p>  2026-07-03) flags &quot;the engineer&quot; as &quot;unconfirmed across all local records, possibly a mis-tagged attendee,&quot;</p>
+<p>  with &quot;no verified real executive attached to this product.&quot; The same document separately describes a</p>
+<p>  &quot;the game designer track&quot; (AI Work Terminal / enterprise adoption, gamified scoring) as adjacent to the exec-GUI</p>
+<p>  concept, and notes a &quot;second the game designer meeting&quot; on 2026-07-03. Given that today&#x27;s (2026-07-08) call</p>
+<p>  introduces the engineering collaborator alongside the game-design collaborator for gamified Agent-OS work, it is plausible the</p>
+<p>  2026-07-03 &quot;the engineer&quot; reference is an early, unconfirmed mention of the engineering collaborator. This is a plausible</p>
+<p>  connection, not a proven one; the vision-brief text itself explicitly declines to confirm it, and no</p>
+<p>  later document was found that closes the loop.</p>
+<ul>
+<li><b>A different &quot;the engineer&quot; did not appear on an earlier tape.</b> On the 2026-06-19 Fieldy-recorded call that</li>
+</ul>
+<p>  seeded the original &quot;life-OS&quot; product vision, a named attendee &quot;the engineer&quot; was expected but does not</p>
+<p>  appear on tape (attendees resolved as the builder plus &quot;unknown-1&quot;). This was flagged to the builder and, per</p>
+<p>  <code>activeContext.md</code>, was still an open loop as of the last write found. Whether this expected-but-absent</p>
+<p>  the engineer is the engineering collaborator is unknown.</p>
+<ul>
+<li><b>&quot;the engineer&quot; is a heavily overloaded name across this estate, independent of the above.</b> Confirmed</li>
+</ul>
+<p>  distinct, unrelated usages: &quot;the engineer (Spree)&quot; as a CRM alias for an unrelated contact; an internal</p>
+<p>  &quot;the engineer automation-stack integration&quot; program (skills-registry PRs, graduated 2026-06-12); a the engineer</p>
+<p>  test-fixture name inside the fieldy-clickup eval harness; and a git worktree once named</p>
+<p>  &quot;analyze-carter-automation-integration&quot; that no longer appears in <code>git worktree list</code>. None of these</p>
+<p>  should be assumed to be the engineering collaborator.</p>
+<ul>
+<li><b>&quot;Recall&quot; is a three-way naming collision inside this estate</b>, independent of the Recall.ai question:</li>
+</ul>
+<p>  (1) the meeting-bot integration covered in this dossier; (2) an entirely unrelated local</p>
+<p>  session/file smart-search panel in claudecode-bar (<code>recall-backend</code> binary plus <code>recall.html</code>, an</p>
+<p>  Fn-key-triggered panel that searches Claude session transcripts and edited files, graduated 2026-06-26);</p>
+<p>  (3) a Claude Code <code>/recall</code> skill that queries the gbrain corpus. Downstream readers should not conflate</p>
+<p>  any of these.</p>
+<ul>
+<li><b>Whether the game designer and the engineer have any connection to a company literally named Fieldy or Recall</b> was</li>
+</ul>
+<p>  searched for across all 6 reader passes (roughly a dozen repos and the full miscellaneous threads</p>
+<p>  directory) and found nowhere. This should be treated as effectively answered (no), pending the builder&#x27;s own</p>
+<p>  confirmation, rather than left open indefinitely, since the goal context&#x27;s framing asked specifically</p>
+<p>  for this to be verified rather than assumed.</p>
+<ul>
+<li><b>Whether the prior engineering framework survives in any form for the joint product</b> is closed by the builder&#x27;s own correction</li>
+</ul>
+<p>  (see Headline): the prior engineering framework is the engineer&#x27;s separate framework name, and the joint product is unnamed. Flagging</p>
+<p>  here only because multiple upstream materials, including this task&#x27;s own goal context, still describe</p>
+<p>  the prior engineering framework as a floated working name for the joint concept; that framing is now superseded.</p>
+<ul>
+<li><b>No competitive comparison exists</b> of Recall.ai against Jamie AI, Fathom, Fireflies, or Read AI for</li>
+</ul>
+<p>  the specific purpose of speaker attribution or meeting capture generally. This is a real gap, flagged</p>
+<p>  here for the downstream competitive/risk-analysis track (3.2), not something this pass could resolve.</p>
+<ul>
+<li><b>Today&#x27;s gbrain embedding status is reported stale</b> (per this task&#x27;s own goal context: OpenAI</li>
+</ul>
+<p>  embedding quota exhausted since 00:16 UTC today, both scheduled sync runs failing 10 of 10 files,</p>
+<p>  today&#x27;s three meeting notes near-certainly unembedded as of writing). This was not independently</p>
+<p>  re-verified in this pass and is passed through as reported, not confirmed firsthand.</p>
+<ul>
+<li><b>7 historical meeting files remain permanently missing</b> from a 2026-07-02 estate-wide sweep following</li>
+</ul>
+<p>  a quota-outage data-loss incident (275 files dropped in total across all historical outages, 7 still</p>
+<p>  missing), including some tied to Anchorage deal context. No later document was found reporting these</p>
+<p>  as recovered.</p>
+<h2>Value propositions</h2>
+<ul>
+<li><b>Internal/operational</b>: near-zero-effort meeting-to-system-of-record pipeline. Per</li>
+</ul>
+<p>  <code>clawdia-atlas/docs/03-meeting-ingest-pipeline.md</code>, &quot;a meeting gets recorded somewhere, and without</p>
+<p>  the builder lifting a finger it becomes a CRM update, a Notion task list, an Obsidian note, a memory entry,</p>
+<p>  a Signal digest.&quot;</p>
+<ul>
+<li><b>Client-facing (clearest external articulation found, from the Allan Marshall deck)</b>: &quot;Meetings</li>
+</ul>
+<p>  should be creative. Agents do the rest.&quot; The pitch is that meetings become notetaking-free and</p>
+<p>  recap-free, with decisions built in real time while the meeting is still happening. Quoted directly:</p>
+<p>  &quot;Nobody takes notes. Nobody recaps. The meeting is creative minds only, and everything it decides gets</p>
+<p>  built while you are still in the room.&quot; The deck&#x27;s talk track adds: &quot;The recap email is dead.&quot;</p>
+<ul>
+<li><b>Quantified ROI claim (same deck)</b>: before/after timeline collapsing a human chain of meeting to</li>
+</ul>
+<p>  notes to review to research to design to execute to report, stated as taking 3 to 4 weeks, down to a</p>
+<p>  same-day cycle: the same one-hour meeting, then a 20-minute &quot;thoughts?&quot; check after an agent cluster</p>
+<p>  produces notes/actions/research/draft, then a 15-minute decide after a second agent cluster executes,</p>
+<p>  chases, and reports. Framed as &quot;Same meeting, 2x the output.&quot;</p>
+<ul>
+<li><b>Trust and brand-experience angle</b>: actively curating which bots are allowed into client meetings</li>
+</ul>
+<p>  (the Read AI and Fireflies.ai eviction from Anchorage) is itself a value proposition of control:</p>
+<p>  meeting capture as a single, sanctioned system rather than an uncontrolled proliferation of competing</p>
+<p>  notetaker bots showing up in client calls.</p>
+<ul>
+<li><b>Redundancy as reliability, not just waste</b>: the deliberate decision to keep Otter running forever</li>
+</ul>
+<p>  alongside Fieldy specifically because it has different failure modes is a value proposition in itself,</p>
+<p>  namely that no single vendor outage should be able to lose a meeting. In practice this redundancy has</p>
+<p>  also caused double-ingestion bugs, so the net value depends on dedup logic that is not yet reliable.</p>
+<ul>
+<li>Note: the Agent OS / gamification concept discussed on 2026-07-08 has its own separate value</li>
+</ul>
+<p>  propositions (compressing idea-to-execution, gamifying AI adoption, org OKRs tied to agent subtasks).</p>
+<p>  Per the scope note above, this dossier does not synthesize those; they belong to other tracks in this</p>
+<p>  swarm.</p>
+<h2>Goals</h2>
+<h3>Short-term</h3>
+<ul>
+<li>Resolve the open &quot;Jamie AI vs. Recall.ai&quot; speaker-attribution board decision (open as of 2026-07-06,</li>
+</ul>
+<p>  no further detail found).</p>
+<ul>
+<li>Decide a production deploy/run-mode for the validated speaker-presence model (a decision explicitly</li>
+</ul>
+<p>  left pending as of 2026-06-17).</p>
+<ul>
+<li>Build the &quot;Clarify&quot; stage of the speaker-attribution funnel, the still-missing step that would close</li>
+</ul>
+<p>  the loop with the user on ambiguous speaker identities.</p>
+<ul>
+<li>Add &quot;discoverability and dashboards&quot; to the transcript/retrieval system, named as the missing 15% of</li>
+</ul>
+<p>  an otherwise &quot;~85% built and adequate&quot; system (2026-06-04 assessment).</p>
+<ul>
+<li>Get a real acceptance test on Granola and Roam ingestion against actual meetings, not just synthetic</li>
+</ul>
+<p>  data.</p>
+<ul>
+<li>Fix the recurring pattern of silent capture-path failures before the next one causes data loss (see</li>
+</ul>
+<p>  Reliability track record in the timeline); the heartbeat monitoring added for recall-notetaker on</p>
+<p>  2026-07-06 is a partial step, not a comprehensive fix across all capture paths.</p>
+<ul>
+<li>Resolve dedup so the same call stops landing as multiple separate meeting notes/CRM entries, directly</li>
+</ul>
+<p>  evidenced by today&#x27;s 3x capture of the the game designer/the engineer call.</p>
+<h3>Long-term</h3>
+<ul>
+<li>&quot;Make meetings pay off&quot;: full automatic extraction of decisions, action items, and attendees from</li>
+</ul>
+<p>  every captured meeting into ClickUp and gbrain, named as the single biggest deferred ROI lever of the</p>
+<p>  whole stack (2026-06-28) and, per the Allan Marshall deck, now also the headline client-facing pitch.</p>
+<ul>
+<li>A single, reliable, deduplicated, speaker-attributed transcript-to-memory pipeline that other product</li>
+</ul>
+<p>  lines can be built on top of. The evidence across all corpora treats meeting capture as foundational</p>
+<p>  infrastructure, not a product in itself. It already underlies the CRM, the Allan Marshall client deck&#x27;s</p>
+<p>  demo, and the capture of the 2026-07-08 Agent-OS ideation call; any future product surface (the</p>
+<p>  executive-agent-gui, the Agent OS concept) is likely to depend on this same pipeline rather than build</p>
+<p>  its own.</p>
+<ul>
+<li>Resolve the standing architectural split between the two capture tracks (the documented Otter/Fieldy/</li>
+</ul>
+<p>  Granola/Roam architecture versus the separately-built Recall.ai integration) so there is one coherent,</p>
+<p>  documented picture rather than two.</p>
+<h2>People and relationships</h2>
+<ul>
+<li><b>the builder</b>: builds and owns the entire capture stack personally (both tracks), and is the sole</li>
+</ul>
+<p>  decision-maker on fixes, vendor choices, and deploy decisions referenced throughout.</p>
+<ul>
+<li><b>the game-design collaborator</b>: game designer, tokenomics and behavioral-psychology background, <code>nick@winwin.game</code>,</li>
+</ul>
+<p>  Framework Ventures background per the 2026-07-08 call notes. A recurring collaborator on the</p>
+<p>  gamification/Agent-OS concept since at least 2026-06-30 (a call double-recorded by Otter and Recall,</p>
+<p>  where the game designer contributed concrete mechanics: leagues with minimum token thresholds, anti-abuse daily</p>
+<p>  attainment caps, fake-outlier detection, role-adjusted scoring). A follow-up was locked for 2026-07-03,</p>
+<p>  2pm ET (the same day executive-agent-gui was scaffolded), and the first confirmed 3-way call with</p>
+<p>  the engineer happened 2026-07-08. Not confirmed to be affiliated with Recall.ai the company; see the grey</p>
+<p>  area above on a possibly-conflated &quot;the game designer from Recall.ai&quot; reference dated 2026-06-25.</p>
+<ul>
+<li><b>the engineering collaborator</b>: physics and math background, serial builder, ex-CTO of a stablecoin-rewards company,</li>
+</ul>
+<p>  <code>carter@raz.ink</code>. First confirmed 3-way call with the builder and the game designer was 2026-07-08 (68 minutes, roughly</p>
+<p>  11:05 to 12:15 PDT). Contributed a cited case study (a 4-person team at 16x baseline output versus an</p>
+<p>  18-person control team at 2.5x) and owns the term &quot;the prior engineering framework&quot; as his own separate recursive-self-improvement</p>
+<p>  framework for engineering orgs, not the joint product&#x27;s name. Possibly, but not confirmed, the same</p>
+<p>  &quot;the engineer&quot; referenced unconfirmed in executive-agent-gui&#x27;s 2026-07-03 vision brief, and possibly, but not</p>
+<p>  confirmed, connected to the &quot;the engineer&quot; expected but absent from the 2026-06-19 tape.</p>
+<ul>
+<li><b>Alan/Allan Marshall (Upexi CEO)</b>: appears in two connected but distinct workstreams involving the</li>
+</ul>
+<p>  same person. First, as the subject of a separate client-facing AI deck (<code>allan-ai-deck</code>) whose content</p>
+<p>  deliberately excludes the game designer, the engineer, and the underlying Agent-OS business concept (&quot;Business concept</p>
+<p>  (incentivized adoption platform) shapes framing only, never mentioned. No the game designer/the engineer names in deck,&quot;</p>
+<p>  per the deck&#x27;s own thread, 2026-07-06). Second, and separately, as the target first pilot and investor</p>
+<p>  for the Agent-OS concept itself, with a stated $10 to $50M appetite and a pitch meeting targeted for</p>
+<p>  around 2026-07-17/18. These are the same person but two different, deliberately separated</p>
+<p>  conversations; do not merge the deck content with the investor pitch.</p>
+<ul>
+<li><b>Fieldy and Recall.ai are not people.</b> Fieldy is the builder&#x27;s wearable ambient-capture device and its</li>
+</ul>
+<p>  associated pipeline. Recall.ai is a third-party meeting-bot SDK/API vendor whose product the builder</p>
+<p>  integrated into his own tool. Neither is a company that the game designer or the engineer represent, per everything found</p>
+<p>  in this pass.</p>
+<ul>
+<li><b>Name-collision landscape to keep separate from the above</b>: &quot;the engineer (Spree)&quot; (CRM alias, unrelated</li>
+</ul>
+<p>  contact); the internal &quot;the engineer automation-stack integration&quot; program (skills-registry work, graduated</p>
+<p>  2026-06-12); a the engineer test-fixture name in an eval harness; a &quot;the game designer&quot; who may or may not be a distinct</p>
+<p>  Recall.ai employee from the game-design collaborator.</p>
+<h2>Artifacts</h2>
+<p>Capture stack, code and docs:</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/claudecode-bar/main.swift</code>, <code>hud.html</code> (Recall tile, live transcript panel)</li>
+<li><code>/Users/jarredwinn/Projects/claudecode-bar/SECURITY-PERF-AUDIT-PLAN.md</code> (base64 hardening, atomic-write</li>
+</ul>
+<p>  debt, dead &quot;Launch Recall Notetaker&quot; button)</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/claudecode-bar/docs/recall-docs-panel-plan.md</code>,</li>
+</ul>
+<p>  <code>docs/recall-spike-contract.md</code> (the unrelated local smart-search &quot;Recall&quot; panel)</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/claudecode-bar/memory-bank/activeContext.md</code></li>
+<li>claudecode-bar commits: <code>cf3fc9e</code> (recall panel live-scroll fix, 2026-07-07), <code>37afbe5</code> (poll transcript</li>
+</ul>
+<p>  1s), <code>d7f6eb6</code> (restore Recall tile after autosync clobber)</p>
+<ul>
+<li><code>mini:/Users/clawd/.openclaw/workspace/scripts/recall-bridge/recall-bridge.py</code></li>
+<li><code>/Users/jarredwinn/Projects/fieldy-clawdia/</code> (whole repo): <code>memory-bank/projectbrief.md</code>,</li>
+</ul>
+<p>  <code>memory-bank/activeContext.md</code>, <code>memory-bank/lessons.md</code>, <code>memory-bank/progress.md</code>,</p>
+<p>  <code>STACK-REEVALUATION-2026-05-21.md</code>, <code>STACK-FIX-2026-05-22-business-meeting-loss.md</code>,</p>
+<p>  <code>TRANSCRIPT-SYSTEM-ASSESSMENT-2026-06-04.md</code>, <code>docs/speaker-identification-rethink.md</code>,</p>
+<p>  <code>docs/finish-plan.md</code>, <code>memory-bank/decisions/0011-granola-poll-ingest.md</code>,</p>
+<p>  <code>0012-meeting-level-speaker-presence-model.md</code>, <code>0013-per-utterance-turn-attribution.md</code>,</p>
+<p>  <code>0014-roam-webhook-ingest.md</code>, <code>tooling/speaker-presence.py</code>, <code>tooling/turn-attribute.py</code>,</p>
+<p>  <code>tooling/fieldy-crm-sync.py</code></p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/brain/docs/architecture.md</code>, <code>docs/related-repos.md</code>,</li>
+</ul>
+<p>  <code>memory-bank/activeContext.md</code></p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/clawdia-atlas/docs/03-meeting-ingest-pipeline.md</code>,</li>
+</ul>
+<p>  <code>04-tooling.md</code>, <code>06-processes-and-crons.md</code>, <code>07-infrastructure.md</code>, <code>08-runbooks.md</code>,</p>
+<p>  <code>09-open-questions-and-conflicts.md</code>, <code>reference/glossary.md</code>, <code>diagrams/stack-overview.md</code></p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/knowledge/INDEX.md</code>,</li>
+</ul>
+<p>  <code>2-areas/machine-organization/RETRIEVAL-ARCHITECTURE.md</code></p>
+<ul>
+<li><code>mini:~/.openclaw/workspace/scripts/</code> (fieldy-conversation-sync.py, fieldy-meeting-detector.py,</li>
+</ul>
+<p>  fieldy-tasks-to-notion.py, fieldy-crm-sync.py, fieldy-tasks-shadow.py and wrapper; named in this task&#x27;s</p>
+<p>  own brief, and consistent with, though not all individually re-confirmed against, the sibling copies</p>
+<p>  a reader found at <code>mini:~/.openclaw/workspace/scripts/fieldy/fieldy_to_clickup.py</code> and</p>
+<p>  <code>meeting_extractor.py</code>)</p>
+<ul>
+<li><code>mini:~/.gbrain/sync-failures.jsonl</code></li>
+<li><code>mini:~/.openclaw/workspace/fieldy/transcripts/2026-07-08.jsonl</code> (149KB, 126 lines, raw verbatim of</li>
+</ul>
+<p>  today&#x27;s call)</p>
+<ul>
+<li><code>https://us-west-2.recall.ai/dashboard</code></li>
+</ul>
+<p>Today&#x27;s call and its 3x capture:</p>
+<ul>
+<li><code>mini:~/.openclaw/workspace/meetings/2026-07-08-jarred-nick-carter-ai-productivity-os-gamification-ideation-9f36bc52.md</code></li>
+</ul>
+<p>  (fieldy-extracted, created 12:21 PT)</p>
+<ul>
+<li><code>mini:~/.openclaw/workspace/meetings/2026-07-08-agentic-org-os-rsi-for-orgs-jarred-carter-nick-strategy-call.md</code></li>
+</ul>
+<p>  (recall, created 12:12/12:21 PT depending on reader)</p>
+<ul>
+<li><code>mini:~/.openclaw/workspace/meetings/2026-07-08-jarred-nick-metzler-carter-razink-ai-gamification-enterprise.md</code></li>
+</ul>
+<p>  (recall, created 11:25 PT)</p>
+<ul>
+<li><code>/Users/jarredwinn/.omnara/worktrees/miscellaneous/knelt-smugness/threads/2026-07-08-agent-os-product-concept-consolidation.md</code></li>
+</ul>
+<p>  (the authoritative local thread for this call, including the builder&#x27;s corrections)</p>
+<p>Identity and disambiguation sources:</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/executive-agent-gui/research/vision-brief.md</code> (unconfirmed &quot;the engineer&quot;;</li>
+</ul>
+<p>  the adjacent &quot;the game designer track&quot;)</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/research/inbox/2026-06-19-fieldy-vision-distilled.md</code> and</li>
+</ul>
+<p>  <code>threads/2026-06-19-lifeos-theory-design.md</code> (the absent &quot;the engineer&quot; on the 2026-06-19 tape)</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/_filed/automation-program/2026-06-09-carter-automation-stack-integration.md</code></li>
+</ul>
+<p>  (the unrelated internal &quot;the engineer&quot; automation program)</p>
+<ul>
+<li><code>mini:/Users/clawd/.openclaw/workspace/scripts/mempalace-crm-unify.py:565</code> (&quot;the engineer (Spree)&quot; alias)</li>
+</ul>
+<p>Reliability, competitive eviction, and client deck:</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-06-28-recall-roam-capture-brain-tile-effectiveness-loop.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-06-30-recall-meet-no-mic.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-07-01-yesterdays-conversations-review.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-07-02-fieldy-clawdia-session-intake-failures.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-07-06-recall-notetaker-not-working.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-07-07-recall-panel-not-live-scrolling.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-07-06-winn-ai-notetaker-stop.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-07-07-winn-ai-bot-meet-anchorage.md</code></li>
+<li>This repo&#x27;s own git log: commit <code>9376e121</code> (&quot;Winn.ai bot resolved, access cut across Google/Zoom/</li>
+</ul>
+<p>  Zoom-AI&quot;), commit <code>881dcde8</code> (&quot;Zoom AI: disabled account-wide auto-start meeting summary; ClickUp</p>
+<p>  removed from Marketplace&quot;), commit <code>b4451906</code> (lesson on &quot;bot-eviction-by-elimination&quot;)</p>
+<ul>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/threads/2026-07-06-allan-marshall-ai-deck.md</code></li>
+<li><code>/Users/jarredwinn/Projects/miscellaneous/allan-ai-deck/deck.html</code>, <code>talk-track.md</code></li>
+<li><code>https://winnsolutionsadmin.github.io/allan-ai-demos/</code></li>
+<li><code>/Users/jarredwinn/Projects/anchorage-workspace/99-source/meetings-full/openclaw/<i>fieldy-meeting</i>.md</code></li>
+</ul>
+<p>  (7 Fieldy-tagged meeting notes wired into the Anchorage CRM workspace, 2026-04-09 to 04-22)</p>
+<p>Sibling dossiers in this same swarm sweep (not read for this pass, listed for cross-reference):</p>
+<ul>
+<li><code>research/inbox/product-sweep-2026-07-08/mima-mini-corpus.md</code></li>
+<li><code>research/inbox/product-sweep-2026-07-08/swarm-allan-marshall.md</code></li>
+<li><code>research/inbox/product-sweep-2026-07-08/swarm-gui.md</code></li>
+<li><code>research/inbox/product-sweep-2026-07-08/swarm-mima.md</code></li>
+</ul>
+<h2>Timeline of key moments</h2>
+<ul>
+<li><b>2026-05-13</b>: Decision to keep Otter running permanently alongside Fieldy, specifically because it</li>
+</ul>
+<p>  has a different vendor/STT/failure mode.</p>
+<ul>
+<li><b>2026-05-21</b>: Founding SLO goal for the pipeline set; STACK-REEVALUATION names Limitless and</li>
+</ul>
+<p>  Omi/Friend as the only competitive comparables at the time; Fieldy noted to run on Qdrant internally.</p>
+<ul>
+<li><b>2026-05-22</b>: Real business meetings found silently dropped while family chatter was stored as</li>
+</ul>
+<p>  &quot;meetings.&quot; the builder&#x27;s directive: capture everything, filter family chatter, categorize business,</p>
+<p>  make it accurate.</p>
+<ul>
+<li><b>2026-05-27 to approx. 2026-06-06</b>: Otter, at the time the canonical CRM&#x27;s only historical feeder,</li>
+</ul>
+<p>  goes fully silent for about 10 days, freezing the canonical CRM.</p>
+<ul>
+<li><b>2026-06-04</b>: Transcript/retrieval system assessed as &quot;~85% built and adequate&quot; (343 processed notes,</li>
+</ul>
+<p>  298 structured JSON records, 47,397 embeddings).</p>
+<ul>
+<li><b>2026-06-09</b>: Canonical retrieval order for a past meeting documented (calendar first, then Fieldy</li>
+</ul>
+<p>  JSONL, then <code>data/meetings/&lt;id&gt;.json</code>).</p>
+<ul>
+<li><b>2026-06-11</b>: A <code>/recall</code> skill is noted to query gbrain, not raw transcripts, a naming collision</li>
+</ul>
+<p>  flagged even before the Recall.ai integration existed.</p>
+<ul>
+<li><b>2026-06-16</b>: Speaker-identification root cause documented: Fieldy transcript bundles carry no</li>
+</ul>
+<p>  speaker field at all; the signal exists upstream in Fieldy&#x27;s own API but is discarded before reaching</p>
+<p>  the bundle. <code>brain/docs/architecture.md</code> snapshot of the whole pipeline dated here too.</p>
+<ul>
+<li><b>2026-06-16</b>: Decision 0012, the meeting-level speaker presence model, built and validated, not</li>
+</ul>
+<p>  deployed.</p>
+<ul>
+<li><b>2026-06-17</b>: Decision 0013, per-utterance turn attribution, built and validated for 2-person calls,</li>
+</ul>
+<p>  degrades on group calls, not deployed. Granola and Roam sources added around this window, synthetic-only</p>
+<p>  verification.</p>
+<ul>
+<li><b>2026-06-19</b>: The core &quot;life-OS&quot; product vision distilled directly from a Fieldy-recorded meeting</li>
+</ul>
+<p>  transcript. Same call: an expected &quot;the engineer&quot; does not appear on tape.</p>
+<ul>
+<li><b>2026-06-22</b>: Fieldy false-flagged as stalled by a monitoring bug that didn&#x27;t account for its</li>
+</ul>
+<p>  legitimate up-to-7-day offline window.</p>
+<ul>
+<li><b>2026-06-25</b>: the builder&#x27;s record-on-detection design decision made. Separately, a &quot;the game designer&quot; (per one</li>
+</ul>
+<p>  reader&#x27;s contested reading, possibly a different the game designer) gives a live Recall.ai desktop-SDK demo,</p>
+<p>  per mini&#x27;s <code>crm/interactions/nick.md</code>.</p>
+<ul>
+<li><b>2026-06-26 to 2026-07-02</b>: <code>recall-bridge.py</code> under active development on mini (per file mtimes).</li>
+<li><b>2026-06-28</b>: Recall notetaker rebuilt and shipped: async transcription for real speaker names,</li>
+</ul>
+<p>  native realtime streaming, live in-bar transcript, and Roam capture solved via CoreAudio per-process</p>
+<p>  mic attribution. &quot;Make meetings pay off&quot; named as the biggest deferred ROI lever, not yet built.</p>
+<ul>
+<li><b>2026-06-29</b>: Lessons captured that Recall and Granola are two separate pipelines both feeding gbrain,</li>
+</ul>
+<p>  and that Recall&#x27;s live in-meeting transcript feed is unreliable even though its async path works well.</p>
+<ul>
+<li><b>2026-06-30</b>: Installing Recall breaks Chrome&#x27;s mic via a macOS TCC re-evaluation (fixed same</li>
+</ul>
+<p>  session). A the game-design collaborator call is double-ingested by both Otter and Recall with different dedup keys.</p>
+<ul>
+<li><b>2026-07-01</b>: the game designer follow-up locked for 2026-07-03. <code>fieldy_to_clickup.py</code> armed in shadow mode, live</li>
+</ul>
+<p>  proof of 5 tasks extracted from a real meeting. Record-on-detection reaffirmed as accepted cost, not to</p>
+<p>  be revisited.</p>
+<ul>
+<li><b>2026-07-02</b>: Fieldy device stops uploading. Separately and more seriously, gbrain sync is found to</li>
+</ul>
+<p>  have silently dropped every meeting since 2026-06-30 due to OpenAI embedding-quota exhaustion combined</p>
+<p>  with a <code>--skip-failed</code> flag masking the errors; a reconciler safety net had been disabled for 41 days;</p>
+<p>  an estate-wide sweep finds 275 historical files dropped in total, 7 still missing (including Anchorage</p>
+<p>  deal context).</p>
+<ul>
+<li><b>2026-07-03</b>: Executive-agent-gui repo scaffolded the same day as a second the game designer meeting (2pm ET).</li>
+</ul>
+<p>  Vision brief for that repo flags an unconfirmed &quot;the engineer&quot; and an adjacent &quot;the game designer track&quot; (gamified</p>
+<p>  enterprise adoption concept).</p>
+<ul>
+<li><b>2026-07-05</b>: <code>gui-relay</code> skill confirmed as unrelated hardware-input tooling, ruling it out as any</li>
+</ul>
+<p>  kind of product codename.</p>
+<ul>
+<li><b>2026-07-06</b>: Recall notetaker found not working; root cause was a disabled launchd job, fixed same</li>
+</ul>
+<p>  session, with heartbeat monitoring added afterward. A ClickUp board task, &quot;Decide between Jamie AI and</p>
+<p>  Recall.ai speaker attribution path,&quot; is noted as separately open. The Allan Marshall deck&#x27;s thread</p>
+<p>  explicitly excludes the game designer, the engineer, and the business concept from that client-facing deck. The Winn.ai</p>
+<p>  (Read AI) notetaker-eviction thread begins.</p>
+<ul>
+<li><b>2026-07-07</b>: Recall panel&#x27;s live-scroll bug fixed (commit <code>cf3fc9e</code>). The Winn.ai/Fireflies eviction</li>
+</ul>
+<p>  from Anchorage&#x27;s Zoom and Google Workspace completed, confirmed by this repo&#x27;s own commits <code>9376e121</code></p>
+<p>  and <code>881dcde8</code>; Recall&#x27;s own bot API was queried directly and returned 0 active bots, used as evidence</p>
+<p>  in ruling Recall out as the source of the unwanted bot.</p>
+<ul>
+<li><b>2026-07-08</b>: First 3-way call between the builder, the game-design collaborator, and the engineering collaborator, 68 minutes, roughly</li>
+</ul>
+<p>  11:05 to 12:15 PDT, on a gamified Agent OS / RSI-for-orgs concept. Captured three times by the capture</p>
+<p>  stack (once fieldy-extracted, twice via Recall) plus one raw transcript. the builder issues two authoritative</p>
+<p>  corrections afterward: mima is unrelated to this concept, and &quot;the prior engineering framework&quot; is the engineer&#x27;s own separate term,</p>
+<p>  not the joint product&#x27;s name. Per this task&#x27;s own goal context (not independently re-verified here),</p>
+<p>  gbrain&#x27;s embedding pipeline is again reporting quota exhaustion as of this morning, meaning today&#x27;s</p>
+<p>  three meeting notes are likely not yet semantically indexed.</p>
+<h2>Sources</h2>
+<ul>
+<li><code>threads/2026-07-08-agent-os-product-concept-consolidation.md</code> (2026-07-08; read directly for this</li>
+</ul>
+<p>  dossier; the authoritative primary source for today&#x27;s call and the builder&#x27;s corrections)</p>
+<ul>
+<li><code>executive-agent-gui/research/vision-brief.md</code> (compiled 2026-07-03, covering 2026-06-19 to 2026-07-03;</li>
+</ul>
+<p>  read directly for this dossier)</p>
+<ul>
+<li><code>miscellaneous/threads/2026-07-06-recall-notetaker-not-working.md</code> (2026-07-06; read directly for this</li>
+</ul>
+<p>  dossier)</p>
+<ul>
+<li><code>fieldy-clawdia/memory-bank/projectbrief.md</code> (2026-05-21), <code>STACK-REEVALUATION-2026-05-21.md</code>,</li>
+</ul>
+<p>  <code>STACK-FIX-2026-05-22-business-meeting-loss.md</code> (2026-05-22),</p>
+<p>  <code>TRANSCRIPT-SYSTEM-ASSESSMENT-2026-06-04.md</code> (2026-06-04), <code>docs/speaker-identification-rethink.md</code></p>
+<p>  (2026-06-16), <code>memory-bank/decisions/0012-<i>.md</code> (2026-06-16), <code>0013-</i>.md</code> (2026-06-17),</p>
+<p>  <code>memory-bank/activeContext.md</code> and <code>lessons.md</code> (entries through 2026-06-17/19), <code>docs/finish-plan.md</code></p>
+<ul>
+<li><code>brain/docs/architecture.md</code>, <code>docs/related-repos.md</code>, <code>memory-bank/activeContext.md</code> (snapshot dated</li>
+</ul>
+<p>  2026-06-16)</p>
+<ul>
+<li><code>clawdia-atlas/docs/03-meeting-ingest-pipeline.md</code> and related docs (last verified/committed</li>
+</ul>
+<p>  2026-06-15/19)</p>
+<ul>
+<li><code>knowledge/INDEX.md</code>, <code>2-areas/machine-organization/RETRIEVAL-ARCHITECTURE.md</code> (assessed 2026-06-04,</li>
+</ul>
+<p>  added 2026-06-04)</p>
+<ul>
+<li><code>claudecode-bar/main.swift</code>, <code>hud.html</code>, <code>SECURITY-PERF-AUDIT-PLAN.md</code>, <code>docs/recall-docs-panel-plan.md</code>,</li>
+</ul>
+<p>  <code>docs/recall-spike-contract.md</code> (verified 2026-06-19, panel graduated 2026-06-26, live-scroll fix</p>
+<p>  2026-07-07)</p>
+<ul>
+<li><code>miscellaneous/research/inbox/2026-06-19-fieldy-vision-distilled.md</code> and</li>
+</ul>
+<p>  <code>threads/2026-06-19-lifeos-theory-design.md</code> (2026-06-19)</p>
+<ul>
+<li><code>miscellaneous/threads/2026-06-28-recall-roam-capture-brain-tile-effectiveness-loop.md</code> (2026-06-28),</li>
+</ul>
+<p>  <code>2026-06-30-recall-meet-no-mic.md</code> (2026-06-30), <code>2026-07-01-yesterdays-conversations-review.md</code></p>
+<p>  (2026-07-01, reviewing 2026-06-30), <code>2026-07-02-fieldy-clawdia-session-intake-failures.md</code> (2026-07-02),</p>
+<p>  <code>2026-07-07-recall-panel-not-live-scrolling.md</code> (2026-07-07), <code>2026-07-06-winn-ai-notetaker-stop.md</code></p>
+<p>  and <code>2026-07-07-winn-ai-bot-meet-anchorage.md</code> (2026-07-06/07)</p>
+<ul>
+<li><code>miscellaneous/threads/2026-07-06-allan-marshall-ai-deck.md</code> (2026-07-06), <code>allan-ai-deck/deck.html</code></li>
+</ul>
+<p>  and <code>talk-track.md</code> (2026-07-06/07)</p>
+<ul>
+<li><code>miscellaneous/threads/_filed/automation-program/2026-06-09-carter-automation-stack-integration.md</code></li>
+</ul>
+<p>  (2026-06-09/12)</p>
+<ul>
+<li><code>miscellaneous/org/objective-ledger.yaml</code> and <code>the-sage/goals/goals.json</code> (goals.json last updated per</li>
+</ul>
+<p>  its own header 2026-06-22)</p>
+<ul>
+<li>This repo&#x27;s git log: commits <code>9376e121</code>, <code>881dcde8</code> (both 2026-07-07), <code>b4451906</code></li>
+<li>Negative checks (confirmed no relevant content): <code>command-center</code>, <code>teamclaude-fleet</code> repos;</li>
+</ul>
+<p>  <code>miscellaneous/threads/_filed/executive-agent-gui/README.md</code>; <code>miscellaneous/DEBRIEF.md</code> (unrelated</p>
+<p>  Agent Browser Viewer project); <code>/private/tmp/mima_story_v3.pdf</code> (no meeting-capture content, confirming</p>
+<p>  meeting capture is not part of mima&#x27;s original lineage); <code>gui-relay</code> skill (unrelated hardware tooling)</p>
+<h2>Confidence notes</h2>
+<p><b>Solid, directly sourced:</b></p>
+<ul>
+<li>The core identity resolution (the game-design collaborator and the engineering collaborator, not a &quot;Fieldy/Recall company&quot;; the prior engineering framework as</li>
+</ul>
+<p>  the engineer&#x27;s own term, not the joint product&#x27;s name; mima as unrelated) rests on a direct read of the</p>
+<p>  primary 2026-07-08 thread, which states these as the builder&#x27;s own authoritative corrections. This is the</p>
+<p>  highest-confidence material in this dossier.</p>
+<ul>
+<li>The two-track architecture (documented Otter/Fieldy/Granola/Roam pipeline versus the separately-built</li>
+</ul>
+<p>  Recall.ai integration) is confirmed by four independent readers each grepping a different repo</p>
+<p>  (fieldy-clawdia, brain, clawdia-atlas, plus a fourth cross-check) and each finding zero mentions of</p>
+<p>  Recall.ai in the &quot;official&quot; architecture docs. This convergence across independent passes makes it</p>
+<p>  solid.</p>
+<ul>
+<li>The speaker-attribution root cause (no speaker field in Fieldy&#x27;s transcript bundles despite the signal</li>
+</ul>
+<p>  existing upstream), the presence-model and turn-attribution decisions, and their &quot;not deployed&quot; status</p>
+<p>  are all drawn from dated ADR-style decision docs with quoted evidence, not inference.</p>
+<ul>
+<li>The reliability/data-loss track record (2026-05-22 through 2026-07-02) is drawn from dated incident</li>
+</ul>
+<p>  writeups with quoted root causes and is consistent across readers.</p>
+<ul>
+<li>The Winn.ai/Fireflies eviction and its resolution is corroborated by this repo&#x27;s own git log, which is</li>
+</ul>
+<p>  about as solid a source as is available in this environment.</p>
+<ul>
+<li>The Allan Marshall deck&#x27;s value-proposition language is drawn from direct deck/talk-track quotes.</li>
+</ul>
+<p><b>Thinner, flagged explicitly above but worth restating together:</b></p>
+<ul>
+<li>The &quot;the game designer from Recall.ai&quot; versus &quot;the game-design collaborator&quot; question rests on one reader&#x27;s reading of a merged CRM</li>
+</ul>
+<p>  file and was not independently re-opened in this pass.</p>
+<ul>
+<li>The link between the unconfirmed &quot;the engineer&quot; in executive-agent-gui&#x27;s vision brief (2026-07-03) and the engineer</li>
+</ul>
+<p>  the engineering collaborator (confirmed 2026-07-08) is plausible on timing and thematic grounds (the same document&#x27;s &quot;the game designer</p>
+<p>  track&quot; matches the gamification theme) but is explicitly not confirmed by that document itself, and no</p>
+<p>  later document closes the loop.</p>
+<ul>
+<li>Whether the absent &quot;the engineer&quot; on the 2026-06-19 tape is connected to the engineering collaborator is unknown; it may be</li>
+</ul>
+<p>  entirely unrelated given how overloaded the name &quot;the engineer&quot; is elsewhere in this estate.</p>
+<ul>
+<li>Today&#x27;s (2026-07-08) gbrain quota-exhaustion status and the exact creation timestamps of the three</li>
+</ul>
+<p>  meeting-note captures come from this task&#x27;s own goal context rather than from this pass&#x27;s own reader</p>
+<p>  findings or direct verification, and should be read as reported, not independently confirmed here.</p>
+<ul>
+<li>The open &quot;Jamie AI vs Recall.ai&quot; board task has no visible detail beyond its title in any corpus</li>
+</ul>
+<p>  checked; its current status should be pulled from ClickUp directly if it matters downstream.</p>
+<ul>
+<li>No competitive analysis of Recall.ai against other notetaker vendors exists in any source found; this</li>
+</ul>
+<p>  dossier can only confirm the gap, not fill it.</p>
+</main></body></html>
