@@ -352,6 +352,7 @@ a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover 
       <div class="inner">
         <div class="eyebrow"><span class="n">02</span> The problem</div>
         <h2 class="deck">The problem is adoption, not capability.</h2>
+<div style="display:grid;grid-template-columns:1.08fr 1fr;gap:44px;align-items:center"><div>
         <p class="lead">Capability is arriving. Adoption is not. The blocker is human.</p>
         <ul class="beats">
           <li><span class="k">94% already use AI at work.</span> Disclose it, though, and a controlled experiment rated you 10x lazier and 24 percentage points less likely to be picked for high-visibility work, at identical output. <span class="tag survey">Survey</span> <span class="sub">Atlassian, 2026. Employees hide the exact behavior an adoption product needs them to show.</span></li>
@@ -362,7 +363,16 @@ a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover 
           <div class="col b"><span class="n">~23%</span><span class="bar"></span><span class="lab">scaled one system <span class="tag survey">Survey</span></span></div>
         </div>
         <div class="claim">The company that makes its people safe to use AI takes the vertical. Nobody's selling that yet.</div>
-      </div>
+      </div><div style="max-width:420px"><svg viewBox="0 0 420 300" role="img" aria-label="The adoption gap in numbers">
+<text x="10" y="30" font-size="13" fill="#A2A8AF" letter-spacing="2">THE GAP, MEASURED</text>
+<text x="10" y="86" font-size="46" font-weight="800" fill="#FF4D2E" letter-spacing="-1">95%</text>
+<text x="10" y="108" font-size="12.5" fill="#4B5158">of enterprise GenAI pilots show no P&amp;L impact (MIT)</text>
+<text x="10" y="168" font-size="46" font-weight="800" fill="#0B0C0E" letter-spacing="-1">$202B</text>
+<text x="10" y="190" font-size="12.5" fill="#4B5158">agentic-AI spend arriving in 2026 alone (Gartner)</text>
+<text x="10" y="250" font-size="46" font-weight="800" fill="#0B0C0E" letter-spacing="-1">&gt;40%</text>
+<text x="10" y="272" font-size="12.5" fill="#4B5158">of agentic projects expected canceled by 2027 (Gartner)</text>
+</svg></div></div>
+</div>
     </section>
 
     <section class="slide" id="s3" data-title="The wedge">
@@ -477,6 +487,7 @@ a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover 
       <div class="inner">
         <div class="eyebrow"><span class="n">07</span> How autonomy works</div>
         <h2 class="deck">The system does the work. The human holds the gate.</h2>
+<div style="display:grid;grid-template-columns:1.08fr 1fr;gap:44px;align-items:center"><div>
         <div class="gates" role="img" aria-label="Approve, Edit, or Skip"><span class="g approve">Approve</span><span class="g">Edit</span><span class="g">Skip</span></div>
         <ul class="beats" style="margin-top:24px">
           <li>Nothing that touches money, an outside party, or anything irreversible moves without a person deciding.</li>
@@ -487,7 +498,51 @@ a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover 
           <div class="lab"><span>graduation bar</span><span><b>90%</b> agreement &nbsp;·&nbsp; <b>20+</b> reps</span></div>
         </div>
         <div class="claim">Autonomy is earned in reps, never sold in tiers.</div>
-      </div>
+      </div><div style="max-width:520px"><svg viewBox="0 0 600 250" role="img" aria-labelledby="gatefig-t gatefig-d">
+          <title id="gatefig-t">The human gate</title>
+          <desc id="gatefig-d">A queue of agent output flows into a human gate, which splits into three choices: Approve, which proceeds; Edit, which returns for revision; and Skip, which is discarded.</desc>
+          <defs>
+            <marker id="arw" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+              <path d="M0,0 L8,4.5 L0,9 Z" fill="#4B5158"></path>
+            </marker>
+            <marker id="arwp" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+              <path d="M0,0 L8,4.5 L0,9 Z" fill="#FF4D2E"></path>
+            </marker>
+          </defs>
+
+          <!-- queue of agent output -->
+          <rect x="26" y="92" width="126" height="52" rx="5" fill="none" stroke="#0B0C0E" stroke-opacity="0.28" stroke-width="1.4"></rect>
+          <rect x="18" y="100" width="126" height="52" rx="5" fill="#FFFFFF" stroke="#0B0C0E" stroke-width="1.5"></rect>
+          <text x="81" y="122" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="0.5" fill="#0B0C0E">AGENT</text>
+          <text x="81" y="137" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="0.5" fill="#0B0C0E">OUTPUT</text>
+
+          <!-- into the gate -->
+          <line x1="146" y1="126" x2="204" y2="126" stroke="#4B5158" stroke-width="1.5" marker-end="url(#arw)"></line>
+
+          <!-- the gate: the moment -->
+          <rect x="212" y="88" width="108" height="76" rx="6" fill="rgba(255,77,46,0.08)" stroke="#FF4D2E" stroke-width="1.9"></rect>
+          <text x="266" y="122" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="12" letter-spacing="0.5" fill="#FF4D2E">HUMAN</text>
+          <text x="266" y="139" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="12" letter-spacing="0.5" fill="#FF4D2E">GATE</text>
+
+          <!-- three fan-out connectors -->
+          <line x1="320" y1="118" x2="424" y2="64" stroke="#FF4D2E" stroke-width="1.6" marker-end="url(#arwp)"></line>
+          <line x1="320" y1="126" x2="424" y2="126" stroke="#4B5158" stroke-width="1.5" marker-end="url(#arw)"></line>
+          <line x1="320" y1="134" x2="424" y2="188" stroke="#4B5158" stroke-width="1.5" marker-end="url(#arw)"></line>
+
+          <!-- outcome pills -->
+          <rect x="428" y="44" width="150" height="40" rx="20" fill="none" stroke="#FF4D2E" stroke-width="1.7"></rect>
+          <text x="503" y="69" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#FF4D2E">[ Approve ]</text>
+
+          <rect x="428" y="106" width="150" height="40" rx="20" fill="none" stroke="#0B0C0E" stroke-opacity="0.55" stroke-width="1.5"></rect>
+          <text x="503" y="131" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#0B0C0E">[ Edit ]</text>
+
+          <rect x="428" y="168" width="150" height="40" rx="20" fill="none" stroke="#0B0C0E" stroke-opacity="0.35" stroke-width="1.5"></rect>
+          <text x="503" y="193" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#9AA0A8">[ Skip ]</text>
+
+          <!-- edit returns for revision: a quiet loop back to the queue -->
+          <path d="M428,126 C 320,26 190,26 82,92" fill="none" stroke="#FF4D2E" stroke-width="1.2" stroke-dasharray="3 4" marker-end="url(#arwp)"></path>
+        </svg></div></div>
+</div>
     </section>
 
     <section class="slide" id="s8" data-title="The live inspection">
