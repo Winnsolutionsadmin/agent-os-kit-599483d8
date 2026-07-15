@@ -1,602 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[NAME] · the reading room · 2026-07-09</title>
-<meta name="description" content="The reading room for the launch kit of an unnamed agent OS for organizations. Walks the evidence in one order: Vision, Pitch, Technical, Financial, Legal. Every claim labeled built or designed.">
-<style>
-  :root{
-    --paper:     #ECEEEC;
-    --desk:      #E4E7E4;
-    --card:      #F6F7F6;
-    --ink:       #20262A;
-    --ink-soft:  #586067;
-    --ink-dim:   #6C727A;
-    --line:      rgba(32,38,42,0.14);
-    --line-soft: rgba(32,38,42,0.08);
-    --accent:    #1E5A4C;
-    --accent-lit:#2B7A66;
-    --wash:      rgba(30,90,76,0.08);
-    --wash-2:    rgba(30,90,76,0.045);
-    --serif: "Iowan Old Style","Palatino Linotype","Palatino","Book Antiqua",Georgia,"Times New Roman",serif;
-    --sans: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
-    --mono: ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
-    --maxw: 1120px;
-  }
-
-  *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--sans);
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-  }
-  ::selection{ background:var(--wash); color:var(--ink); }
-  a{ color:var(--accent); text-decoration:none; }
-  a:hover{ color:var(--accent-lit); }
-  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
-
-  .skip{
-    position:absolute; left:-9999px; top:0;
-    background:var(--ink); color:var(--paper);
-    padding:0.6rem 1rem; z-index:50; font-family:var(--mono); font-size:0.8rem;
-  }
-  .skip:focus{ left:1rem; top:1rem; }
-
-  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.1rem,4vw,2.6rem); }
-
-  /* masthead */
-  .mast{
-    position:relative;
-    padding:clamp(2.6rem,7vw,5rem) 0 clamp(1.6rem,4vw,2.6rem);
-    border-bottom:1px solid var(--line);
-  }
-  .mast .frame{
-    position:absolute; inset:clamp(1.4rem,4vw,2.4rem) 0 auto 0;
-    height:1px; background:var(--accent); opacity:0.5; max-width:var(--maxw);
-    margin:0 auto; left:0; right:0;
-  }
-  .kicker{
-    font-family:var(--mono); font-size:0.74rem; letter-spacing:0.16em;
-    text-transform:uppercase; color:var(--ink-soft); margin:0 0 1.3rem;
-    display:flex; flex-wrap:wrap; gap:0.5rem 1.1rem; align-items:baseline;
-  }
-  .kicker b{ color:var(--accent); font-weight:600; }
-
-  .wordmark{
-    font-family:var(--serif);
-    font-size:clamp(3.4rem,12vw,7.4rem);
-    line-height:0.94; font-weight:600; letter-spacing:-0.015em;
-    margin:0; color:var(--ink);
-  }
-  .wordmark .bk{ color:var(--accent); font-weight:400; }
-  .wordmark .nm{ color:var(--ink-dim); letter-spacing:0.02em; }
-  .breathe .bk{ animation:breathe 5.5s ease-in-out infinite; }
-  @keyframes breathe{ 0%,100%{opacity:0.45;} 50%{opacity:1;} }
-
-  .thesis{
-    font-family:var(--serif);
-    font-size:clamp(1.25rem,3.1vw,1.9rem);
-    line-height:1.32; font-weight:400; color:var(--ink);
-    margin:1.5rem 0 0; max-width:32ch;
-  }
-  .thesis em{ font-style:italic; color:var(--accent); }
-  .mast-meta{
-    font-family:var(--mono); font-size:0.82rem; color:var(--ink-soft);
-    margin:1.6rem 0 0; letter-spacing:0.01em;
-  }
-  .mast-meta b{ color:var(--ink); font-weight:600; }
-  .unnamed{
-    margin:1.15rem 0 0; max-width:62ch; font-size:0.92rem; color:var(--ink-soft);
-    line-height:1.55;
-  }
-  .unnamed b{ color:var(--ink); font-weight:600; }
-
-  /* controls band */
-  .controls{
-    display:grid; gap:clamp(1.1rem,3vw,2rem);
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    padding:clamp(1.5rem,4vw,2.3rem) 0;
-    border-bottom:1px solid var(--line);
-  }
-  .ctl h2{
-    font-family:var(--mono); font-size:0.7rem; letter-spacing:0.16em;
-    text-transform:uppercase; color:var(--ink-dim); margin:0 0 0.85rem; font-weight:600;
-  }
-  .legend-row{ display:flex; align-items:flex-start; gap:0.55rem; margin:0 0 0.55rem; font-size:0.9rem; color:var(--ink-soft); }
-  .legend-row:last-child{ margin-bottom:0; }
-  .dot{ font-family:var(--mono); line-height:1.5; white-space:nowrap; flex:0 0 auto; }
-  .dot.built{ color:var(--accent); }
-  .dot.draft{ color:var(--ink-dim); }
-  .legend-row b{ color:var(--ink); font-weight:600; }
-
-  .paths li{ list-style:none; margin:0 0 0.6rem; font-size:0.88rem; }
-  .paths ul{ margin:0; padding:0; }
-  .paths .plabel{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:0.15rem; }
-  .paths .seq{ color:var(--ink-soft); }
-  .paths .seq a{ color:var(--ink); border-bottom:1px solid var(--line); }
-  .paths .seq a:hover{ border-color:var(--accent); }
-  .arrow{ color:var(--ink-dim); padding:0 0.15rem; }
-
-  .aud p{ margin:0 0 0.6rem; font-size:0.9rem; color:var(--ink-soft); line-height:1.5; }
-  .aud p:last-child{ margin-bottom:0; }
-  .aud b{ color:var(--ink); font-weight:600; }
-
-  /* body: spine + shelves */
-  .body{ display:grid; grid-template-columns:210px 1fr; gap:clamp(1.8rem,5vw,4rem); padding:clamp(2rem,5vw,3.4rem) 0 1rem; }
-  @media (max-width:820px){ .body{ grid-template-columns:1fr; } }
-
-  .spine{ position:sticky; top:1.4rem; align-self:start; height:max-content; }
-  @media (max-width:820px){ .spine{ position:static; margin-bottom:0.5rem; } }
-  .spine ol{ list-style:none; margin:0; padding:0; }
-  .spine .sp{ display:block; padding:0.5rem 0; border-top:1px solid var(--line-soft); color:var(--ink-soft); font-size:0.95rem; transition:color 0.2s, padding 0.2s; }
-  .spine .sp .n{ font-family:var(--serif); font-size:0.95rem; color:var(--ink-dim); margin-right:0.6rem; font-variant-numeric:tabular-nums; }
-  .spine .sp:hover{ color:var(--ink); }
-  .spine .sp.active{ color:var(--accent); padding-left:0.5rem; }
-  .spine .sp.active .n{ color:var(--accent); }
-  .spine .sub{ margin-top:1.4rem; padding-top:1.1rem; border-top:1px solid var(--line); }
-  .spine .sub a{ display:block; font-family:var(--mono); font-size:0.76rem; color:var(--ink-soft); padding:0.28rem 0; letter-spacing:0.02em; }
-  .spine .sub a:hover{ color:var(--accent); }
-
-  .shelves{ min-width:0; }
-  .section{ margin:0 0 clamp(2.4rem,6vw,3.8rem); scroll-margin-top:1.2rem; }
-  .sec-head{ display:flex; align-items:baseline; gap:1rem; padding-bottom:0.9rem; border-bottom:2px solid var(--ink); margin-bottom:0.4rem; flex-wrap:wrap; }
-  .sec-n{ font-family:var(--serif); font-size:clamp(2rem,5vw,2.9rem); line-height:1; color:var(--accent); font-variant-numeric:tabular-nums; }
-  .sec-t{ font-family:var(--serif); font-size:clamp(1.5rem,3.6vw,2rem); font-weight:600; margin:0; letter-spacing:-0.01em; }
-  .sec-aud{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); margin-left:auto; align-self:center; border:1px solid var(--line); padding:0.2rem 0.5rem; border-radius:999px; white-space:nowrap; }
-  .sec-aud.investor{ color:var(--accent); border-color:rgba(30,90,76,0.32); }
-  .sec-intro{ color:var(--ink-soft); font-size:0.98rem; margin:0.9rem 0 1.5rem; max-width:66ch; }
-
-  /* entry card */
-  .entry{
-    position:relative;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-left:3px solid var(--accent);
-    border-radius:3px;
-    padding:1.15rem 1.3rem;
-    margin:0 0 0.9rem;
-    transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .entry:hover{ box-shadow:0 4px 22px -14px rgba(32,38,42,0.5); }
-  .entry.is-draft{ border-left-color:var(--ink-dim); border-left-style:dashed; background:var(--paper); }
-  .entry.is-ref{ border-left-color:var(--ink-soft); }
-  .entry-top{ display:flex; align-items:baseline; gap:0.7rem 1rem; flex-wrap:wrap; }
-  .entry-title{ font-family:var(--sans); font-size:1.12rem; font-weight:650; margin:0; letter-spacing:-0.01em; color:var(--ink); }
-  .status{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.03em; white-space:nowrap; }
-  .status .bk{ color:inherit; }
-  .st-built{ color:var(--accent); }
-  .st-draft{ color:var(--ink-dim); }
-  .st-ref{ color:var(--ink-soft); }
-  .entry-date{ font-family:var(--mono); font-size:0.72rem; color:var(--ink-dim); margin-left:auto; letter-spacing:0.02em; }
-  .entry-what{ color:var(--ink-soft); font-size:0.95rem; margin:0.6rem 0 0; max-width:70ch; }
-
-  .entry-foot{ display:flex; align-items:center; gap:0.55rem 0.9rem; flex-wrap:wrap; margin-top:0.95rem; }
-  .lnk{ font-family:var(--mono); font-size:0.78rem; letter-spacing:0.02em; padding:0.34rem 0.7rem; border:1px solid var(--line); border-radius:2px; color:var(--ink); background:transparent; transition:background 0.15s,border-color 0.15s,color 0.15s; }
-  .lnk .bk{ color:var(--accent); }
-  .lnk:hover{ background:var(--wash); border-color:rgba(30,90,76,0.32); color:var(--accent); }
-  .lnk.view{ border-color:rgba(30,90,76,0.32); }
-  .lnk.dead{ color:var(--ink-dim); border-style:dashed; cursor:not-allowed; opacity:0.85; }
-  .lnk.dead:hover{ background:transparent; border-color:var(--line); color:var(--ink-dim); }
-  .qa{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-soft); }
-  .qa b{ color:var(--accent); font-weight:600; }
-  .path-tag{ font-family:var(--mono); font-size:0.72rem; color:var(--ink-dim); background:var(--wash-2); padding:0.2rem 0.45rem; border-radius:2px; }
-  .qa-note{ display:block; font-family:var(--sans); font-size:0.82rem; color:var(--ink-dim); margin-top:0.55rem; padding-left:0.8rem; border-left:2px solid var(--line); line-height:1.45; max-width:68ch; }
-  .qa-note b{ color:var(--ink-soft); font-weight:600; }
-
-  /* nested corpus list */
-  .corpus{ margin:0.4rem 0 0; padding:0; list-style:none; }
-  .corpus li{ display:flex; align-items:baseline; gap:0.7rem; padding:0.5rem 0; border-top:1px solid var(--line-soft); flex-wrap:wrap; }
-  .corpus li:first-child{ border-top:none; }
-  .corpus .c-id{ font-family:var(--mono); font-size:0.78rem; color:var(--accent); flex:0 0 auto; }
-  .corpus .c-what{ color:var(--ink-soft); font-size:0.88rem; flex:1 1 260px; min-width:0; }
-  .corpus .c-open{ font-family:var(--mono); font-size:0.74rem; color:var(--ink); border-bottom:1px solid var(--line); }
-  .corpus .c-open:hover{ color:var(--accent); border-color:var(--accent); }
-  .corpus .c-tag{ font-family:var(--mono); font-size:0.64rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); }
-
-  /* caveat banner */
-  .caveat{ background:var(--wash-2); border:1px solid rgba(30,90,76,0.22); border-radius:3px; padding:0.95rem 1.15rem; margin:0 0 1.3rem; font-size:0.9rem; color:var(--ink); line-height:1.5; }
-  .caveat .clabel{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:0.35rem; font-weight:600; }
-  .caveat b{ font-weight:650; }
-
-  .note-line{ font-size:0.9rem; color:var(--ink-soft); margin:0.4rem 0 0; }
-  .note-line .path-tag{ font-size:0.72rem; }
-
-  /* footer */
-  .foot{ border-top:2px solid var(--ink); margin-top:1.5rem; padding:clamp(1.8rem,4vw,2.6rem) 0 clamp(2.4rem,6vw,3.4rem); }
-  .foot .tags{ display:flex; flex-wrap:wrap; gap:0.5rem 1.4rem; font-family:var(--mono); font-size:0.76rem; color:var(--ink-soft); margin:0 0 1.2rem; }
-  .foot .tags b{ color:var(--accent); font-weight:600; }
-  .foot .fine{ font-size:0.86rem; color:var(--ink-dim); max-width:74ch; line-height:1.55; margin:0 0 0.5rem; }
-  .foot .sig{ font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); margin-top:1.2rem; }
-  .foot .sig b{ color:var(--ink); }
-
-  /* chronological on-ramp to the master timeline */
-  .startline{ display:flex; flex-wrap:wrap; align-items:baseline; gap:0.4rem 0.9rem; margin:1.5rem 0 0; }
-  .startlink{ font-family:var(--mono); font-size:0.82rem; letter-spacing:0.02em; padding:0.5rem 0.9rem; border:1px solid rgba(30,90,76,0.32); border-radius:2px; background:var(--wash); color:var(--accent); }
-  .startlink b{ color:var(--accent); font-weight:700; }
-  .startlink:hover{ background:rgba(30,90,76,0.14); }
-  .startline span{ font-size:0.9rem; color:var(--ink-soft); }
-
-  /* scroll-reveal for entries */
-  .entry[data-rise]{ opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
-  .entry[data-rise].in{ opacity:1; transform:none; }
-
-  @media (prefers-reduced-motion:reduce){
-    html{ scroll-behavior:auto; }
-    *{ animation:none !important; transition:none !important; }
-    .entry[data-rise]{ opacity:1; transform:none; }
-  }
-
-  @media print{
-    body{ background:#fff; color:#000; font-size:11pt; }
-    .spine, .controls .paths, .breathe .bk{ }
-    .breathe .bk{ animation:none; }
-    .body{ grid-template-columns:1fr; }
-    .spine{ display:none; }
-    .entry{ break-inside:avoid; box-shadow:none; }
-    a{ color:#000; }
-    .lnk{ border-color:#999; }
-  }
-</style>
-</head>
-<body class="breathe">
-<a class="skip" href="#vision">Skip to the reading room</a>
-
-<header class="mast">
-  <div class="wrap">
-    <div class="frame" aria-hidden="true"></div>
-    <p class="kicker"><span>the reading room</span> <b>v1</b> <span>2026-07-09</span> <span>launch kit</span></p>
-    <h1 class="wordmark"><span class="bk">[</span><span class="nm"> NAME </span><span class="bk">]</span></h1>
-    <p class="thesis">A trusted companion that carries a company through the AI transition, and <em>leaves it ahead</em>.</p>
-    <p class="mast-meta">built <b>2026-07-09</b> &nbsp;·&nbsp; founder <b>Jarred Winn</b> &nbsp;·&nbsp; jarred@winn.solutions</p>
-    <p class="unnamed">The product is intentionally unnamed. The permanent mark is chosen last, from a legally cleared shortlist, after the position is locked. <b>The brackets are the design, not a gap.</b> This room walks the kit's evidence in one order, and every claim inside each artifact is labeled built or designed. The working descriptor is an agent OS for organizations, used sparingly and never as a name.</p>
-    <p class="startline"><a class="startlink" href="00-master/index.html"><b>New</b> &middot; the build, in order &rarr;</a> <span>the chronological record, from the first idea on Jun 19 to this kit. This room is the flat index; the timeline is the story.</span></p>
-  </div>
-</header>
-
-<section class="controls wrap" aria-label="How to read this room">
-  <div class="ctl legend">
-    <h2>Artifact status</h2>
-    <div class="legend-row"><span class="dot built">[ &#9679; ]</span><span><b>Built.</b> The artifact exists and has passed the QA overclaim gate. View and edit links are live.</span></div>
-    <div class="legend-row"><span class="dot draft">[ &#9676; ]</span><span><b>Drafting.</b> Scaffolded, not yet assembled. Its intended home is shown; no live link is served until it is real.</span></div>
-    <div class="legend-row"><span class="dot draft" style="color:var(--ink-soft)">[ &rsaquo; ]</span><span><b>Reference.</b> Source material or a research layer that already exists, linked as-is.</span></div>
-  </div>
-
-  <div class="ctl aud">
-    <h2>Who reads what</h2>
-    <p><b>Investors</b> read the packaged deliverables: Vision, Pitch, Financial, Legal. This room is offered on request, never assigned as homework.</p>
-    <p><b>Collaborators</b> get the same, plus the Technical layer: the whitepaper, the research corpus, and the map. Investors are never sent into the raw corpus.</p>
-  </div>
-
-  <div class="ctl paths">
-    <h2>Reading paths</h2>
-    <ul>
-      <li><span class="plabel">5 minutes</span><span class="seq"><a href="#one-pager">One-pager</a> <span class="arrow">&rarr;</span> <a href="#exec-overview">Exec overview</a></span></li>
-      <li><span class="plabel">30 minutes</span><span class="seq">the above <span class="arrow">&rarr;</span> <a href="#founder-memo">Founder memo</a> <span class="arrow">&rarr;</span> <a href="#pitch-deck">Pitch deck</a> <span class="arrow">&rarr;</span> <a href="#financial">Financials</a></span></li>
-      <li><span class="plabel">Deep dive</span><span class="seq">the above <span class="arrow">&rarr;</span> <a href="#whitepaper">Whitepaper</a> <span class="arrow">&rarr;</span> <a href="#corpus">Research corpus</a> <span class="arrow">&rarr;</span> <a href="#legal">Legal</a></span></li>
-    </ul>
-  </div>
-</section>
-
-<div class="body wrap">
-  <nav class="spine" aria-label="Reading order">
-    <ol>
-      <li><a class="sp" href="#vision"><span class="n">01</span>Vision</a></li>
-      <li><a class="sp" href="#pitch"><span class="n">02</span>Pitch</a></li>
-      <li><a class="sp" href="#technical"><span class="n">03</span>Technical</a></li>
-      <li><a class="sp" href="#financial"><span class="n">04</span>Financial</a></li>
-      <li><a class="sp" href="#legal"><span class="n">05</span>Legal</a></li>
-      <li><a class="sp" href="#internal"><span class="n">06</span>Meeting pack</a></li>
-    </ol>
-    <div class="sub">
-      <a href="00-master/index.html">The build, in order &rarr;</a>
-      <a href="#paths-top">Reading paths</a>
-      <a href="#provenance">Provenance and tags</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AgentOS · The Reading Room</title><style>
+:root{--ink:#000;--soft:#4B5158;--dim:#A2A8AF;--accent:#FF4D2E;}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:#FFF;color:var(--ink);min-height:100vh;display:grid;place-items:center;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.fog{position:fixed;inset:-12%;pointer-events:none;filter:blur(64px);opacity:.5}
+.fog i{position:absolute;border-radius:50%}
+.fog i:nth-child(1){width:60vw;height:40vw;left:-16vw;top:-10vh;background:radial-gradient(circle,rgba(226,232,240,.7),transparent 66%)}
+.fog i:nth-child(2){width:52vw;height:38vw;right:-14vw;bottom:-12vh;background:radial-gradient(circle,rgba(236,241,247,.75),transparent 68%)}
+.fog i:nth-child(3){width:46vw;height:28vw;left:28vw;top:-10vh;background:radial-gradient(circle,rgba(241,245,249,.8),transparent 70%)}
+.veil{position:fixed;inset:0;pointer-events:none;background:radial-gradient(100% 84% at 50% 46%,transparent 40%,rgba(255,255,255,.6) 76%,rgba(255,255,255,.9) 97%)}
+.wrap{position:relative;width:min(1200px,95vw);padding:5vh 0}
+.top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink);font-weight:700}.top .conf{color:var(--accent);font-weight:600}
+h1{font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.042em;line-height:.98;margin-bottom:6px}
+h1 .thin{display:block;font-weight:300;color:var(--soft);letter-spacing:-.03em;font-size:.55em;margin-top:8px}
+.rule{height:2px;background:var(--ink);width:64px;margin:22px 0 0}
+.panel{margin-top:26px;background:rgba(255,255,255,.62);backdrop-filter:blur(26px) saturate(1.3);-webkit-backdrop-filter:blur(26px) saturate(1.3);
+ border:1px solid rgba(255,255,255,.85);outline:1px solid rgba(0,0,0,.06);border-radius:22px;overflow:hidden;
+ box-shadow:0 44px 110px -46px rgba(10,22,40,.4),0 2px 6px rgba(10,22,40,.05);
+ display:grid;grid-template-columns:1.02fr 1fr}
+.list{display:flex;flex-direction:column;justify-content:center}
+.row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:10px;padding:13px 22px;border-bottom:1px solid rgba(0,0,0,.08);text-decoration:none;color:inherit;transition:background .15s,padding .18s}
+.row:last-child{border-bottom:none}
+.row:hover{background:rgba(255,255,255,.85)}
+.row.active{background:rgba(255,255,255,.85);padding-left:30px}
+.num{font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums;transition:color .15s}
+.name{font-size:16px;font-weight:700;letter-spacing:-.02em;transition:color .15s}
+.desc{font-size:12px;color:var(--soft);margin-top:1px;font-weight:400}
+.go{font-size:15px;color:var(--dim);transition:color .15s}
+.row.active .num,.row.active .name,.row.active .go{color:var(--accent)}
+.preview{border-left:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;background:rgba(255,255,255,.4)}
+.phead{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(0,0,0,.08);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.phead b{color:var(--ink);font-weight:700;display:flex;align-items:center;gap:8px}
+.phead b::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--accent)}
+.pframe{position:relative;flex:1;min-height:460px;background:#fff;overflow:hidden}
+.pframe iframe{width:1280px;height:1500px;border:0;transform-origin:0 0;position:absolute;left:0;top:0;opacity:0;transition:opacity .22s;pointer-events:none}
+.pframe iframe.on{opacity:1}
+.foot{display:flex;justify-content:space-between;margin-top:26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+@media(max-width:920px){.panel{grid-template-columns:1fr}.preview{display:none}}
+</style></head><body>
+<div class="fog"><i></i><i></i><i></i></div><div class="veil"></div>
+<main class="wrap">
+  <div class="top"><span><b>AgentOS</b> · reading room</span><span class="conf">confidential</span></div>
+  <h1>Read it in<br>the order it happened.<span class="thin">The memo, the numbers, the architecture.</span></h1>
+  <div class="rule"></div>
+  <section class="panel">
+    <div class="list">
+      <a class="row" href="00-master/"><span class="num">01</span><span><span class="name">Master Timeline</span><br><span class="desc">The chronological spine — start here</span></span><span class="go">→</span></a>
+      <a class="row" href="09-deliverables/founder-memo/"><span class="num">02</span><span><span class="name">Founder Memo</span><br><span class="desc">Why this, why now, why us</span></span><span class="go">→</span></a>
+      <a class="row" href="09-deliverables/whitepaper/"><span class="num">03</span><span><span class="name">Whitepaper</span><br><span class="desc">The system, end to end</span></span><span class="go">→</span></a>
+      <a class="row" href="09-deliverables/one-pager/"><span class="num">04</span><span><span class="name">One-Pager</span><br><span class="desc">The whole thesis on a page</span></span><span class="go">→</span></a>
+      <a class="row" href="09-deliverables/pitch-deck/"><span class="num">05</span><span><span class="name">Pitch Deck</span><br><span class="desc">The room walkthrough</span></span><span class="go">→</span></a>
+      <a class="row" href="09-deliverables/exec-overview/"><span class="num">06</span><span><span class="name">Exec Overview</span><br><span class="desc">For the busy reader</span></span><span class="go">→</span></a>
+      <a class="row" href="09-deliverables/financials-icp/"><span class="num">07</span><span><span class="name">Financials & ICP</span><br><span class="desc">Model, margins, who buys</span></span><span class="go">→</span></a>
+      <a class="row" href="09-deliverables/legal-readiness/"><span class="num">08</span><span><span class="name">Legal Readiness</span><br><span class="desc">Mutual NDA & protections</span></span><span class="go">→</span></a>
     </div>
-  </nav>
-
-  <main class="shelves" id="paths-top">
-
-    <!-- 01 VISION -->
-    <section class="section" id="vision" aria-labelledby="vision-t">
-      <div class="sec-head">
-        <span class="sec-n">01</span>
-        <h2 class="sec-t" id="vision-t">Vision</h2>
-        <span class="sec-aud investor">investor facing</span>
+    <aside class="preview">
+      <div class="phead"><b id="plab">Master Timeline</b><span>preview</span></div>
+      <div class="pframe" id="pf">
+        <iframe data-src="00-master/" scrolling="no" title="Master Timeline"></iframe>
+        <iframe data-src="09-deliverables/founder-memo/" scrolling="no" title="Founder Memo"></iframe>
+        <iframe data-src="09-deliverables/whitepaper/" scrolling="no" title="Whitepaper"></iframe>
+        <iframe data-src="09-deliverables/one-pager/" scrolling="no" title="One-Pager"></iframe>
+        <iframe data-src="09-deliverables/pitch-deck/" scrolling="no" title="Pitch Deck"></iframe>
+        <iframe data-src="09-deliverables/exec-overview/" scrolling="no" title="Exec Overview"></iframe>
+        <iframe data-src="09-deliverables/financials-icp/" scrolling="no" title="Financials & ICP"></iframe>
+        <iframe data-src="09-deliverables/legal-readiness/" scrolling="no" title="Legal Readiness"></iframe>
       </div>
-      <p class="sec-intro">Why this exists and what it is, in the founder's voice and on one page.</p>
-
-      <article class="entry" id="founder-memo">
-        <div class="entry-top">
-          <h3 class="entry-title">Founder memo</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">Jarred's own account of why this exists: the fleet-of-one origin, the enemy of chaotic AI adoption that flattens people into sameness, and why the raise starts with investors he already knows.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="09-deliverables/founder-memo/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/founder-memo/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-          <span class="qa">QA <b>fixed</b> · 1 corrected</span>
-        </div>
-        <span class="qa-note"><b>Wave-2:</b> the personal-agent passage was quarantined (B6); the ask is verified substantively consistent, kept in the founder's own voice by design (QA ruled voice wins).</span>
-      </article>
-
-      <article class="entry" id="one-pager">
-        <div class="entry-top">
-          <h3 class="entry-title">One-pager</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">The whole thesis on a single page: what it is, why now, the ask, and the contrast between frontier-lab brute force and the trusted companion.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="09-deliverables/one-pager/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/one-pager/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-          <span class="qa">QA <b>fixed</b> · 12 corrected</span>
-        </div>
-      </article>
-
-      <article class="entry" id="exec-overview">
-        <div class="entry-top">
-          <h3 class="entry-title">Executive overview</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">A ninety-second executive read of the seven pillars, the Approve, Edit, Skip human gate, and the domino go-to-market, with every capability placed in a four-column truth table.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="09-deliverables/exec-overview/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/exec-overview/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-          <span class="qa">QA <b>fixed</b> · 4 corrected</span>
-        </div>
-        <span class="qa-note"><b>Wave-2:</b> the four-column truth table (operating internally, prototype, pilot build, horizon) was added; every capability is now classifiable by an outside reader without asking.</span>
-      </article>
-    </section>
-
-    <!-- 02 PITCH -->
-    <section class="section" id="pitch" aria-labelledby="pitch-t">
-      <div class="sec-head">
-        <span class="sec-n">02</span>
-        <h2 class="sec-t" id="pitch-t">Pitch</h2>
-        <span class="sec-aud investor">investor facing</span>
-      </div>
-      <p class="sec-intro">The materials for the room: the investor deck, and the naming and identity work the founder decides from.</p>
-
-      <article class="entry" id="pitch-deck">
-        <div class="entry-top">
-          <h3 class="entry-title">Pitch deck</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">The ten to fifteen slide investor narrative: founder track record by slide three, one real product screenshot, a cost-of-doing-nothing beat, and a single canonical-ask slide sized to what the demonstration earns.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="09-deliverables/pitch-deck/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/pitch-deck/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-        </div>
-      </article>
-
-      <article class="entry" id="brand-package">
-        <div class="entry-top">
-          <h3 class="entry-title">Brand package</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">The naming and identity working document: candidates only, never a chosen name, each carrying a same-day trademark, domain, and handle knockout screen so the founder chooses from real information.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="08-brand/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="08-brand/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-          <span class="qa">QA <b>fixed</b> · 2 corrected</span>
-        </div>
-      </article>
-    </section>
-
-    <!-- 03 TECHNICAL -->
-    <section class="section" id="technical" aria-labelledby="tech-t">
-      <div class="sec-head">
-        <span class="sec-n">03</span>
-        <h2 class="sec-t" id="tech-t">Technical</h2>
-        <span class="sec-aud">mixed · see tags</span>
-      </div>
-      <p class="sec-intro">The engine, the evidence, and the map, for the reader who wants to look under the hood. The whitepaper is investor-safe; the research corpus below it is the collaborator layer.</p>
-
-      <article class="entry" id="whitepaper">
-        <div class="entry-top">
-          <h3 class="entry-title">Whitepaper</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">The technical thesis written for an engineering leader: the graduated-autonomy law, the human-gate decision flow, and a built-versus-designed legend, opening on operational pain rather than theory. Grounded in real incidents from the reference estate, not hypotheticals.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="09-deliverables/whitepaper/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/whitepaper/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-          <span class="qa">QA <b>built</b> · engineer / collaborator layer</span>
-        </div>
-      </article>
-
-      <article class="entry is-ref" id="corpus">
-        <div class="entry-top">
-          <h3 class="entry-title">Research corpus, layers 01 to 05</h3>
-          <span class="status st-ref">[ &rsaquo; reference ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">The internal research layers the packaged deliverables are distilled from. Collaborator facing. Investors are never sent in here; the corpus is an input, never a claim of traction.</p>
-        <ul class="corpus">
-          <li><span class="c-id">01</span><span class="c-what">Product concept overview, counsel-verified.</span><a class="c-open" href="01-overview/">open</a></li>
-          <li><span class="c-id">02</span><span class="c-what">Eight dossiers from the fifty-eight-agent estate and conversation sweep.</span><a class="c-open" href="02-sweep/">open</a></li>
-          <li><span class="c-id">03</span><span class="c-what">Execution-path report plus ten research dossiers.</span><a class="c-open" href="03-execution/">open</a></li>
-          <li><span class="c-id">04</span><span class="c-what">Competitive and risk report plus thirteen dossiers.</span><a class="c-open" href="04-competitive/">open</a></li>
-          <li><span class="c-id">05</span><span class="c-what">Internal multi-model verification record (keep, revise, cut).</span><span class="c-tag">internal only</span><a class="c-open" href="05-counsel/">open</a></li>
-        </ul>
-      </article>
-
-      <article class="entry is-ref" id="roadmap">
-        <div class="entry-top">
-          <h3 class="entry-title">Roadmap</h3>
-          <span class="status st-ref">[ &rsaquo; reference ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">The execution map: ten workstreams, the dependency spine, and the path from concept to a signed design-partner pilot.</p>
-        <div class="entry-foot">
-          <a class="lnk" href="07-roadmap/ROADMAP.md"><span class="bk">[</span> OPEN <span class="bk">]</span></a>
-          <span class="path-tag">07-roadmap/ROADMAP.md</span>
-        </div>
-        <p class="note-line">A fifteen-panel full-circle analysis deck lives on the <b>roadmap-mapping</b> branch, not on main. <span class="path-tag">10-analysis/full-circle-analysis-2026-07-09.html</span> To view it: <span class="path-tag">git switch roadmap-mapping</span></p>
-      </article>
-    </section>
-
-    <!-- 04 FINANCIAL -->
-    <section class="section" id="financial" aria-labelledby="fin-t">
-      <div class="sec-head">
-        <span class="sec-n">04</span>
-        <h2 class="sec-t" id="fin-t">Financial</h2>
-        <span class="sec-aud investor">investor facing</span>
-      </div>
-      <p class="sec-intro">The unit-economics spine the other artifacts cite rather than reinventing. Now assembled: ICP as firmographics, a formula-level buyer ROI model, the pilot fee scaffold, and the forward-deployed margin shape.</p>
-
-      <article class="entry" id="financials-icp">
-        <div class="entry-top">
-          <h3 class="entry-title">Financials and ICP</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">The pilot P&amp;L, the buyer ROI model, the consulting-plus-software margin story, and the ICP defined as firmographics rather than a go-to-market motion. Tables first; every number carries its basis.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="09-deliverables/financials-icp/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/financials-icp/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-          <a class="lnk" href="07-roadmap/W8-unit-economics/"><span class="bk">[</span> SOURCE <span class="bk">]</span></a>
-          <span class="qa">QA <b>fixed</b> · gates + R-rules clean</span>
-        </div>
-        <span class="qa-note"><b>Open (founder only):</b> the pilot fee number, the retainer band, and the strategic-check size. Pilot P&amp;L only; no multi-year hockey stick, no mature-SaaS margin, no throughput multiplier.</span>
-      </article>
-    </section>
-
-    <!-- 05 LEGAL -->
-    <section class="section" id="legal" aria-labelledby="legal-t">
-      <div class="sec-head">
-        <span class="sec-n">05</span>
-        <h2 class="sec-t" id="legal-t">Legal</h2>
-        <span class="sec-aud investor">investor facing</span>
-      </div>
-      <p class="sec-intro">The drafts lane. Read the caveat first.</p>
-
-      <div class="caveat">
-        <span class="clabel">Lawyer review required</span>
-        Legal readiness is a drafts lane. <b>Nothing in it is executed or binding.</b> Every document requires review by a licensed attorney before use, and no artifact anywhere in this kit implies an agreement that is not signed. The investment paper and the pilot paper are two separate decisions with separate evidence; a yes to one is never a yes to both.
-      </div>
-
-      <article class="entry" id="legal-readiness">
-        <div class="entry-top">
-          <h3 class="entry-title">Legal readiness</h3>
-          <span class="status st-built">[ &#9679; built ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">Seven lawyer-review-required drafts: entity and IP assignment checklist, interim facts memorandum (signable by 7/11), contribution-earns-equity term sheet outline, the one-page pilot success charter, a SAFE and instrument overview, the data-security one-pager, and the competitor objection matrix. Every draft carries the lawyer-review banner, an owner, a decision deadline, and an unresolved-facts list.</p>
-        <div class="entry-foot">
-          <a class="lnk view" href="09-deliverables/legal-readiness/index.html"><span class="bk">[</span> VIEW <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/legal-readiness/source.md"><span class="bk">[</span> EDIT <span class="bk">]</span></a>
-          <a class="lnk" href="09-deliverables/legal-readiness/pilot-charter.md"><span class="bk">[</span> PILOT CHARTER <span class="bk">]</span></a>
-          <span class="path-tag">source: W2-entity-equity/ · W9-data-governance/</span>
-          <span class="qa">QA <b>fixed</b> · banner + separation gates pass</span>
-        </div>
-        <span class="qa-note"><b>Drafts only, nothing executed.</b> The pilot paper and the investment paper are two separate decisions with no cross-contingency. Contribution earns equity per originating member on documented milestones; Jarred is sole founder, not a fixed three-way split.</span>
-      </article>
-    </section>
-
-    <!-- 06 MEETING PACK / INTERNAL -->
-    <section class="section" id="internal" aria-labelledby="internal-t">
-      <div class="sec-head">
-        <span class="sec-n">06</span>
-        <h2 class="sec-t" id="internal-t">Meeting pack</h2>
-        <span class="sec-aud">internal · founder prep</span>
-      </div>
-      <p class="sec-intro">The room kit for the 7/17-18 meeting and the founder's open-decision sheet. Internal and founder-prep; investors are never sent in here. The one external-safe artifact is marked.</p>
-
-      <article class="entry is-ref" id="founder-decisions">
-        <div class="entry-top">
-          <h3 class="entry-title">Founder decision sheet</h3>
-          <span class="status st-ref">[ &rsaquo; internal ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">Every open decision only the founder can make, consolidated from the legal, financial, whitepaper, deck, and naming lanes: 26 decisions in one table, ordered by blocking date (7/11, 7/15, 7/16, 7/17, none).</p>
-        <div class="entry-foot">
-          <a class="lnk" href="09-deliverables/founder-decisions.md"><span class="bk">[</span> OPEN <span class="bk">]</span></a>
-          <span class="path-tag">09-deliverables/founder-decisions.md</span>
-        </div>
-      </article>
-
-      <article class="entry is-ref" id="meeting-pack">
-        <div class="entry-top">
-          <h3 class="entry-title">Meeting pack, the 7/17-18 room kit</h3>
-          <span class="status st-ref">[ &rsaquo; internal ]</span>
-          <span class="entry-date">2026-07-09</span>
-        </div>
-        <p class="entry-what">Six wave-2 artifacts for the meeting window. Founder-prep and internal, not sent, except the competitive one-pager, which is external-safe.</p>
-        <ul class="corpus">
-          <li><span class="c-id">01</span><span class="c-what">Run of show: the minute-by-minute room choreography.</span><a class="c-open" href="10-meeting-pack/run-of-show.md">open</a></li>
-          <li><span class="c-id">02</span><span class="c-what">Objections and Q&amp;A rehearsal: ten likely questions, spoken answers.</span><a class="c-open" href="10-meeting-pack/objections-rehearsal.md">open</a></li>
-          <li><span class="c-id">03</span><span class="c-what">Design-partner profile, scoring rubric, and second-partner scorecard.</span><a class="c-open" href="10-meeting-pack/design-partner-profile.md">open</a></li>
-          <li><span class="c-id">04</span><span class="c-what">Follow-up templates, sent within two hours of the meeting.</span><a class="c-open" href="10-meeting-pack/followup-templates.md">open</a></li>
-          <li><span class="c-id">05</span><span class="c-what">Capacity plan for the 7/9 to 7/27 collision window.</span><a class="c-open" href="10-meeting-pack/capacity-plan.md">open</a></li>
-          <li><span class="c-id">06</span><span class="c-what">Competitive positioning one-pager: why not a lab, why not the incumbents.</span><span class="c-tag" style="color:var(--accent)">external-safe</span><a class="c-open" href="10-meeting-pack/competitive-onepager.md">open</a></li>
-        </ul>
-      </article>
-    </section>
-
-  </main>
-</div>
-
-<footer class="foot" id="provenance">
-  <div class="wrap">
-    <p class="tags">
-      <span>honest math, every figure carries a tag:</span>
-      <span><b>MEASURED</b> instrumented, first-party</span>
-      <span><b>SURVEY</b> self-report or poll</span>
-      <span><b>VENDOR</b> a vendor's own claim</span>
-      <span><b>CORPUS</b> from the research corpus, internal and self-reported</span>
-      <span><b>ASSUMPTION</b> a design choice</span>
-    </p>
-    <p class="fine">Each deliverable carries its own built-versus-designed legend for product capabilities, and its own sourced tags. This room is the index, not the argument. The QA status shown here is the overclaim-gate result for each artifact, not a model-panel verdict.</p>
-    <p class="fine">Funding starts from achievement and faith, with investors the founder already knows. The near-term ask is a scoped 90-day design-partner pilot plus a smaller strategic check. The larger raise comes at roughly month 6, triggered by demonstrated achievement.</p>
-    <p class="sig">the reading room · v1 · 2026-07-09 &nbsp;·&nbsp; built <b>2026-07-09</b> &nbsp;·&nbsp; founder <b>Jarred Winn</b> &nbsp;·&nbsp; jarred@winn.solutions</p>
-  </div>
-</footer>
-
+    </aside>
+  </section>
+  <div class="foot"><span>winn.solutions</span><span>confidential · do not distribute</span></div>
+</main>
 <script>
-  /* active-section highlight in the spine. Self-contained, degrades gracefully. */
-  (function(){
-    if(!("IntersectionObserver" in window)) return;
-    var links = {};
-    document.querySelectorAll('.spine .sp').forEach(function(a){
-      links[a.getAttribute('href').slice(1)] = a;
-    });
-    var sections = document.querySelectorAll('.section');
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        var l = links[e.target.id];
-        if(!l) return;
-        if(e.isIntersecting){
-          Object.keys(links).forEach(function(k){ links[k].classList.remove('active'); });
-          l.classList.add('active');
-        }
-      });
-    }, { rootMargin:'-15% 0px -70% 0px', threshold:0 });
-    sections.forEach(function(s){ io.observe(s); });
-  })();
-
-  /* scroll-reveal for entry cards. Applied via JS so no-JS readers see everything. */
-  (function(){
-    var entries = document.querySelectorAll('.entry');
-    if(!("IntersectionObserver" in window)){ return; }
-    entries.forEach(function(el){ el.setAttribute('data-rise',''); });
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { rootMargin:'0px 0px -10% 0px', threshold:0.08 });
-    entries.forEach(function(el){ io.observe(el); });
-  })();
+const rows=[...document.querySelectorAll('.row')],ifr=[...document.querySelectorAll('.pframe iframe')],lab=document.getElementById('plab'),pf=document.getElementById('pf');
+function load(f){if(!f.src)f.src=f.dataset.src;}
+function show(i){load(ifr[i]);rows.forEach((r,j)=>r.classList.toggle('active',j===i));ifr.forEach((f,j)=>f.classList.toggle('on',j===i));lab.textContent=ifr[i].title;}
+rows.forEach((r,i)=>r.addEventListener('mouseenter',()=>show(i)));
+function scale(){const s=pf.clientWidth/1280;ifr.forEach(f=>f.style.transform=`scale(${s})`);}
+addEventListener('resize',scale);requestAnimationFrame(scale);setTimeout(scale,300);
+show(0);
 </script>
-</body>
-</html>
+</body></html>

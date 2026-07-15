@@ -14,18 +14,18 @@
      chips. Sober. No whimsy. Mono is the system's instrument voice.
      ============================================================ */
   :root{
-    --paper:     #ECEEEC;
-    --paper-2:   #E4E7E4;
-    --card:      #F6F7F6;
-    --ink:       #20262A;
-    --ink-soft:  #586067;
-    --ink-dim:   #6C727A;
-    --line:      rgba(32,38,42,0.14);
-    --line-soft: rgba(32,38,42,0.08);
-    --accent:    #1E5A4C;
-    --accent-lit:#2B7A66;
-    --wash:      rgba(30,90,76,0.08);
-    --wash-2:    rgba(30,90,76,0.045);
+    --paper:     #FFFFFF;
+    --paper-2:   #F2F3F5;
+    --card:      #FBFBFC;
+    --ink:       #0B0C0E;
+    --ink-soft:  #4B5158;
+    --ink-dim:   #9AA0A8;
+    --line:      rgba(11,12,14,0.14);
+    --line-soft: rgba(11,12,14,0.08);
+    --accent:    #FF4D2E;
+    --accent-lit:#FF6A50;
+    --wash:      rgba(255,77,46,0.08);
+    --wash-2:    rgba(255,77,46,0.045);
     --warn:      #8A5A1C;   /* muted ochre: caution marker only, sober */
     --warn-wash: rgba(138,90,28,0.10);
     --sans: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
@@ -102,7 +102,7 @@
   .chips{ display:flex; flex-wrap:wrap; gap:0.5rem; margin:0 0 1.1rem; }
   .chip{ font-family:var(--mono); font-size:0.72rem; line-height:1; border:1px solid var(--line); border-radius:3px; padding:0.4rem 0.6rem; background:var(--card); color:var(--ink); white-space:nowrap; }
   .chip .k{ color:var(--ink-dim); }
-  .chip.owner{ border-color:rgba(30,90,76,0.28); }
+  .chip.owner{ border-color:rgba(255,77,46,0.28); }
   .chip.owner .k{ color:var(--accent); }
   .chip.deadline{ border-color:var(--warn); background:var(--warn-wash); }
   .chip.deadline .k{ color:var(--warn); }

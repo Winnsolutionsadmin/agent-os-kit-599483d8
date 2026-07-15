@@ -18,18 +18,18 @@
      ============================================================ */
 
   :root{
-    --paper:      #ECEEEC;  /* cool structural paper, NOT cream */
-    --ink:        #20262A;  /* graphite near-black: the voice     */
-    --ink-soft:   #586067;  /* secondary / meta / provenance      */
-    --ink-dim:    #6C727A;  /* the unfilled NAME placeholder       */
-    --accent:     #8A3D30;  /* deep sanguine ink: the human accent */
-    --accent-lit: #A24A38;
-    --wash:       rgba(138,61,48,0.09);
-    --card:       #F6F7F6;  /* faint card lift, shared kit token   */
-    --line:       rgba(32,38,42,0.14);
-    --line-soft:  rgba(32,38,42,0.08);
+    --paper:      #FFFFFF;  /* cool structural paper, NOT cream */
+    --ink:        #0B0C0E;  /* graphite near-black: the voice     */
+    --ink-soft:   #4B5158;  /* secondary / meta / provenance      */
+    --ink-dim:    #9AA0A8;  /* the unfilled NAME placeholder       */
+    --accent:     #E8401F;  /* deep sanguine ink: the human accent */
+    --accent-lit: #FF6A50;
+    --wash:       rgba(232,64,31,0.09);
+    --card:       #FBFBFC;  /* faint card lift, shared kit token   */
+    --line:       rgba(11,12,14,0.14);
+    --line-soft:  rgba(11,12,14,0.08);
 
-    --serif: "Palatino Linotype","Book Antiqua","Palatino","Iowan Old Style","URW Palladio L",Georgia,serif;
+    --serif:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
     --mono:  ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
   }
 
@@ -235,7 +235,7 @@
   .appendix > summary .lbl{ flex:1 1 auto; }
   .appendix-body{
     padding:0 1.2rem 1.4rem;
-    border-top:1px solid var(--line-soft, rgba(32,38,42,0.08));
+    border-top:1px solid var(--line-soft, rgba(11,12,14,0.08));
   }
   .appendix-body > .intro{
     font-size:0.86rem;
@@ -268,7 +268,7 @@
   .prov-table td{
     vertical-align:top;
     padding:0.7rem 0.9rem 0.7rem 0;
-    border-bottom:1px solid var(--line-soft, rgba(32,38,42,0.08));
+    border-bottom:1px solid var(--line-soft, rgba(11,12,14,0.08));
     color:var(--ink);
   }
   .prov-table td.p-passage{ color:var(--ink-soft); }

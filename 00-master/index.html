@@ -8,22 +8,22 @@
 <meta name="robots" content="noindex, nofollow">
 <style>
   :root{
-    --paper:     #ECEEEC;
-    --desk:      #E4E7E4;
-    --card:      #F6F7F6;
-    --ink:       #20262A;
-    --ink-soft:  #586067;
-    --ink-dim:   #6C727A;
-    --line:      rgba(32,38,42,0.14);
-    --line-soft: rgba(32,38,42,0.08);
-    --accent:    #1E5A4C;
-    --accent-lit:#2B7A66;
-    --warm:      #8A3D30;
-    --warm-lit:  #A24A38;
-    --wash:      rgba(30,90,76,0.08);
-    --wash-2:    rgba(30,90,76,0.045);
-    --warmwash:  rgba(138,61,48,0.07);
-    --serif: "Iowan Old Style","Palatino Linotype","Palatino","Book Antiqua",Georgia,"Times New Roman",serif;
+    --paper:     #FFFFFF;
+    --desk:      #F2F3F5;
+    --card:      #FBFBFC;
+    --ink:       #0B0C0E;
+    --ink-soft:  #4B5158;
+    --ink-dim:   #9AA0A8;
+    --line:      rgba(11,12,14,0.14);
+    --line-soft: rgba(11,12,14,0.08);
+    --accent:    #FF4D2E;
+    --accent-lit:#FF6A50;
+    --warm:      #E8401F;
+    --warm-lit:  #FF6A50;
+    --wash:      rgba(255,77,46,0.08);
+    --wash-2:    rgba(255,77,46,0.045);
+    --warmwash:  rgba(232,64,31,0.07);
+    --serif:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
     --sans: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
     --mono: ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
     --maxw: 1080px;
@@ -66,7 +66,7 @@
   /* span bar: the 28-day compression motif */
   .spanbar{ margin:2.2rem 0 0; max-width:640px; }
   .spanbar .track{ position:relative; height:14px; border-radius:7px; background:var(--desk); border:1px solid var(--line); overflow:hidden; }
-  .spanbar .fill{ position:absolute; inset:0 auto 0 0; width:0; background:linear-gradient(90deg,rgba(30,90,76,0.18),rgba(30,90,76,0.42)); border-right:2px solid var(--accent); animation:grow 2.4s cubic-bezier(.2,.7,.2,1) 0.3s forwards; }
+  .spanbar .fill{ position:absolute; inset:0 auto 0 0; width:0; background:linear-gradient(90deg,rgba(255,77,46,0.18),rgba(255,77,46,0.42)); border-right:2px solid var(--accent); animation:grow 2.4s cubic-bezier(.2,.7,.2,1) 0.3s forwards; }
   @keyframes grow{ to{ width:100%; } }
   .spanbar .ends{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:0.72rem; color:var(--ink-dim); margin-top:0.5rem; letter-spacing:0.02em; }
   .spanbar .ends b{ color:var(--ink-soft); font-weight:600; }
@@ -111,10 +111,10 @@
   .plabel{ display:block; width:100%; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim); margin:0 0 0.15rem; }
   .chip{ font-family:var(--mono); font-size:0.75rem; letter-spacing:0.01em; padding:0.32rem 0.62rem; border:1px solid var(--line); border-radius:2px; color:var(--ink); background:var(--card); transition:background 0.15s,border-color 0.15s,color 0.15s; white-space:nowrap; }
   .chip .bk{ color:var(--accent); }
-  .chip:hover{ background:var(--wash); border-color:rgba(30,90,76,0.32); color:var(--accent); }
-  .chip.ext{ border-color:rgba(30,90,76,0.3); }
+  .chip:hover{ background:var(--wash); border-color:rgba(255,77,46,0.32); color:var(--accent); }
+  .chip.ext{ border-color:rgba(255,77,46,0.3); }
   .chip.warm .bk{ color:var(--warm); }
-  .chip.warm:hover{ background:var(--warmwash); border-color:rgba(138,61,48,0.32); color:var(--warm); }
+  .chip.warm:hover{ background:var(--warmwash); border-color:rgba(232,64,31,0.32); color:var(--warm); }
 
   /* closer CTA */
   .closer{ border-top:2px solid var(--ink); margin-top:1.6rem; padding:clamp(2.4rem,6vw,3.6rem) 0 clamp(2.6rem,6vw,3.8rem); }
@@ -123,8 +123,8 @@
   .cta-row{ display:flex; flex-wrap:wrap; gap:0.6rem 0.8rem; }
   .cta{ font-family:var(--mono); font-size:0.82rem; letter-spacing:0.02em; padding:0.55rem 1rem; border:1px solid var(--line); border-radius:2px; color:var(--ink); background:var(--card); transition:background 0.15s,border-color 0.15s,color 0.15s; }
   .cta .bk{ color:var(--accent); }
-  .cta.primary{ background:var(--wash); border-color:rgba(30,90,76,0.32); color:var(--accent); }
-  .cta:hover{ background:var(--wash); border-color:rgba(30,90,76,0.4); color:var(--accent); }
+  .cta.primary{ background:var(--wash); border-color:rgba(255,77,46,0.32); color:var(--accent); }
+  .cta:hover{ background:var(--wash); border-color:rgba(255,77,46,0.4); color:var(--accent); }
   .fine{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-dim); margin:1.8rem 0 0; line-height:1.6; max-width:72ch; }
   .fine b{ color:var(--ink-soft); }
   .sig{ font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); margin-top:1.3rem; }

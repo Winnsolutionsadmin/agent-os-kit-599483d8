@@ -7,21 +7,21 @@
 <meta name="description" content="Technical whitepaper for an unnamed agent OS for organizations: a governed control loop that observes, proposes, gates, and executes only what a human authorizes. Every capability labeled built or designed; every number tagged.">
 <style>
 :root{
-  --paper:#ECEEEC;      /* cool structural paper, not cream */
-  --desk:#E4E7E4;
-  --card:#F6F7F6;
-  --ink:#20262A;        /* graphite near-black: the voice */
-  --ink-soft:#586067;
+  --paper:#FFFFFF;      /* cool structural paper, not cream */
+  --desk:#F2F3F5;
+  --card:#FBFBFC;
+  --ink:#0B0C0E;        /* graphite near-black: the voice */
+  --ink-soft:#4B5158;
   --ink-dim:#8A9299;    /* the unfilled [NAME] placeholder */
-  --line:rgba(32,38,42,0.14);
-  --line-soft:rgba(32,38,42,0.07);
-  --accent:#1E5A4C;     /* deep pine: the kit accent */
-  --accent-lit:#2B7A66;
-  --wash:rgba(30,90,76,0.08);
-  --wash-2:rgba(30,90,76,0.045);
+  --line:rgba(11,12,14,0.14);
+  --line-soft:rgba(11,12,14,0.07);
+  --accent:#FF4D2E;     /* deep pine: the kit accent */
+  --accent-lit:#FF6A50;
+  --wash:rgba(255,77,46,0.08);
+  --wash-2:rgba(255,77,46,0.045);
   --slate:#3E5C6E;      /* prototype tone */
   --slate-wash:rgba(62,92,110,0.09);
-  --serif:"Iowan Old Style","Palatino Linotype","Palatino","Book Antiqua",Georgia,"Times New Roman",serif;
+  --serif:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono","Menlo","Consolas","Liberation Mono",monospace;
   --measure:70ch;
@@ -82,7 +82,7 @@ main strong,main b{font-weight:680;color:var(--ink);}
 
 /* ---------- chips + tags ---------- */
 .chip{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;padding:0.08em 0.5em;border-radius:2px;border:1px solid var(--line);vertical-align:middle;}
-.chip.built{color:var(--accent);border-color:rgba(30,90,76,0.4);background:var(--wash-2);}
+.chip.built{color:var(--accent);border-color:rgba(255,77,46,0.4);background:var(--wash-2);}
 .chip.proto{color:var(--slate);border-color:rgba(62,92,110,0.32);background:var(--slate-wash);}
 .chip.pilot{color:var(--ink-soft);border-color:var(--line);border-style:dashed;}
 .chip.horizon{color:var(--ink-dim);border-color:var(--line-soft);}
@@ -223,33 +223,33 @@ td.tn{font-family:var(--mono);font-size:0.82rem;color:var(--ink);white-space:now
     <figure class="fig">
       <svg viewBox="0 0 640 214" role="img" aria-labelledby="domino-t">
         <title id="domino-t">The designed go-to-market sequence: C-suite tips engineering, which tips the whole organization.</title>
-        <line x1="34" y1="150" x2="606" y2="150" stroke="rgba(32,38,42,0.14)" stroke-width="1"/>
+        <line x1="34" y1="150" x2="606" y2="150" stroke="rgba(11,12,14,0.14)" stroke-width="1"/>
         <text x="34" y="26" font-size="10" letter-spacing="1.5" fill="#8A9299">DESIGNED GO-TO-MARKET SEQUENCE  ·  NOT DEMONSTRATED ADOPTION</text>
         <!-- tile 1 : C-suite, falling -->
         <g transform="translate(112,150) rotate(-24)">
-          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="rgba(30,90,76,0.08)" stroke="#1E5A4C" stroke-width="1.5"/>
-          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#1E5A4C" stroke-width="1" opacity="0.5"/>
+          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="rgba(255,77,46,0.08)" stroke="#FF4D2E" stroke-width="1.5"/>
+          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#FF4D2E" stroke-width="1" opacity="0.5"/>
         </g>
         <!-- tile 2 : engineering, tipping -->
         <g transform="translate(316,150) rotate(-13)">
-          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="rgba(30,90,76,0.05)" stroke="#1E5A4C" stroke-width="1.5"/>
-          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#1E5A4C" stroke-width="1" opacity="0.5"/>
+          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="rgba(255,77,46,0.05)" stroke="#FF4D2E" stroke-width="1.5"/>
+          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#FF4D2E" stroke-width="1" opacity="0.5"/>
         </g>
         <!-- tile 3 : whole org, next -->
         <g transform="translate(520,150) rotate(-3)">
-          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.5"/>
-          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#586067" stroke-width="1" opacity="0.5"/>
+          <rect x="-24" y="-96" width="48" height="96" rx="3" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.5"/>
+          <line x1="-24" y1="-48" x2="24" y2="-48" stroke="#4B5158" stroke-width="1" opacity="0.5"/>
         </g>
         <!-- motion arcs -->
-        <path d="M164 78 q40 -20 96 6" fill="none" stroke="#2B7A66" stroke-width="1.2" stroke-dasharray="3 3"/>
-        <path d="M368 74 q40 -16 96 8" fill="none" stroke="#2B7A66" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <path d="M164 78 q40 -20 96 6" fill="none" stroke="#FF6A50" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <path d="M368 74 q40 -16 96 8" fill="none" stroke="#FF6A50" stroke-width="1.2" stroke-dasharray="3 3"/>
         <!-- labels -->
-        <text x="112" y="172" font-size="12" text-anchor="middle" fill="#20262A" font-weight="600">C-SUITE</text>
-        <text x="112" y="188" font-size="9.5" text-anchor="middle" fill="#586067">chief of staff, first hit</text>
-        <text x="316" y="172" font-size="12" text-anchor="middle" fill="#20262A" font-weight="600">ENGINEERING</text>
-        <text x="316" y="188" font-size="9.5" text-anchor="middle" fill="#586067">the overhaul</text>
-        <text x="520" y="172" font-size="12" text-anchor="middle" fill="#20262A" font-weight="600">WHOLE ORG</text>
-        <text x="520" y="188" font-size="9.5" text-anchor="middle" fill="#586067">pulled by demand</text>
+        <text x="112" y="172" font-size="12" text-anchor="middle" fill="#0B0C0E" font-weight="600">C-SUITE</text>
+        <text x="112" y="188" font-size="9.5" text-anchor="middle" fill="#4B5158">chief of staff, first hit</text>
+        <text x="316" y="172" font-size="12" text-anchor="middle" fill="#0B0C0E" font-weight="600">ENGINEERING</text>
+        <text x="316" y="188" font-size="9.5" text-anchor="middle" fill="#4B5158">the overhaul</text>
+        <text x="520" y="172" font-size="12" text-anchor="middle" fill="#0B0C0E" font-weight="600">WHOLE ORG</text>
+        <text x="520" y="188" font-size="9.5" text-anchor="middle" fill="#4B5158">pulled by demand</text>
       </svg>
       <figcaption><b>Figure 1.</b> The domino sequence is a designed order of adoption: land the C-suite, then engineering feels the throughput and wants it, then the rest of the organization is pulled in by demand rather than pushed by mandate. It is a plan, not a funnel we have run.</figcaption>
     </figure>
@@ -264,15 +264,15 @@ td.tn{font-family:var(--mono);font-size:0.82rem;color:var(--ink);white-space:now
         <title id="loop-t">The eight-step control loop, with the human holding the gate and revocation returning authority to the gate.</title>
         <defs>
           <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#586067"/>
+            <path d="M0,0 L10,5 L0,10 z" fill="#4B5158"/>
           </marker>
           <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#1E5A4C"/>
+            <path d="M0,0 L10,5 L0,10 z" fill="#FF4D2E"/>
           </marker>
         </defs>
         <text x="16" y="22" font-size="10" letter-spacing="1.5" fill="#8A9299">ONE LOOP, PER EVENT</text>
         <!-- connectors -->
-        <g stroke="#586067" stroke-width="1.3" marker-end="url(#ah)">
+        <g stroke="#4B5158" stroke-width="1.3" marker-end="url(#ah)">
           <line x1="112" y1="80" x2="132" y2="80"/>
           <line x1="230" y1="80" x2="250" y2="80"/>
           <line x1="348" y1="80" x2="360" y2="80"/>
@@ -282,29 +282,29 @@ td.tn{font-family:var(--mono);font-size:0.82rem;color:var(--ink);white-space:now
         </g>
         <!-- nodes -->
         <g font-size="11.5" text-anchor="middle">
-          <rect x="20" y="58" width="92" height="44" rx="3" fill="rgba(30,90,76,0.06)" stroke="#1E5A4C" stroke-width="1.3"/>
-          <text x="66" y="78" fill="#20262A">observe</text><text x="66" y="94" font-size="8.5" fill="#8A9299">1 · BUILT</text>
-          <rect x="138" y="58" width="92" height="44" rx="3" fill="rgba(30,90,76,0.06)" stroke="#1E5A4C" stroke-width="1.3"/>
-          <text x="184" y="78" fill="#20262A">contextualize</text><text x="184" y="94" font-size="8.5" fill="#8A9299">2 · BUILT</text>
-          <rect x="256" y="58" width="92" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
-          <text x="302" y="78" fill="#20262A">propose</text><text x="302" y="94" font-size="8.5" fill="#8A9299">3 · PILOT</text>
+          <rect x="20" y="58" width="92" height="44" rx="3" fill="rgba(255,77,46,0.06)" stroke="#FF4D2E" stroke-width="1.3"/>
+          <text x="66" y="78" fill="#0B0C0E">observe</text><text x="66" y="94" font-size="8.5" fill="#8A9299">1 · BUILT</text>
+          <rect x="138" y="58" width="92" height="44" rx="3" fill="rgba(255,77,46,0.06)" stroke="#FF4D2E" stroke-width="1.3"/>
+          <text x="184" y="78" fill="#0B0C0E">contextualize</text><text x="184" y="94" font-size="8.5" fill="#8A9299">2 · BUILT</text>
+          <rect x="256" y="58" width="92" height="44" rx="3" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.3"/>
+          <text x="302" y="78" fill="#0B0C0E">propose</text><text x="302" y="94" font-size="8.5" fill="#8A9299">3 · PILOT</text>
           <!-- GATE emphasized -->
-          <rect x="366" y="44" width="68" height="72" rx="3" fill="#1E5A4C" stroke="#1E5A4C" stroke-width="1.3"/>
-          <text x="400" y="78" fill="#ECEEEC" font-weight="600">GATE</text><text x="400" y="94" font-size="8.5" fill="#ECEEEC" opacity="0.85">4</text>
-          <rect x="458" y="58" width="92" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
-          <text x="504" y="78" fill="#20262A">execute</text><text x="504" y="94" font-size="8.5" fill="#8A9299">5 · PILOT</text>
-          <rect x="576" y="58" width="92" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
-          <text x="622" y="78" fill="#20262A">verify</text><text x="622" y="94" font-size="8.5" fill="#8A9299">6 · PILOT</text>
-          <rect x="694" y="58" width="76" height="44" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.3"/>
-          <text x="732" y="78" fill="#20262A">learn</text><text x="732" y="94" font-size="8.5" fill="#8A9299">7 · PILOT</text>
+          <rect x="366" y="44" width="68" height="72" rx="3" fill="#FF4D2E" stroke="#FF4D2E" stroke-width="1.3"/>
+          <text x="400" y="78" fill="#FFFFFF" font-weight="600">GATE</text><text x="400" y="94" font-size="8.5" fill="#FFFFFF" opacity="0.85">4</text>
+          <rect x="458" y="58" width="92" height="44" rx="3" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.3"/>
+          <text x="504" y="78" fill="#0B0C0E">execute</text><text x="504" y="94" font-size="8.5" fill="#8A9299">5 · PILOT</text>
+          <rect x="576" y="58" width="92" height="44" rx="3" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.3"/>
+          <text x="622" y="78" fill="#0B0C0E">verify</text><text x="622" y="94" font-size="8.5" fill="#8A9299">6 · PILOT</text>
+          <rect x="694" y="58" width="76" height="44" rx="3" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.3"/>
+          <text x="732" y="78" fill="#0B0C0E">learn</text><text x="732" y="94" font-size="8.5" fill="#8A9299">7 · PILOT</text>
         </g>
         <!-- human marker over gate -->
-        <circle cx="400" cy="30" r="5.5" fill="none" stroke="#1E5A4C" stroke-width="1.4"/>
-        <line x1="400" y1="35.5" x2="400" y2="44" stroke="#1E5A4C" stroke-width="1.4"/>
-        <text x="400" y="20" font-size="9" text-anchor="middle" fill="#1E5A4C" font-weight="600">HUMAN HOLDS THIS</text>
+        <circle cx="400" cy="30" r="5.5" fill="none" stroke="#FF4D2E" stroke-width="1.4"/>
+        <line x1="400" y1="35.5" x2="400" y2="44" stroke="#FF4D2E" stroke-width="1.4"/>
+        <text x="400" y="20" font-size="9" text-anchor="middle" fill="#FF4D2E" font-weight="600">HUMAN HOLDS THIS</text>
         <!-- revoke arc: learn -> gate -->
-        <path d="M732 102 L732 200 Q732 214 718 214 L414 214 Q400 214 400 200 L400 118" fill="none" stroke="#1E5A4C" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahg)"/>
-        <text x="566" y="230" font-size="10" text-anchor="middle" fill="#1E5A4C">8 · revoke  ·  authority is reversible, a class drops back to the gate</text>
+        <path d="M732 102 L732 200 Q732 214 718 214 L414 214 Q400 214 400 200 L400 118" fill="none" stroke="#FF4D2E" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahg)"/>
+        <text x="566" y="230" font-size="10" text-anchor="middle" fill="#FF4D2E">8 · revoke  ·  authority is reversible, a class drops back to the gate</text>
       </svg>
       <figcaption><b>Figure 2.</b> The loop. Observe and contextualize run in the reference implementation today <span class="chip built">Built</span>. Propose, gate, execute, verify, and learn are the first-partner build <span class="chip pilot">Pilot-scope</span>. Revocation returns any earned autonomy to the human gate.</figcaption>
     </figure>
@@ -325,52 +325,52 @@ td.tn{font-family:var(--mono);font-size:0.82rem;color:var(--ink);white-space:now
       <svg viewBox="0 0 700 210" role="img" aria-labelledby="trace-t">
         <title id="trace-t">One event traced from a captured meeting through the human gate to an append-only receipt.</title>
         <text x="16" y="20" font-size="10" letter-spacing="1.5" fill="#8A9299">ONE EVENT, END TO END  ·  A VENDOR RENEWAL</text>
-        <line x1="60" y1="86" x2="650" y2="86" stroke="rgba(32,38,42,0.14)" stroke-width="1.3"/>
+        <line x1="60" y1="86" x2="650" y2="86" stroke="rgba(11,12,14,0.14)" stroke-width="1.3"/>
         <!-- stop 1 built -->
-        <circle cx="60" cy="86" r="8" fill="rgba(30,90,76,0.1)" stroke="#1E5A4C" stroke-width="1.6"/>
-        <text x="60" y="90" font-size="9" text-anchor="middle" fill="#1E5A4C">1</text>
-        <text x="60" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">observe</text>
-        <text x="60" y="106" font-size="8.5" text-anchor="middle" fill="#586067">meeting</text>
-        <text x="60" y="117" font-size="8.5" text-anchor="middle" fill="#586067">captured</text>
-        <text x="60" y="131" font-size="7.5" text-anchor="middle" fill="#1E5A4C">BUILT</text>
+        <circle cx="60" cy="86" r="8" fill="rgba(255,77,46,0.1)" stroke="#FF4D2E" stroke-width="1.6"/>
+        <text x="60" y="90" font-size="9" text-anchor="middle" fill="#FF4D2E">1</text>
+        <text x="60" y="64" font-size="10.5" text-anchor="middle" fill="#0B0C0E" font-weight="600">observe</text>
+        <text x="60" y="106" font-size="8.5" text-anchor="middle" fill="#4B5158">meeting</text>
+        <text x="60" y="117" font-size="8.5" text-anchor="middle" fill="#4B5158">captured</text>
+        <text x="60" y="131" font-size="7.5" text-anchor="middle" fill="#FF4D2E">BUILT</text>
         <!-- stop 2 -->
-        <circle cx="178" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
-        <text x="178" y="90" font-size="9" text-anchor="middle" fill="#586067">2</text>
-        <text x="178" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">context</text>
-        <text x="178" y="106" font-size="8.5" text-anchor="middle" fill="#586067">terms, last 3</text>
-        <text x="178" y="117" font-size="8.5" text-anchor="middle" fill="#586067">decisions, objective</text>
-        <text x="178" y="128" font-size="8.5" text-anchor="middle" fill="#586067">stamped source + age</text>
+        <circle cx="178" cy="86" r="8" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.6"/>
+        <text x="178" y="90" font-size="9" text-anchor="middle" fill="#4B5158">2</text>
+        <text x="178" y="64" font-size="10.5" text-anchor="middle" fill="#0B0C0E" font-weight="600">context</text>
+        <text x="178" y="106" font-size="8.5" text-anchor="middle" fill="#4B5158">terms, last 3</text>
+        <text x="178" y="117" font-size="8.5" text-anchor="middle" fill="#4B5158">decisions, objective</text>
+        <text x="178" y="128" font-size="8.5" text-anchor="middle" fill="#4B5158">stamped source + age</text>
         <!-- stop 3 -->
-        <circle cx="296" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
-        <text x="296" y="90" font-size="9" text-anchor="middle" fill="#586067">3</text>
-        <text x="296" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">propose</text>
-        <text x="296" y="106" font-size="8.5" text-anchor="middle" fill="#586067">draft decline</text>
-        <text x="296" y="117" font-size="8.5" text-anchor="middle" fill="#586067">class</text>
-        <text x="296" y="128" font-size="8.5" text-anchor="middle" fill="#1E5A4C">external.send</text>
+        <circle cx="296" cy="86" r="8" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.6"/>
+        <text x="296" y="90" font-size="9" text-anchor="middle" fill="#4B5158">3</text>
+        <text x="296" y="64" font-size="10.5" text-anchor="middle" fill="#0B0C0E" font-weight="600">propose</text>
+        <text x="296" y="106" font-size="8.5" text-anchor="middle" fill="#4B5158">draft decline</text>
+        <text x="296" y="117" font-size="8.5" text-anchor="middle" fill="#4B5158">class</text>
+        <text x="296" y="128" font-size="8.5" text-anchor="middle" fill="#FF4D2E">external.send</text>
         <!-- stop 4 GATE diamond -->
-        <rect x="404" y="76" width="20" height="20" transform="rotate(45 414 86)" fill="#1E5A4C" stroke="#1E5A4C"/>
-        <text x="414" y="64" font-size="10.5" text-anchor="middle" fill="#1E5A4C" font-weight="600">GATE</text>
-        <text x="414" y="112" font-size="8.5" text-anchor="middle" fill="#586067">read, edit one</text>
-        <text x="414" y="123" font-size="8.5" text-anchor="middle" fill="#586067">line, approve</text>
-        <text x="414" y="137" font-size="7.5" text-anchor="middle" fill="#1E5A4C">HUMAN</text>
+        <rect x="404" y="76" width="20" height="20" transform="rotate(45 414 86)" fill="#FF4D2E" stroke="#FF4D2E"/>
+        <text x="414" y="64" font-size="10.5" text-anchor="middle" fill="#FF4D2E" font-weight="600">GATE</text>
+        <text x="414" y="112" font-size="8.5" text-anchor="middle" fill="#4B5158">read, edit one</text>
+        <text x="414" y="123" font-size="8.5" text-anchor="middle" fill="#4B5158">line, approve</text>
+        <text x="414" y="137" font-size="7.5" text-anchor="middle" fill="#FF4D2E">HUMAN</text>
         <!-- stop 5 -->
-        <circle cx="532" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
-        <text x="532" y="90" font-size="9" text-anchor="middle" fill="#586067">5</text>
-        <text x="532" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">execute</text>
-        <text x="532" y="106" font-size="8.5" text-anchor="middle" fill="#586067">executor sends,</text>
-        <text x="532" y="117" font-size="8.5" text-anchor="middle" fill="#586067">one-time token,</text>
-        <text x="532" y="128" font-size="8.5" text-anchor="middle" fill="#586067">exact bytes</text>
+        <circle cx="532" cy="86" r="8" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.6"/>
+        <text x="532" y="90" font-size="9" text-anchor="middle" fill="#4B5158">5</text>
+        <text x="532" y="64" font-size="10.5" text-anchor="middle" fill="#0B0C0E" font-weight="600">execute</text>
+        <text x="532" y="106" font-size="8.5" text-anchor="middle" fill="#4B5158">executor sends,</text>
+        <text x="532" y="117" font-size="8.5" text-anchor="middle" fill="#4B5158">one-time token,</text>
+        <text x="532" y="128" font-size="8.5" text-anchor="middle" fill="#4B5158">exact bytes</text>
         <!-- stop 6 -->
-        <circle cx="650" cy="86" r="8" fill="#F6F7F6" stroke="#586067" stroke-width="1.6"/>
-        <text x="650" y="90" font-size="9" text-anchor="middle" fill="#586067">6</text>
-        <text x="650" y="64" font-size="10.5" text-anchor="middle" fill="#20262A" font-weight="600">receipt</text>
-        <text x="650" y="106" font-size="8.5" text-anchor="middle" fill="#586067">append-only:</text>
-        <text x="650" y="117" font-size="8.5" text-anchor="middle" fill="#586067">what, who, edit,</text>
-        <text x="650" y="128" font-size="8.5" text-anchor="middle" fill="#586067">elapsed</text>
+        <circle cx="650" cy="86" r="8" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.6"/>
+        <text x="650" y="90" font-size="9" text-anchor="middle" fill="#4B5158">6</text>
+        <text x="650" y="64" font-size="10.5" text-anchor="middle" fill="#0B0C0E" font-weight="600">receipt</text>
+        <text x="650" y="106" font-size="8.5" text-anchor="middle" fill="#4B5158">append-only:</text>
+        <text x="650" y="117" font-size="8.5" text-anchor="middle" fill="#4B5158">what, who, edit,</text>
+        <text x="650" y="128" font-size="8.5" text-anchor="middle" fill="#4B5158">elapsed</text>
         <!-- footer -->
-        <line x1="60" y1="164" x2="650" y2="164" stroke="rgba(32,38,42,0.07)" stroke-width="1"/>
-        <text x="60" y="182" font-size="9.5" fill="#20262A">Human attention: read one card, change one sentence.</text>
-        <text x="60" y="197" font-size="9.5" fill="#586067">Nothing left the company without a named person approving the exact bytes.</text>
+        <line x1="60" y1="164" x2="650" y2="164" stroke="rgba(11,12,14,0.07)" stroke-width="1"/>
+        <text x="60" y="182" font-size="9.5" fill="#0B0C0E">Human attention: read one card, change one sentence.</text>
+        <text x="60" y="197" font-size="9.5" fill="#4B5158">Nothing left the company without a named person approving the exact bytes.</text>
       </svg>
       <figcaption><b>Figure 3.</b> The front-door trace. Because <code>external.send</code> is a never-graduate class, the draft always arrives as a decision card. The edit at the gate counts as a disagreement, so the class moves no closer to autonomy, and it could never graduate anyway.</figcaption>
     </figure>
@@ -450,33 +450,33 @@ td.tn{font-family:var(--mono);font-size:0.82rem;color:var(--ink);white-space:now
       <svg viewBox="0 0 600 300" role="img" aria-labelledby="ladder-t">
         <title id="ladder-t">The graduation ladder: classes start gated, may earn graduated status, and can be demoted; three classes are locked and never graduate.</title>
         <!-- locked tier -->
-        <rect x="40" y="30" width="520" height="54" rx="3" fill="#20262A" stroke="#20262A"/>
-        <text x="60" y="54" font-size="12" fill="#ECEEEC" font-weight="600">MONEY  ·  IRREVERSIBLE  ·  EXTERNAL</text>
-        <text x="60" y="72" font-size="10" fill="#ECEEEC" opacity="0.75">locked at the schema level, never graduates at any rep count</text>
+        <rect x="40" y="30" width="520" height="54" rx="3" fill="#0B0C0E" stroke="#0B0C0E"/>
+        <text x="60" y="54" font-size="12" fill="#FFFFFF" font-weight="600">MONEY  ·  IRREVERSIBLE  ·  EXTERNAL</text>
+        <text x="60" y="72" font-size="10" fill="#FFFFFF" opacity="0.75">locked at the schema level, never graduates at any rep count</text>
         <!-- lock glyph -->
         <g transform="translate(524,44)">
-          <rect x="0" y="6" width="16" height="12" rx="1.5" fill="none" stroke="#ECEEEC" stroke-width="1.4"/>
-          <path d="M3 6 V3.5 A5 5 0 0 1 13 3.5 V6" fill="none" stroke="#ECEEEC" stroke-width="1.4"/>
+          <rect x="0" y="6" width="16" height="12" rx="1.5" fill="none" stroke="#FFFFFF" stroke-width="1.4"/>
+          <path d="M3 6 V3.5 A5 5 0 0 1 13 3.5 V6" fill="none" stroke="#FFFFFF" stroke-width="1.4"/>
         </g>
         <!-- ceiling barrier -->
-        <line x1="40" y1="102" x2="560" y2="102" stroke="#20262A" stroke-width="1.2" stroke-dasharray="5 4"/>
-        <text x="300" y="118" font-size="9.5" text-anchor="middle" fill="#586067">ceiling: these classes cannot rise, whatever the record</text>
+        <line x1="40" y1="102" x2="560" y2="102" stroke="#0B0C0E" stroke-width="1.2" stroke-dasharray="5 4"/>
+        <text x="300" y="118" font-size="9.5" text-anchor="middle" fill="#4B5158">ceiling: these classes cannot rise, whatever the record</text>
         <!-- graduated tier -->
-        <rect x="40" y="132" width="520" height="54" rx="3" fill="rgba(30,90,76,0.1)" stroke="#1E5A4C" stroke-width="1.4"/>
-        <text x="60" y="156" font-size="12" fill="#1E5A4C" font-weight="600">GRADUATED</text>
-        <text x="60" y="174" font-size="10" fill="#586067">may auto-act, and every act is still logged with an auto flag</text>
+        <rect x="40" y="132" width="520" height="54" rx="3" fill="rgba(255,77,46,0.1)" stroke="#FF4D2E" stroke-width="1.4"/>
+        <text x="60" y="156" font-size="12" fill="#FF4D2E" font-weight="600">GRADUATED</text>
+        <text x="60" y="174" font-size="10" fill="#4B5158">may auto-act, and every act is still logged with an auto flag</text>
         <!-- gated tier -->
-        <rect x="40" y="230" width="520" height="54" rx="3" fill="#F6F7F6" stroke="#586067" stroke-width="1.4"/>
-        <text x="60" y="254" font-size="12" fill="#20262A" font-weight="600">GATED</text>
-        <text x="60" y="272" font-size="10" fill="#586067">every action to a human; all classes start here</text>
+        <rect x="40" y="230" width="520" height="54" rx="3" fill="#FBFBFC" stroke="#4B5158" stroke-width="1.4"/>
+        <text x="60" y="254" font-size="12" fill="#0B0C0E" font-weight="600">GATED</text>
+        <text x="60" y="272" font-size="10" fill="#4B5158">every action to a human; all classes start here</text>
         <!-- earn arrow up (right) -->
-        <line x1="470" y1="230" x2="470" y2="188" stroke="#1E5A4C" stroke-width="1.5" marker-end="url(#ahg)"/>
-        <text x="484" y="205" font-size="9" fill="#1E5A4C">earn</text>
+        <line x1="470" y1="230" x2="470" y2="188" stroke="#FF4D2E" stroke-width="1.5" marker-end="url(#ahg)"/>
+        <text x="484" y="205" font-size="9" fill="#FF4D2E">earn</text>
         <!-- demote arrow down (left) -->
-        <line x1="130" y1="188" x2="130" y2="230" stroke="#586067" stroke-width="1.5" marker-end="url(#ah)"/>
-        <text x="116" y="205" font-size="9" text-anchor="end" fill="#586067">demote</text>
+        <line x1="130" y1="188" x2="130" y2="230" stroke="#4B5158" stroke-width="1.5" marker-end="url(#ah)"/>
+        <text x="116" y="205" font-size="9" text-anchor="end" fill="#4B5158">demote</text>
         <!-- condition -->
-        <text x="300" y="221" font-size="9.5" text-anchor="middle" fill="#20262A">&#8805; 90% agreement over &#8805; 20 trailing reps</text>
+        <text x="300" y="221" font-size="9.5" text-anchor="middle" fill="#0B0C0E">&#8805; 90% agreement over &#8805; 20 trailing reps</text>
       </svg>
       <figcaption><b>Figure 4.</b> The ladder is the product's spine. A class starts gated, earns its way up on a boring, computed record, may be demoted in an instant, and, for the three classes that matter most, can never leave the ground floor.</figcaption>
     </figure>
