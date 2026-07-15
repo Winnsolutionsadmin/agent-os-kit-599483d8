@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>The 16x case, shown · Proj-X</title><style>
+:root{--ink:#000;--soft:#4B5158;--dim:#A2A8AF;--accent:#FF4D2E;}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:#FFF;color:var(--ink);-webkit-font-smoothing:antialiased}
+.doc{max-width:760px;margin:0 auto;padding:90px 24px 80px;line-height:1.65;font-size:16px}
+.kick{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:10px} .kick b{color:var(--accent);font-weight:600}
+h1{font-size:clamp(28px,4.6vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.04;margin:0 0 26px}
+h2{font-size:22px;font-weight:750;letter-spacing:-.02em;margin:34px 0 10px}
+h3{font-size:17px;font-weight:700;margin:26px 0 8px}
+h4{font-size:15px;font-weight:700;margin:20px 0 6px;color:var(--soft)}
+p{margin:0 0 14px;color:#1a1d21} ul,ol{margin:0 0 16px 22px} li{margin:0 0 6px}
+b{font-weight:700} code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.88em;background:rgba(11,12,14,.05);border-radius:5px;padding:1px 5px}
+pre{background:rgba(11,12,14,.045);border-radius:12px;padding:14px 16px;overflow-x:auto;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.5;margin:0 0 16px}
+blockquote{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--soft);margin:0 0 14px}
+hr{border:0;border-top:1px solid rgba(11,12,14,.1);margin:26px 0}
+table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14px}
+th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:8px 10px;border-bottom:2px solid #000}
+td{padding:8px 10px;border-bottom:1px solid rgba(11,12,14,.08);vertical-align:top}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.backbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:10px;padding:11px 20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(11,12,14,.07);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.backbar a{color:var(--ink);font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px} .backbar a:hover{color:var(--accent)}
+.backbar .sep{color:var(--dim)} .backbar .here{color:var(--dim);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xx{color:#FF4D2E;transition:color .18s}
+a:hover .xx,.wordmark:hover .xx,.top:hover .xx,.kick:hover .xx,.backbar a:hover .xx,h1:hover .xx,.name-token:hover .xx,.mark:hover .xx{color:inherit}
+.sk{margin:26px 0;padding:20px;background:#FCFCFC;border:1px solid rgba(11,12,14,.07);border-radius:14px}.sk figcaption{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A2A8AF;margin-top:12px;text-align:center}.sk svg{display:block;margin:0 auto;max-width:100%}
+</style></head><body>
+<nav class="backbar"><a href="../">&larr; Proj-<span class="xx">X</span> &middot; reading room</a><span class="sep">/</span><span class="here">The 16x case, shown</span></nav>
+<main class="doc"><p class="kick">proj-<span class="xx">x</span> <b>&middot; evidence</b></p><h1>The 16&times; case, shown.</h1>
+
+<p>The throughput claim gets repeated across this room, so this page holds it to diligence standards: the definition, the math, the controls, the caveats, and what remains available under NDA. Client and team identities stay withheld; the evidence does not.</p>
+
+<h2>The claim, precisely</h2>
+<ul>
+<li>One adopting team (4 engineers) reached approximately <b>16&times; its own pre-adoption throughput baseline</b> at peak (June, actual measurement, not a projection).</li>
+<li>Cycle time fell from roughly <b>35 days to a ~5-day median</b> (~7&times; faster).</li>
+<li>A same-company, same-period <b>control team (18 engineers)</b> on the same market and tools moved between <b>1&ndash;4&times;</b> over the same window.</li>
+</ul>
+
+<h2>Trajectory, as measured</h2>
+<figure class="sk"><svg viewBox="0 0 560 270" role="img" aria-label="Adopting team vs control, monthly multiples">
+<line x1="50" y1="230" x2="530" y2="230" stroke="rgba(11,12,14,.3)"/>
+<line x1="50" y1="230" x2="50" y2="20" stroke="rgba(11,12,14,.3)"/>
+<text x="42" y="234" font-size="10" fill="#A2A8AF" text-anchor="end">0&times;</text>
+<text x="42" y="132" font-size="10" fill="#A2A8AF" text-anchor="end">8&times;</text>
+<text x="42" y="30" font-size="10" fill="#A2A8AF" text-anchor="end">16&times;</text>
+<polyline points="50,224 118,218 186,204 254,188 322,158 390,124 458,102 530,26" fill="none" stroke="#FF4D2E" stroke-width="2.6"/>
+<circle cx="458" cy="102" r="3.5" fill="#FF4D2E"/><text x="458" y="92" font-size="10" fill="#FF4D2E" text-anchor="middle">10.1&times; Apr</text>
+<circle cx="530" cy="26" r="4" fill="#FF4D2E"/><text x="524" y="18" font-size="10" fill="#FF4D2E" text-anchor="end">16.3&times; Jun, actual</text>
+<polyline points="50,224 118,220 186,214 254,218 322,210 390,214 458,206 530,202" fill="none" stroke="#A2A8AF" stroke-width="2"/>
+<text x="524" y="192" font-size="10" fill="#7A828B" text-anchor="end">control, 1&ndash;4&times;</text>
+<text x="50" y="252" font-size="10" fill="#A2A8AF">Aug (baseline)</text><text x="530" y="252" font-size="10" fill="#A2A8AF" text-anchor="end">Jun</text>
+</svg><figcaption>adopting team vs. same-company control &middot; multiples of each team&rsquo;s own pre-adoption baseline</figcaption></figure>
+
+<h2>Methodology, all of it</h2>
+<ul>
+<li><b>Throughput definition:</b> issues closed + pull requests + commits, measured against <b>each team&rsquo;s own pre-adoption baseline</b> over the same repositories. No industry strawman, no cross-team comparison of absolutes.</li>
+<li><b>The honest normalization:</b> the adopting team is small (4 engineers), so its baseline is small. Normalized per engineer against the 18-engineer control, the gain is approximately <b>2&times; per engineer</b>. Both numbers are shown everywhere the claim is made; the 16&times; is a team-vs-its-own-baseline multiple, not a per-person miracle.</li>
+<li><b>The control:</b> same company, same period, same market pressure, same underlying tools. The variable was the operating layer, not the toolchain.</li>
+<li><b>Quality guard:</b> output counted only when merged and released through the same review gates that existed pre-adoption; the review gate was not loosened during the window.</li>
+<li><b>Reproduction:</b> the control team subsequently adopted the same playbook and is climbing a comparable ramp. The pattern has now run twice, across two organizations and two toolchains.</li>
+</ul>
+
+<h2>What this does not claim</h2>
+<ul>
+<li>It does not claim 16&times; for every team, or for large teams: small baselines amplify multiples, which is exactly why the per-engineer figure travels with it.</li>
+<li>It does not claim the result is fully attributable to software alone; the operating layer arrived with process change, and the two are sold together on purpose.</li>
+<li>It does not name the organizations or their commercial terms.</li>
+</ul>
+
+<h2>Available in diligence, under NDA</h2>
+<ul>
+<li>The month-by-month time series for both teams, with the repo-level event counts behind each point.</li>
+<li>The definition scripts used to compute baseline and multiples.</li>
+<li>A walkthrough of the reference implementation running live.</li>
+</ul>
+</main></body></html>
