@@ -28,18 +28,18 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <p>(<code>threads/2026-07-08-agent-os-product-concept-consolidation.md</code>, <code>executive-agent-gui/research/vision-brief.md</code>,</p>
 <p><code>miscellaneous/threads/2026-07-06-recall-notetaker-not-working.md</code>). Compiled 2026-07-08.</p>
 <h2>Headline</h2>
-<p>&quot;Fieldy and Recall&quot; are not a company the game designer and the engineer work for. They are the builder&#x27;s own meeting-capture</p>
+<p>&quot;Fieldy and Recall&quot; are not a company the game designer and the engineer work for. They are the operator&#x27;s own meeting-capture</p>
 <p>infrastructure: Fieldy is his ambient wearable-capture pipeline, and Recall is Recall.ai, a third-party</p>
 <p>meeting-bot SDK he integrated into his own &quot;recall-notetaker&quot; app. Fieldy and Recall are the tools that</p>
 <p>recorded today&#x27;s (2026-07-08) call, not the affiliation of the people on it. The primary source for</p>
 <p>today&#x27;s call states this directly: &quot;pull today&#x27;s the game designer/the engineer call from Fieldy + Recall&quot; (i.e., pull it</p>
 <p>using those two capture tools). the game-design collaborator and the engineering collaborator are independent collaborators on a</p>
-<p>separate, currently-unnamed gamified &quot;Agent OS&quot; concept, introduced to the builder as a 3-way group for the</p>
+<p>separate, currently-unnamed gamified &quot;Agent OS&quot; concept, introduced to the operator as a 3-way group for the</p>
 <p>first time on 2026-07-08. No document in any of the 6 corpora searched, across roughly a dozen repos and</p>
 <p>threads, shows a company called &quot;Fieldy&quot; or &quot;Recall&quot; that the game designer or the engineer represent. This should be</p>
-<p>treated as resolved pending the builder&#x27;s explicit confirmation, per this task&#x27;s own instruction to verify</p>
+<p>treated as resolved pending the operator&#x27;s explicit confirmation, per this task&#x27;s own instruction to verify</p>
 <p>naming rather than assume it.</p>
-<p>A second, equally load-bearing correction, made by the builder himself in the same primary thread and marked</p>
+<p>A second, equally load-bearing correction, made by the operator himself in the same primary thread and marked</p>
 <p>authoritative: the working name &quot;the prior engineering framework&quot; is the engineer&#x27;s own separate framework (his term for recursive</p>
 <p>self-improvement applied to engineering orgs), not the joint product&#x27;s name. The joint Agent OS / RSI-for-orgs</p>
 <p>product is currently unnamed. Earlier framing (including this task&#x27;s own goal context) calling the prior engineering framework a</p>
@@ -115,7 +115,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <p>  calendar-gate and upload-token mint, <code>/land</code> deterministic landing, <code>/complete</code> polls Recall until</p>
 <p>  transcript ready then lands), deliberately isolated from the core gateway config so it is removable.</p>
 <ul>
-<li>Record-on-detection is a deliberate design decision by the builder (2026-06-25, reaffirmed 2026-07-01):</li>
+<li>Record-on-detection is a deliberate design decision by the operator (2026-06-25, reaffirmed 2026-07-01):</li>
 </ul>
 <p>  every SDK-detected meeting is recorded regardless of calendar invite. The resulting client-visible</p>
 <p>  &quot;notetaker joined&quot; announcement is an accepted cost, explicitly not to be re-litigated.</p>
@@ -200,7 +200,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <ul>
 <li>Capture every real business meeting; never silently drop one; filter out non-business chatter; classify</li>
 </ul>
-<p>  correctly. This became an explicit directive from the builder after a 2026-05-22 incident where business</p>
+<p>  correctly. This became an explicit directive from the operator after a 2026-05-22 incident where business</p>
 <p>  meetings were silently dropped while family chatter was captured and stored as &quot;meetings.&quot;</p>
 <ul>
 <li>A concrete latency bar: within a minute of a conversation ending, the data should be ingested, in</li>
@@ -212,7 +212,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <li>Speaker attribution must flag ambiguity rather than guess or fabricate an identity. This is stated as</li>
 </ul>
 <p>  an explicit design principle (decision 0012), reacting against a rejected v1 that repeatedly asked</p>
-<p>  Slack &quot;is this the builder? (40%)&quot;.</p>
+<p>  Slack &quot;is this the operator? (40%)&quot;.</p>
 <ul>
 <li>Every capture path needs active failure monitoring; silent failure is the recurring root cause of data</li>
 </ul>
@@ -251,8 +251,8 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <li><b>The presence model and turn-attribution work are validated but not deployed.</b> Both decision 0012</li>
 </ul>
 <p>  (meeting-level presence model, 2026-06-16) and decision 0013 (per-utterance turn attribution,</p>
-<p>  2026-06-17) show real validation results (for example, one call went from &quot;the builder ~0.40 unknown&quot; to</p>
-<p>  &quot;Sinan@0.95, the builder@0.90&quot; under the new model) but explicitly say &quot;NOT deployed. Worktree branch only,&quot;</p>
+<p>  2026-06-17) show real validation results (for example, one call went from &quot;the operator ~0.40 unknown&quot; to</p>
+<p>  &quot;Sinan@0.95, the operator@0.90&quot; under the new model) but explicitly say &quot;NOT deployed. Worktree branch only,&quot;</p>
 <p>  with no launchd job. Whether this has since shipped is unknown from this pass.</p>
 <ul>
 <li><b>The speaker-attribution funnel is half-built.</b> Per <code>brain/docs/architecture.md</code> (2026-06-16), the</li>
@@ -272,7 +272,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <p>  with 2026-07-08 entries about the game-design collaborator (game designer, <code>nick@winwin.game</code>). The reader&#x27;s read is</p>
 <p>  that these are two different people conflated by first-name-only contact matching, since no other</p>
 <p>  evidence anywhere ties the game-design collaborator to Recall.ai. This was not independently re-verified in this pass</p>
-<p>  (no mini access was exercised for this specific file) and should be confirmed directly with the builder</p>
+<p>  (no mini access was exercised for this specific file) and should be confirmed directly with the operator</p>
 <p>  before being stated as fact either way.</p>
 <ul>
 <li>**Identity: is the unconfirmed &quot;the engineer&quot; in executive-agent-gui&#x27;s vision brief the same as the engineer</li>
@@ -290,7 +290,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <li><b>A different &quot;the engineer&quot; did not appear on an earlier tape.</b> On the 2026-06-19 Fieldy-recorded call that</li>
 </ul>
 <p>  seeded the original &quot;life-OS&quot; product vision, a named attendee &quot;the engineer&quot; was expected but does not</p>
-<p>  appear on tape (attendees resolved as the builder plus &quot;unknown-1&quot;). This was flagged to the builder and, per</p>
+<p>  appear on tape (attendees resolved as the operator plus &quot;unknown-1&quot;). This was flagged to the operator and, per</p>
 <p>  <code>activeContext.md</code>, was still an open loop as of the last write found. Whether this expected-but-absent</p>
 <p>  the engineer is the engineering collaborator is unknown.</p>
 <ul>
@@ -313,11 +313,11 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <li><b>Whether the game designer and the engineer have any connection to a company literally named Fieldy or Recall</b> was</li>
 </ul>
 <p>  searched for across all 6 reader passes (roughly a dozen repos and the full miscellaneous threads</p>
-<p>  directory) and found nowhere. This should be treated as effectively answered (no), pending the builder&#x27;s own</p>
+<p>  directory) and found nowhere. This should be treated as effectively answered (no), pending the operator&#x27;s own</p>
 <p>  confirmation, rather than left open indefinitely, since the goal context&#x27;s framing asked specifically</p>
 <p>  for this to be verified rather than assumed.</p>
 <ul>
-<li><b>Whether the prior engineering framework survives in any form for the joint product</b> is closed by the builder&#x27;s own correction</li>
+<li><b>Whether the prior engineering framework survives in any form for the joint product</b> is closed by the operator&#x27;s own correction</li>
 </ul>
 <p>  (see Headline): the prior engineering framework is the engineer&#x27;s separate framework name, and the joint product is unnamed. Flagging</p>
 <p>  here only because multiple upstream materials, including this task&#x27;s own goal context, still describe</p>
@@ -344,7 +344,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <li><b>Internal/operational</b>: near-zero-effort meeting-to-system-of-record pipeline. Per</li>
 </ul>
 <p>  <code>clawdia-atlas/docs/03-meeting-ingest-pipeline.md</code>, &quot;a meeting gets recorded somewhere, and without</p>
-<p>  the builder lifting a finger it becomes a CRM update, a Notion task list, an Obsidian note, a memory entry,</p>
+<p>  the operator lifting a finger it becomes a CRM update, a Notion task list, an Obsidian note, a memory entry,</p>
 <p>  a Signal digest.&quot;</p>
 <ul>
 <li><b>Client-facing (clearest external articulation found, from the Allan Marshall deck)</b>: &quot;Meetings</li>
@@ -430,7 +430,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <p>  documented picture rather than two.</p>
 <h2>People and relationships</h2>
 <ul>
-<li><b>the builder</b>: builds and owns the entire capture stack personally (both tracks), and is the sole</li>
+<li><b>the operator</b>: builds and owns the entire capture stack personally (both tracks), and is the sole</li>
 </ul>
 <p>  decision-maker on fixes, vendor choices, and deploy decisions referenced throughout.</p>
 <ul>
@@ -444,9 +444,9 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <p>  the engineer happened 2026-07-08. Not confirmed to be affiliated with Recall.ai the company; see the grey</p>
 <p>  area above on a possibly-conflated &quot;the game designer from Recall.ai&quot; reference dated 2026-06-25.</p>
 <ul>
-<li><b>the engineering collaborator</b>: physics and math background, serial builder, ex-CTO of a stablecoin-rewards company,</li>
+<li><b>the engineering collaborator</b>: physics and math background, serial operator, ex-CTO of a stablecoin-rewards company,</li>
 </ul>
-<p>  <code>carter@raz.ink</code>. First confirmed 3-way call with the builder and the game designer was 2026-07-08 (68 minutes, roughly</p>
+<p>  <code>carter@raz.ink</code>. First confirmed 3-way call with the operator and the game designer was 2026-07-08 (68 minutes, roughly</p>
 <p>  11:05 to 12:15 PDT). Contributed a cited case study (a 4-person team at 16x baseline output versus an</p>
 <p>  18-person control team at 2.5x) and owns the term &quot;the prior engineering framework&quot; as his own separate recursive-self-improvement</p>
 <p>  framework for engineering orgs, not the joint product&#x27;s name. Possibly, but not confirmed, the same</p>
@@ -463,9 +463,9 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <p>  around 2026-07-17/18. These are the same person but two different, deliberately separated</p>
 <p>  conversations; do not merge the deck content with the investor pitch.</p>
 <ul>
-<li><b>Fieldy and Recall.ai are not people.</b> Fieldy is the builder&#x27;s wearable ambient-capture device and its</li>
+<li><b>Fieldy and Recall.ai are not people.</b> Fieldy is the operator&#x27;s wearable ambient-capture device and its</li>
 </ul>
-<p>  associated pipeline. Recall.ai is a third-party meeting-bot SDK/API vendor whose product the builder</p>
+<p>  associated pipeline. Recall.ai is a third-party meeting-bot SDK/API vendor whose product the operator</p>
 <p>  integrated into his own tool. Neither is a company that the game designer or the engineer represent, per everything found</p>
 <p>  in this pass.</p>
 <ul>
@@ -545,7 +545,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <ul>
 <li><code>/Users/jarredwinn/.omnara/worktrees/miscellaneous/knelt-smugness/threads/2026-07-08-agent-os-product-concept-consolidation.md</code></li>
 </ul>
-<p>  (the authoritative local thread for this call, including the builder&#x27;s corrections)</p>
+<p>  (the authoritative local thread for this call, including the operator&#x27;s corrections)</p>
 <p>Identity and disambiguation sources:</p>
 <ul>
 <li><code>/Users/jarredwinn/Projects/executive-agent-gui/research/vision-brief.md</code> (unconfirmed &quot;the engineer&quot;;</li>
@@ -602,7 +602,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <ul>
 <li><b>2026-05-22</b>: Real business meetings found silently dropped while family chatter was stored as</li>
 </ul>
-<p>  &quot;meetings.&quot; the builder&#x27;s directive: capture everything, filter family chatter, categorize business,</p>
+<p>  &quot;meetings.&quot; the operator&#x27;s directive: capture everything, filter family chatter, categorize business,</p>
 <p>  make it accurate.</p>
 <ul>
 <li><b>2026-05-27 to approx. 2026-06-06</b>: Otter, at the time the canonical CRM&#x27;s only historical feeder,</li>
@@ -643,7 +643,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 </ul>
 <p>  legitimate up-to-7-day offline window.</p>
 <ul>
-<li><b>2026-06-25</b>: the builder&#x27;s record-on-detection design decision made. Separately, a &quot;the game designer&quot; (per one</li>
+<li><b>2026-06-25</b>: the operator&#x27;s record-on-detection design decision made. Separately, a &quot;the game designer&quot; (per one</li>
 </ul>
 <p>  reader&#x27;s contested reading, possibly a different the game designer) gives a live Recall.ai desktop-SDK demo,</p>
 <p>  per mini&#x27;s <code>crm/interactions/nick.md</code>.</p>
@@ -696,10 +696,10 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <p>  and <code>881dcde8</code>; Recall&#x27;s own bot API was queried directly and returned 0 active bots, used as evidence</p>
 <p>  in ruling Recall out as the source of the unwanted bot.</p>
 <ul>
-<li><b>2026-07-08</b>: First 3-way call between the builder, the game-design collaborator, and the engineering collaborator, 68 minutes, roughly</li>
+<li><b>2026-07-08</b>: First 3-way call between the operator, the game-design collaborator, and the engineering collaborator, 68 minutes, roughly</li>
 </ul>
 <p>  11:05 to 12:15 PDT, on a gamified Agent OS / RSI-for-orgs concept. Captured three times by the capture</p>
-<p>  stack (once fieldy-extracted, twice via Recall) plus one raw transcript. the builder issues two authoritative</p>
+<p>  stack (once fieldy-extracted, twice via Recall) plus one raw transcript. the operator issues two authoritative</p>
 <p>  corrections afterward: mima is unrelated to this concept, and &quot;the prior engineering framework&quot; is the engineer&#x27;s own separate term,</p>
 <p>  not the joint product&#x27;s name. Per this task&#x27;s own goal context (not independently re-verified here),</p>
 <p>  gbrain&#x27;s embedding pipeline is again reporting quota exhaustion as of this morning, meaning today&#x27;s</p>
@@ -708,7 +708,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <ul>
 <li><code>threads/2026-07-08-agent-os-product-concept-consolidation.md</code> (2026-07-08; read directly for this</li>
 </ul>
-<p>  dossier; the authoritative primary source for today&#x27;s call and the builder&#x27;s corrections)</p>
+<p>  dossier; the authoritative primary source for today&#x27;s call and the operator&#x27;s corrections)</p>
 <ul>
 <li><code>executive-agent-gui/research/vision-brief.md</code> (compiled 2026-07-03, covering 2026-06-19 to 2026-07-03;</li>
 </ul>
@@ -777,7 +777,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 <li>The core identity resolution (the game-design collaborator and the engineering collaborator, not a &quot;Fieldy/Recall company&quot;; the prior engineering framework as</li>
 </ul>
 <p>  the engineer&#x27;s own term, not the joint product&#x27;s name; mima as unrelated) rests on a direct read of the</p>
-<p>  primary 2026-07-08 thread, which states these as the builder&#x27;s own authoritative corrections. This is the</p>
+<p>  primary 2026-07-08 thread, which states these as the operator&#x27;s own authoritative corrections. This is the</p>
 <p>  highest-confidence material in this dossier.</p>
 <ul>
 <li>The two-track architecture (documented Otter/Fieldy/Granola/Roam pipeline versus the separately-built</li>

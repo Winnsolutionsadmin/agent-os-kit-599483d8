@@ -165,17 +165,17 @@ main{margin-top:34px}
 <main>
   <header class="mast">
     <p class="eyebrow"><span>Technical whitepaper</span><span>·</span><span>for an engineering leader</span><span>·</span><span>internal review draft</span></p>
-    <h1 class="wordmark"><span class="bk">[</span><span class="nm">&nbsp;NAME&nbsp;</span><span class="bk">]</span></h1>
+    <h1 class="wordmark"><span class="bk">[</span><span class="nm">&nbsp;PROJ-X&nbsp;</span><span class="bk">]</span></h1>
     <p class="subtitle">A governed control loop for agent work inside an organization.</p>
     <p class="mast-note">The product is intentionally unnamed. The permanent mark is chosen last, from a legally cleared shortlist, after the position is locked. <b>The brackets are the design, not a gap.</b> The working descriptor is an agent OS for organizations, used sparingly and never as a name.</p>
-    <p class="mast-meta">Founder: the builder &nbsp;·&nbsp; jarred@winn.solutions &nbsp;·&nbsp; document date 2026-07-09</p>
+    <p class="mast-meta">winn.solutions &nbsp;·&nbsp; jarred@winn.solutions &nbsp;·&nbsp; document date 2026-07-09</p>
   </header>
 
   <section id="abstract" class="abstract">
     <div class="h"><span class="n">00</span><h2>Abstract</h2></div>
     <p class="lead">Enterprises do not lack AI capability. They lack a way to let a whole organization use that capability without losing control of it.</p>
     <p>This document specifies the system we are building to close that gap: a single conversational front door over a governed control loop that observes a company's real events, proposes work against stated objectives, and executes only what a human authorizes, with autonomy earned per class of decision rather than assumed.</p>
-    <p>It is written for an engineering leader, not a buyer. It is honest about what runs today and what is still design. A reference implementation, operated by the founder at the scale of one person directing many agents, already runs the observe-and-propose half of the loop in production. The gate, the executor, the graduation ledger, and the multi-tenant substrate are specified here and are the real build. Every capability carries a build-status label, and every number carries an evidence tag. Nothing designed but unbuilt is written in the present tense.</p>
+    <p>It is written for an engineering leader, not a buyer. It is honest about what runs today and what is still design. A reference implementation, run at the scale of one person directing many agents, already runs the observe-and-propose half of the loop in production. The gate, the executor, the graduation ledger, and the multi-tenant substrate are specified here and are the real build. Every capability carries a build-status label, and every number carries an evidence tag. Nothing designed but unbuilt is written in the present tense.</p>
     <p>The claim is narrow and, we think, defensible: the moat is not the model. It is the organizational psychology of adoption and the governance that makes agent work safe to run. This paper describes the mechanics of both.</p>
   </section>
 
@@ -199,7 +199,7 @@ main{margin-top:34px}
         <span class="k"><span class="tag">[unverified]</span></span><span class="d">An internal estimate or a proposed default not yet confirmed.</span>
       </div>
     </div>
-    <p>The reference implementation is a reference implementation. It is operated by the founder to prove the pattern. It is not an installed customer, and no count in it is customer traction.</p>
+    <p>The reference implementation is a reference implementation. It runs daily to prove the pattern. It is not an installed customer, and no count in it is customer traction.</p>
   </section>
 
   <section id="s1">
@@ -403,7 +403,7 @@ main{margin-top:34px}
       <li><b>Incident response.</b> Surfacing fails open to the human: if the triage layer errors or is uncertain, the item escalates raw rather than being dropped. An attempted ungated action is a severity-one event that pauses the workflow and informs the executive; it is never quietly retried. The breach commitment is 24-hour internal and 72-hour partner notification, and tenant-aware logging makes blast-radius determination a query rather than an investigation.</li>
     </ul>
     <h3>4.4 Where each capability actually stands</h3>
-    <p>An uninvolved reviewer should be able to place every visible capability without asking the founder. This table does that.</p>
+    <p>An uninvolved reviewer should be able to place every visible capability without asking anyone. This table does that.</p>
     <div class="tw">
       <table>
         <caption>Capability truth table</caption>
@@ -441,13 +441,13 @@ main{margin-top:34px}
     <h3>5.3 The evidence threshold</h3>
     <p>A class earns autonomy only when the system's recommendation has matched the human's actual choice at least 90 percent of the time across at least 20 resolved decisions. The 20-plus are consecutive and trailing, not cherry-picked across a lifetime. Below the threshold, every action in the class is gated to a human. This is the same 90-percent-over-20-reps rule the reference implementation's own design has carried from the start; it is deliberately conservative and deliberately boring.</p>
     <h3>5.4 Disagreement semantics</h3>
-    <p>Only an approval with no edit counts as agreement. An Edit and a Reject both count against the class. The reasoning: an edit is the human correcting the system, and a system that needs correcting has not earned the right to skip the human. This is the conservative reading, and it is the working rule; it needs founder confirmation before the first pilot day, and if weighted partial credit for small edits is wanted later, only the ledger function changes, not the schema. We flag it as an open decision rather than pretend it is settled.</p>
+    <p>Only an approval with no edit counts as agreement. An Edit and a Reject both count against the class. The reasoning: an edit is the human correcting the system, and a system that needs correcting has not earned the right to skip the human. This is the conservative reading, and it is the working rule; it needs an explicit confirmation before the first pilot day, and if weighted partial credit for small edits is wanted later, only the ledger function changes, not the schema. We flag it as an open decision rather than pretend it is settled.</p>
     <h3>5.5 Sign-off and the record</h3>
     <p>Resolution happens on a human decision card. When a class has graduated, the gate service may auto-approve for that class, and it still writes the full record with an explicit auto-approved flag plus the complete audit entry. Graduation changes who approves. It never changes whether the record is written. Per-class status is visible to the client on a weekly attestation, so autonomy is never invisible to the people it acts for.</p>
     <h3>5.6 Revocation</h3>
     <p>Autonomy is a lease, not a grant. A single post-graduation disagreement (a human overriding an auto-acted item, or an audit flagging one) demotes the class immediately back to a full human gate and restarts its window. Re-graduation requires the whole 90-over-20 again. Demotion is cheap and unceremonious on purpose: the machinery must make taking authority back a routine act, not a confession of failure.</p>
     <h3>5.7 Classes that never graduate</h3>
-    <p>Three classes are marked never-graduate at the schema level, not by convention: money in any amount, anything irreversible, and anything external-facing above a de-minimis definition. The graduation machinery is structurally unable to flip these to auto-act, and no API surface, including an administrator's, can override that. Product law says autonomy is earned. It does not say every class is earnable. The de-minimis lines (does an internal comment in a partner's own tool count as external?) are a founder decision; the safe default is that anything visible to a non-operator human is external until narrowed.</p>
+    <p>Three classes are marked never-graduate at the schema level, not by convention: money in any amount, anything irreversible, and anything external-facing above a de-minimis definition. The graduation machinery is structurally unable to flip these to auto-act, and no API surface, including an administrator's, can override that. Product law says autonomy is earned. It does not say every class is earnable. The de-minimis lines (does an internal comment in a partner's own tool count as external?) are an owner decision; the safe default is that anything visible to a non-operator human is external until narrowed.</p>
     <h3>5.8 The graduation ladder</h3>
 
     <figure class="fig">
@@ -501,11 +501,11 @@ main{margin-top:34px}
 
   <section id="s7">
     <div class="h"><span class="n">07</span><h2>Data posture</h2></div>
-    <p>This is the first question a design partner's security team asks, so it gets a real answer rather than a reassurance. Everything below is <span class="chip pilot">Pilot-scope</span> as product machinery; the postures marked as proposed defaults carry a founder review gate and are tagged <span class="tag">[unverified]</span> until confirmed.</p>
+    <p>This is the first question a design partner's security team asks, so it gets a real answer rather than a reassurance. Everything below is <span class="chip pilot">Pilot-scope</span> as product machinery; the postures marked as proposed defaults carry a human review gate and are tagged <span class="tag">[unverified]</span> until confirmed.</p>
     <p><b>Siloing.</b> Data classes do not share stores, keys, or access roles across sensitivity boundaries. In particular, scoring data and meeting capture never share a store, a key, or an access role with each other. The scoring store is the single most sensitive class and is held alone. This is control one of the aligned control set, not an afterthought.</p>
     <p><b>Tenant boundary.</b> For the pilot, a design partner's data lives in its own database instance under its own keys, physically segregated from the reference implementation and from any other account from day one. At n=1 this is cheaper to reason about and to attest than row-level security, and a partner's security team can audit it in a single meeting. The multi-tenant version adds schema-per-tenant separation with row-level security as the backstop, per-tenant keys, and a cross-tenant leak test that fails the build if a query ever crosses the line.</p>
     <p><b>Provenance.</b> Every event carries its initiator, approver, executor, tenant, timestamps, and a hash of the payload. The system shows where a fact came from and how fresh it is, and it narrates only the data path it actually used. Provenance is not a report generated later; it is the shape of every event as it is written.</p>
-    <p><b>Retention</b> (proposed defaults, founder gate, <span class="tag">[unverified]</span>). Raw transcripts: 90 days, then auto-deleted unless the partner explicitly archives them. Derived artifacts (decisions, actions, commitments): the life of the engagement plus a contracted wind-down. Scoring events: the life of the engagement, then anonymized aggregates. The audit log: never deleted within the engagement, and exported to the partner at wind-down. Provider traffic: zero-retention requested in writing, with the one model-family carve-out that does not offer it kept off any sensitive path so the assumption never breaks silently.</p>
+    <p><b>Retention</b> (proposed defaults, human gate, <span class="tag">[unverified]</span>). Raw transcripts: 90 days, then auto-deleted unless the partner explicitly archives them. Derived artifacts (decisions, actions, commitments): the life of the engagement plus a contracted wind-down. Scoring events: the life of the engagement, then anonymized aggregates. The audit log: never deleted within the engagement, and exported to the partner at wind-down. Provider traffic: zero-retention requested in writing, with the one model-family carve-out that does not offer it kept off any sensitive path so the assumption never breaks silently.</p>
     <p><b>Consent and the hard walls.</b> Sanctioned capture only. The undisclosed-notetaker eviction in section 1 is the lesson encoded as policy: no undisclosed bots, ever. An executive designates the capture scope and all participants are disclosed to. Speaker attribution deploys only with explicit all-party consent, given the active wiretap and biometric litigation against that whole feature class <span class="tag">VENDOR</span> (press, 2025 to 2026). Legal, board, and merger-related meetings are walled out of capture by policy before any regulated-client pilot, because a 2026 holding that AI conversations are not privileged makes that exposure concrete rather than theoretical <span class="tag">VENDOR</span> (press).</p>
     <p><b>No pooled client-data learning.</b> This is the load-bearing commitment and the differentiator, so it is stated without hedging: no client's data is used to train models, and nothing learned inside one tenant pools into another. What compounds is client-specific. Each engagement's own configuration and its own evaluation sets make that engagement's system better over time, and they stay inside that engagement's boundary. The compounding asset is the fit of the system to one company, earned on that company's ground, never a shared pool skimmed across clients.</p>
     <p><b>What we hold, and what we do not.</b> We adopt the aligned control set now (a current data map, SSO and role-based access, tenant-scoped logging, encryption at rest and in transit, quarterly vendor review). We do not hold a SOC 2 Type II report, and we do not imply one. A formal audit is a 9-to-15-month effort triggered by the first real enterprise deal <span class="tag">SURVEY</span> (compliance-market sources), and until it exists the engagement sells on relationship, demonstration, and this documented posture, not on a certificate we do not have.</p>
@@ -521,7 +521,7 @@ main{margin-top:34px}
       <li><b>We do not claim effortless integration.</b> Legacy integration is real friction. The consultative companion is the bridge across it, not a promise that the bridge is not needed.</li>
       <li><b>We do not claim a throughput multiplier as a customer outcome.</b> An internal engineering benchmark exists and is being formalized with a methodology memo; no throughput figure appears in this document, and no such number is ever a customer promise.</li>
       <li><b>We do not claim compliance we do not hold.</b> There is no SOC 2 report today. The controls are aligned; the certificate is a future event tied to a real deal.</li>
-      <li><b>We do not present the reference implementation as an installed customer.</b> It is a reference implementation operated by the founder. Its counts prove a pattern, not demand.</li>
+      <li><b>We do not present the reference implementation as an installed customer.</b> It is a reference implementation operated by the owner. Its counts prove a pattern, not demand.</li>
       <li><b>We do not present the research corpus or the skill registry as traction.</b> They are inputs and pattern-proof. Demand is measured by signed pilots, of which the honest count is stated wherever the question is asked.</li>
       <li><b>We do not claim a name.</b> The product is intentionally unnamed until the position is locked and a mark clears legal review. The brackets are the design.</li>
     </ul>
@@ -530,7 +530,7 @@ main{margin-top:34px}
 
   <section id="appendix">
     <div class="h"><span class="n">A</span><h2>Appendix: N=1 operating evidence</h2></div>
-    <p>These are counts from the reference implementation, read from live telemetry. They are one operator's operating evidence, <span class="tag">N=1</span>. They demonstrate that the observe-and-propose pattern runs in production. They are not customer traction, and none should be read as adoption by anyone other than the founder.</p>
+    <p>These are counts from the reference implementation, read from live telemetry. They are one operator's operating evidence, <span class="tag">N=1</span>. They demonstrate that the observe-and-propose pattern runs in production. They are not customer traction, and none should be read as adoption by anyone other than the owner.</p>
     <div class="tw">
       <table>
         <caption>Reference implementation, live telemetry</caption>
@@ -547,7 +547,7 @@ main{margin-top:34px}
       </table>
     </div>
 
-    <p class="foot"><b>Provenance.</b> This document is a working technical specification for an unnamed product, authored 2026-07-09 from the foundation repository's architecture, data-governance, and product-law artifacts and the conversation-sweep dossiers behind them. Build-status and evidence tags are load-bearing; treat any untagged number as a defect. Founder: the builder (jarred@winn.solutions). No em dashes, by house rule and recipient preference. This is an internal review draft, not an external publication.</p>
+    <p class="foot"><b>Provenance.</b> This document is a working technical specification for an unnamed product, authored 2026-07-09 from the foundation repository's architecture, data-governance, and product-law artifacts and the conversation-sweep dossiers behind them. Build-status and evidence tags are load-bearing; treat any untagged number as a defect. Owner: the operation (jarred@winn.solutions). No em dashes, by house rule and recipient preference. This is an internal review draft, not an external publication.</p>
   </section>
 
 </main>
