@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AgentOS · C0 + C1 sets · bold ambiance + PiP</title><style>
+*{box-sizing:border-box;margin:0}body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0E1013;color:#E8EAED;padding:34px 3vw 60px}
+h1{font-size:22px;font-weight:700}p.sub{color:#9AA2AC;font-size:13px;margin:6px 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:24px}
+.card{background:#16191D;border:1px solid #23272C;border-radius:16px;overflow:hidden}
+.chead{display:flex;justify-content:space-between;padding:13px 16px;font-size:13px}.chead span{color:#9AA2AC;font-size:12px}
+.frame{position:relative;width:100%;aspect-ratio:16/9.6;background:#fff;overflow:hidden}
+iframe{width:1440px;height:900px;border:0;transform-origin:0 0;position:absolute;left:0;top:0}
+a.open{display:block;text-align:center;padding:10px;font-size:12px;color:#7FB3FF;text-decoration:none;border-top:1px solid #23272C}
+</style></head><body>
+<h1>C0 (flat) + C1 (panel) — bold ambiances, hover PiP preview</h1>
+<p class="sub">Hover any document row → the frame on the right previews the REAL live document. Click opens it.</p>
+<div class="grid" id="g"></div>
+<script>
+const opts=[["C0","cloudbank","flat editorial · bold ambiance + hover PiP","set-c0-cloudbank.html"],["C0","smoke","flat editorial · bold ambiance + hover PiP","set-c0-smoke.html"],["C0","ember","flat editorial · bold ambiance + hover PiP","set-c0-ember.html"],["C0","dissipate","flat editorial · bold ambiance + hover PiP","set-c0-dissipate.html"],["C1","cloudbank","shadowed panel · bold ambiance + hover PiP","set-c1-cloudbank.html"],["C1","smoke","shadowed panel · bold ambiance + hover PiP","set-c1-smoke.html"],["C1","ember","shadowed panel · bold ambiance + hover PiP","set-c1-ember.html"],["C1","dissipate","shadowed panel · bold ambiance + hover PiP","set-c1-dissipate.html"],];
+const g=document.getElementById('g');
+for(const [k,amb,desc,file] of opts){const el=document.createElement('div');el.className='card';
+el.innerHTML=`<div class="chead"><b>${k} · ${amb}</b><span>${desc}</span></div><div class="frame"><iframe src="${file}" loading="lazy" scrolling="no"></iframe></div><a class="open" href="${file}" target="_blank">open full-size →</a>`;g.appendChild(el);}
+function scale(){document.querySelectorAll('.frame').forEach(f=>{const s=f.clientWidth/1440;f.querySelector('iframe').style.transform=`scale(${s})`;});}
+addEventListener('resize',scale);requestAnimationFrame(scale);setTimeout(scale,400);
+</script></body></html>

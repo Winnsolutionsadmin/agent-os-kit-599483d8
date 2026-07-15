@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C1 · Dissipate · PiP — AgentOS Reading Room</title><style>
+:root{--ink:#000;--soft:#4B5158;--dim:#A2A8AF;--accent:#FF4D2E;}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;background:#FFF;color:var(--ink);min-height:100vh;display:grid;place-items:center;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:30px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.top b{color:var(--ink);font-weight:700}.top .conf{color:var(--accent);font-weight:600}
+h1{font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.042em;line-height:.98;margin-bottom:6px}
+h1 .thin{display:block;font-weight:300;color:var(--soft);letter-spacing:-.03em;font-size:.55em;margin-top:8px}
+.rule{height:2px;background:var(--ink);width:64px;margin:22px 0 0}
+.num{font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums}
+.name{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.desc{font-size:13px;color:var(--soft);margin-top:2px;font-weight:400}
+.go{font-size:17px;color:var(--dim)}
+.row:hover .go,.row:hover .name{color:var(--accent)}
+.foot{display:flex;justify-content:space-between;margin-top:28px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+.fog{position:fixed;inset:-12%;pointer-events:none;filter:blur(54px);opacity:.95}
+.fog i{position:absolute;border-radius:50%}
+.fog i:nth-child(1){width:80vw;height:52vw;left:10vw;top:2vh;background:radial-gradient(circle,rgba(148,163,184,.55),transparent 62%)}
+.fog i:nth-child(2){width:50vw;height:34vw;left:-16vw;top:-12vh;background:radial-gradient(circle,rgba(100,116,139,.4),transparent 66%)}
+.fog i:nth-child(3){width:54vw;height:32vw;right:-16vw;bottom:-12vh;background:radial-gradient(circle,rgba(100,116,139,.38),transparent 66%)}
+.floor{position:fixed;left:50%;bottom:4vh;width:66vw;height:10vh;transform:translateX(-50%);pointer-events:none;background:radial-gradient(50% 100% at 50% 100%,rgba(10,22,40,.3),transparent 70%);filter:blur(24px)}
+.veil{position:fixed;inset:0;pointer-events:none;background:radial-gradient(86% 74% at 50% 44%,transparent 30%,rgba(252,252,253,.62) 68%,rgba(252,252,253,.95) 96%)}
+
+.module{margin-top:26px;background:rgba(255,255,255,.62);backdrop-filter:blur(26px) saturate(1.3);-webkit-backdrop-filter:blur(26px) saturate(1.3);
+ border:1px solid rgba(255,255,255,.85);outline:1px solid rgba(0,0,0,.06);border-radius:22px;overflow:hidden;
+ box-shadow:0 44px 110px -46px rgba(10,22,40,.4),0 2px 6px rgba(10,22,40,.05)}
+.row{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:10px;padding:15px 22px;border-bottom:1px solid rgba(0,0,0,.08);text-decoration:none;color:inherit;transition:background .15s,padding .18s}
+.row:last-child{border-bottom:none}
+.row:hover{background:rgba(255,255,255,.85);padding-left:30px}
+
+.wrap{position:relative;width:min(1240px,96vw);display:grid;grid-template-columns:1fr 460px;gap:44px;align-items:start;padding:4vh 0}
+.pip{position:sticky;top:6vh;background:rgba(255,255,255,.6);backdrop-filter:blur(26px) saturate(1.3);-webkit-backdrop-filter:blur(26px) saturate(1.3);
+ border:1px solid rgba(255,255,255,.9);outline:1px solid rgba(0,0,0,.06);border-radius:20px;overflow:hidden;
+ box-shadow:0 48px 110px -44px rgba(10,22,40,.45),0 2px 6px rgba(10,22,40,.05)}
+.pip .ph{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,.07);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.pip .ph b{color:var(--ink);font-weight:700;letter-spacing:.06em}
+.pipframe{position:relative;width:100%;height:480px;background:#fff;overflow:hidden}
+.pipframe iframe{width:1280px;height:1340px;border:0;transform:scale(0.3594);transform-origin:0 0;position:absolute;left:0;top:0;opacity:0;transition:opacity .22s;pointer-events:none}
+.pipframe iframe.on{opacity:1}
+.pip .pf{padding:10px 16px;font-size:11px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:980px){.wrap{grid-template-columns:1fr}.pip{display:none}}
+
+</style></head><body>
+<div class="fog"><i></i><i></i><i></i></div><div class="floor"></div><div class="veil"></div>
+<main class="wrap">
+  <div class="left">
+    <div class="top"><span><b>AgentOS</b> · reading room</span><span class="conf">confidential</span></div>
+    <h1>Read it in<br>the order it happened.<span class="thin">The memo, the numbers, the architecture.</span></h1>
+    <div class="rule"></div>
+    <section class="module">
+<a class="row" href="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/00-master/" target="_blank" data-doc="0"><span class="num">01</span><span><span class="name">Master Timeline</span><br><span class="desc">The chronological spine — start here</span></span><span class="go">→</span></a>
+<a class="row" href="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/founder-memo/" target="_blank" data-doc="1"><span class="num">02</span><span><span class="name">Founder Memo</span><br><span class="desc">Why this, why now, why us</span></span><span class="go">→</span></a>
+<a class="row" href="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/whitepaper/" target="_blank" data-doc="2"><span class="num">03</span><span><span class="name">Whitepaper</span><br><span class="desc">The system, end to end</span></span><span class="go">→</span></a>
+<a class="row" href="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/financials-icp/" target="_blank" data-doc="3"><span class="num">04</span><span><span class="name">Financials & ICP</span><br><span class="desc">Model, margins, who buys</span></span><span class="go">→</span></a>
+<a class="row" href="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/legal-readiness/" target="_blank" data-doc="4"><span class="num">05</span><span><span class="name">Legal Readiness</span><br><span class="desc">Mutual NDA & protections</span></span><span class="go">→</span></a>
+    </section>
+    <div class="foot"><span>winn.solutions</span><span>do not distribute</span></div>
+  </div>
+  <aside class="pip">
+    <div class="ph"><b id="piplab">Master Timeline</b><span>preview</span></div>
+    <div class="pipframe">
+<iframe data-f="0" src="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/00-master/" loading="lazy" scrolling="no" title="Master Timeline"></iframe>
+<iframe data-f="1" src="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/founder-memo/" loading="lazy" scrolling="no" title="Founder Memo"></iframe>
+<iframe data-f="2" src="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/whitepaper/" loading="lazy" scrolling="no" title="Whitepaper"></iframe>
+<iframe data-f="3" src="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/financials-icp/" loading="lazy" scrolling="no" title="Financials & ICP"></iframe>
+<iframe data-f="4" src="https://winnsolutionsadmin.github.io/agent-os-kit-599483d8/09-deliverables/legal-readiness/" loading="lazy" scrolling="no" title="Legal Readiness"></iframe>
+    </div>
+    <div class="pf">hover a document · click to open</div>
+  </aside>
+</main>
+<script>
+const rows=[...document.querySelectorAll('.row')],ifr=[...document.querySelectorAll('.pipframe iframe')],lab=document.getElementById('piplab');
+function show(i){ifr.forEach((f,j)=>f.classList.toggle('on',j===i));lab.textContent=rows[i].querySelector('.name').textContent;}
+rows.forEach((r,i)=>r.addEventListener('mouseenter',()=>show(i)));show(0);
+</script>
+</body></html>
